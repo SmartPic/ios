@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Photos
 
 class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var series: [UIImage] = [] {
+    var series: [PHAsset] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -28,7 +29,16 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: ListImageCell = collectionView.dequeueReusableCellWithReuseIdentifier(ListImageCell.className, forIndexPath: indexPath) as ListImageCell
-        cell.listImageView.image = series[indexPath.row]
+        
+        cell.listImageView.image = nil
+        
+        var asset: PHAsset = series[indexPath.row]
+        var photoFetcher = PhotoFetcher()
+        photoFetcher.requestImageForAsset(asset,
+            size: cell.listImageView.frame.size) { (image, info) -> Void in
+                cell.listImageView.image = image
+        }
+        
         return cell
     }
 
