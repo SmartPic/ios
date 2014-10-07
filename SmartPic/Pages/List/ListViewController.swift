@@ -30,7 +30,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
 //            [image11, image12, image13, image14, image15],
 //            [image21, image22, image23]
 //        ]
-        
+
+        // UIImageではなくPHAssetを使う?
         var photoFetcher = PhotoFetcher()
         seriesList = photoFetcher.photosTimeImmediately()
     }
@@ -51,7 +52,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("pushDetail", sender: nil)
+//        self.performSegueWithIdentifier("pushDetail", sender: seriesList[indexPath.row])
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "pushDetail") {
+            let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
+            detailViewController.pictures = sender as Array
+        }
+    }
 }
