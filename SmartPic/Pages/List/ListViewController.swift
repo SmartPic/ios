@@ -22,11 +22,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let image13:UIImage = UIImage(named:"13.jpg")
         let image14:UIImage = UIImage(named:"14.jpg")
         let image15:UIImage = UIImage(named:"15.jpg")
+        let image16:UIImage = UIImage(named:"16.jpg")
         let image21:UIImage = UIImage(named:"21.jpg")
         let image22:UIImage = UIImage(named:"22.jpg")
         let image23:UIImage = UIImage(named:"23.jpg")
         seriesList = [
-            [image11, image12, image13, image14, image15],
+            [image11, image12, image13, image14, image15, image16],
             [image21, image22, image23]
         ]
     }
@@ -48,7 +49,13 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("pushDetail", sender: nil)
+        self.performSegueWithIdentifier("pushDetail", sender: seriesList[indexPath.row])
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "pushDetail") {
+            let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
+            detailViewController.pictures = sender as Array
+        }
+    }
 }
