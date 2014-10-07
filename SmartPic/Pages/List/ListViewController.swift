@@ -42,7 +42,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // FIXME: クラス名から "ListCell" 取得したい
-        let cell: ListCell = tableView.dequeueReusableCellWithIdentifier("ListCell") as ListCell
+        let cell: ListCell = tableView.dequeueReusableCellWithIdentifier(ListCell.className) as ListCell
         cell.series = seriesList[indexPath.row]
         return cell
     }

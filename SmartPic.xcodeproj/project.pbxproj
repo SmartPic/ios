@@ -18,6 +18,7 @@
 		3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46919E176DA008079CE /* ListViewController.swift */; };
 		3F49A46C19E17A47008079CE /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46B19E17A47008079CE /* ListCell.swift */; };
 		3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA49E7519E23D0200D86E8A /* ListImageCell.swift */; };
+		3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754C819E4092700EB7FBB /* MyExtensions.swift */; };
 		3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD50DC19E175840096E154 /* AppDelegate.swift */; };
 		3FBD50E219E175840096E154 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E019E175840096E154 /* Main.storyboard */; };
 		3FBD50E419E175840096E154 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E319E175840096E154 /* Images.xcassets */; };
@@ -47,6 +48,7 @@
 		3F49A46919E176DA008079CE /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3F49A46B19E17A47008079CE /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		3FA49E7519E23D0200D86E8A /* ListImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListImageCell.swift; sourceTree = "<group>"; };
+		3FA754C819E4092700EB7FBB /* MyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
 		3FBD50D719E175840096E154 /* SmartPic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FBD50DB19E175840096E154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FBD50DC19E175840096E154 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,14 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		3FA754C719E408DA00EB7FBB /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				3FA754C819E4092700EB7FBB /* MyExtensions.swift */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
 		3FBD50CE19E175840096E154 = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +140,7 @@
 		3FBD50D919E175840096E154 /* SmartPic */ = {
 			isa = PBXGroup;
 			children = (
+				3FA754C719E408DA00EB7FBB /* Libs */,
 				3F49A46719E1767C008079CE /* Pages */,
 				3F49A45619E17617008079CE /* TmpImages */,
 				3FBD50DC19E175840096E154 /* AppDelegate.swift */,
@@ -276,6 +287,7 @@
 			files = (
 				3F49A46C19E17A47008079CE /* ListCell.swift in Sources */,
 				3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */,
+				3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */,
 				3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */,
 				3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */,
 			);
