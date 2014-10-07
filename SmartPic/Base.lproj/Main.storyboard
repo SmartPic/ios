@@ -90,10 +90,10 @@
             </objects>
             <point key="canvasLocation" x="419" y="526"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="jvp-Al-Dyl">
             <objects>
-                <viewController id="BC3-BM-sXh" sceneMemberID="viewController">
+                <viewController id="BC3-BM-sXh" customClass="DetailViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YMR-RA-b3r"/>
                         <viewControllerLayoutGuide type="bottom" id="Fse-rh-ABo"/>
@@ -101,21 +101,101 @@
                     <view key="view" contentMode="scaleToFill" id="xdq-9r-MSo">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXI-nY-hdK">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <color key="backgroundColor" white="0.84384450604838723" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="gNh-ga-q0V"/>
+                                </constraints>
+                                <state key="normal" title="整理する">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapOrderButton:" destination="BC3-BM-sXh" eventType="touchUpInside" id="NkQ-Z0-QZQ"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kqc-wN-Rq5">
+                                <rect key="frame" x="0.0" y="418" width="320" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="kRJ-xx-CYU"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bYo-f2-PRk">
+                                    <size key="itemSize" width="60" height="80"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ListImageCell" id="sTc-4e-FD7" customClass="ListImageCell" customModule="SmartPic" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-12-xk1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="listImageView" destination="j9H-12-xk1" id="6kz-dh-jaa"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="BC3-BM-sXh" id="8gt-Av-Ioj"/>
+                                    <outlet property="delegate" destination="BC3-BM-sXh" id="5Ra-VN-6NN"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EaZ-FN-jHM">
+                                <rect key="frame" x="0.0" y="368" width="320" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="CXi-Jd-T8w"/>
+                                </constraints>
+                                <state key="normal" title="☆ この写真を残す">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ezW-OJ-Gga">
+                                <rect key="frame" x="0.0" y="64" width="320" height="304"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aXI-nY-hdK" firstAttribute="top" secondItem="kqc-wN-Rq5" secondAttribute="bottom" id="4tU-Ud-GUk"/>
+                            <constraint firstAttribute="trailing" secondItem="EaZ-FN-jHM" secondAttribute="trailing" id="5OO-D1-ZBx"/>
+                            <constraint firstItem="EaZ-FN-jHM" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" id="8kd-4f-elr"/>
+                            <constraint firstAttribute="trailing" secondItem="aXI-nY-hdK" secondAttribute="trailing" id="Csc-8O-adS"/>
+                            <constraint firstAttribute="trailing" secondItem="ezW-OJ-Gga" secondAttribute="trailing" id="FLv-on-42Y"/>
+                            <constraint firstItem="Fse-rh-ABo" firstAttribute="top" secondItem="aXI-nY-hdK" secondAttribute="bottom" id="FTS-cM-wQi"/>
+                            <constraint firstItem="ezW-OJ-Gga" firstAttribute="top" secondItem="YMR-RA-b3r" secondAttribute="bottom" id="JCz-cl-jnf"/>
+                            <constraint firstItem="EaZ-FN-jHM" firstAttribute="top" secondItem="ezW-OJ-Gga" secondAttribute="bottom" id="Sui-Vm-VZe"/>
+                            <constraint firstAttribute="trailing" secondItem="kqc-wN-Rq5" secondAttribute="trailing" id="VUb-Ek-Kxl"/>
+                            <constraint firstItem="kqc-wN-Rq5" firstAttribute="top" secondItem="EaZ-FN-jHM" secondAttribute="bottom" id="dbq-S3-vdr"/>
+                            <constraint firstItem="aXI-nY-hdK" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" id="etQ-hE-JSv"/>
+                            <constraint firstItem="ezW-OJ-Gga" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" id="jlB-sC-sNU"/>
+                            <constraint firstItem="kqc-wN-Rq5" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" id="mIz-Vb-hJx"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1vD-PA-IOX"/>
                     <connections>
-                        <segue destination="7Em-sI-0SV" kind="modal" id="77D-9z-6gF"/>
+                        <outlet property="bigImageView" destination="ezW-OJ-Gga" id="igo-um-pDd"/>
+                        <outlet property="collectionView" destination="kqc-wN-Rq5" id="mx3-kH-EZI"/>
+                        <segue destination="7Em-sI-0SV" kind="modal" identifier="modalComplete" id="77D-9z-6gF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfw-Qd-JuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="918" y="526"/>
         </scene>
-        <!--View Controller-->
+        <!--Complete View Controller-->
         <scene sceneID="SHr-mQ-tl5">
             <objects>
-                <viewController id="7Em-sI-0SV" sceneMemberID="viewController">
+                <viewController id="7Em-sI-0SV" customClass="CompleteViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5mi-tW-a2q"/>
                         <viewControllerLayoutGuide type="bottom" id="r5f-A9-MkM"/>
@@ -123,7 +203,28 @@
                     <view key="view" contentMode="scaleToFill" id="H51-o8-Q5E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrs-gm-AFa">
+                                <rect key="frame" x="170" y="518" width="150" height="50"/>
+                                <color key="backgroundColor" white="0.84384450600000005" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4UG-9i-sYi"/>
+                                    <constraint firstAttribute="width" constant="150" id="6fS-oy-lKk"/>
+                                </constraints>
+                                <state key="normal" title="キャンセル">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapCancelButton:" destination="7Em-sI-0SV" eventType="touchUpInside" id="WP8-e0-mYj"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="r5f-A9-MkM" firstAttribute="top" secondItem="Vrs-gm-AFa" secondAttribute="bottom" id="FNK-Pt-efZ"/>
+                            <constraint firstAttribute="trailing" secondItem="Vrs-gm-AFa" secondAttribute="trailing" id="Yvf-yr-iUC"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vtU-N4-b2L" userLabel="First Responder" sceneMemberID="firstResponder"/>
