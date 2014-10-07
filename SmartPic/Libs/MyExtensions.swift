@@ -16,6 +16,3 @@ extension NSObject {
         }
     }
 }
-
-class MyExtensions: NSObject {
-}
