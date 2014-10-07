@@ -27,7 +27,7 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell: ListImageCell = collectionView.dequeueReusableCellWithReuseIdentifier("ListImageCell", forIndexPath: indexPath) as ListImageCell
+        let cell: ListImageCell = collectionView.dequeueReusableCellWithReuseIdentifier(ListImageCell.className, forIndexPath: indexPath) as ListImageCell
         cell.listImageView.image = series[indexPath.row]
         return cell
     }
