@@ -35,4 +35,8 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.listImageView.image = pictures[indexPath.row]
         return cell
     }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        bigImageView.image = pictures[indexPath.row]
+    }
 }
