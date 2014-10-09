@@ -38,7 +38,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        self.performSegueWithIdentifier("pushDetail", sender: seriesList[indexPath.row])
+        self.performSegueWithIdentifier("pushDetail", sender: seriesList[indexPath.row])
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
