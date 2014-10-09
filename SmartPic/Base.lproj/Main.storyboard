@@ -27,9 +27,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lOc-iF-bbF">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Swq-jD-yW5">
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Swq-jD-yW5">
                                                         <size key="itemSize" width="40" height="60"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -43,12 +43,18 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="60"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ddk-Rd-SHJ">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ddk-Rd-SHJ">
                                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="60"/>
                                                                     </imageView>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             </view>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="Ddk-Rd-SHJ" secondAttribute="bottom" id="7bU-q5-c7i"/>
+                                                                <constraint firstItem="Ddk-Rd-SHJ" firstAttribute="top" secondItem="e2H-Uw-g8Q" secondAttribute="top" id="Xpf-MD-CcV"/>
+                                                                <constraint firstItem="Ddk-Rd-SHJ" firstAttribute="leading" secondItem="e2H-Uw-g8Q" secondAttribute="leading" id="Zuh-aJ-0IZ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Ddk-Rd-SHJ" secondAttribute="trailing" id="chq-JC-QF8"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="listImageView" destination="Ddk-Rd-SHJ" id="Cc0-W8-WAT"/>
                                                             </connections>
@@ -135,12 +141,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-12-xk1">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-12-xk1">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="80"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="j9H-12-xk1" firstAttribute="top" secondItem="sTc-4e-FD7" secondAttribute="top" id="1y5-GW-rPi"/>
+                                            <constraint firstItem="j9H-12-xk1" firstAttribute="leading" secondItem="sTc-4e-FD7" secondAttribute="leading" id="LYh-nf-32C"/>
+                                            <constraint firstAttribute="bottom" secondItem="j9H-12-xk1" secondAttribute="bottom" id="QAf-uS-K19"/>
+                                            <constraint firstAttribute="trailing" secondItem="j9H-12-xk1" secondAttribute="trailing" id="Vmb-zh-K4K"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="listImageView" destination="j9H-12-xk1" id="6kz-dh-jaa"/>
                                         </connections>
