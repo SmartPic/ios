@@ -20,7 +20,7 @@ class PhotoFetcher: NSObject {
     }
     
     func photosTimeImmediately() -> [[PHAsset]] {
-        println("photos stand-by")
+        //println("photos stand-by")
         
         var options = PHFetchOptions()
         options.includeAllBurstAssets = false
@@ -56,7 +56,7 @@ class PhotoFetcher: NSObject {
             prevDate = asset.creationDate
         }
         
-        println("photos = \(self.assets)")
+        //println("photos = \(self.assets)")
         
         imageManager.startCachingImagesForAssets(fullAssets,
             targetSize: CGSizeMake(120, 120)
