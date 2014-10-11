@@ -204,7 +204,13 @@
                             <constraint firstItem="kqc-wN-Rq5" firstAttribute="top" secondItem="ezW-OJ-Gga" secondAttribute="bottom" id="ufq-Rz-xLS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1vD-PA-IOX"/>
+                    <navigationItem key="navigationItem" id="1vD-PA-IOX">
+                        <barButtonItem key="rightBarButtonItem" title="整理する" id="Dwg-85-2MS">
+                            <connections>
+                                <action selector="tapSaveButton:" destination="BC3-BM-sXh" id="OHc-rG-c1O"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bigImageView" destination="ezW-OJ-Gga" id="igo-um-pDd"/>
                         <outlet property="collectionView" destination="kqc-wN-Rq5" id="mx3-kH-EZI"/>

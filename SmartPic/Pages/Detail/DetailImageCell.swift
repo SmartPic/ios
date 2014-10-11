@@ -8,8 +8,14 @@
 
 import UIKit
 
+protocol DetailImageCellDelegate {
+    func tapPickButton() -> Void
+    func tapUnpickButton() -> Void
+}
+
 class DetailImageCell: UICollectionViewCell {
     
+    var delegate: DetailImageCellDelegate!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var pickButton: UIButton!
     @IBOutlet weak var unpickButton: UIButton!
@@ -17,9 +23,11 @@ class DetailImageCell: UICollectionViewCell {
     
     @IBAction func tapPickButton(sender: AnyObject) {
         verticalSpaceConstraint.constant = 0
+        delegate.tapPickButton()
     }
     
     @IBAction func tapUnpickButton(sender: AnyObject) {
         verticalSpaceConstraint.constant = 40
+        delegate.tapUnpickButton()
     }
 }

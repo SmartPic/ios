@@ -9,13 +9,16 @@
 import UIKit
 import Photos
 
-class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DetailImageCellDelegate {
     
+    // MARK: - Properties
     @IBOutlet weak var bigImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var pictures: [PHAsset] = []
+    var pickedPictureIndexes: [Int] = []
 
+    // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +31,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
 
+    // MARK: - CollectionView methods
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pictures.count
     }
@@ -46,6 +50,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         cell.pickButton.hidden = !cell.selected
         cell.unpickButton.hidden = !cell.selected
+        cell.delegate = self
         cell.imageView.image = nil
         
         var asset: PHAsset = pictures[indexPath.row]
@@ -75,5 +80,32 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
         cell.pickButton.hidden = true
         cell.unpickButton.hidden = true
+    }
+    
+    // MARK: - IBAction
+    // 整理するボタン押下時
+    @IBAction func tapSaveButton(sender: AnyObject) {
+        println(pickedPictureIndexes) // TODO: こいつは残す
+        // TODO 他は消す
+    }
+    
+    // MARK: - DetailImageCellDelegate
+    func tapPickButton() {
+        let indexPaths: [NSIndexPath] = collectionView.indexPathsForSelectedItems() as [NSIndexPath]
+        let indexPath: NSIndexPath = indexPaths[0]
+        pickedPictureIndexes.append(indexPath.row)
+    }
+    
+    func tapUnpickButton() {
+        let indexPaths: [NSIndexPath] = collectionView.indexPathsForSelectedItems() as [NSIndexPath]
+        let indexPath: NSIndexPath = indexPaths[0]
+        let row = indexPath.row
+        var removeIndex = 0
+        for (var i = 0; i < pickedPictureIndexes.count; i++) {
+            if (pickedPictureIndexes[i] == row) {
+                removeIndex = i
+            }
+        }
+        pickedPictureIndexes.removeAtIndex(removeIndex)
     }
 }
