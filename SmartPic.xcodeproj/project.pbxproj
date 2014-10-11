@@ -13,7 +13,6 @@
 		3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA49E7519E23D0200D86E8A /* ListImageCell.swift */; };
 		3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754C819E4092700EB7FBB /* MyExtensions.swift */; };
 		3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */; };
-		3FA754CF19E41C3100EB7FBB /* CompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754CE19E41C3100EB7FBB /* CompleteViewController.swift */; };
 		3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0A74D19E8F24300F06677 /* DetailImageCell.swift */; };
 		3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD50DC19E175840096E154 /* AppDelegate.swift */; };
 		3FBD50E219E175840096E154 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E019E175840096E154 /* Main.storyboard */; };
@@ -39,7 +38,6 @@
 		3FA49E7519E23D0200D86E8A /* ListImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListImageCell.swift; sourceTree = "<group>"; };
 		3FA754C819E4092700EB7FBB /* MyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
 		3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		3FA754CE19E41C3100EB7FBB /* CompleteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteViewController.swift; sourceTree = "<group>"; };
 		3FB0A74D19E8F24300F06677 /* DetailImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
 		3FBD50D719E175840096E154 /* SmartPic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FBD50DB19E175840096E154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 		3F49A46719E1767C008079CE /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				3FA754CD19E41C0900EB7FBB /* Complete */,
 				3FA754CA19E40CF200EB7FBB /* Detail */,
 				3F49A46819E17698008079CE /* List */,
 			);
@@ -113,14 +110,6 @@
 				3FB0A74D19E8F24300F06677 /* DetailImageCell.swift */,
 			);
 			path = Detail;
-			sourceTree = "<group>";
-		};
-		3FA754CD19E41C0900EB7FBB /* Complete */ = {
-			isa = PBXGroup;
-			children = (
-				3FA754CE19E41C3100EB7FBB /* CompleteViewController.swift */,
-			);
-			path = Complete;
 			sourceTree = "<group>";
 		};
 		3FBD50CE19E175840096E154 = {
@@ -289,7 +278,6 @@
 				3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */,
 				3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */,
 				3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */,
-				3FA754CF19E41C3100EB7FBB /* CompleteViewController.swift in Sources */,
 				3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */,
 				3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */,
 			);

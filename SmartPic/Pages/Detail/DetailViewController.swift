@@ -28,10 +28,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
     }
 
-    @IBAction func tapOrderButton(sender: AnyObject) {
-        self.performSegueWithIdentifier("modalComplete", sender: nil)
-    }
-    
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pictures.count
     }
