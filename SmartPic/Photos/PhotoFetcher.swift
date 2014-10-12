@@ -56,13 +56,10 @@ class PhotoFetcher: NSObject {
             prevDate = asset.creationDate
         }
         
-        //println("photos = \(self.assets)")
-        
-        imageManager.startCachingImagesForAssets(fullAssets,
-            targetSize: CGSizeMake(120, 120)
-            , contentMode: .AspectFill,
-            options: nil)
-        
+        if (!innerAssets.isEmpty) {
+            self.assets.append(innerAssets)
+        }
+
         return self.assets
     }
     
