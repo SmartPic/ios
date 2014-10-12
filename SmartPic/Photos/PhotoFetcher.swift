@@ -24,6 +24,9 @@ class PhotoFetcher: NSObject {
         
         var options = PHFetchOptions()
         options.includeAllBurstAssets = false
+        options.sortDescriptors = [
+            NSSortDescriptor(key: "creationDate", ascending: false)
+        ]
         
         self.assets = []
         self.fullAssets = []
@@ -31,38 +34,32 @@ class PhotoFetcher: NSObject {
         var prevDate: NSDate?
         var innerAssets: [PHAsset] = []
         
-        var assets: PHFetchResult = PHAsset.fetchAssetsWithOptions(options)
+        var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
         assets.enumerateObjectsUsingBlock { (obj: AnyObject!, idx: Int, stop) -> Void in
             var asset: PHAsset = obj as PHAsset
             self.fullAssets.append(asset)
             
             if prevDate != nil {
                 var date: NSDate = asset.creationDate
-                var interval: NSTimeInterval = date.timeIntervalSinceDate(prevDate!)
-                if (interval > 2000) {
+                var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
+                
+                // 3秒（3000ミリ秒）以内に撮影された写真は同じグループだと考える
+                // それ以上離れた場合は別グループを作成する
+                if (interval > 3000) {
                     self.assets.append(innerAssets)
                     
                     innerAssets = []
-                    innerAssets.append(asset)
                 }
-                else {
-                    innerAssets.append(asset)
-                }
-            }
-            else {
-                innerAssets.append(asset)
             }
             
+            innerAssets.append(asset)
             prevDate = asset.creationDate
         }
         
-        //println("photos = \(self.assets)")
-        
-        imageManager.startCachingImagesForAssets(fullAssets,
-            targetSize: CGSizeMake(120, 120)
-            , contentMode: .AspectFill,
-            options: nil)
-        
+        if (!innerAssets.isEmpty) {
+            self.assets.append(innerAssets)
+        }
+
         return self.assets
     }
     
