@@ -29,13 +29,8 @@ class DetailImageCell: UICollectionViewCell {
     }
     
     func setSelected(selected: Bool) {
-        if (selected) {
-            pickButton.hidden = false
-            unpickButton.hidden = false
-        } else {
-            pickButton.hidden = true
-            unpickButton.hidden = true
-        }
+        pickButton.hidden = !selected
+        unpickButton.hidden = !selected
     }
     
     override func awakeFromNib() {
