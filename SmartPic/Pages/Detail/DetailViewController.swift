@@ -23,12 +23,12 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         super.viewDidLoad()
         
         bigImageView.contentMode = .ScaleAspectFit
-//        var asset: PHAsset = pictures[0]
-//        var photoFetcher = PhotoFetcher()
-//        photoFetcher.requestImageForAsset(asset,
-//            size: bigImageView.frame.size) { (image, info) -> Void in
-//                self.bigImageView.image = image
-//        }
+        var asset: PHAsset = pictures[0]
+        var photoFetcher = PhotoFetcher()
+        photoFetcher.requestImageForAsset(asset,
+            size: bigImageView.frame.size) { (image, info) -> Void in
+                self.bigImageView.image = image
+        }
     }
 
     // MARK: - CollectionView methods
@@ -89,13 +89,19 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         println(pickedPictureIndexes) // TODO: ここで表示されるものは残す
         // TODO 他は消す
 
+        deleteUnPickerPictures()
+    }
+    
+    func deleteUnPickerPictures() {
         var delTargetList = [PHAsset]()
         for (index, asset) in enumerate(pictures) {
             if !contains(pickedPictureIndexes, index) {
                 delTargetList.append(asset)
             }
         }
-        println("del target assets is \(delTargetList)")
+        
+        var photoFetcher = PhotoFetcher()
+        photoFetcher.deleteImageAssets(delTargetList)
     }
     
     // MARK: - DetailImageCellDelegate
