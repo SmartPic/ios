@@ -53,6 +53,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.delegate = self
         cell.imageView.image = nil
         cell.myIndex = indexPath.row
+        cell.isPicked = contains(pickedPictureIndexes, indexPath.row)
         
         var asset: PHAsset = pictures[indexPath.row]
         var photoFetcher = PhotoFetcher()
