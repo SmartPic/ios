@@ -52,6 +52,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.unpickButton.hidden = !cell.selected
         cell.delegate = self
         cell.imageView.image = nil
+        cell.myIndex = indexPath.row
         
         var asset: PHAsset = pictures[indexPath.row]
         var photoFetcher = PhotoFetcher()
@@ -85,27 +86,25 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - IBAction
     // 整理するボタン押下時
     @IBAction func tapSaveButton(sender: AnyObject) {
-        println(pickedPictureIndexes) // TODO: こいつは残す
+        println(pickedPictureIndexes) // TODO: ここで表示されるものは残す
         // TODO 他は消す
     }
     
     // MARK: - DetailImageCellDelegate
-    func tapPickButton() {
-        let indexPaths: [NSIndexPath] = collectionView.indexPathsForSelectedItems() as [NSIndexPath]
-        let indexPath: NSIndexPath = indexPaths[0]
-        pickedPictureIndexes.append(indexPath.row)
+    func tapPickButton(myIndex: Int) {
+        pickedPictureIndexes.append(myIndex)
     }
     
-    func tapUnpickButton() {
-        let indexPaths: [NSIndexPath] = collectionView.indexPathsForSelectedItems() as [NSIndexPath]
-        let indexPath: NSIndexPath = indexPaths[0]
-        let row = indexPath.row
-        var removeIndex = 0
+    func tapUnpickButton(myIndex: Int) {
+        var removeIndex = -1
         for (var i = 0; i < pickedPictureIndexes.count; i++) {
-            if (pickedPictureIndexes[i] == row) {
+            if (pickedPictureIndexes[i] == myIndex) {
                 removeIndex = i
             }
         }
-        pickedPictureIndexes.removeAtIndex(removeIndex)
+        if (removeIndex != -1) {
+            pickedPictureIndexes.removeAtIndex(removeIndex)
+        }
     }
+
 }
