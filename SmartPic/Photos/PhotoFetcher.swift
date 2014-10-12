@@ -73,73 +73,14 @@ class PhotoFetcher: NSObject {
             options: nil,
             resultHandler:resultHandler)
     }
+    
+    func deleteImageAssets(assets: [PHAsset]) {
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+            PHAssetChangeRequest.deleteAssets(assets)
+        }, completionHandler: { (success, error) -> Void in
+            println("success[\(success)]")
+            println("error[\(error)]")
+        })
+    }
 }
 
-//
-//UICollectionViewCell __weak *weakCell = cell;
-//[self.imageManager requestImageForAsset:asset
-//    targetSize:CGSizeMake(80, 80)
-//    contentMode:PHImageContentModeAspectFill
-//    options:nil
-//    resultHandler:^(UIImage *result, NSDictionary *info) {
-//    UIImageView *imageView = (UIImageView *)[weakCell viewWithTag:10];
-//    imageView.image = result;
-//    }];
-
-
-
-/*
-@interface ViewController ()
-
-@property (nonatomic) NSMutableArray *assets;
-@property (nonatomic) NSMutableArray *fullAssets;
-@property (nonatomic) NSMutableArray *collectionLists;
-@property (nonatomic) PHCachingImageManager *imageManager;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
-
-__block NSDate *prevDate = nil;
-__block NSMutableArray *innerAssets = @[].mutableCopy;
-
-_fullAssets = @[].mutableCopy;
-_assets = @[].mutableCopy;
-PHFetchResult *assets = [PHAsset fetchAssetsWithOptions:options];
-NSLog(@"assets.count = %ld", assets.count);
-[assets enumerateObjectsUsingBlock:^(PHAsset *obj, NSUInteger idx, BOOL *stop) {
-NSLog(@"作成日: %@", obj.creationDate);
-[_fullAssets addObject:obj];
-
-if (prevDate != nil) {
-NSDate *date = obj.creationDate;
-NSTimeInterval interval = [date timeIntervalSinceDate:prevDate];
-NSLog(@"interval:[%f]", interval);
-
-if (interval > 2000) {
-NSLog(@"----- ここで仕切る -----");
-[self.assets addObject:innerAssets];
-innerAssets = @[].mutableCopy;
-[innerAssets addObject:obj];
-}
-else {
-[innerAssets addObject:obj];
-}
-}
-else {
-[innerAssets addObject:obj];
-}
-prevDate = obj.creationDate;
-}];
-if (innerAssets.count > 0) {
-[self.assets addObject:innerAssets];
-}
-
-NSLog(@"_assets is %@", _assets);
-
-[_imageManager startCachingImagesForAssets:_fullAssets
-targetSize:CGSizeMake(80, 80)
-contentMode:PHImageContentModeAspectFill
-options:nil];
-
-[self.collectionView reloadData];
-}
-*/

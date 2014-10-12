@@ -88,6 +88,20 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBAction func tapSaveButton(sender: AnyObject) {
         println(pickedPictureIndexes) // TODO: ここで表示されるものは残す
         // TODO 他は消す
+
+        deleteUnPickerPictures()
+    }
+    
+    func deleteUnPickerPictures() {
+        var delTargetList = [PHAsset]()
+        for (index, asset) in enumerate(pictures) {
+            if !contains(pickedPictureIndexes, index) {
+                delTargetList.append(asset)
+            }
+        }
+        
+        var photoFetcher = PhotoFetcher()
+        photoFetcher.deleteImageAssets(delTargetList)
     }
     
     // MARK: - DetailImageCellDelegate

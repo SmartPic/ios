@@ -17,7 +17,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // UIImageではなくPHAssetを使う?
         var photoFetcher = PhotoFetcher()
         seriesList = photoFetcher.photosTimeImmediately()
     }
