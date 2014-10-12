@@ -22,6 +22,12 @@ class DetailImageCell: UICollectionViewCell {
     @IBOutlet weak var unpickButton: UIButton!
     @IBOutlet weak var verticalSpaceConstraint: NSLayoutConstraint!
     
+    var isPicked: Bool = false {
+        didSet {
+            verticalSpaceConstraint.constant = isPicked ? 0 : 40
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         pickButton.enabled = true
@@ -29,14 +35,14 @@ class DetailImageCell: UICollectionViewCell {
     }
     
     @IBAction func tapPickButton(sender: AnyObject) {
-        verticalSpaceConstraint.constant = 0
+        isPicked = true
         pickButton.enabled = false
         unpickButton.enabled = true
         delegate?.tapPickButton(myIndex)
     }
     
     @IBAction func tapUnpickButton(sender: AnyObject) {
-        verticalSpaceConstraint.constant = 40
+        isPicked = false
         pickButton.enabled = true
         unpickButton.enabled = false
         delegate?.tapUnpickButton(myIndex)
