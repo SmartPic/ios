@@ -18,11 +18,8 @@ class PhotoFetcher: NSObject {
         self.imageManager = PHCachingImageManager()
     }
     
-    func photosTimeImmediately() -> [GroupInfo] {
-        //println("photos stand-by")
-        
+    func photoGroupingByTime() -> [GroupInfo] {
         var options = PHFetchOptions()
-        options.includeAllBurstAssets = false
         options.sortDescriptors = [
             NSSortDescriptor(key: "creationDate", ascending: false)
         ]

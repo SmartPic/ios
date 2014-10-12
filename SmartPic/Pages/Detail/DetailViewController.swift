@@ -22,6 +22,8 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     var pictures: [PHAsset] = []
     var pickedPictureIndexes: [Int] = []
+    
+    let photoFetcher = PhotoFetcher()
 
     // MARK: - UIViewController
     override func viewDidLoad() {
@@ -29,7 +31,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         bigImageView.contentMode = .ScaleAspectFit
         var asset: PHAsset = pictures[0]
-        var photoFetcher = PhotoFetcher()
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 self.bigImageView.image = image
@@ -61,7 +62,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.isPicked = contains(pickedPictureIndexes, indexPath.row)
         
         var asset: PHAsset = pictures[indexPath.row]
-        var photoFetcher = PhotoFetcher()
         photoFetcher.requestImageForAsset(asset,
             size: cell.imageView.frame.size) { (image, info) -> Void in
                 cell.imageView.image = image
@@ -71,7 +71,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var asset: PHAsset = pictures[indexPath.row]
-        var photoFetcher = PhotoFetcher()
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 self.bigImageView.image = image
@@ -95,7 +94,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             }
         }
         
-        var photoFetcher = PhotoFetcher()
         photoFetcher.deleteImageAssets(delTargetList,
             completionHandler: { (success, error) -> Void in
                 if error != nil {
