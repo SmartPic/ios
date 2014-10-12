@@ -27,12 +27,19 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         // TODO 動的に高さ計算して返す
-        return 80;
+        return 100;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeueReusableCellWithIdentifier(ListCell.className) as ListCell
-        cell.groupInfo = seriesList[indexPath.row]
+        
+        let group = seriesList[indexPath.row]
+        group.loadAddressStr { (address, error) -> Void in
+            cell.addressLabel.text = address
+        }
+        cell.dateLabel.text = group.dateStrFromDate()
+        cell.groupInfo = group
+        
         return cell
     }
     

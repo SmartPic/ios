@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--List View Controller-->
@@ -16,11 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-Ov-WAV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-Ov-WAV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="80" id="MWk-TL-vyc" customClass="ListCell" customModule="SmartPic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="100" id="MWk-TL-vyc" customClass="ListCell" customModule="SmartPic" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="MWk-TL-vyc" id="PDz-Dj-qI9">
@@ -65,10 +66,38 @@
                                                         <outlet property="delegate" destination="MWk-TL-vyc" id="nbi-wO-o5R"/>
                                                     </connections>
                                                 </collectionView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo, Japan" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6d-EO-Ynv">
+                                                    <rect key="frame" x="162" y="78" width="150" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="PzD-g5-OZ3"/>
+                                                        <constraint firstAttribute="width" constant="150" id="gkJ-fl-olL"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014/09/14" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOG-Sd-YxN">
+                                                    <rect key="frame" x="8" y="78" width="105" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="105" id="WmJ-pZ-Leg"/>
+                                                        <constraint firstAttribute="height" constant="21" id="q2Y-JK-e5Y"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="I6d-EO-Ynv" secondAttribute="bottom" constant="-7" id="1P4-TM-XxF"/>
+                                                <constraint firstItem="UOG-Sd-YxN" firstAttribute="leading" secondItem="PDz-Dj-qI9" secondAttribute="leadingMargin" id="Riy-dS-RJE"/>
+                                                <constraint firstItem="I6d-EO-Ynv" firstAttribute="trailing" secondItem="PDz-Dj-qI9" secondAttribute="trailingMargin" id="SM4-Dc-ERa"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="UOG-Sd-YxN" secondAttribute="bottom" constant="-7.5" id="uqp-4M-gCa"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addressLabel" destination="I6d-EO-Ynv" id="ONg-7j-moo"/>
                                             <outlet property="collectionView" destination="lOc-iF-bbF" id="QO8-Sv-2ex"/>
+                                            <outlet property="dateLabel" destination="UOG-Sd-YxN" id="Rqe-mI-NhK"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
