@@ -65,23 +65,12 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        
-        let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
-        cell.pickButton.hidden = false
-        cell.unpickButton.hidden = false
-        
         var asset: PHAsset = pictures[indexPath.row]
         var photoFetcher = PhotoFetcher()
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 self.bigImageView.image = image
         }
-    }
-    
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
-        cell.pickButton.hidden = true
-        cell.unpickButton.hidden = true
     }
     
     // MARK: - IBAction
