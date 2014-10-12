@@ -11,14 +11,14 @@ import Photos
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var tableView: UITableView!
-    private var seriesList: [GroupInfo] = []
+    @IBOutlet weak private var tableView: UITableView!
+    private var seriesList = [GroupInfo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         var photoFetcher = PhotoFetcher()
-        seriesList = photoFetcher.photosTimeImmediately()
+        seriesList = photoFetcher.photoGroupingByTime()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,7 +35,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let group = seriesList[indexPath.row]
         group.loadAddressStr { (address, error) -> Void in
-            cell.addressLabel.text = address
+            if error != nil {
+                cell.addressLabel.text = nil
+            }
+            else {
+                cell.addressLabel.text = address
+            }
         }
         cell.dateLabel.text = group.dateStrFromDate()
         cell.groupInfo = group

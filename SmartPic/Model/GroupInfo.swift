@@ -48,6 +48,8 @@ class GroupInfo: NSObject {
         return existAsset.location as CLLocation?
     }
     
+    // TODO: ここのcompletionHandler, errorの変数は必要か？
+    // errorの場合に "" (空) を返すのならerrorの場合はaddress = ""とするルールでOKか。
     func loadAddressStr(completionHandler: ((address: String?, error: NSError?)->Void)) {
         // 読み込み済の場合
         if (self.placeStr != nil) {
@@ -62,14 +64,18 @@ class GroupInfo: NSObject {
         
         let geoCorder = CLGeocoder()
         geoCorder.reverseGeocodeLocation(location!, completionHandler: { (placemarks, error) -> Void in
+            if error != nil {
+                completionHandler(address: nil, error: error)
+            }
+            
             var places = placemarks as NSArray!
             if (places.count > 0) {
-                println("placemarks is \(places[0].name)")
                 self.placeStr = places[0].name
-                
                 completionHandler(address: self.placeStr, error: nil)
             }
-            // TODO: エラー処理
+            else {
+                completionHandler(address: "", error: nil)
+            }
         })
     }
 }
