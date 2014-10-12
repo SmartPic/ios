@@ -15,6 +15,11 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var bigImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var groupInfo: GroupInfo = GroupInfo() {
+        didSet {
+            self.pictures = groupInfo.assets
+        }
+    }
     var pictures: [PHAsset] = []
     var pickedPictureIndexes: [Int] = []
 

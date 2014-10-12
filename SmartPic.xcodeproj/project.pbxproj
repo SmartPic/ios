@@ -19,6 +19,7 @@
 		3FBD50E419E175840096E154 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E319E175840096E154 /* Images.xcassets */; };
 		3FBD50E719E175840096E154 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E519E175840096E154 /* LaunchScreen.xib */; };
 		3FBD50F319E175840096E154 /* SmartPicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD50F219E175840096E154 /* SmartPicTests.swift */; };
+		D92D57BA19EAE85000B87C20 /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92D57B919EAE85000B87C20 /* GroupInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		3FBD50EC19E175840096E154 /* SmartPicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmartPicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FBD50F119E175840096E154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FBD50F219E175840096E154 /* SmartPicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPicTests.swift; sourceTree = "<group>"; };
+		D92D57B919EAE85000B87C20 /* GroupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupInfo.swift; path = Model/GroupInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		3FBD50D919E175840096E154 /* SmartPic */ = {
 			isa = PBXGroup;
 			children = (
+				D92D57B819EAE81300B87C20 /* Model */,
 				2002EC4B19E41DA9008044AA /* Photos */,
 				3FA754C719E408DA00EB7FBB /* Libs */,
 				3F49A46719E1767C008079CE /* Pages */,
@@ -168,6 +171,14 @@
 				3FBD50F119E175840096E154 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D92D57B819EAE81300B87C20 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D92D57B919EAE85000B87C20 /* GroupInfo.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,6 +291,7 @@
 				3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */,
 				3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */,
 				3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */,
+				D92D57BA19EAE85000B87C20 /* GroupInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

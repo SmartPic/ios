@@ -18,6 +18,11 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
             collectionView.reloadData()
         }
     }
+    var groupInfo: GroupInfo = GroupInfo() {
+        didSet {
+            self.series = groupInfo.assets
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
