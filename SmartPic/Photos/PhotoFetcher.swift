@@ -24,6 +24,9 @@ class PhotoFetcher: NSObject {
         
         var options = PHFetchOptions()
         options.includeAllBurstAssets = false
+        options.sortDescriptors = [
+            NSSortDescriptor(key: "creationDate", ascending: true)
+        ]
         
         self.assets = []
         self.fullAssets = []
@@ -39,20 +42,17 @@ class PhotoFetcher: NSObject {
             if prevDate != nil {
                 var date: NSDate = asset.creationDate
                 var interval: NSTimeInterval = date.timeIntervalSinceDate(prevDate!)
-                if (interval > 2000) {
+                
+                // 3秒（3000ミリ秒）以内に撮影された写真は同じグループだと考える
+                // それ以上離れた場合は別グループを作成する
+                if (interval > 3000) {
                     self.assets.append(innerAssets)
                     
                     innerAssets = []
-                    innerAssets.append(asset)
                 }
-                else {
-                    innerAssets.append(asset)
-                }
-            }
-            else {
-                innerAssets.append(asset)
             }
             
+            innerAssets.append(asset)
             prevDate = asset.creationDate
         }
         
