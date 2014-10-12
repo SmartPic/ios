@@ -11,15 +11,14 @@ import Photos
 
 class PhotoFetcher: NSObject {
     
-    var assets: [[PHAsset]] = []
-    var fullAssets: [PHAsset] = []
+    var groups = [GroupInfo]()
     var imageManager: PHCachingImageManager
 
     override init() {
         self.imageManager = PHCachingImageManager()
     }
     
-    func photosTimeImmediately() -> [[PHAsset]] {
+    func photosTimeImmediately() -> [GroupInfo] {
         //println("photos stand-by")
         
         var options = PHFetchOptions()
@@ -28,16 +27,14 @@ class PhotoFetcher: NSObject {
             NSSortDescriptor(key: "creationDate", ascending: false)
         ]
         
-        self.assets = []
-        self.fullAssets = []
+        self.groups = []
         
         var prevDate: NSDate?
-        var innerAssets: [PHAsset] = []
+        var innerAssets = [PHAsset]()
         
         var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
         assets.enumerateObjectsUsingBlock { (obj: AnyObject!, idx: Int, stop) -> Void in
             var asset: PHAsset = obj as PHAsset
-            self.fullAssets.append(asset)
             
             if prevDate != nil {
                 var date: NSDate = asset.creationDate
@@ -46,7 +43,8 @@ class PhotoFetcher: NSObject {
                 // 3秒（3000ミリ秒）以内に撮影された写真は同じグループだと考える
                 // それ以上離れた場合は別グループを作成する
                 if (interval > 3000) {
-                    self.assets.append(innerAssets)
+                    var group = GroupInfo(assets: innerAssets)
+                    self.groups.append(group)
                     
                     innerAssets = []
                 }
@@ -57,10 +55,11 @@ class PhotoFetcher: NSObject {
         }
         
         if (!innerAssets.isEmpty) {
-            self.assets.append(innerAssets)
+            var group = GroupInfo(assets: innerAssets)
+            self.groups.append(group)
         }
 
-        return self.assets
+        return self.groups
     }
     
     func requestImageForAsset(asset: PHAsset, size: CGSize, resultHandler: ((image: UIImage!, info: [NSObject:AnyObject]!)  -> Void )) {
@@ -71,13 +70,10 @@ class PhotoFetcher: NSObject {
             resultHandler:resultHandler)
     }
     
-    func deleteImageAssets(assets: [PHAsset]) {
+    func deleteImageAssets(assets: [PHAsset], completionHandler:((success:Bool, error:NSError?) -> Void)) {
         PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
             PHAssetChangeRequest.deleteAssets(assets)
-        }, completionHandler: { (success, error) -> Void in
-            println("success[\(success)]")
-            println("error[\(error)]")
-        })
+        }, completionHandler:completionHandler)
     }
 }
 

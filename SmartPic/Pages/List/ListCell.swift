@@ -12,10 +12,17 @@ import Photos
 class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     var series: [PHAsset] = [] {
         didSet {
             collectionView.reloadData()
+        }
+    }
+    var groupInfo: GroupInfo = GroupInfo() {
+        didSet {
+            self.series = groupInfo.assets
         }
     }
     

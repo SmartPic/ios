@@ -15,6 +15,11 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var bigImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var groupInfo: GroupInfo = GroupInfo() {
+        didSet {
+            self.pictures = groupInfo.assets
+        }
+    }
     var pictures: [PHAsset] = []
     var pickedPictureIndexes: [Int] = []
 
@@ -91,7 +96,20 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         }
         
         var photoFetcher = PhotoFetcher()
-        photoFetcher.deleteImageAssets(delTargetList)
+        photoFetcher.deleteImageAssets(delTargetList,
+            completionHandler: { (success, error) -> Void in
+                if error != nil {
+                    println("error occured. error is \(error!)")
+                }
+                else {
+                    if success {
+                        println("delete success!")
+                    }
+                    else {
+                        println("delete failed..")
+                    }
+                }
+        })
     }
     
     // MARK: - DetailImageCellDelegate

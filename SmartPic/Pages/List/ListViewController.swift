@@ -12,7 +12,7 @@ import Photos
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    private var seriesList: [[PHAsset]] = []
+    private var seriesList: [GroupInfo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +27,19 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         // TODO 動的に高さ計算して返す
-        return 80;
+        return 100;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeueReusableCellWithIdentifier(ListCell.className) as ListCell
-        cell.series = seriesList[indexPath.row]
+        
+        let group = seriesList[indexPath.row]
+        group.loadAddressStr { (address, error) -> Void in
+            cell.addressLabel.text = address
+        }
+        cell.dateLabel.text = group.dateStrFromDate()
+        cell.groupInfo = group
+        
         return cell
     }
     
@@ -43,7 +50,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "pushDetail") {
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
-            detailViewController.pictures = sender as Array
+            detailViewController.groupInfo = sender as GroupInfo
         }
     }
 }
