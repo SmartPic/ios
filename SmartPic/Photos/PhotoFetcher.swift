@@ -73,5 +73,14 @@ class PhotoFetcher: NSObject {
             options: nil,
             resultHandler:resultHandler)
     }
+    
+    func deleteImageAssets(assets: [PHAsset]) {
+        PHPhotoLibrary.sharedPhotoLibrary().performChanges({ () -> Void in
+            PHAssetChangeRequest.deleteAssets(assets)
+        }, completionHandler: { (success, error) -> Void in
+            println("success[\(success)]")
+            println("error[\(error)]")
+        })
+    }
 }
 
