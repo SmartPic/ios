@@ -8,10 +8,12 @@
 
 import UIKit
 import Photos
+import CoreLocation
 
 class GroupInfo: NSObject {
     var assets = [PHAsset]()
-    private var dateStr = ""
+    private var date: NSDate?
+    private var location: CLLocation?
     private var placeStr: String?
 
     override init() {
@@ -21,15 +23,27 @@ class GroupInfo: NSObject {
     init(assets: [PHAsset]) {
         super.init()
         self.assets = assets
-        self.dateStr = self.dateStrFromAsset(assets.first)
-        self.placeStr = self.placeStrFromAsset(assets.first)
-    }
-
-    func dateStrFromAsset(asset: PHAsset?) -> String {
-        return "date"
+        self.date = assets.first?.creationDate
+        self.location = self.placeStrFromAsset(assets.first)
     }
     
-    func placeStrFromAsset(asset: PHAsset?) -> String {
-        return "place"
+    func placeStrFromAsset(asset: PHAsset?) -> CLLocation? {
+        if asset == nil {
+            return nil
+        }
+        
+        let existAsset = asset!
+        return existAsset.location as CLLocation?
+    }
+    
+    func loadAddressStr() {
+        let geoCorder = CLGeocoder()
+        geoCorder.reverseGeocodeLocation(location!, completionHandler: { (placemarks, error) -> Void in
+            var places = placemarks as NSArray!
+            if (places.count > 0) {
+                println("placemarks is \(places.description)")
+                self.placeStr = places.description
+            }
+        })
     }
 }
