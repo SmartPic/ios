@@ -9,11 +9,13 @@
 import UIKit
 import Photos
 
-class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DetailImageCellDelegate {
+class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
     @IBOutlet weak var bigImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pickButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     var groupInfo: GroupInfo = GroupInfo() {
         didSet {
@@ -29,12 +31,28 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // saveButton settings
+        saveButton.enabled = false
+        saveButton.layer.cornerRadius = 5
+        saveButton.clipsToBounds = true
+        saveButton.layer.masksToBounds = false
+        saveButton.layer.shadowOffset = CGSizeMake(0, 1)
+        saveButton.layer.shadowOpacity = 0.2
+        saveButton.layer.shadowColor = UIColor.blackColor().CGColor
+        saveButton.layer.shadowRadius = 0.0
+        
+        // 中央画像の挿入
         bigImageView.contentMode = .ScaleAspectFit
         var asset: PHAsset = pictures[0]
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 self.bigImageView.image = image
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.selectItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: false, scrollPosition: nil)
     }
 
     // MARK: - CollectionView methods
@@ -45,12 +63,10 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: DetailImageCell = collectionView.dequeueReusableCellWithReuseIdentifier(DetailImageCell.className, forIndexPath: indexPath) as DetailImageCell
         
-        cell.pickButton.hidden = !cell.selected
-        cell.unpickButton.hidden = !cell.selected
-        cell.delegate = self
         cell.imageView.image = nil
         cell.myIndex = indexPath.row
         cell.isPicked = contains(pickedPictureIndexes, indexPath.row)
+        cell.maskImageView.hidden = !cell.isPicked
         
         var asset: PHAsset = pictures[indexPath.row]
         photoFetcher.requestImageForAsset(asset,
@@ -61,6 +77,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
+        pickButton.selected = cell.isPicked
+        
         var asset: PHAsset = pictures[indexPath.row]
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
@@ -74,6 +93,33 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         deleteUnPickerPictures()
     }
     
+    @IBAction func tapPickButton(sender: AnyObject) {
+        pickButton.selected = !pickButton.selected
+        
+        collectionView.indexPathsForVisibleItems()
+        let indexPath : NSIndexPath = collectionView.indexPathsForSelectedItems()[0] as NSIndexPath
+        let visibleIndexPaths: [NSIndexPath] = self.collectionView.indexPathsForVisibleItems() as [NSIndexPath]
+        if contains(visibleIndexPaths, indexPath) {
+            let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
+            cell.isPicked = pickButton.selected
+        }
+        
+        if (pickButton.selected) {
+            self.pushToPickedPictureIndexes(indexPath.row)
+        } else {
+            self.removeFromPickedPictureIndexes(indexPath.row)
+        }
+        
+        if (pickedPictureIndexes.count > 0) {
+            saveButton.enabled = true
+            saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3d42e)
+        } else {
+            saveButton.enabled = false
+            saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3e2de)
+        }
+    }
+    
+    // MARK: - 独自メソッド群
     func deleteUnPickerPictures() {
         var delTargetList = [PHAsset]()
         for (index, asset) in enumerate(pictures) {
@@ -103,15 +149,14 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         })
     }
     
-    // MARK: - DetailImageCellDelegate
-    func tapPickButton(myIndex: Int) {
-        pickedPictureIndexes.append(myIndex)
+    func pushToPickedPictureIndexes(pickedIndex: Int) {
+        pickedPictureIndexes.append(pickedIndex)
     }
     
-    func tapUnpickButton(myIndex: Int) {
+    func removeFromPickedPictureIndexes(unpickedIndex: Int) {
         var removeIndex = -1
         for (var i = 0; i < pickedPictureIndexes.count; i++) {
-            if (pickedPictureIndexes[i] == myIndex) {
+            if (pickedPictureIndexes[i] == unpickedIndex) {
                 removeIndex = i
             }
         }
@@ -119,5 +164,4 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             pickedPictureIndexes.removeAtIndex(removeIndex)
         }
     }
-
 }
