@@ -89,12 +89,12 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 }
                 else {
                     if success {
+                        println("delete success!")
                         dispatch_async(dispatch_get_main_queue(), {
                             // 解決法
                             // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018
                             _ in self.navigationController?.popViewControllerAnimated(true); return ()
                         })
-                        println("delete success!")
                     }
                     else {
                         println("delete failed..")

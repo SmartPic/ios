@@ -28,8 +28,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         var photoFetcher = PhotoFetcher()
         seriesList = photoFetcher.photoGroupingByTime()
+        tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
