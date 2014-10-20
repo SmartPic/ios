@@ -96,9 +96,13 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBAction func tapPickButton(sender: AnyObject) {
         pickButton.selected = !pickButton.selected
         
+        collectionView.indexPathsForVisibleItems()
         let indexPath : NSIndexPath = collectionView.indexPathsForSelectedItems()[0] as NSIndexPath
-        let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
-        cell.isPicked = pickButton.selected
+        let visibleIndexPaths: [NSIndexPath] = self.collectionView.indexPathsForVisibleItems() as [NSIndexPath]
+        if contains(visibleIndexPaths, indexPath) {
+            let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
+            cell.isPicked = pickButton.selected
+        }
         
         if (pickButton.selected) {
             self.pushToPickedPictureIndexes(indexPath.row)
