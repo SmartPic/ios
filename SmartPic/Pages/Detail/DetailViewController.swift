@@ -42,15 +42,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         return pictures.count
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        var asset: PHAsset = pictures[indexPath.row]
-        let imageHeight = 80 // TODO: Cell から取得
-        let imageWidth = imageHeight * asset.pixelWidth / asset.pixelHeight
-        let imageSize: CGSize = CGSizeMake(CGFloat(imageWidth), 120.0)
-        return imageSize
-    }
-    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: DetailImageCell = collectionView.dequeueReusableCellWithReuseIdentifier(DetailImageCell.className, forIndexPath: indexPath) as DetailImageCell
         
