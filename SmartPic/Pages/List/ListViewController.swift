@@ -18,6 +18,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.titleView = UIImageView(image: UIImage(named: "logo"))
+        
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         // Admob 設定
