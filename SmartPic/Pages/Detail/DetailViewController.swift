@@ -71,9 +71,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - IBAction
     // 整理するボタン押下時
     @IBAction func tapSaveButton(sender: AnyObject) {
-        println(pickedPictureIndexes) // TODO: ここで表示されるものは残す
-        // TODO 他は消す
-
         deleteUnPickerPictures()
     }
     
@@ -93,6 +90,11 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 else {
                     if success {
                         println("delete success!")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            // 解決法
+                            // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018
+                            _ in self.navigationController?.popViewControllerAnimated(true); return ()
+                        })
                     }
                     else {
                         println("delete failed..")
