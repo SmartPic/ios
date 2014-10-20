@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-Ov-WAV">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListCell" rowHeight="100" id="MWk-TL-vyc" customClass="ListCell" customModule="SmartPic" customModuleProvider="target">
@@ -66,7 +66,7 @@
                                                         <outlet property="delegate" destination="MWk-TL-vyc" id="nbi-wO-o5R"/>
                                                     </connections>
                                                 </collectionView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tokyo, Japan" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6d-EO-Ynv">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tokyo, Japan" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6d-EO-Ynv">
                                                     <rect key="frame" x="162" y="78" width="150" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="PzD-g5-OZ3"/>
@@ -106,17 +106,28 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="7eJ-6A-ZKG"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpJ-UE-gAX" customClass="GADBannerView">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="kI3-8M-WDA"/>
+                                    <constraint firstAttribute="width" constant="320" id="pbM-Ao-NtI"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="wcO-Ov-WAV" secondAttribute="trailing" id="Cbp-oS-Ac3"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="wcO-Ov-WAV" secondAttribute="bottom" id="R7U-Xl-fDd"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PpJ-UE-gAX" secondAttribute="bottom" id="U4S-xe-O2m"/>
                             <constraint firstItem="wcO-Ov-WAV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="ehO-BJ-QPE"/>
+                            <constraint firstAttribute="centerX" secondItem="PpJ-UE-gAX" secondAttribute="centerX" id="faL-7h-95K"/>
+                            <constraint firstItem="PpJ-UE-gAX" firstAttribute="top" secondItem="wcO-Ov-WAV" secondAttribute="bottom" id="fiU-Xg-stI"/>
                             <constraint firstItem="wcO-Ov-WAV" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="xUt-8B-MC8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9px-aZ-Tq5"/>
                     <connections>
+                        <outlet property="bannerView" destination="PpJ-UE-gAX" id="G3O-9O-kuD"/>
                         <outlet property="tableView" destination="wcO-Ov-WAV" id="j8P-Su-pZu"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
                     </connections>

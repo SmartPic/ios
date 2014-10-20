@@ -11,6 +11,7 @@ import Photos
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak private var tableView: UITableView!
     private var seriesList = [GroupInfo]()
 
@@ -19,6 +20,12 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         var photoFetcher = PhotoFetcher()
         seriesList = photoFetcher.photoGroupingByTime()
+        
+        // Admob 設定
+        bannerView.adSize = kGADAdSizeBanner
+        bannerView.adUnitID = "ca-app-pub-2967292377011754/2952349221"
+        bannerView.rootViewController = self
+        bannerView.loadRequest(GADRequest())
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
