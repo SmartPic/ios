@@ -10,4 +10,8 @@ import UIKit
 
 class ListImageCell: UICollectionViewCell {
     @IBOutlet weak var listImageView: UIImageView!
+    
+    override func awakeFromNib() {
+        listImageView.contentMode = .ScaleAspectFill
+    }
 }

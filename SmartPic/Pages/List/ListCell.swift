@@ -48,13 +48,4 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         
         return cell
     }
-
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        var asset: PHAsset = series[indexPath.row]
-        let imageHeight = 60 // TODO: Cell から取得
-        let imageWidth = imageHeight * asset.pixelWidth / asset.pixelHeight
-        let imageSize: CGSize = CGSizeMake(CGFloat(imageWidth), CGFloat(imageHeight))
-        return imageSize
-    }
 }

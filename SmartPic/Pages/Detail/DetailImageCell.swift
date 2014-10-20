@@ -37,6 +37,7 @@ class DetailImageCell: UICollectionViewCell {
         super.awakeFromNib()
         pickButton.enabled = true
         unpickButton.enabled = false
+        imageView.contentMode = .ScaleAspectFill
     }
     
     @IBAction func tapPickButton(sender: AnyObject) {
