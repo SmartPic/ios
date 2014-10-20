@@ -199,11 +199,11 @@
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzn-Os-zeZ">
                                 <rect key="frame" x="24" y="505" width="280" height="50"/>
-                                <color key="backgroundColor" white="0.84384450600000005" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.8901960784313725" green="0.88627450980392153" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
                                 <state key="normal" title="選んだ写真を残して全て削除">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="tapSaveButton:" destination="BC3-BM-sXh" eventType="touchUpInside" id="0ib-mO-TIW"/>
@@ -217,6 +217,7 @@
                         <outlet property="bigImageView" destination="ezW-OJ-Gga" id="igo-um-pDd"/>
                         <outlet property="collectionView" destination="kqc-wN-Rq5" id="mx3-kH-EZI"/>
                         <outlet property="pickButton" destination="zY1-Dl-u3A" id="xld-b0-9b6"/>
+                        <outlet property="saveButton" destination="Qzn-Os-zeZ" id="rts-56-s0I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfw-Qd-JuM" userLabel="First Responder" sceneMemberID="firstResponder"/>

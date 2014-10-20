@@ -15,6 +15,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     @IBOutlet weak var bigImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pickButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     var groupInfo: GroupInfo = GroupInfo() {
         didSet {
@@ -29,6 +30,16 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // saveButton settings
+        saveButton.enabled = false
+        saveButton.layer.cornerRadius = 5
+        saveButton.clipsToBounds = true
+        saveButton.layer.masksToBounds = false
+        saveButton.layer.shadowOffset = CGSizeMake(0, 1)
+        saveButton.layer.shadowOpacity = 0.2
+        saveButton.layer.shadowColor = UIColor.blackColor().CGColor
+        saveButton.layer.shadowRadius = 0.0
         
         bigImageView.contentMode = .ScaleAspectFit
         var asset: PHAsset = pictures[0]
@@ -48,7 +59,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         cell.imageView.image = nil
         cell.myIndex = indexPath.row
-        println(contains(pickedPictureIndexes, indexPath.row))
         cell.isPicked = contains(pickedPictureIndexes, indexPath.row)
         
         var asset: PHAsset = pictures[indexPath.row]
@@ -87,6 +97,14 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             self.pushToPickedPictureIndexes(indexPath.row)
         } else {
             self.removeFromPickedPictureIndexes(indexPath.row)
+        }
+        
+        if (pickedPictureIndexes.count > 0) {
+            saveButton.enabled = true
+            saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3d42e)
+        } else {
+            saveButton.enabled = false
+            saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3e2de)
         }
     }
     
