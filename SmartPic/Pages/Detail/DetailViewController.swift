@@ -41,12 +41,18 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         saveButton.layer.shadowColor = UIColor.blackColor().CGColor
         saveButton.layer.shadowRadius = 0.0
         
+        // 中央画像の挿入
         bigImageView.contentMode = .ScaleAspectFit
         var asset: PHAsset = pictures[0]
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 self.bigImageView.image = image
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.selectItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: false, scrollPosition: nil)
     }
 
     // MARK: - CollectionView methods
@@ -60,6 +66,7 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         cell.imageView.image = nil
         cell.myIndex = indexPath.row
         cell.isPicked = contains(pickedPictureIndexes, indexPath.row)
+        cell.maskImageView.hidden = !cell.isPicked
         
         var asset: PHAsset = pictures[indexPath.row]
         photoFetcher.requestImageForAsset(asset,
