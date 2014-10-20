@@ -4,3 +4,4 @@
 
 #import "GADBannerView.h"
 #import "GADRequest.h"
+#import <QuartzCore/QuartzCore.h>

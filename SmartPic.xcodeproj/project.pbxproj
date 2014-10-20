@@ -147,11 +147,11 @@
 				3FA754C719E408DA00EB7FBB /* Libs */,
 				3F49A46719E1767C008079CE /* Pages */,
 				3FBD50DC19E175840096E154 /* AppDelegate.swift */,
+				3FD4C6B719F4A96D00FFE768 /* SmartPic-Bridging-Header.h */,
 				3FBD50E019E175840096E154 /* Main.storyboard */,
 				3FBD50E319E175840096E154 /* Images.xcassets */,
 				3FBD50E519E175840096E154 /* LaunchScreen.xib */,
 				3FBD50DA19E175840096E154 /* Supporting Files */,
-				3FD4C6B719F4A96D00FFE768 /* SmartPic-Bridging-Header.h */,
 			);
 			path = SmartPic;
 			sourceTree = "<group>";

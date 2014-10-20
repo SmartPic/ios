@@ -11,6 +11,7 @@ import Photos
 
 class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var contentWrapperView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -28,6 +29,13 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        contentWrapperView.layer.cornerRadius = 5
+        contentWrapperView.clipsToBounds = true
+        contentWrapperView.layer.masksToBounds = false
+        contentWrapperView.layer.shadowOffset = CGSizeMake(0, 1)
+        contentWrapperView.layer.shadowOpacity = 0.2
+        contentWrapperView.layer.shadowColor = UIColor.blackColor().CGColor
+        contentWrapperView.layer.shadowRadius = 0.0
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
