@@ -71,9 +71,6 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     // MARK: - IBAction
     // 整理するボタン押下時
     @IBAction func tapSaveButton(sender: AnyObject) {
-        println(pickedPictureIndexes) // TODO: ここで表示されるものは残す
-        // TODO 他は消す
-
         deleteUnPickerPictures()
     }
     
@@ -92,6 +89,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
                 }
                 else {
                     if success {
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.navigationController?.popViewControllerAnimated(true)
+                        })
                         println("delete success!")
                     }
                     else {

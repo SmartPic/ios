@@ -20,14 +20,16 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
-        var photoFetcher = PhotoFetcher()
-        seriesList = photoFetcher.photoGroupingByTime()
-        
         // Admob 設定
         bannerView.adSize = kGADAdSizeBanner
         bannerView.adUnitID = "ca-app-pub-2967292377011754/2952349221"
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        var photoFetcher = PhotoFetcher()
+        seriesList = photoFetcher.photoGroupingByTime()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
