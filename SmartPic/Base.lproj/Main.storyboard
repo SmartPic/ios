@@ -141,17 +141,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ezW-OJ-Gga">
-                                <rect key="frame" x="0.0" y="64" width="320" height="384"/>
-                            </imageView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kqc-wN-Rq5">
-                                <rect key="frame" x="0.0" y="448" width="320" height="120"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0yt-rX-XVh">
+                                <rect key="frame" x="0.0" y="64" width="320" height="346"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ezW-OJ-Gga">
+                                        <rect key="frame" x="0.0" y="12" width="320" height="320"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zY1-Dl-u3A">
+                                        <rect key="frame" x="240" y="130" width="80" height="85"/>
+                                        <state key="normal" image="pick_button">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="unpick_button"/>
+                                        <connections>
+                                            <action selector="tapPickButton:" destination="BC3-BM-sXh" eventType="touchUpInside" id="uma-2y-6ox"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90588235294117647" green="0.92156862745098034" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kqc-wN-Rq5">
+                                <rect key="frame" x="0.0" y="410" width="320" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="RgS-lq-wFG"/>
-                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="bYo-f2-PRk">
-                                    <size key="itemSize" width="80" height="120"/>
+                                    <size key="itemSize" width="70" height="70"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -161,62 +174,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54z-Lo-SBX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="g5t-5w-kiv"/>
-                                                    </constraints>
-                                                    <state key="normal" title="★">
-                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="tapPickButton:" destination="sTc-4e-FD7" eventType="touchUpInside" id="WT3-OE-ppB"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cav-GO-5RY">
-                                                    <rect key="frame" x="0.0" y="80" width="80" height="40"/>
-                                                    <color key="backgroundColor" white="0.84384450600000005" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="8Ge-1b-weU"/>
-                                                    </constraints>
-                                                    <state key="normal" title="▼">
-                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="tapUnpickButton:" destination="sTc-4e-FD7" eventType="touchUpInside" id="W1S-kx-0NP"/>
-                                                    </connections>
-                                                </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-12-xk1">
-                                                    <rect key="frame" x="0.0" y="40" width="80" height="80"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="qcf-yr-t8n"/>
-                                                    </constraints>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-12-xk1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unpicked_mask" highlightedImage="picked_mask" translatesAutoresizingMaskIntoConstraints="NO" id="lnA-UA-5Gt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="j9H-12-xk1" secondAttribute="trailing" id="2UJ-R2-27r"/>
-                                            <constraint firstAttribute="bottom" secondItem="Cav-GO-5RY" secondAttribute="bottom" id="Gjw-oA-OCC"/>
-                                            <constraint firstItem="j9H-12-xk1" firstAttribute="top" secondItem="sTc-4e-FD7" secondAttribute="top" constant="40" id="Jjj-cr-Op2"/>
-                                            <constraint firstAttribute="trailing" secondItem="54z-Lo-SBX" secondAttribute="trailing" id="SQH-jd-lOu"/>
-                                            <constraint firstItem="54z-Lo-SBX" firstAttribute="leading" secondItem="sTc-4e-FD7" secondAttribute="leading" id="SQv-PH-SK5"/>
-                                            <constraint firstItem="j9H-12-xk1" firstAttribute="leading" secondItem="sTc-4e-FD7" secondAttribute="leading" id="bpD-ER-cNa"/>
-                                            <constraint firstAttribute="trailing" secondItem="Cav-GO-5RY" secondAttribute="trailing" id="s87-2f-u5r"/>
-                                            <constraint firstItem="54z-Lo-SBX" firstAttribute="top" secondItem="sTc-4e-FD7" secondAttribute="top" id="tuE-CY-vCF"/>
-                                            <constraint firstItem="Cav-GO-5RY" firstAttribute="leading" secondItem="sTc-4e-FD7" secondAttribute="leading" id="xjl-nA-5KZ"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="j9H-12-xk1" id="AZg-NA-o7b"/>
-                                            <outlet property="pickButton" destination="54z-Lo-SBX" id="hRz-Py-1C5"/>
-                                            <outlet property="unpickButton" destination="Cav-GO-5RY" id="cpZ-bP-Jm9"/>
-                                            <outlet property="verticalSpaceConstraint" destination="Jjj-cr-Op2" id="t3V-Tt-KRz"/>
+                                            <outlet property="maskImageView" destination="lnA-UA-5Gt" id="emg-6k-FNL"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -225,28 +197,26 @@
                                     <outlet property="delegate" destination="BC3-BM-sXh" id="5Ra-VN-6NN"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzn-Os-zeZ">
+                                <rect key="frame" x="24" y="505" width="280" height="50"/>
+                                <color key="backgroundColor" white="0.84384450600000005" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
+                                <state key="normal" title="選んだ写真を残して全て削除">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapSaveButton:" destination="BC3-BM-sXh" eventType="touchUpInside" id="0ib-mO-TIW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ezW-OJ-Gga" firstAttribute="top" secondItem="YMR-RA-b3r" secondAttribute="bottom" id="1vC-b9-qwj"/>
-                            <constraint firstItem="ezW-OJ-Gga" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" id="Luv-78-beZ"/>
-                            <constraint firstItem="Fse-rh-ABo" firstAttribute="top" secondItem="kqc-wN-Rq5" secondAttribute="bottom" id="Xd4-ww-zmP"/>
-                            <constraint firstItem="kqc-wN-Rq5" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" id="cD1-Ww-eGt"/>
-                            <constraint firstAttribute="trailing" secondItem="ezW-OJ-Gga" secondAttribute="trailing" id="cFc-B6-i9p"/>
-                            <constraint firstAttribute="trailing" secondItem="kqc-wN-Rq5" secondAttribute="trailing" id="m0b-w3-rDu"/>
-                            <constraint firstItem="kqc-wN-Rq5" firstAttribute="top" secondItem="ezW-OJ-Gga" secondAttribute="bottom" id="ufq-Rz-xLS"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1vD-PA-IOX">
-                        <barButtonItem key="rightBarButtonItem" title="整理する" id="Dwg-85-2MS">
-                            <connections>
-                                <action selector="tapSaveButton:" destination="BC3-BM-sXh" id="OHc-rG-c1O"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="1vD-PA-IOX"/>
                     <connections>
                         <outlet property="bigImageView" destination="ezW-OJ-Gga" id="igo-um-pDd"/>
                         <outlet property="collectionView" destination="kqc-wN-Rq5" id="mx3-kH-EZI"/>
+                        <outlet property="pickButton" destination="zY1-Dl-u3A" id="xld-b0-9b6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfw-Qd-JuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -272,6 +242,12 @@
             <point key="canvasLocation" x="-113" y="526"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="pick_button" width="80" height="85"/>
+        <image name="picked_mask" width="71" height="71"/>
+        <image name="unpick_button" width="80" height="85"/>
+        <image name="unpicked_mask" width="71" height="71"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

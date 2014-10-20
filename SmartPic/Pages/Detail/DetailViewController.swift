@@ -9,11 +9,12 @@
 import UIKit
 import Photos
 
-class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, DetailImageCellDelegate {
+class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
     @IBOutlet weak var bigImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var pickButton: UIButton!
     
     var groupInfo: GroupInfo = GroupInfo() {
         didSet {
@@ -45,11 +46,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell: DetailImageCell = collectionView.dequeueReusableCellWithReuseIdentifier(DetailImageCell.className, forIndexPath: indexPath) as DetailImageCell
         
-        cell.pickButton.hidden = !cell.selected
-        cell.unpickButton.hidden = !cell.selected
-        cell.delegate = self
         cell.imageView.image = nil
         cell.myIndex = indexPath.row
+        println(contains(pickedPictureIndexes, indexPath.row))
         cell.isPicked = contains(pickedPictureIndexes, indexPath.row)
         
         var asset: PHAsset = pictures[indexPath.row]
@@ -61,6 +60,9 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
+        pickButton.selected = cell.isPicked
+        
         var asset: PHAsset = pictures[indexPath.row]
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
@@ -74,6 +76,21 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         deleteUnPickerPictures()
     }
     
+    @IBAction func tapPickButton(sender: AnyObject) {
+        pickButton.selected = !pickButton.selected
+        
+        let indexPath : NSIndexPath = collectionView.indexPathsForSelectedItems()[0] as NSIndexPath
+        let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
+        cell.isPicked = pickButton.selected
+        
+        if (pickButton.selected) {
+            self.pushToPickedPictureIndexes(indexPath.row)
+        } else {
+            self.removeFromPickedPictureIndexes(indexPath.row)
+        }
+    }
+    
+    // MARK: - 独自メソッド群
     func deleteUnPickerPictures() {
         var delTargetList = [PHAsset]()
         for (index, asset) in enumerate(pictures) {
@@ -103,15 +120,14 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
         })
     }
     
-    // MARK: - DetailImageCellDelegate
-    func tapPickButton(myIndex: Int) {
-        pickedPictureIndexes.append(myIndex)
+    func pushToPickedPictureIndexes(pickedIndex: Int) {
+        pickedPictureIndexes.append(pickedIndex)
     }
     
-    func tapUnpickButton(myIndex: Int) {
+    func removeFromPickedPictureIndexes(unpickedIndex: Int) {
         var removeIndex = -1
         for (var i = 0; i < pickedPictureIndexes.count; i++) {
-            if (pickedPictureIndexes[i] == myIndex) {
+            if (pickedPictureIndexes[i] == unpickedIndex) {
                 removeIndex = i
             }
         }
@@ -119,5 +135,4 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             pickedPictureIndexes.removeAtIndex(removeIndex)
         }
     }
-
 }
