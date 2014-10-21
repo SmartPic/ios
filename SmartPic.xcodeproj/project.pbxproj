@@ -19,6 +19,11 @@
 		3FBD50E419E175840096E154 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E319E175840096E154 /* Images.xcassets */; };
 		3FBD50E719E175840096E154 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E519E175840096E154 /* LaunchScreen.xib */; };
 		3FBD50F319E175840096E154 /* SmartPicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD50F219E175840096E154 /* SmartPicTests.swift */; };
+		3FF1F55619F69FB700F027E0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01116F19F69B5E005B5F2F /* CoreData.framework */; };
+		3FF1F55719F69FC100F027E0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117119F69B6A005B5F2F /* SystemConfiguration.framework */; };
+		3FF1F55819F69FD700F027E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117519F69C71005B5F2F /* AdSupport.framework */; };
+		3FF1F55919F69FE200F027E0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117319F69B71005B5F2F /* libz.dylib */; };
+		3FF1F55A19F69FEB00F027E0 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117719F69DBA005B5F2F /* libGoogleAnalyticsServices.a */; };
 		C1AB0E7C207F45E2832ED219 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF35E64378D740D1B0AEB093 /* libPods.a */; };
 		D92D57BA19EAE85000B87C20 /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92D57B919EAE85000B87C20 /* GroupInfo.swift */; };
 /* End PBXBuildFile section */
@@ -35,6 +40,11 @@
 
 /* Begin PBXFileReference section */
 		2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFetcher.swift; path = Photos/PhotoFetcher.swift; sourceTree = "<group>"; };
+		3F01116F19F69B5E005B5F2F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3F01117119F69B6A005B5F2F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3F01117319F69B71005B5F2F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3F01117519F69C71005B5F2F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3F01117719F69DBA005B5F2F /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = ../../../Downloads/GoogleAnalyticsServicesiOS_3.09/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		3F49A46919E176DA008079CE /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3F49A46B19E17A47008079CE /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		3FA49E7519E23D0200D86E8A /* ListImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListImageCell.swift; sourceTree = "<group>"; };
@@ -61,6 +71,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FF1F55919F69FE200F027E0 /* libz.dylib in Frameworks */,
+				3FF1F55819F69FD700F027E0 /* AdSupport.framework in Frameworks */,
+				3FF1F55719F69FC100F027E0 /* SystemConfiguration.framework in Frameworks */,
+				3FF1F55619F69FB700F027E0 /* CoreData.framework in Frameworks */,
+				3FF1F55A19F69FEB00F027E0 /* libGoogleAnalyticsServices.a in Frameworks */,
 				C1AB0E7C207F45E2832ED219 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,6 +199,11 @@
 		C1C9500F9CA64C77A648F961 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3F01117719F69DBA005B5F2F /* libGoogleAnalyticsServices.a */,
+				3F01117519F69C71005B5F2F /* AdSupport.framework */,
+				3F01117319F69B71005B5F2F /* libz.dylib */,
+				3F01117119F69B6A005B5F2F /* SystemConfiguration.framework */,
+				3F01116F19F69B5E005B5F2F /* CoreData.framework */,
 				EF35E64378D740D1B0AEB093 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -471,6 +491,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SmartPic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
@@ -488,6 +512,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SmartPic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
