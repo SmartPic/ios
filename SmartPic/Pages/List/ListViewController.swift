@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ListViewController: GAITrackedViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak private var tableView: UITableView!
@@ -31,6 +31,8 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.screenName = "リストページ"
         var photoFetcher = PhotoFetcher()
         seriesList = photoFetcher.photoGroupingByTime()
         tableView.reloadData()

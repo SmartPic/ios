@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class DetailViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class DetailViewController: GAITrackedViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Properties
     @IBOutlet weak var bigImageView: UIImageView!
@@ -48,6 +48,11 @@ class DetailViewController: UIViewController, UICollectionViewDataSource, UIColl
             size: bigImageView.frame.size) { (image, info) -> Void in
                 self.bigImageView.image = image
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = "詳細ページ"
     }
     
     override func viewDidAppear(animated: Bool) {
