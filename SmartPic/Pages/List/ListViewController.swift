@@ -22,6 +22,11 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
+        // UIRefreshControl
+        let refreshControl: UIRefreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl)
+        
         // Admob 設定
         bannerView.adSize = kGADAdSizeBanner
         bannerView.adUnitID = "ca-app-pub-2967292377011754/2952349221"
@@ -74,5 +79,13 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
             detailViewController.groupInfo = sender as GroupInfo
         }
+    }
+    
+    // プルダウンリフレッシュで table 更新
+    func onRefresh(refreshControl: UIRefreshControl) {
+        var photoFetcher = PhotoFetcher()
+        seriesList = photoFetcher.photoGroupingByTime()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 }
