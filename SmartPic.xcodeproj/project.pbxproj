@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2002EC4F19E41DFF008044AA /* PhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */; };
+		206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A2A0219F7DBB200338E54 /* DeleteManager.swift */; };
 		3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46919E176DA008079CE /* ListViewController.swift */; };
 		3F49A46C19E17A47008079CE /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46B19E17A47008079CE /* ListCell.swift */; };
 		3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA49E7519E23D0200D86E8A /* ListImageCell.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFetcher.swift; path = Photos/PhotoFetcher.swift; sourceTree = "<group>"; };
+		206A2A0219F7DBB200338E54 /* DeleteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeleteManager.swift; path = Photos/DeleteManager.swift; sourceTree = "<group>"; };
 		3F01116F19F69B5E005B5F2F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3F01117119F69B6A005B5F2F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F01117319F69B71005B5F2F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */,
+				206A2A0219F7DBB200338E54 /* DeleteManager.swift */,
 			);
 			name = Photos;
 			sourceTree = "<group>";
@@ -272,7 +275,7 @@
 					};
 					3FBD50EB19E175840096E154 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = RB8FPLPDWC;
+						DevelopmentTeam = Y6LHTNYSDM;
 						TestTargetID = 3FBD50D619E175840096E154;
 					};
 				};
@@ -358,6 +361,7 @@
 				3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */,
 				2002EC4F19E41DFF008044AA /* PhotoFetcher.swift in Sources */,
 				3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */,
+				206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */,
 				3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */,
 				3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */,
 				3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */,
@@ -489,7 +493,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: RYOSUKE HIRAMATSU (CX83Y44847)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RYOSUKE HIRAMATSU (CX83Y44847)";
 				INFOPLIST_FILE = SmartPic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

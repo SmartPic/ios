@@ -13,20 +13,18 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     private var seriesList = [GroupInfo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.titleView = UIImageView(image: UIImage(named: "logo"))
-        
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-        
         // UIRefreshControl
         let refreshControl: UIRefreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
-        
+
         // Admob 設定
         bannerView.adSize = kGADAdSizeBanner
         bannerView.adUnitID = "ca-app-pub-2967292377011754/2952349221"
@@ -38,10 +36,21 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         super.viewWillAppear(animated)
         
         self.screenName = "リストページ"
+        reload()
+    }
+    
+    private func reload() {
         var photoFetcher = PhotoFetcher()
-        seriesList = photoFetcher.photoGroupingByTime()
+        
+        if (segmentedControl.selectedSegmentIndex == 0) {
+            seriesList = photoFetcher.targetPhotoGroupingByTime()
+        }
+        else {
+            seriesList = photoFetcher.allPhotoGroupingByTime()
+        }
         tableView.reloadData()
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return seriesList.count
@@ -83,9 +92,14 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     // プルダウンリフレッシュで table 更新
     func onRefresh(refreshControl: UIRefreshControl) {
-        var photoFetcher = PhotoFetcher()
-        seriesList = photoFetcher.photoGroupingByTime()
-        tableView.reloadData()
+        reload()
         refreshControl.endRefreshing()
     }
+
+    // MARK: IBAction
+
+    @IBAction func segmentControlChanged(sender: AnyObject) {
+        reload()
+    }
+    
 }
