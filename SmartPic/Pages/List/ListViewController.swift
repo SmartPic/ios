@@ -65,6 +65,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         let cell: ListCell = tableView.dequeueReusableCellWithIdentifier(ListCell.className) as ListCell
         
         let group = seriesList[indexPath.row]
+        
+        cell.addressLabel.text = nil
         group.loadAddressStr { (address, error) -> Void in
             if error != nil {
                 cell.addressLabel.text = nil

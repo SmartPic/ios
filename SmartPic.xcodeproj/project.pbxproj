@@ -271,11 +271,11 @@
 				TargetAttributes = {
 					3FBD50D619E175840096E154 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = RB8FPLPDWC;
+						DevelopmentTeam = Y6LHTNYSDM;
 					};
 					3FBD50EB19E175840096E154 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = RB8FPLPDWC;
+						DevelopmentTeam = Y6LHTNYSDM;
 						TestTargetID = 3FBD50D619E175840096E154;
 					};
 				};
