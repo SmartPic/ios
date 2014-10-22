@@ -13,12 +13,12 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak private var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     private var seriesList = [GroupInfo]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         
         // Admob 設定
         bannerView.adSize = kGADAdSizeBanner
@@ -31,10 +31,21 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         super.viewWillAppear(animated)
         
         self.screenName = "リストページ"
+        reload()
+    }
+    
+    private func reload() {
         var photoFetcher = PhotoFetcher()
-        seriesList = photoFetcher.targetPhotoGroupingByTime()
+        
+        if (segmentedControl.selectedSegmentIndex == 0) {
+            seriesList = photoFetcher.targetPhotoGroupingByTime()
+        }
+        else {
+            seriesList = photoFetcher.allPhotoGroupingByTime()
+        }
         tableView.reloadData()
     }
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return seriesList.count
@@ -73,4 +84,13 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
             detailViewController.groupInfo = sender as GroupInfo
         }
     }
+    
+
+    // MARK: IBAction
+
+    @IBAction func segmentControlChanged(sender: AnyObject) {
+        reload()
+    }
+    
+    
 }

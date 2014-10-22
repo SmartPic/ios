@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-Ov-WAV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-Ov-WAV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.92156862745098034" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -128,10 +128,14 @@
                                 <segment title="すべて"/>
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="segmentControlChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="C9w-V6-krR"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>
                         <outlet property="bannerView" destination="PpJ-UE-gAX" id="G3O-9O-kuD"/>
+                        <outlet property="segmentedControl" destination="p69-C4-ghl" id="VEj-xv-Kg1"/>
                         <outlet property="tableView" destination="wcO-Ov-WAV" id="j8P-Su-pZu"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
                     </connections>
