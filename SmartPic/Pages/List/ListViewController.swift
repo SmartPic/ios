@@ -32,7 +32,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         
         self.screenName = "リストページ"
         var photoFetcher = PhotoFetcher()
-        seriesList = photoFetcher.photoGroupingByTime()
+        seriesList = photoFetcher.targetPhotoGroupingByTime()
         tableView.reloadData()
     }
     
