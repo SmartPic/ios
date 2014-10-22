@@ -74,11 +74,12 @@ class DeleteManager: NSObject {
         
         let imageManager = PHCachingImageManager()
         imageManager.requestImageDataForAsset(asset, options: nil) { (data, dataUTI, orientation, info) -> Void in
-
-            var imageSize = Float(data.length)
-            imageSize = imageSize/(1024*1024)   // MBに変換
-            
-            self.saveDeletedPhotoSize(imageSize)
+            if (data != nil) {
+                var imageSize = Float(data.length)
+                imageSize = imageSize/(1024*1024)   // MBに変換
+                
+                self.saveDeletedPhotoSize(imageSize)
+            }
         }
     }
     
