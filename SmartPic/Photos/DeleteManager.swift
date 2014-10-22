@@ -61,6 +61,15 @@ class DeleteManager: NSObject {
         defaults.synchronize()
     }
     
+    func isArrangedGroup(assets: [PHAsset]) -> Bool {
+        for asset in assets {
+            if contains(self.deleteAssetIds, asset.localIdentifier) {
+                return true
+            }
+        }
+        return false
+    }
+    
     private func fetchPhotoSizeWithAsset(asset: PHAsset) {
         
         let imageManager = PHCachingImageManager()

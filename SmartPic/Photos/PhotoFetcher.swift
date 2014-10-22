@@ -13,9 +13,12 @@ class PhotoFetcher: NSObject {
     
     var groups = [GroupInfo]()
     var imageManager: PHCachingImageManager
+    let deleteManager: DeleteManager?
 
     override init() {
         self.imageManager = PHCachingImageManager()
+        self.deleteManager = DeleteManager.getInstance()
+        super.init()
     }
     
     func allPhotoGroupingByTime() -> [GroupInfo] {
@@ -109,6 +112,10 @@ class PhotoFetcher: NSObject {
             return false
         }
         
+        // すでに整理済みのグループは無視する
+        if (deleteManager!.isArrangedGroup(assets)) {
+            return false
+        }
         return true
     }
     
