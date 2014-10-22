@@ -145,6 +145,11 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                         tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "", value: delCount).build())
                         
                         println("delete success!")
+                        
+                        // 削除した画像のIDを記憶しておく
+                        let delManager = DeleteManager.getInstance()
+                        delManager.saveDeletedAssets(delTargetList)
+                        
                         dispatch_async(dispatch_get_main_queue(), {
                             // 解決法
                             // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018

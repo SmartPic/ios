@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-Ov-WAV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wcO-Ov-WAV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.92156862745098034" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -118,16 +118,31 @@
                             <constraint firstItem="wcO-Ov-WAV" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="xUt-8B-MC8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9px-aZ-Tq5"/>
+                    <navigationItem key="navigationItem" id="9px-aZ-Tq5">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
+                            <rect key="frame" x="72.5" y="6.5" width="175" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="整理対象"/>
+                                <segment title="すべて"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="segmentControlChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="C9w-V6-krR"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
                         <outlet property="bannerView" destination="PpJ-UE-gAX" id="G3O-9O-kuD"/>
+                        <outlet property="segmentedControl" destination="p69-C4-ghl" id="VEj-xv-Kg1"/>
                         <outlet property="tableView" destination="wcO-Ov-WAV" id="j8P-Su-pZu"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="419" y="526"/>
+            <point key="canvasLocation" x="437" y="526"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="jvp-Al-Dyl">
