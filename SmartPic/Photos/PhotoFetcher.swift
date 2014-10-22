@@ -81,9 +81,9 @@ class PhotoFetcher: NSObject {
                 var date: NSDate = asset.creationDate
                 var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
                 
-                // 3秒（3000ミリ秒）以内に撮影された写真は同じグループだと考える
+                // 10秒以内に撮影された写真は同じグループだと考える
                 // それ以上離れた場合は別グループを作成する
-                if (interval > 3000) {
+                if (interval > 10) {
                     if (self.shouldAppendAssets(innerAssets)) {
                         var group = GroupInfo(assets: innerAssets)
                         self.groups.append(group)

@@ -71,14 +71,6 @@ class GroupInfo: NSObject {
             var places = placemarks as NSArray!
             if (places.count > 0) {
                 var place: CLPlacemark = places[0] as CLPlacemark
-                println(place.addressDictionary)
-//                println(array)
-                
-//                var array = places[0]!["placeData"]["component"]["formattedAddressLine"] as! Array
-//                for line in array {
-//                    println(line)
-//                }
-                println("==================")
                 
                 let state = place.addressDictionary["State"] as? NSString
                 let city = place.addressDictionary["City"] as? NSString
