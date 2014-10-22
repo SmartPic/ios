@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
@@ -118,7 +118,18 @@
                             <constraint firstItem="wcO-Ov-WAV" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="xUt-8B-MC8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="9px-aZ-Tq5"/>
+                    <navigationItem key="navigationItem" id="9px-aZ-Tq5">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
+                            <rect key="frame" x="72.5" y="6.5" width="175" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="整理対象"/>
+                                <segment title="すべて"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
                         <outlet property="bannerView" destination="PpJ-UE-gAX" id="G3O-9O-kuD"/>
                         <outlet property="tableView" destination="wcO-Ov-WAV" id="j8P-Su-pZu"/>
@@ -127,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="419" y="526"/>
+            <point key="canvasLocation" x="437" y="526"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="jvp-Al-Dyl">
