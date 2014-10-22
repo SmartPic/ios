@@ -29,6 +29,7 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        collectionView.scrollsToTop = false
         contentWrapperView.layer.cornerRadius = 5
         contentWrapperView.clipsToBounds = true
         contentWrapperView.layer.masksToBounds = false
