@@ -133,6 +133,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
             }
         }
         
+        var delCount: Int = delTargetList.count
         photoFetcher.deleteImageAssets(delTargetList,
             completionHandler: { (success, error) -> Void in
                 if error != nil {
@@ -140,6 +141,9 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 }
                 else {
                     if success {
+                        let tracker = GAI.sharedInstance().defaultTracker;
+                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "", value: delCount).build())
+                        
                         println("delete success!")
                         dispatch_async(dispatch_get_main_queue(), {
                             // 解決法
