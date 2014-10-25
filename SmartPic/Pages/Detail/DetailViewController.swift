@@ -152,7 +152,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                         dispatch_async(dispatch_get_main_queue(), {
                             // 解決法
                             // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018
-                            _ in self.navigationController?.popViewControllerAnimated(true); return ()
+                            _ in self.performSegueWithIdentifier("unwindDetail", sender: nil); return ()
                         })
                     }
                     else {

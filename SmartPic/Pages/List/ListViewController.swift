@@ -104,4 +104,10 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         reload()
     }
     
+    @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
+        let hud : MBProgressHUD = MBProgressHUD .showHUDAddedTo(self.view, animated: true)
+        hud.mode = MBProgressHUDModeText
+        hud.labelText = "画像を削除しました"
+        hud.hide(true, afterDelay: 3)
+    }
 }
