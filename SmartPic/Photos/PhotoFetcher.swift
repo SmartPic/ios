@@ -39,7 +39,7 @@ class PhotoFetcher: NSObject {
         defaults.synchronize()
     }
     
-    private func getCloudAssets() -> [PHAsset] {
+    private func fetchCloudAssets() -> [PHAsset] {
         let collections = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .AlbumCloudShared, options: nil)
         var cloudAssets = [PHAsset]()
         collections.enumerateObjectsUsingBlock { (collection, idx, stop) -> Void in
@@ -52,9 +52,8 @@ class PhotoFetcher: NSObject {
         return cloudAssets
     }
     
-    func allPhotoGroupingByTime() -> [GroupInfo] {
-        let cloudAssets = getCloudAssets()
-
+    private func groupingPhotos(isExceptDeleted: Bool, isExceptICloud: Bool) -> [GroupInfo] {
+        let cloudAssets = fetchCloudAssets()
         
         var options = PHFetchOptions()
         options.sortDescriptors = [
@@ -70,16 +69,26 @@ class PhotoFetcher: NSObject {
         assets.enumerateObjectsUsingBlock { (obj: AnyObject!, idx: Int, stop) -> Void in
             var asset: PHAsset = obj as PHAsset
             
-            if !contains(cloudAssets, asset) {
+            var isSkip = false
+            // iCloudの写真を無視する
+            if (isExceptICloud) {
+                if contains(cloudAssets, asset) {
+                    isSkip = true
+                }
+            }
+            
+            if (!isSkip) {
                 if prevDate != nil {
                     var date: NSDate = asset.creationDate
                     var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
                     
-                    // 3秒（3000ミリ秒）以内に撮影された写真は同じグループだと考える
+                    // 10秒以内に撮影された写真は同じグループだと考える
                     // それ以上離れた場合は別グループを作成する
-                    if (interval > 3000) {
-                        var group = GroupInfo(assets: innerAssets)
-                        self.groups.append(group)
+                    if (interval > 10) {
+                        if (!isExceptDeleted || self.shouldAppendAssets(innerAssets)) {
+                            var group = GroupInfo(assets: innerAssets)
+                            self.groups.append(group)
+                        }
                         
                         innerAssets = []
                     }
@@ -98,10 +107,8 @@ class PhotoFetcher: NSObject {
         return self.groups
     }
     
-    func targetPhotoGroupingByTime() -> [GroupInfo] {
-        let cloudAssets = getCloudAssets()
-        println("cloud assets is \(cloudAssets)")
-        
+    private func groupingPhotosWithMoments(isExceptDeleted: Bool, isExceptICloud: Bool) -> [GroupInfo] {
+        let cloudAssets = fetchCloudAssets()
         
         var momentOption = PHFetchOptions()
         momentOption.sortDescriptors = [
@@ -124,7 +131,14 @@ class PhotoFetcher: NSObject {
             let fetchResult = PHAsset.fetchAssetsInAssetCollection(moment as PHAssetCollection, options: options)
             
             fetchResult.enumerateObjectsUsingBlock({ (asset, idx, stop) -> Void in
-                if !contains(cloudAssets, asset as PHAsset) {
+                var isSkip = false
+                if (isExceptICloud) {
+                    if contains(cloudAssets, asset as PHAsset) {
+                        isSkip = true
+                    }
+                }
+                
+                if !isSkip {
                     if prevDate != nil {
                         var date: NSDate = asset.creationDate
                         var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
@@ -132,7 +146,7 @@ class PhotoFetcher: NSObject {
                         // 10秒以内に撮影された写真は同じグループだと考える
                         // それ以上離れた場合は別グループを作成する
                         if (interval > 10) {
-                            if (self.shouldAppendAssets(innerAssets)) {
+                            if (!isExceptDeleted || self.shouldAppendAssets(innerAssets)) {
                                 var group = GroupInfo(assets: innerAssets)
                                 self.groups.append(group)
                             }
@@ -144,45 +158,24 @@ class PhotoFetcher: NSObject {
                     innerAssets.append(asset as PHAsset)
                     prevDate = asset.creationDate
                 }
-                else {
-                    println("iCloud photo.")
-                }
-
+                
             })
         }
-//        
-//        var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
-//        assets.enumerateObjectsUsingBlock { (obj: AnyObject!, idx: Int, stop) -> Void in
-//            var asset: PHAsset = obj as PHAsset
-//            
-//            if !contains(cloudAssets, asset) {
-//                if prevDate != nil {
-//                    var date: NSDate = asset.creationDate
-//                    var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
-//                    
-//                    // 10秒以内に撮影された写真は同じグループだと考える
-//                    // それ以上離れた場合は別グループを作成する
-//                    if (interval > 10) {
-//                        if (self.shouldAppendAssets(innerAssets)) {
-//                            var group = GroupInfo(assets: innerAssets)
-//                            self.groups.append(group)
-//                        }
-//                        
-//                        innerAssets = []
-//                    }
-//                }
-//                
-//                innerAssets.append(asset)
-//                prevDate = asset.creationDate
-//            }
-//        }
         
         if (!innerAssets.isEmpty) {
             var group = GroupInfo(assets: innerAssets)
             self.groups.append(group)
         }
-
+        
         return self.groups
+    }
+    
+    func allPhotoGroupingByTime() -> [GroupInfo] {
+        return groupingPhotos(false, isExceptICloud: false)
+    }
+    
+    func targetPhotoGroupingByTime() -> [GroupInfo] {
+        return groupingPhotos(true, isExceptICloud: false)
     }
     
     
