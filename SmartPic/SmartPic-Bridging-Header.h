@@ -10,4 +10,5 @@
 #import "GAILogger.h"
 #import "GADBannerView.h"
 #import "GADRequest.h"
+#import "MBProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>

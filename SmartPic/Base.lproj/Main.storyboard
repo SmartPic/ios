@@ -283,9 +283,11 @@
                         <outlet property="collectionView" destination="kqc-wN-Rq5" id="mx3-kH-EZI"/>
                         <outlet property="pickButton" destination="zY1-Dl-u3A" id="xld-b0-9b6"/>
                         <outlet property="saveButton" destination="Qzn-Os-zeZ" id="rts-56-s0I"/>
+                        <segue destination="oni-LL-lNf" kind="unwind" identifier="unwindDetail" unwindAction="returnFromDetail:" id="c1P-0Y-2xY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfw-Qd-JuM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="oni-LL-lNf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="918" y="526"/>
         </scene>
