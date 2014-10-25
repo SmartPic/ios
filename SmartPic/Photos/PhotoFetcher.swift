@@ -99,7 +99,8 @@ class PhotoFetcher: NSObject {
             }
         }
         
-        if (!innerAssets.isEmpty) {
+        if (!innerAssets.isEmpty
+            && (!isExceptDeleted || self.shouldAppendAssets(innerAssets))) {
             var group = GroupInfo(assets: innerAssets)
             self.groups.append(group)
         }
