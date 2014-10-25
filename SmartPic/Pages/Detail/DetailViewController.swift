@@ -32,7 +32,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         super.viewDidLoad()
         
         // saveButton settings
-        saveButton.enabled = false
         saveButton.layer.cornerRadius = 5
         saveButton.clipsToBounds = true
         saveButton.layer.masksToBounds = false
@@ -40,6 +39,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         saveButton.layer.shadowOpacity = 0.2
         saveButton.layer.shadowColor = UIColor.blackColor().CGColor
         saveButton.layer.shadowRadius = 0.0
+        saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3d42e)
         
         // 中央画像の挿入
         bigImageView.contentMode = .ScaleAspectFit
@@ -114,14 +114,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
             self.pushToPickedPictureIndexes(indexPath.row)
         } else {
             self.removeFromPickedPictureIndexes(indexPath.row)
-        }
-        
-        if (pickedPictureIndexes.count > 0) {
-            saveButton.enabled = true
-            saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3d42e)
-        } else {
-            saveButton.enabled = false
-            saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3e2de)
         }
     }
     
