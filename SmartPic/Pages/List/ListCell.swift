@@ -22,6 +22,7 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
             collectionView.reloadData()
         }
     }
+    
     var groupInfo: GroupInfo = GroupInfo() {
         didSet {
             self.series = groupInfo.assets
@@ -56,6 +57,12 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         let cell: ListImageCell = collectionView.dequeueReusableCellWithReuseIdentifier(ListImageCell.className, forIndexPath: indexPath) as ListImageCell
         
         cell.listImageView.image = nil
+        if (indexPath.row == 3 && series.count > 4) {
+            cell.moreView.hidden = false
+            cell.numberLabel.text = "+" + (String)(series.count - 4)
+        } else {
+            cell.moreView.hidden = true
+        }
         
         var asset: PHAsset = series[indexPath.row]
         var photoFetcher = PhotoFetcher()
