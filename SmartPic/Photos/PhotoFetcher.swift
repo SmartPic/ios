@@ -21,7 +21,23 @@ class PhotoFetcher: NSObject {
         super.init()
     }
     
+    private func getCloudAssets() -> [PHAsset] {
+        let collections = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .AlbumCloudShared, options: nil)
+        var cloudAssets = [PHAsset]()
+        collections.enumerateObjectsUsingBlock { (collection, idx, stop) -> Void in
+            var assets = PHAsset.fetchAssetsInAssetCollection(collection as PHAssetCollection, options: nil)
+            assets.enumerateObjectsUsingBlock({ (obj, idx, stop) -> Void in
+                cloudAssets.append(obj as PHAsset)
+            })
+        }
+        
+        return cloudAssets
+    }
+    
     func allPhotoGroupingByTime() -> [GroupInfo] {
+        let cloudAssets = getCloudAssets()
+
+        
         var options = PHFetchOptions()
         options.sortDescriptors = [
             NSSortDescriptor(key: "creationDate", ascending: false)
@@ -36,22 +52,24 @@ class PhotoFetcher: NSObject {
         assets.enumerateObjectsUsingBlock { (obj: AnyObject!, idx: Int, stop) -> Void in
             var asset: PHAsset = obj as PHAsset
             
-            if prevDate != nil {
-                var date: NSDate = asset.creationDate
-                var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
-                
-                // 3秒（3000ミリ秒）以内に撮影された写真は同じグループだと考える
-                // それ以上離れた場合は別グループを作成する
-                if (interval > 3000) {
-                    var group = GroupInfo(assets: innerAssets)
-                    self.groups.append(group)
+            if !contains(cloudAssets, asset) {
+                if prevDate != nil {
+                    var date: NSDate = asset.creationDate
+                    var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
                     
-                    innerAssets = []
+                    // 3秒（3000ミリ秒）以内に撮影された写真は同じグループだと考える
+                    // それ以上離れた場合は別グループを作成する
+                    if (interval > 3000) {
+                        var group = GroupInfo(assets: innerAssets)
+                        self.groups.append(group)
+                        
+                        innerAssets = []
+                    }
                 }
+                
+                innerAssets.append(asset)
+                prevDate = asset.creationDate
             }
-            
-            innerAssets.append(asset)
-            prevDate = asset.creationDate
         }
         
         if (!innerAssets.isEmpty) {
@@ -63,6 +81,10 @@ class PhotoFetcher: NSObject {
     }
     
     func targetPhotoGroupingByTime() -> [GroupInfo] {
+        let cloudAssets = getCloudAssets()
+        println("cloud assets is \(cloudAssets)")
+        
+        
         var options = PHFetchOptions()
         options.sortDescriptors = [
             NSSortDescriptor(key: "creationDate", ascending: false)
@@ -77,24 +99,26 @@ class PhotoFetcher: NSObject {
         assets.enumerateObjectsUsingBlock { (obj: AnyObject!, idx: Int, stop) -> Void in
             var asset: PHAsset = obj as PHAsset
             
-            if prevDate != nil {
-                var date: NSDate = asset.creationDate
-                var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
-                
-                // 10秒以内に撮影された写真は同じグループだと考える
-                // それ以上離れた場合は別グループを作成する
-                if (interval > 10) {
-                    if (self.shouldAppendAssets(innerAssets)) {
-                        var group = GroupInfo(assets: innerAssets)
-                        self.groups.append(group)
-                    }
+            if !contains(cloudAssets, asset) {
+                if prevDate != nil {
+                    var date: NSDate = asset.creationDate
+                    var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
                     
-                    innerAssets = []
+                    // 10秒以内に撮影された写真は同じグループだと考える
+                    // それ以上離れた場合は別グループを作成する
+                    if (interval > 10) {
+                        if (self.shouldAppendAssets(innerAssets)) {
+                            var group = GroupInfo(assets: innerAssets)
+                            self.groups.append(group)
+                        }
+                        
+                        innerAssets = []
+                    }
                 }
+                
+                innerAssets.append(asset)
+                prevDate = asset.creationDate
             }
-            
-            innerAssets.append(asset)
-            prevDate = asset.creationDate
         }
         
         if (!innerAssets.isEmpty) {
