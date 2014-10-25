@@ -9,7 +9,10 @@
 import UIKit
 
 class ListImageCell: UICollectionViewCell {
+    
     @IBOutlet weak var listImageView: UIImageView!
+    @IBOutlet weak var moreView: UIView!
+    @IBOutlet weak var numberLabel: UILabel!
     
     override func awakeFromNib() {
         listImageView.contentMode = .ScaleAspectFill

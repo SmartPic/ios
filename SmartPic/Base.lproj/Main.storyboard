@@ -40,10 +40,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lOc-iF-bbF">
-                                                            <rect key="frame" x="10" y="10" width="280" height="70"/>
+                                                            <rect key="frame" x="8" y="10" width="284" height="68"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Swq-jD-yW5">
-                                                                <size key="itemSize" width="70" height="70"/>
+                                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="4" minimumInteritemSpacing="0.0" id="Swq-jD-yW5">
+                                                                <size key="itemSize" width="68" height="68"/>
                                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -53,23 +53,55 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ddk-Rd-SHJ">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
                                                                             </imageView>
+                                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KwA-mW-ufG">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="68" height="68"/>
+                                                                                <subviews>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dil-Wu-Jjb">
+                                                                                        <rect key="frame" x="0.0" y="18" width="68" height="24"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="24" id="zzz-np-jpv"/>
+                                                                                        </constraints>
+                                                                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="28"/>
+                                                                                        <color key="textColor" red="0.12549019607843137" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="枚の写真" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6S6-4n-9iq">
+                                                                                        <rect key="frame" x="13" y="41" width="42" height="21"/>
+                                                                                        <fontDescription key="fontDescription" name="HiraKakuProN-W3" family="Hiragino Kaku Gothic ProN" pointSize="9"/>
+                                                                                        <color key="textColor" red="0.12549019610000001" green="0.4039215686" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                                                                        <nil key="highlightedColor"/>
+                                                                                    </label>
+                                                                                </subviews>
+                                                                                <color key="backgroundColor" white="1" alpha="0.70000000000000007" colorSpace="calibratedWhite"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="trailing" secondItem="Dil-Wu-Jjb" secondAttribute="trailing" id="Hsv-g6-3fF"/>
+                                                                                    <constraint firstItem="Dil-Wu-Jjb" firstAttribute="leading" secondItem="KwA-mW-ufG" secondAttribute="leading" id="N7f-DH-LSg"/>
+                                                                                    <constraint firstItem="Dil-Wu-Jjb" firstAttribute="top" secondItem="KwA-mW-ufG" secondAttribute="top" constant="18" id="qmo-09-bJb"/>
+                                                                                </constraints>
+                                                                            </view>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </view>
                                                                     <constraints>
                                                                         <constraint firstAttribute="bottom" secondItem="Ddk-Rd-SHJ" secondAttribute="bottom" id="7bU-q5-c7i"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="KwA-mW-ufG" secondAttribute="trailing" id="J8e-pg-Jr7"/>
                                                                         <constraint firstItem="Ddk-Rd-SHJ" firstAttribute="top" secondItem="e2H-Uw-g8Q" secondAttribute="top" id="Xpf-MD-CcV"/>
                                                                         <constraint firstItem="Ddk-Rd-SHJ" firstAttribute="leading" secondItem="e2H-Uw-g8Q" secondAttribute="leading" id="Zuh-aJ-0IZ"/>
                                                                         <constraint firstAttribute="trailing" secondItem="Ddk-Rd-SHJ" secondAttribute="trailing" id="chq-JC-QF8"/>
+                                                                        <constraint firstItem="KwA-mW-ufG" firstAttribute="top" secondItem="e2H-Uw-g8Q" secondAttribute="top" id="gJf-DL-3tX"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="KwA-mW-ufG" secondAttribute="bottom" id="pcC-04-y8b"/>
+                                                                        <constraint firstItem="KwA-mW-ufG" firstAttribute="leading" secondItem="e2H-Uw-g8Q" secondAttribute="leading" id="qp1-ol-PPJ"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="listImageView" destination="Ddk-Rd-SHJ" id="Cc0-W8-WAT"/>
+                                                                        <outlet property="moreView" destination="KwA-mW-ufG" id="VLr-St-oSJ"/>
+                                                                        <outlet property="numberLabel" destination="Dil-Wu-Jjb" id="6ZY-mM-5Mq"/>
                                                                     </connections>
                                                                 </collectionViewCell>
                                                             </cells>
