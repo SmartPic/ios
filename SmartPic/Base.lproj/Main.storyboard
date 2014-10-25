@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--List View Controller-->
@@ -111,6 +111,7 @@
                                             <outlet property="collectionView" destination="lOc-iF-bbF" id="QO8-Sv-2ex"/>
                                             <outlet property="contentWrapperView" destination="rsG-ay-VNn" id="6nj-DU-x9p"/>
                                             <outlet property="dateLabel" destination="UOG-Sd-YxN" id="Rqe-mI-NhK"/>
+                                            <outlet property="wrapperView" destination="rsG-ay-VNn" id="C7P-jI-whj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -151,7 +152,7 @@
                     <navigationItem key="navigationItem" id="9px-aZ-Tq5">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
-                            <rect key="frame" x="72.5" y="6.5" width="175" height="31"/>
+                            <rect key="frame" x="73" y="7" width="175" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="整理対象"/>

@@ -15,6 +15,7 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var wrapperView: UIView!
     
     var series: [PHAsset] = [] {
         didSet {
@@ -24,6 +25,14 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     var groupInfo: GroupInfo = GroupInfo() {
         didSet {
             self.series = groupInfo.assets
+        }
+    }
+    
+    override func setHighlighted(highlighted: Bool, animated: Bool) {
+        if (highlighted) {
+            wrapperView.backgroundColor = UIColor.colorWithRGBHex(0xc1c3c3, alpha: 1.0)
+        } else {
+            wrapperView.backgroundColor = UIColor.whiteColor()
         }
     }
     
