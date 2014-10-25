@@ -14,8 +14,10 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var startButton: UIButton!
     
     private var seriesList = [GroupInfo]()
+    private let photoFetcher = PhotoFetcher()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,12 +38,17 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         super.viewWillAppear(animated)
         
         self.screenName = "リストページ"
-        reload()
+        
+        if photoFetcher.isFinishPhotoLoading {
+            startButton.hidden = true
+            reload()
+        }
+        else {
+            tableView.hidden = true
+        }
     }
     
     private func reload() {
-        var photoFetcher = PhotoFetcher()
-        
         if (segmentedControl.selectedSegmentIndex == 0) {
             seriesList = photoFetcher.targetPhotoGroupingByTime()
         }
@@ -110,4 +117,13 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         hud.labelText = "画像を削除しました"
         hud.hide(true, afterDelay: 3)
     }
+    
+    @IBAction func startBtnTouched(sender: AnyObject) {
+        tableView.hidden = false
+        startButton.hidden = true
+        reload()
+        
+        photoFetcher.setFinishPhotoLoading()
+    }
+    
 }

@@ -14,11 +14,29 @@ class PhotoFetcher: NSObject {
     var groups = [GroupInfo]()
     var imageManager: PHCachingImageManager
     let deleteManager: DeleteManager?
+    
+    var isFinishPhotoLoading = false
 
     override init() {
         self.imageManager = PHCachingImageManager()
         self.deleteManager = DeleteManager.getInstance()
         super.init()
+        
+        loadStatus()
+    }
+    
+    private func loadStatus() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let isRead = defaults.boolForKey("IS_FINISH_PHOTO_LOADING")
+        self.isFinishPhotoLoading = isRead
+    }
+    
+    func setFinishPhotoLoading() {
+        self.isFinishPhotoLoading = true
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(isFinishPhotoLoading, forKey: "IS_FINISH_PHOTO_LOADING")
+        defaults.synchronize()
     }
     
     private func getCloudAssets() -> [PHAsset] {
