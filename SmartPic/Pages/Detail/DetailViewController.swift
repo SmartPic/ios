@@ -115,6 +115,12 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         } else {
             self.removeFromPickedPictureIndexes(indexPath.row)
         }
+        
+        if (pickedPictureIndexes.count > 0) {
+            saveButton.setTitle("選んだ写真を残して全て削除", forState: UIControlState.Normal)
+        } else {
+            saveButton.setTitle("全て削除", forState: UIControlState.Normal)
+        }
     }
     
     // MARK: - 独自メソッド群
