@@ -254,7 +254,7 @@
                                     <constraint firstAttribute="height" constant="50" id="UdR-kS-cNJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HiraKakuProN-W6" family="Hiragino Kaku Gothic ProN" pointSize="15"/>
-                                <state key="normal" title="選んだ写真を残して全て削除">
+                                <state key="normal" title="全て削除">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
