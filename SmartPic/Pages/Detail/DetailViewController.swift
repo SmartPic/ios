@@ -125,15 +125,15 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     
     // MARK: - 独自メソッド群
     func deleteUnPickerPictures() {
-        var delTargetList = [PHAsset]()
+        var delTargetAssets = [PHAsset]()
         for (index, asset) in enumerate(pictures) {
             if !contains(pickedPictureIndexes, index) {
-                delTargetList.append(asset)
+                delTargetAssets.append(asset)
             }
         }
         
-        var delCount: Int = delTargetList.count
-        photoFetcher.deleteImageAssets(delTargetList,
+        var delCount: Int = delTargetAssets.count
+        photoFetcher.deleteImageAssets(delTargetAssets,
             completionHandler: { (success, error) -> Void in
                 if error != nil {
                     println("error occured. error is \(error!)")
@@ -145,9 +145,9 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                         
                         println("delete success!")
                         
-                        // 削除した画像のIDを記憶しておく
+                        // 削除した画像のID、残した画像のIDを記憶しておく
                         let delManager = DeleteManager.getInstance()
-                        delManager.saveDeletedAssets(delTargetList)
+                        delManager.saveDeletedAssets(delTargetAssets, arrangedAssets: self.pictures)
                         
                         dispatch_async(dispatch_get_main_queue(), {
                             // 解決法
