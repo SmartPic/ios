@@ -103,6 +103,11 @@ class PhotoFetcher: NSObject {
         println("cloud assets is \(cloudAssets)")
         
         
+        var momentOption = PHFetchOptions()
+        momentOption.sortDescriptors = [
+            NSSortDescriptor(key: "startDate", ascending: false)
+        ]
+        
         var options = PHFetchOptions()
         options.sortDescriptors = [
             NSSortDescriptor(key: "creationDate", ascending: false)
@@ -113,31 +118,64 @@ class PhotoFetcher: NSObject {
         var prevDate: NSDate?
         var innerAssets = [PHAsset]()
         
-        var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
-        assets.enumerateObjectsUsingBlock { (obj: AnyObject!, idx: Int, stop) -> Void in
-            var asset: PHAsset = obj as PHAsset
+        let moments = PHAssetCollection.fetchMomentsWithOptions(momentOption)
+        moments.enumerateObjectsUsingBlock { (moment, idx, stop) -> Void in
             
-            if !contains(cloudAssets, asset) {
-                if prevDate != nil {
-                    var date: NSDate = asset.creationDate
-                    var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
-                    
-                    // 10秒以内に撮影された写真は同じグループだと考える
-                    // それ以上離れた場合は別グループを作成する
-                    if (interval > 10) {
-                        if (self.shouldAppendAssets(innerAssets)) {
-                            var group = GroupInfo(assets: innerAssets)
-                            self.groups.append(group)
-                        }
+            let fetchResult = PHAsset.fetchAssetsInAssetCollection(moment as PHAssetCollection, options: options)
+            
+            fetchResult.enumerateObjectsUsingBlock({ (asset, idx, stop) -> Void in
+                if !contains(cloudAssets, asset as PHAsset) {
+                    if prevDate != nil {
+                        var date: NSDate = asset.creationDate
+                        var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
                         
-                        innerAssets = []
+                        // 10秒以内に撮影された写真は同じグループだと考える
+                        // それ以上離れた場合は別グループを作成する
+                        if (interval > 10) {
+                            if (self.shouldAppendAssets(innerAssets)) {
+                                var group = GroupInfo(assets: innerAssets)
+                                self.groups.append(group)
+                            }
+                            
+                            innerAssets = []
+                        }
                     }
+                    
+                    innerAssets.append(asset as PHAsset)
+                    prevDate = asset.creationDate
                 }
-                
-                innerAssets.append(asset)
-                prevDate = asset.creationDate
-            }
+                else {
+                    println("iCloud photo.")
+                }
+
+            })
         }
+//        
+//        var assets: PHFetchResult = PHAsset.fetchAssetsWithMediaType(.Image, options: options)
+//        assets.enumerateObjectsUsingBlock { (obj: AnyObject!, idx: Int, stop) -> Void in
+//            var asset: PHAsset = obj as PHAsset
+//            
+//            if !contains(cloudAssets, asset) {
+//                if prevDate != nil {
+//                    var date: NSDate = asset.creationDate
+//                    var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
+//                    
+//                    // 10秒以内に撮影された写真は同じグループだと考える
+//                    // それ以上離れた場合は別グループを作成する
+//                    if (interval > 10) {
+//                        if (self.shouldAppendAssets(innerAssets)) {
+//                            var group = GroupInfo(assets: innerAssets)
+//                            self.groups.append(group)
+//                        }
+//                        
+//                        innerAssets = []
+//                    }
+//                }
+//                
+//                innerAssets.append(asset)
+//                prevDate = asset.creationDate
+//            }
+//        }
         
         if (!innerAssets.isEmpty) {
             var group = GroupInfo(assets: innerAssets)
