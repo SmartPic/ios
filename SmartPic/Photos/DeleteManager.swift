@@ -16,6 +16,8 @@ class DeleteManager: NSObject {
     var deleteAssetIds = [String]()
     var deleteAssetFileSize:Float = 0
     
+    var arrangedAssetIds = [String]()   // 「整理済み」認定されたアセット集
+    
     override private init() {
         super.init()
         self.loadData()
@@ -30,18 +32,28 @@ class DeleteManager: NSObject {
     func loadData() {
         // 過去に削除したidリストをNSUserDefaultsから取得
         let defaults = NSUserDefaults.standardUserDefaults()
-        let loadArray = defaults.arrayForKey("DELETE_ASSET_IDS")
         
+        let loadArray = defaults.arrayForKey("DELETE_ASSET_IDS")
         if loadArray != nil {
             self.deleteAssetIds = loadArray as [String]
         }
         
         let loadFloat = defaults.floatForKey("DELETE_ASSET_FILE_SIZE")
         self.deleteAssetFileSize = loadFloat as Float
+        
+        let loadArranged = defaults.arrayForKey("ARRANGED_ASSET_IDS")
+        if loadArranged != nil {
+            self.arrangedAssetIds = loadArranged as [String]
+        }
     }
     
-    // 削除したデータを保存
-    func saveDeletedAssets(assets: [PHAsset]) {
+    // 削除したデータ、整理したデータを保存
+    func saveDeletedAssets(assets: [PHAsset], arrangedAssets: [PHAsset]) {
+        saveDeletedAssets(assets)
+        saveArrangedAssets(arrangedAssets)
+    }
+    
+    private func saveDeletedAssets(assets: [PHAsset]) {
         var ids = [String]()
         for asset in assets {
             let a = asset as PHAsset
@@ -61,9 +73,23 @@ class DeleteManager: NSObject {
         defaults.synchronize()
     }
     
+    private func saveArrangedAssets(assets: [PHAsset]) {
+        var ids = [String]()
+        for asset in assets {
+            let a = asset as PHAsset
+            ids.append(a.localIdentifier)
+        }
+        
+        self.arrangedAssetIds += ids
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(self.arrangedAssetIds, forKey: "ARRANGED_ASSET_IDS")
+        defaults.synchronize()
+    }
+    
     func isArrangedGroup(assets: [PHAsset]) -> Bool {
         for asset in assets {
-            if contains(self.deleteAssetIds, asset.localIdentifier) {
+            if contains(self.arrangedAssetIds, asset.localIdentifier) {
                 return true
             }
         }
