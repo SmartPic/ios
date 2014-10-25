@@ -120,6 +120,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     @IBAction func startBtnTouched(sender: AnyObject) {
         tableView.hidden = false
+        startButton.hidden = true
         reload()
         
         photoFetcher.setFinishPhotoLoading()
