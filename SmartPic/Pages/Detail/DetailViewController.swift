@@ -102,7 +102,8 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         pickButton.selected = !pickButton.selected
         
         collectionView.indexPathsForVisibleItems()
-        let indexPath : NSIndexPath = collectionView.indexPathsForSelectedItems()[0] as NSIndexPath
+        let indexPaths : [NSIndexPath] = collectionView.indexPathsForSelectedItems() as [NSIndexPath]
+        let indexPath : NSIndexPath = indexPaths[0] as NSIndexPath
         let visibleIndexPaths: [NSIndexPath] = self.collectionView.indexPathsForVisibleItems() as [NSIndexPath]
         if contains(visibleIndexPaths, indexPath) {
             let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
