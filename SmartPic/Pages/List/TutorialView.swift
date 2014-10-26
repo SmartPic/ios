@@ -21,6 +21,7 @@ class TutorialView: UIView {
     @IBOutlet weak var thirdSectionMainLabel: UILabel!
     @IBOutlet weak var thirdSectionSubLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var verticalConstraintMainToButton: NSLayoutConstraint!
     var delegate: TutorialViewDelegate?
 
     override init(frame: CGRect) {
@@ -68,6 +69,10 @@ class TutorialView: UIView {
         
         contentView.frame = bounds;
         self.addSubview(contentView)
+        
+        if (UIScreen.mainScreen().bounds.size.height == 480.0) {
+            verticalConstraintMainToButton.constant = 7
+        }
     }
     
     @IBAction func tapStartButton(sender: AnyObject) {
