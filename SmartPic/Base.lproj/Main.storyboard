@@ -153,16 +153,6 @@
                                     <outlet property="delegate" destination="vXZ-lx-hvc" id="7eJ-6A-ZKG"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Utn-5I-TPZ">
-                                <rect key="frame" x="0.0" y="262" width="320" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Load photos from your library and start">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startBtnTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Crd-o1-FgV"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpJ-UE-gAX" customClass="GADBannerView">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -200,7 +190,6 @@
                     <connections>
                         <outlet property="bannerView" destination="PpJ-UE-gAX" id="G3O-9O-kuD"/>
                         <outlet property="segmentedControl" destination="p69-C4-ghl" id="VEj-xv-Kg1"/>
-                        <outlet property="startButton" destination="Utn-5I-TPZ" id="qp4-np-acc"/>
                         <outlet property="tableView" destination="wcO-Ov-WAV" id="j8P-Su-pZu"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
                     </connections>
