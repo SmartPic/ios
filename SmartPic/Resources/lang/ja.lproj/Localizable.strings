@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  SmartPic
+
+  Created by tanabe yuki on 2014/10/26.
+  Copyright (c) 2014年 Yuki Tanabe. All rights reserved.
+*/
+
+// List page
+"Deleted %d photos" = "%d 枚の画像を削除しました";
+"Not Organized" = "整理対象";
+"All" = "全て";
+"photos" = "枚の写真";
+
+// Detail page
+"Delete all except marked photos" = "選んだ写真を残して全て削除";
+"Delete All" = "すべて削除";

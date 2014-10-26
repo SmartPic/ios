@@ -40,6 +40,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         saveButton.layer.shadowColor = UIColor.blackColor().CGColor
         saveButton.layer.shadowRadius = 0.0
         saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3d42e)
+        saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
         
         // 中央画像の挿入
         bigImageView.contentMode = .ScaleAspectFit
@@ -117,9 +118,9 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
         
         if (pickedPictureIndexes.count > 0) {
-            saveButton.setTitle("選んだ写真を残して全て削除", forState: UIControlState.Normal)
+            saveButton.setTitle(NSLocalizedString("Delete all except marked photos", comment:""), forState: UIControlState.Normal)
         } else {
-            saveButton.setTitle("全て削除", forState: UIControlState.Normal)
+            saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
         }
     }
     

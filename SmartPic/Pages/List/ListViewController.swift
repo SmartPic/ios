@@ -22,6 +22,10 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // セグメントコントロールのローカライズ
+        segmentedControl.setTitle(NSLocalizedString("Not Organized", comment:""), forSegmentAtIndex: 0)
+        segmentedControl.setTitle(NSLocalizedString("All", comment:""), forSegmentAtIndex: 1)
+        
         // UIRefreshControl
         let refreshControl: UIRefreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -112,9 +116,10 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
+        let deleteCount: Int = 3 // TODO
         let hud : MBProgressHUD = MBProgressHUD .showHUDAddedTo(self.view, animated: true)
         hud.mode = MBProgressHUDModeText
-        hud.labelText = "画像を削除しました"
+        hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deleteCount)
         hud.hide(true, afterDelay: 3)
     }
     

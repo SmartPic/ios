@@ -11,6 +11,7 @@
 		206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A2A0219F7DBB200338E54 /* DeleteManager.swift */; };
 		3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46919E176DA008079CE /* ListViewController.swift */; };
 		3F49A46C19E17A47008079CE /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46B19E17A47008079CE /* ListCell.swift */; };
+		3F93FABD19FCAC37009F9C3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F93FABF19FCAC37009F9C3B /* Localizable.strings */; };
 		3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA49E7519E23D0200D86E8A /* ListImageCell.swift */; };
 		3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754C819E4092700EB7FBB /* MyExtensions.swift */; };
 		3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */; };
@@ -50,6 +51,9 @@
 		3F01117719F69DBA005B5F2F /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = ../../../Downloads/GoogleAnalyticsServicesiOS_3.09/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		3F49A46919E176DA008079CE /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3F49A46B19E17A47008079CE /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		3F93FABE19FCAC37009F9C3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3F93FAC019FCAC57009F9C3B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3F93FAC119FCAC5D009F9C3B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3FA49E7519E23D0200D86E8A /* ListImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListImageCell.swift; sourceTree = "<group>"; };
 		3FA754C819E4092700EB7FBB /* MyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
 		3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +125,22 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		3F93FAB819FCABCF009F9C3B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3F93FAB919FCABE0009F9C3B /* lang */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3F93FAB919FCABE0009F9C3B /* lang */ = {
+			isa = PBXGroup;
+			children = (
+				3F93FABF19FCAC37009F9C3B /* Localizable.strings */,
+			);
+			path = lang;
+			sourceTree = "<group>";
+		};
 		3FA754C719E408DA00EB7FBB /* Libs */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,15 +181,16 @@
 		3FBD50D919E175840096E154 /* SmartPic */ = {
 			isa = PBXGroup;
 			children = (
-				D92D57B819EAE81300B87C20 /* Model */,
-				2002EC4B19E41DA9008044AA /* Photos */,
-				3FA754C719E408DA00EB7FBB /* Libs */,
-				3F49A46719E1767C008079CE /* Pages */,
 				3FBD50DC19E175840096E154 /* AppDelegate.swift */,
 				3FD4C6B719F4A96D00FFE768 /* SmartPic-Bridging-Header.h */,
 				3FBD50E019E175840096E154 /* Main.storyboard */,
 				3FBD50E319E175840096E154 /* Images.xcassets */,
 				3FBD50E519E175840096E154 /* LaunchScreen.xib */,
+				D92D57B819EAE81300B87C20 /* Model */,
+				2002EC4B19E41DA9008044AA /* Photos */,
+				3FA754C719E408DA00EB7FBB /* Libs */,
+				3F49A46719E1767C008079CE /* Pages */,
+				3F93FAB819FCABCF009F9C3B /* Resources */,
 				3FBD50DA19E175840096E154 /* Supporting Files */,
 			);
 			path = SmartPic;
@@ -297,6 +318,8 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
+				ko,
 			);
 			mainGroup = 3FBD50CE19E175840096E154;
 			productRefGroup = 3FBD50D819E175840096E154 /* Products */;
@@ -315,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FBD50E219E175840096E154 /* Main.storyboard in Resources */,
+				3F93FABD19FCAC37009F9C3B /* Localizable.strings in Resources */,
 				3FBD50E719E175840096E154 /* LaunchScreen.xib in Resources */,
 				3FBD50E419E175840096E154 /* Images.xcassets in Resources */,
 			);
@@ -399,6 +423,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3F93FABF19FCAC37009F9C3B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3F93FABE19FCAC37009F9C3B /* en */,
+				3F93FAC019FCAC57009F9C3B /* ja */,
+				3F93FAC119FCAC5D009F9C3B /* ko */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		3FBD50E019E175840096E154 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
