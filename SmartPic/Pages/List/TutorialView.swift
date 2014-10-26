@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TutorialViewDelegate {
+    func tapStartButton()
+}
+
 class TutorialView: UIView {
     
     @IBOutlet var contentView: UIView!
@@ -17,6 +21,7 @@ class TutorialView: UIView {
     @IBOutlet weak var thirdSectionMainLabel: UILabel!
     @IBOutlet weak var thirdSectionSubLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
+    var delegate: TutorialViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,5 +68,9 @@ class TutorialView: UIView {
         
         contentView.frame = bounds;
         self.addSubview(contentView)
+    }
+    
+    @IBAction func tapStartButton(sender: AnyObject) {
+        delegate?.tapStartButton()
     }
 }

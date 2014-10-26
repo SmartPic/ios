@@ -9,13 +9,13 @@
 import UIKit
 import Photos
 
-class ListViewController: GAITrackedViewController, UITableViewDataSource, UITableViewDelegate {
+class ListViewController: GAITrackedViewController, UITableViewDataSource, UITableViewDelegate, TutorialViewDelegate {
     
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var startButton: UIButton!
     
+    var tutorialView: TutorialView!
     var latestDeletedCount: Int = 0
     private var seriesList = [GroupInfo]()
     private let photoFetcher = PhotoFetcher()
@@ -45,12 +45,14 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         self.screenName = "リストページ"
         
         if photoFetcher.isFinishPhotoLoading {
-            startButton.hidden = true
             reload()
         }
         else {
             tableView.hidden = true
-            let tutorialView: TutorialView = TutorialView(frame: self.view.frame)
+            
+            // チュートリアル表示
+            tutorialView = TutorialView(frame: self.view.frame)
+            tutorialView.delegate = self
             self.view.addSubview(tutorialView)
         }
     }
@@ -126,12 +128,11 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         hud.hide(true, afterDelay: 3)
     }
     
-    @IBAction func startBtnTouched(sender: AnyObject) {
+    func tapStartButton() {
+        tutorialView.removeFromSuperview()
         tableView.hidden = false
-        startButton.hidden = true
         reload()
         
         photoFetcher.setFinishPhotoLoading()
     }
-    
 }
