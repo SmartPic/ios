@@ -102,6 +102,7 @@
                                                                         <outlet property="listImageView" destination="Ddk-Rd-SHJ" id="Cc0-W8-WAT"/>
                                                                         <outlet property="moreView" destination="KwA-mW-ufG" id="VLr-St-oSJ"/>
                                                                         <outlet property="numberLabel" destination="Dil-Wu-Jjb" id="6ZY-mM-5Mq"/>
+                                                                        <outlet property="photosLabel" destination="6S6-4n-9iq" id="zWN-d3-dRp"/>
                                                                     </connections>
                                                                 </collectionViewCell>
                                                             </cells>
