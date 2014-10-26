@@ -13,6 +13,7 @@
                 <outlet property="startButton" destination="ZzH-47-9LU" id="BYK-lB-Xsr"/>
                 <outlet property="thirdSectionMainLabel" destination="KZd-7K-KLN" id="hYz-An-6Mm"/>
                 <outlet property="thirdSectionSubLabel" destination="gUH-Tf-ff5" id="uZi-kt-oa9"/>
+                <outlet property="verticalConstraintMainToButton" destination="jFm-44-an1" id="aA9-jF-cNs"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -23,7 +24,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UMF-k4-Cjs">
                     <rect key="frame" x="0.0" y="64" width="320" height="352"/>
                     <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cYQ-JG-vrM">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYQ-JG-vrM">
                             <rect key="frame" x="10" y="10" width="300" height="104"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tutorial_01" translatesAutoresizingMaskIntoConstraints="NO" id="zTo-HA-fDp">
@@ -57,8 +58,12 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="104" id="H81-8F-KRd"/>
+                                <constraint firstAttribute="width" constant="300" id="bsR-JG-oUf"/>
+                            </constraints>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6BS-8V-De8">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6BS-8V-De8">
                             <rect key="frame" x="10" y="124" width="300" height="104"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tutorial_02" translatesAutoresizingMaskIntoConstraints="NO" id="qIO-fF-E7o">
@@ -80,8 +85,12 @@
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="300" id="eZh-Ro-NAh"/>
+                                <constraint firstAttribute="height" constant="104" id="iSa-YV-DBj"/>
+                            </constraints>
                         </view>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="naV-Dn-igm">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naV-Dn-igm">
                             <rect key="frame" x="10" y="238" width="300" height="104"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tutorial_03" translatesAutoresizingMaskIntoConstraints="NO" id="csy-py-5Jz">
@@ -113,11 +122,21 @@ aW1wbGUhA
                                 </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="300" id="JuS-2y-3VU"/>
+                                <constraint firstAttribute="height" constant="104" id="Yoh-se-7OD"/>
+                            </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" red="0.90588235294117647" green="0.92156862745098034" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="cYQ-JG-vrM" firstAttribute="top" secondItem="UMF-k4-Cjs" secondAttribute="top" constant="10" id="34o-ab-6HT"/>
                         <constraint firstAttribute="height" constant="352" id="F4S-QW-9OJ"/>
+                        <constraint firstItem="naV-Dn-igm" firstAttribute="top" secondItem="6BS-8V-De8" secondAttribute="bottom" constant="10" id="GOf-JN-fgh"/>
+                        <constraint firstAttribute="centerX" secondItem="6BS-8V-De8" secondAttribute="centerX" id="PrM-JK-0TJ"/>
+                        <constraint firstItem="6BS-8V-De8" firstAttribute="top" secondItem="cYQ-JG-vrM" secondAttribute="bottom" constant="10" id="Y3M-Oy-boJ"/>
+                        <constraint firstAttribute="centerX" secondItem="naV-Dn-igm" secondAttribute="centerX" id="qhj-gs-mSy"/>
+                        <constraint firstAttribute="centerX" secondItem="cYQ-JG-vrM" secondAttribute="centerX" id="wxW-nZ-9fo"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzH-47-9LU">

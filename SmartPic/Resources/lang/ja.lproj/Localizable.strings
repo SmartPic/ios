@@ -16,7 +16,7 @@
 TUTORIAL_FIRST_SECTION_MAIN = "アルパカはたくさんたまっている写真を\n簡単らくらく整理するアプリです。";
 TUTORIAL_FIRST_SECTION_SUB = "ボクはアルパカ\n写真を整理します。";
 TUTORIAL_SECOND_SECTION_MAIN = "似たような写真がいっぱいあると\n「整理対象」になります。\n残したい写真には星をつけて、\n要らない写真を一括削除！";
-TUTORIAL_THIRD_SECTION_MAIN = "すると整理済みになって、「全て」に表示されるようになりまう。どんどん写真を整理して、スッキリしよう！";
+TUTORIAL_THIRD_SECTION_MAIN = "すると整理済みになって、「全て」に表示されるようになります。どんどん写真を整理して、スッキリしよう！";
 TUTORIAL_THIRD_SECTION_SUB = "今すぐはじめよう！";
 "Load photos from your library and start" = "ライブラリから写真を読み込んでスタート";
 
