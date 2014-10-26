@@ -153,7 +153,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                         dispatch_async(dispatch_get_main_queue(), {
                             // 解決法
                             // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018
-                            _ in self.performSegueWithIdentifier("unwindDetail", sender: nil); return ()
+                            _ in self.performSegueWithIdentifier("unwindDetail", sender: delCount); return ()
                         })
                     }
                     else {
@@ -161,6 +161,13 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                     }
                 }
         })
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "unwindDetail") {
+            let listViewController:ListViewController = segue.destinationViewController as ListViewController
+            listViewController.latestDeletedCount = sender as Int
+        }
     }
     
     func pushToPickedPictureIndexes(pickedIndex: Int) {

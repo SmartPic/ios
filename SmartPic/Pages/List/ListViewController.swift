@@ -16,6 +16,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var startButton: UIButton!
     
+    var latestDeletedCount: Int = 0
     private var seriesList = [GroupInfo]()
     private let photoFetcher = PhotoFetcher()
 
@@ -116,10 +117,10 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
-        let deleteCount: Int = 3 // TODO
+        let deletedCount: Int = latestDeletedCount
         let hud : MBProgressHUD = MBProgressHUD .showHUDAddedTo(self.view, animated: true)
         hud.mode = MBProgressHUDModeText
-        hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deleteCount)
+        hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
         hud.hide(true, afterDelay: 3)
     }
     
