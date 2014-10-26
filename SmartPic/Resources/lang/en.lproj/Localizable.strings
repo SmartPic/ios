@@ -12,6 +12,14 @@
 "All" = "All";
 "photos" = "photos";
 
+// Tutorial
+TUTORIAL_FIRST_SECTION_MAIN = "Alpaca is a simple, easy App to use that organizes photos in your library.";
+TUTORIAL_FIRST_SECTION_SUB = "I am Alpaca. I organize photos.";
+TUTORIAL_SECOND_SECTION_MAIN = "When there are similar photos, they will be showed as [Not organized]. Mark a star on your photos that you want to keep, and the delete all the others.";
+TUTORIAL_THIRD_SECTION_MAIN = "Once you organized the photo, it will be showed as [All].Organize as many as you can and make your library clean and simple!";
+TUTORIAL_THIRD_SECTION_SUB = "Let's start right now!";
+"Load photos from your library and start" = "Load photos from your library and start";
+
 // Detail page
 "Delete all except marked photos" = "Delete all except marked photos";
 "Delete All" = "Delete All";

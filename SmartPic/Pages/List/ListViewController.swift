@@ -50,6 +50,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         }
         else {
             tableView.hidden = true
+            let tutorialView: TutorialView = TutorialView(frame: self.view.frame)
+            self.view.addSubview(tutorialView)
         }
     }
     

@@ -12,6 +12,14 @@
 "All" = "모든 사진";
 "photos" = "장의 사진";
 
+// Tutorial
+TUTORIAL_FIRST_SECTION_MAIN = "알파카는 쌓인 사진들을 쉽고 간단하게 정리해주는 앱입니다.";
+TUTORIAL_FIRST_SECTION_SUB = "나는야 알파카. 사진을 정리하지요.";
+TUTORIAL_SECOND_SECTION_MAIN = "비슷한 사진이 많으면, [정리 대상] 에 표시됩니다. 남기고 싶은 사진에는 별을 찍어놓고, 필요없는 사진들을 한꺼번에 삭제할수 있어요.";
+TUTORIAL_THIRD_SECTION_MAIN = "정리된 사진들은 [모든 사진] 에 표시됩니다. 이렇게 사진을 정리하면서, 지우는 상쾌함을 느껴보아요!";
+TUTORIAL_THIRD_SECTION_SUB = "바로 지금 시작해요!";
+"Load photos from your library and start" = "사진을 불러와 시작하기";
+
 // Detail page
 "Delete all except marked photos" = "선택한 사진을 제외하고 모두 삭제하기";
 "Delete All" = "모두 삭제하기";

@@ -11,6 +11,8 @@
 		206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A2A0219F7DBB200338E54 /* DeleteManager.swift */; };
 		3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46919E176DA008079CE /* ListViewController.swift */; };
 		3F49A46C19E17A47008079CE /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46B19E17A47008079CE /* ListCell.swift */; };
+		3F5C301719FCD704002F074F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C301619FCD704002F074F /* TutorialView.swift */; };
+		3F5C301919FCD714002F074F /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C301819FCD713002F074F /* TutorialView.xib */; };
 		3F93FABD19FCAC37009F9C3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F93FABF19FCAC37009F9C3B /* Localizable.strings */; };
 		3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA49E7519E23D0200D86E8A /* ListImageCell.swift */; };
 		3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754C819E4092700EB7FBB /* MyExtensions.swift */; };
@@ -51,6 +53,8 @@
 		3F01117719F69DBA005B5F2F /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = ../../../Downloads/GoogleAnalyticsServicesiOS_3.09/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		3F49A46919E176DA008079CE /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3F49A46B19E17A47008079CE /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		3F5C301619FCD704002F074F /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		3F5C301819FCD713002F074F /* TutorialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TutorialView.xib; sourceTree = "<group>"; };
 		3F93FABE19FCAC37009F9C3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3F93FAC019FCAC57009F9C3B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3F93FAC119FCAC5D009F9C3B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				3F49A46919E176DA008079CE /* ListViewController.swift */,
 				3F49A46B19E17A47008079CE /* ListCell.swift */,
 				3FA49E7519E23D0200D86E8A /* ListImageCell.swift */,
+				3F5C301619FCD704002F074F /* TutorialView.swift */,
+				3F5C301819FCD713002F074F /* TutorialView.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F5C301919FCD714002F074F /* TutorialView.xib in Resources */,
 				3FBD50E219E175840096E154 /* Main.storyboard in Resources */,
 				3F93FABD19FCAC37009F9C3B /* Localizable.strings in Resources */,
 				3FBD50E719E175840096E154 /* LaunchScreen.xib in Resources */,
@@ -398,6 +405,7 @@
 				206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */,
 				3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */,
 				3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */,
+				3F5C301719FCD704002F074F /* TutorialView.swift in Sources */,
 				3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */,
 				3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */,
 				D92D57BA19EAE85000B87C20 /* GroupInfo.swift in Sources */,
