@@ -210,7 +210,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         alert.addAction(UIAlertAction(title: "設定画面へ", style: .Default, handler: { (action) -> Void in
             // 設定画面へ遷移する
             let url = NSURL(string: UIApplicationOpenSettingsURLString)
-            UIApplication.sharedApplication().openURL(url)
+            UIApplication.sharedApplication().openURL(url!)
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
