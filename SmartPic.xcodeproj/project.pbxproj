@@ -14,6 +14,8 @@
 		3F5C301719FCD704002F074F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C301619FCD704002F074F /* TutorialView.swift */; };
 		3F5C301919FCD714002F074F /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F5C301819FCD713002F074F /* TutorialView.xib */; };
 		3F93FABD19FCAC37009F9C3B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3F93FABF19FCAC37009F9C3B /* Localizable.strings */; };
+		3F9C028C19FE7E6700442726 /* NoPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C028B19FE7E6700442726 /* NoPictureView.swift */; };
+		3F9C029019FE7E8900442726 /* NoPictureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C028F19FE7E8900442726 /* NoPictureView.xib */; };
 		3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA49E7519E23D0200D86E8A /* ListImageCell.swift */; };
 		3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754C819E4092700EB7FBB /* MyExtensions.swift */; };
 		3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */; };
@@ -58,6 +60,8 @@
 		3F93FABE19FCAC37009F9C3B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3F93FAC019FCAC57009F9C3B /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3F93FAC119FCAC5D009F9C3B /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3F9C028B19FE7E6700442726 /* NoPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPictureView.swift; sourceTree = "<group>"; };
+		3F9C028F19FE7E8900442726 /* NoPictureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoPictureView.xib; sourceTree = "<group>"; };
 		3FA49E7519E23D0200D86E8A /* ListImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListImageCell.swift; sourceTree = "<group>"; };
 		3FA754C819E4092700EB7FBB /* MyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
 		3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				3FA49E7519E23D0200D86E8A /* ListImageCell.swift */,
 				3F5C301619FCD704002F074F /* TutorialView.swift */,
 				3F5C301819FCD713002F074F /* TutorialView.xib */,
+				3F9C028B19FE7E6700442726 /* NoPictureView.swift */,
+				3F9C028F19FE7E8900442726 /* NoPictureView.xib */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -308,7 +314,7 @@
 				TargetAttributes = {
 					3FBD50D619E175840096E154 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = Y6LHTNYSDM;
+						DevelopmentTeam = RB8FPLPDWC;
 					};
 					3FBD50EB19E175840096E154 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -345,6 +351,7 @@
 			files = (
 				3F5C301919FCD714002F074F /* TutorialView.xib in Resources */,
 				3FBD50E219E175840096E154 /* Main.storyboard in Resources */,
+				3F9C029019FE7E8900442726 /* NoPictureView.xib in Resources */,
 				3F93FABD19FCAC37009F9C3B /* Localizable.strings in Resources */,
 				3FBD50E719E175840096E154 /* LaunchScreen.xib in Resources */,
 				3FBD50E419E175840096E154 /* Images.xcassets in Resources */,
@@ -400,6 +407,7 @@
 			files = (
 				3F49A46C19E17A47008079CE /* ListCell.swift in Sources */,
 				3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */,
+				3F9C028C19FE7E6700442726 /* NoPictureView.swift in Sources */,
 				2002EC4F19E41DFF008044AA /* PhotoFetcher.swift in Sources */,
 				3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */,
 				206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */,
@@ -545,8 +553,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: RYOSUKE HIRAMATSU (CX83Y44847)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: RYOSUKE HIRAMATSU (CX83Y44847)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = SmartPic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -554,7 +562,7 @@
 					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2e58835b-f829-467b-885b-1f107bef5b28";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -575,7 +583,7 @@
 					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2e58835b-f829-467b-885b-1f107bef5b28";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
 			};
 			name = Release;

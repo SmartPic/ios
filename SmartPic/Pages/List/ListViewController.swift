@@ -16,6 +16,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var tutorialView: TutorialView!
+    var noPictureView: NoPictureView!
     var latestDeletedCount: Int = 0
     private var seriesList = [GroupInfo]()
     private let photoFetcher = PhotoFetcher()
@@ -58,8 +59,15 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     }
     
     private func reload() {
+        noPictureView?.removeFromSuperview()
         if (segmentedControl.selectedSegmentIndex == 0) {
             seriesList = photoFetcher.targetPhotoGroupingByTime()
+            if (seriesList.count == 0) {
+                // 整理対象ないよビュー表示
+                noPictureView = NoPictureView(frame: self.view.frame)
+                self.view.addSubview(noPictureView)
+                return
+            }
         }
         else {
             seriesList = photoFetcher.allPhotoGroupingByTime()
