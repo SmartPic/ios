@@ -11,6 +11,7 @@
 "Not Organized" = "Not Organized";
 "All" = "All";
 "photos" = "photos";
+NO_PICTURE_MESSAGE = "There's no photo to organize...";
 
 // Tutorial
 TUTORIAL_FIRST_SECTION_MAIN = "Alpaca is a simple, easy App to use that organizes photos in your library.";

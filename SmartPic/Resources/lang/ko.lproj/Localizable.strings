@@ -11,6 +11,7 @@
 "Not Organized" = "정리 대상";
 "All" = "모든 사진";
 "photos" = "장의 사진";
+NO_PICTURE_MESSAGE = "정리할 사진이 없네요...";
 
 // Tutorial
 TUTORIAL_FIRST_SECTION_MAIN = "알파카는 쌓인 사진들을 쉽고 간단하게 정리해주는 앱입니다.";
