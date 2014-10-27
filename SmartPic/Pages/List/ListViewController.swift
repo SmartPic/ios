@@ -45,7 +45,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         self.screenName = "リストページ"
         
         if photoFetcher.isFinishPhotoLoading {
-            reload()
+            self.checkAccessToPhotos()
         }
         else {
             tableView.hidden = true
@@ -131,8 +131,80 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     func tapStartButton() {
         tutorialView.removeFromSuperview()
         tableView.hidden = false
-        reload()
         
         photoFetcher.setFinishPhotoLoading()
+        
+        requestAccessToPhotos()
+    }
+    
+    
+    // MARK: Check Access Photos
+    
+    private func requestAccessToPhotos() {
+        PHPhotoLibrary.requestAuthorization { (status:PHAuthorizationStatus) -> Void in
+            switch(status) {
+            case PHAuthorizationStatus.NotDetermined:
+                // まだ権限選択してない
+                println("do nothing")
+                
+            case .Restricted:
+                // ペアレンタルコントロールなどでアクセス制限されてる
+                self.showErrorMessageWithoutMove()
+                
+            case .Denied:
+                // 拒否されてる
+                self.showErrorMessageWithMoveSettingApp()
+                
+            case .Authorized:
+                // 許可されてる
+                self.reload()
+            }
+        }
+    }
+    
+    private func checkAccessToPhotos() {
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch(status) {
+        case PHAuthorizationStatus.NotDetermined:
+            // まだ権限選択してない
+            self.requestAccessToPhotos()    // 権限をリクエスト
+            
+        case .Restricted:
+            // ペアレンタルコントロールなどでアクセス制限されてる
+            self.showErrorMessageWithoutMove()
+
+        case .Denied:
+            // 拒否されてる
+            self.showErrorMessageWithMoveSettingApp()
+
+        case .Authorized:
+            // 許可されてる
+            self.reload()
+        }
+    }
+    
+    // 権限が制約されてる場合は注意の文言を出す
+    private func showErrorMessageWithoutMove() {
+        let alert = UIAlertController(title: "エラー",
+            message: "端末の制限により写真にアクセスできません。ペアレンタルコントロールなど、端末の設定をご確認ください",
+            preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    // 権限が足りない場合は設定画面へ飛ばす
+    private func showErrorMessageWithMoveSettingApp() {
+        let alert = UIAlertController(title: "エラー",
+            message: "「写真」へのアクセスが拒否されています。設定より変更してください",
+            preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "設定画面へ", style: .Default, handler: { (action) -> Void in
+            // 設定画面へ遷移する
+            let url = NSURL(string: UIApplicationOpenSettingsURLString)
+            UIApplication.sharedApplication().openURL(url)
+        }))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
