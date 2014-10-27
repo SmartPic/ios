@@ -47,6 +47,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         var asset: PHAsset = pictures[0]
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
+                if (image === nil) { return }
                 self.bigImageView.image = image
         }
     }
@@ -89,6 +90,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         var asset: PHAsset = pictures[indexPath.row]
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
+                if (image === nil) { return }
                 self.bigImageView.image = image
         }
     }
