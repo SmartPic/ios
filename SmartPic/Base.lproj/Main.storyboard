@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
         <!--List View Controller-->
@@ -175,7 +175,7 @@
                     <navigationItem key="navigationItem" id="9px-aZ-Tq5">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
-                            <rect key="frame" x="58.5" y="6" width="203" height="32"/>
+                            <rect key="frame" x="59" y="6" width="203" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Not Organized"/>
@@ -264,15 +264,21 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9H-12-xk1">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="unpicked_mask" highlightedImage="picked_mask" translatesAutoresizingMaskIntoConstraints="NO" id="lnA-UA-5Gt">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="stared_mask" translatesAutoresizingMaskIntoConstraints="NO" id="I0M-iQ-NDb">
                                                     <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selected_mask" translatesAutoresizingMaskIntoConstraints="NO" id="lnA-UA-5Gt">
+                                                    <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
                                             <outlet property="imageView" destination="j9H-12-xk1" id="AZg-NA-o7b"/>
-                                            <outlet property="maskImageView" destination="lnA-UA-5Gt" id="emg-6k-FNL"/>
+                                            <outlet property="selectedMaskImageView" destination="lnA-UA-5Gt" id="LTf-dy-2Yv"/>
+                                            <outlet property="staredMaskImageView" destination="I0M-iQ-NDb" id="GGC-44-IYZ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -346,9 +352,9 @@
     </scenes>
     <resources>
         <image name="pick_button" width="80" height="85"/>
-        <image name="picked_mask" width="71" height="71"/>
+        <image name="selected_mask" width="70" height="70"/>
+        <image name="stared_mask" width="70" height="70"/>
         <image name="unpick_button" width="80" height="85"/>
-        <image name="unpicked_mask" width="71" height="71"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

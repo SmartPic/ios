@@ -9,31 +9,25 @@
 import UIKit
 
 class DetailImageCell: UICollectionViewCell {
-    
-    @IBOutlet weak var maskImageView: UIImageView!
     var myIndex: Int = 0
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var selectedMaskImageView: UIImageView!
+    @IBOutlet weak var staredMaskImageView: UIImageView!
     
     var isPicked: Bool = false {
         didSet {
-            if (isPicked) {
-                maskImageView.hidden = false
-            }
-            maskImageView.highlighted = isPicked
+            staredMaskImageView.hidden = !isPicked
         }
     }
     
     func setSelected(selected: Bool) {
-        if (isPicked) {
-            maskImageView.hidden = false
-            return;
-        }
-        maskImageView.hidden = !selected
+        selectedMaskImageView.hidden = !selected
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        maskImageView.hidden = true
+        selectedMaskImageView.hidden = true
+        staredMaskImageView.hidden = true
         imageView.contentMode = .ScaleAspectFill
     }
 }
