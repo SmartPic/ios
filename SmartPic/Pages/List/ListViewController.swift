@@ -195,8 +195,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     // 権限が制約されてる場合は注意の文言を出す
     private func showErrorMessageWithoutMove() {
-        let alert = UIAlertController(title: "エラー",
-            message: "端末の制限により写真にアクセスできません。ペアレンタルコントロールなど、端末の設定をご確認ください",
+        let alert = UIAlertController(title: NSLocalizedString("Error", comment:""),
+            message: NSLocalizedString("ERROR_MESSAGE_WITHOUT_MOVE", comment:""),
             preferredStyle: .Alert)
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
         
@@ -205,14 +205,14 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     // 権限が足りない場合は設定画面へ飛ばす
     private func showErrorMessageWithMoveSettingApp() {
-        let alert = UIAlertController(title: "エラー",
-            message: "「写真」へのアクセスが拒否されています。設定より変更してください",
+        let alert = UIAlertController(title: NSLocalizedString("Error", comment:""),
+            message: NSLocalizedString("ERROR_MESSAGE_WITH_MOVE", comment:""),
             preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "キャンセル", style: .Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "設定画面へ", style: .Default, handler: { (action) -> Void in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment:""), style: .Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("To Settings.", comment:""), style: .Default, handler: { (action) -> Void in
             // 設定画面へ遷移する
             let url = NSURL(string: UIApplicationOpenSettingsURLString)
-            UIApplication.sharedApplication().openURL(url)
+            UIApplication.sharedApplication().openURL(url!)
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)

@@ -24,3 +24,10 @@ TUTORIAL_THIRD_SECTION_SUB = "바로 지금 시작해요!";
 // Detail page
 "Delete all except marked photos" = "선택한 사진을 제외하고 모두 삭제하기";
 "Delete All" = "모두 삭제하기";
+
+// Setting のエラー系文言
+ERROR_MESSAGE_WITH_MOVE = "사진의 액세스 권한이 거부되어 있습니다. 설정에서 변경해 주십시오.";
+ERROR_MESSAGE_WITHOUT_MOVE = "디바이스의 제한으로 인해 사진에 악세스할 수 없습니다. 자녀 보호 설정 등의 설정을 확인해 주십시오.";
+"Error" = "Error";
+"Cancel" = "Cancel";
+"To Settings." = "설정으로 이동";
