@@ -73,7 +73,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         cell.imageView.image = nil
         cell.myIndex = indexPath.row
         cell.isPicked = contains(pickedPictureIndexes, indexPath.row)
-        cell.staredMaskImageView.hidden = !cell.isPicked
         
         var asset: PHAsset = pictures[indexPath.row]
         photoFetcher.requestImageForAsset(asset,
