@@ -172,11 +172,23 @@ class PhotoFetcher: NSObject {
     }
     
     func allPhotoGroupingByTime() -> [GroupInfo] {
-        return groupingPhotos(false, isExceptICloud: false)
+        let iOS81 = NSOperatingSystemVersion(majorVersion: 8, minorVersion: 1, patchVersion: 0)
+        if NSProcessInfo().isOperatingSystemAtLeastVersion(iOS81) {
+            return groupingPhotos(false, isExceptICloud: false)
+        }
+        else {
+            return groupingPhotosWithMoments(false, isExceptICloud: false)
+        } 
     }
     
     func targetPhotoGroupingByTime() -> [GroupInfo] {
-        return groupingPhotos(true, isExceptICloud: false)
+        let iOS81 = NSOperatingSystemVersion(majorVersion: 8, minorVersion: 1, patchVersion: 0)
+        if NSProcessInfo().isOperatingSystemAtLeastVersion(iOS81) {
+            return groupingPhotos(true, isExceptICloud: false)
+        }
+        else {
+            return groupingPhotosWithMoments(true, isExceptICloud: false)
+        }
     }
     
     
