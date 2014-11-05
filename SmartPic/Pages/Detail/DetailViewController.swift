@@ -167,13 +167,12 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
         
         // collectionviewの選択状態を変更
-        let prevIndexPath = NSIndexPath(forRow: prevIndex, inSection: 0)
-        let prevSelectCell = collectionView.cellForItemAtIndexPath(prevIndexPath) as DetailImageCell
-        prevSelectCell.selected = false
+        let prevCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forRow: prevIndex, inSection: 0)) as DetailImageCell
+        prevCell.setSelected(false)
         
         let indexPath = NSIndexPath(forRow: pictureIndex, inSection: 0)
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
-        cell.selected = true
+        cell.setSelected(true)
     }
     
     // MARK: - 独自メソッド群
