@@ -23,6 +23,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
     }
     var pictures: [PHAsset] = []
+    private var pictureIndex: Int = 0
     var pickedPictureIndexes: [Int] = []
     
     let photoFetcher = PhotoFetcher()
@@ -47,7 +48,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         
         // 中央画像の挿入
         bigImageView.contentMode = .ScaleAspectFit
-        var asset: PHAsset = pictures[0]
+        var asset: PHAsset = pictures[pictureIndex]
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 if (image === nil) { return }
@@ -100,6 +101,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         pickButton.selected = cell.isPicked
         
         var asset: PHAsset = pictures[indexPath.row]
+        pictureIndex = indexPath.row
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 if (image === nil) { return }
@@ -142,11 +144,36 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     // MARK: Action ( UIGesture )
     
     func swipeToLeft() {
-        println("left swipe")
+        if pictureIndex < pictures.count - 1 {
+            pictureIndex++
+            updateSelectedForPictureIndex(pictureIndex-1)
+        }
     }
     
     func swipeToRight() {
-        println("right swipe")        
+        if 0 < pictureIndex {
+            pictureIndex--
+            updateSelectedForPictureIndex(pictureIndex+1)
+        }
+    }
+    
+    private func updateSelectedForPictureIndex(prevIndex: Int) {
+        // bigimageを変更
+        var asset: PHAsset = pictures[pictureIndex]
+        photoFetcher.requestImageForAsset(asset,
+            size: bigImageView.frame.size) { (image, info) -> Void in
+                if (image === nil) { return }
+                self.bigImageView.image = image
+        }
+        
+        // collectionviewの選択状態を変更
+        let prevIndexPath = NSIndexPath(forRow: prevIndex, inSection: 0)
+        let prevSelectCell = collectionView.cellForItemAtIndexPath(prevIndexPath) as DetailImageCell
+        prevSelectCell.selected = false
+        
+        let indexPath = NSIndexPath(forRow: pictureIndex, inSection: 0)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
+        cell.selected = true
     }
     
     // MARK: - 独自メソッド群
