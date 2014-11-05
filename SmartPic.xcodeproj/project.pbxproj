@@ -318,7 +318,7 @@
 					};
 					3FBD50EB19E175840096E154 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = Y6LHTNYSDM;
+						DevelopmentTeam = RB8FPLPDWC;
 						TestTargetID = 3FBD50D619E175840096E154;
 					};
 				};
@@ -553,8 +553,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: RYOSUKE HIRAMATSU (CX83Y44847)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: yuki tanabe (4JNUZ2WNNS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yuki tanabe (4JNUZ2WNNS)";
 				INFOPLIST_FILE = SmartPic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -562,7 +562,7 @@
 					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a870d95b-84d6-486f-a4ec-775e19118289";
+				PROVISIONING_PROFILE = "480d45f0-6414-4f19-aeaa-a482548072ad";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -583,7 +583,7 @@
 					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "8a3d6285-980b-4905-bbf7-38a1adf63722";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
 			};
 			name = Release;
