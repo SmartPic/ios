@@ -174,11 +174,9 @@ class PhotoFetcher: NSObject {
     func allPhotoGroupingByTime() -> [GroupInfo] {
         let iOS81 = NSOperatingSystemVersion(majorVersion: 8, minorVersion: 1, patchVersion: 0)
         if NSProcessInfo().isOperatingSystemAtLeastVersion(iOS81) {
-            println("iOS 8.1 later")
             return groupingPhotos(false, isExceptICloud: false)
         }
         else {
-            println("iOS 8.1 earlier")
             return groupingPhotosWithMoments(false, isExceptICloud: false)
         } 
     }
@@ -186,11 +184,9 @@ class PhotoFetcher: NSObject {
     func targetPhotoGroupingByTime() -> [GroupInfo] {
         let iOS81 = NSOperatingSystemVersion(majorVersion: 8, minorVersion: 1, patchVersion: 0)
         if NSProcessInfo().isOperatingSystemAtLeastVersion(iOS81) {
-            println("iOS 8.1 later")
             return groupingPhotos(true, isExceptICloud: false)
         }
         else {
-            println("iOS 8.1 earlier")
             return groupingPhotosWithMoments(true, isExceptICloud: false)
         }
     }
