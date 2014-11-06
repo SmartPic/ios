@@ -23,7 +23,10 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
     }
     var pictures: [PHAsset] = []
+    
     private var pictureIndex: Int = 0
+    private var prevIndex: Int = 0
+    
     var pickedPictureIndexes: [Int] = []
     
     let photoFetcher = PhotoFetcher()
@@ -100,12 +103,23 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
         pickButton.selected = cell.isPicked
         
+        prevIndex = indexPath.row
+        
         var asset: PHAsset = pictures[indexPath.row]
         pictureIndex = indexPath.row
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 if (image === nil) { return }
                 self.bigImageView.image = image
+        }
+        
+        scrollForSelectedViewToCenter()
+    }
+    
+    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell?
+        if cell != nil {
+            cell!.selected = false
         }
     }
     
@@ -118,7 +132,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     @IBAction func tapPickButton(sender: AnyObject) {
         pickButton.selected = !pickButton.selected
         
-        collectionView.indexPathsForVisibleItems()
         let indexPaths : [NSIndexPath] = collectionView.indexPathsForSelectedItems() as [NSIndexPath]
         let indexPath : NSIndexPath = indexPaths[0] as NSIndexPath
         let visibleIndexPaths: [NSIndexPath] = self.collectionView.indexPathsForVisibleItems() as [NSIndexPath]
@@ -146,18 +159,18 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     func swipeToLeft() {
         if pictureIndex < pictures.count - 1 {
             pictureIndex++
-            updateSelectedForPictureIndex(pictureIndex-1)
+            updateSelectedForPictureIndex()
         }
     }
     
     func swipeToRight() {
         if 0 < pictureIndex {
             pictureIndex--
-            updateSelectedForPictureIndex(pictureIndex+1)
+            updateSelectedForPictureIndex()
         }
     }
     
-    private func updateSelectedForPictureIndex(prevIndex: Int) {
+    private func updateSelectedForPictureIndex() {
         // bigimageを変更
         var asset: PHAsset = pictures[pictureIndex]
         photoFetcher.requestImageForAsset(asset,
@@ -167,13 +180,31 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
         
         // collectionviewの選択状態を変更
-        let prevCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forRow: prevIndex, inSection: 0)) as DetailImageCell
-        prevCell.setSelected(false)
+        let prevCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forRow: prevIndex, inSection: 0)) as DetailImageCell?
+        if prevCell != nil {
+            prevCell!.setSelected(false)
+        }
         
         let indexPath = NSIndexPath(forRow: pictureIndex, inSection: 0)
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
-        cell.setSelected(true)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell?
+        if cell != nil {
+            cell!.setSelected(true)
+            scrollForSelectedViewToCenter()
+        }
+        
+        prevIndex = pictureIndex
     }
+    
+    private func scrollForSelectedViewToCenter() {
+        // 選択中のcellの位置を計算
+//        let selectCellPosX = 70 * pictureIndex
+//        let destFrame = CGRectMake(selectCellPosX, 0, 70, 70)
+        
+        collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: pictureIndex, inSection: 0),
+            atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally,
+            animated: true)
+    }
+    
     
     // MARK: - 独自メソッド群
     func deleteUnPickerPictures() {
