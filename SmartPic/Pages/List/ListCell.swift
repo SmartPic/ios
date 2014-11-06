@@ -17,7 +17,7 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var wrapperView: UIView!
-    var maxDisplayedPictureLength = 4
+    private var maxDisplayedPictureLength: Int = 4
     
     var series: [PHAsset] = [] {
         didSet {
