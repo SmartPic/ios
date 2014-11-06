@@ -13,9 +13,11 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     
     @IBOutlet weak var contentWrapperView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewWidth: NSLayoutConstraint!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var wrapperView: UIView!
+    var maxDisplayedPictureLength = 4
     
     var series: [PHAsset] = [] {
         didSet {
@@ -39,6 +41,13 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let borderWidth : CGFloat = 392// 320 + 68 + 4
+        if (UIScreen.mainScreen().bounds.width > borderWidth) {
+            collectionViewWidth.constant = borderWidth
+            maxDisplayedPictureLength = 5
+        }
+        
         collectionView.scrollsToTop = false
         contentWrapperView.layer.cornerRadius = 5
         contentWrapperView.clipsToBounds = true
@@ -57,9 +66,9 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
         let cell: ListImageCell = collectionView.dequeueReusableCellWithReuseIdentifier(ListImageCell.className, forIndexPath: indexPath) as ListImageCell
         
         cell.listImageView.image = nil
-        if (indexPath.row == 3 && series.count > 4) {
+        if (indexPath.row == maxDisplayedPictureLength - 1 && series.count > maxDisplayedPictureLength) {
             cell.moreView.hidden = false
-            cell.numberLabel.text = "+" + (String)(series.count - 4)
+            cell.numberLabel.text = "+" + (String)(series.count - maxDisplayedPictureLength)
         } else {
             cell.moreView.hidden = true
         }
