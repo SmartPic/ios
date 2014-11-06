@@ -66,6 +66,7 @@ class GroupInfo: NSObject {
         geoCorder.reverseGeocodeLocation(location!, completionHandler: { (placemarks, error) -> Void in
             if error != nil {
                 completionHandler(address: nil, error: error)
+                return
             }
             
             var places = placemarks as NSArray!
