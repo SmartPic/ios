@@ -23,6 +23,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
     }
     var pictures: [PHAsset] = []
+    private var pictureIndex: Int = 0
     var pickedPictureIndexes: [Int] = []
     
     let photoFetcher = PhotoFetcher()
@@ -42,9 +43,12 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3d42e)
         saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
         
+        // imageview settings
+        setUpImageView()
+        
         // 中央画像の挿入
         bigImageView.contentMode = .ScaleAspectFit
-        var asset: PHAsset = pictures[0]
+        var asset: PHAsset = pictures[pictureIndex]
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 if (image === nil) { return }
@@ -60,6 +64,16 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         collectionView.selectItemAtIndexPath(NSIndexPath(forRow: 0, inSection: 0), animated: false, scrollPosition: nil)
+    }
+    
+    private func setUpImageView() {
+        let toLeftGesture = UISwipeGestureRecognizer(target: self, action: "swipeToLeft")
+        toLeftGesture.direction = .Left
+        bigImageView.addGestureRecognizer(toLeftGesture)
+        
+        let toRightGesture = UISwipeGestureRecognizer(target: self, action: "swipeToRight")
+        toRightGesture.direction = .Right
+        bigImageView.addGestureRecognizer(toRightGesture)
     }
 
     // MARK: - CollectionView methods
@@ -87,6 +101,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         pickButton.selected = cell.isPicked
         
         var asset: PHAsset = pictures[indexPath.row]
+        pictureIndex = indexPath.row
         photoFetcher.requestImageForAsset(asset,
             size: bigImageView.frame.size) { (image, info) -> Void in
                 if (image === nil) { return }
@@ -123,6 +138,41 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         } else {
             saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
         }
+    }
+    
+    
+    // MARK: Action ( UIGesture )
+    
+    func swipeToLeft() {
+        if pictureIndex < pictures.count - 1 {
+            pictureIndex++
+            updateSelectedForPictureIndex(pictureIndex-1)
+        }
+    }
+    
+    func swipeToRight() {
+        if 0 < pictureIndex {
+            pictureIndex--
+            updateSelectedForPictureIndex(pictureIndex+1)
+        }
+    }
+    
+    private func updateSelectedForPictureIndex(prevIndex: Int) {
+        // bigimageを変更
+        var asset: PHAsset = pictures[pictureIndex]
+        photoFetcher.requestImageForAsset(asset,
+            size: bigImageView.frame.size) { (image, info) -> Void in
+                if (image === nil) { return }
+                self.bigImageView.image = image
+        }
+        
+        // collectionviewの選択状態を変更
+        let prevCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forRow: prevIndex, inSection: 0)) as DetailImageCell
+        prevCell.setSelected(false)
+        
+        let indexPath = NSIndexPath(forRow: pictureIndex, inSection: 0)
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
+        cell.setSelected(true)
     }
     
     // MARK: - 独自メソッド群
