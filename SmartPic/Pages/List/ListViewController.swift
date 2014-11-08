@@ -130,13 +130,23 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
+        let iOS81 = NSOperatingSystemVersion(majorVersion: 8, minorVersion: 1, patchVersion: 0)
+        if NSProcessInfo().isOperatingSystemAtLeastVersion(iOS81) {
+            showDeletedMessage()
+        }
+        else {
+            var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "showDeletedMessage", userInfo: nil, repeats: false)
+        }
+        
+        reload()
+    }
+    
+    func showDeletedMessage() {
         let deletedCount: Int = latestDeletedCount
         let hud : MBProgressHUD = MBProgressHUD .showHUDAddedTo(self.view, animated: true)
         hud.mode = MBProgressHUDModeText
         hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
         hud.hide(true, afterDelay: 3)
-        
-        reload()
     }
     
     func tapStartButton() {
