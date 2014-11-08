@@ -182,7 +182,7 @@
                     <navigationItem key="navigationItem" id="9px-aZ-Tq5">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
-                            <rect key="frame" x="59" y="6" width="203" height="32"/>
+                            <rect key="frame" x="58.5" y="6" width="203" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Not Organized"/>

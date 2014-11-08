@@ -77,7 +77,18 @@ class GroupInfo: NSObject {
                 let city = place.addressDictionary["City"] as? NSString
                 
                 if (state != nil) && (city != nil) {
-                    self.placeStr = state! + city!
+                    let languages = NSLocale.preferredLanguages() as [String]
+                    let currentLanguage = languages.first
+                    
+                    if currentLanguage == "ja" {
+                        // 日本語の場合はそのまま連結
+                        self.placeStr = state! + city!
+                    }
+                    else {
+                        // その他の場合は
+                        self.placeStr = state! + " " + city!
+                    }
+                    
                 }
                 else {
                     self.placeStr = ""
