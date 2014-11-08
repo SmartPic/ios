@@ -31,6 +31,8 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
+        
         // 中央画像の挿入
         bigImageView.contentMode = .ScaleAspectFit
         var asset: PHAsset = pictures[0]

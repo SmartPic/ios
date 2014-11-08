@@ -139,7 +139,7 @@ aW1wbGUhA
                         <constraint firstAttribute="centerX" secondItem="cYQ-JG-vrM" secondAttribute="centerX" id="wxW-nZ-9fo"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzH-47-9LU">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZzH-47-9LU" customClass="FlatButton" customModule="SmartPic" customModuleProvider="target">
                     <rect key="frame" x="20" y="438" width="280" height="50"/>
                     <color key="backgroundColor" red="0.16078431372549018" green="0.72549019607843135" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

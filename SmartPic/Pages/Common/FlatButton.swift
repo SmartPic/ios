@@ -10,6 +10,14 @@ import UIKit
 
 class FlatButton: UIButton {
     
+    var normalColor: UIColor = UIColor.colorWithRGBHex(0xe3d42e) {
+        didSet {
+            self.backgroundColor = normalColor
+        }
+    }
+    
+    var highlightedColor: UIColor = UIColor.colorWithRGBHex(0xeeb23e)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -20,7 +28,9 @@ class FlatButton: UIButton {
         self.layer.shadowOpacity = 0.2
         self.layer.shadowColor = UIColor.blackColor().CGColor
         self.layer.shadowRadius = 0.0
-        self.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
-//        saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3d42e)
+    }
+    
+    func setHighlighted(highlighted: Bool) {
+        self.backgroundColor = highlighted ? highlightedColor : normalColor
     }
 }
