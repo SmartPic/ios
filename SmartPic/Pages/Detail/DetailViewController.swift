@@ -167,6 +167,16 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         
         // 選択したcellが中央に来るようにスクロール
         scrollForSelectedViewToCenter()
+        
+        // 選択したcellの選択状態を取得して反映
+        let indexPaths : [NSIndexPath] = collectionView.indexPathsForSelectedItems() as [NSIndexPath]
+        let indexPath : NSIndexPath = indexPaths[0] as NSIndexPath
+        let visibleIndexPaths: [NSIndexPath] = self.collectionView.indexPathsForVisibleItems() as [NSIndexPath]
+        if contains(visibleIndexPaths, indexPath) {
+            let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
+            cell.isPicked = contains(pickedPictureIndexes, indexPath.row)
+            pickButton.selected = cell.isPicked
+        }
     }
     
     private func scrollForSelectedViewToCenter() {
