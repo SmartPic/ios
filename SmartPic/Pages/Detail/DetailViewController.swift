@@ -15,7 +15,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     @IBOutlet weak var bigImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pickButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: FlatButton!
     
     var groupInfo: GroupInfo = GroupInfo() {
         didSet {
@@ -23,7 +23,9 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
     }
     var pictures: [PHAsset] = []
+    
     private var pictureIndex: Int = 0
+    
     var pickedPictureIndexes: [Int] = []
     
     let photoFetcher = PhotoFetcher()
@@ -32,15 +34,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // saveButton settings
-        saveButton.layer.cornerRadius = 5
-        saveButton.clipsToBounds = true
-        saveButton.layer.masksToBounds = false
-        saveButton.layer.shadowOffset = CGSizeMake(0, 1)
-        saveButton.layer.shadowOpacity = 0.2
-        saveButton.layer.shadowColor = UIColor.blackColor().CGColor
-        saveButton.layer.shadowRadius = 0.0
-        saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3d42e)
         saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
         
         // imageview settings
@@ -107,6 +100,8 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 if (image === nil) { return }
                 self.bigImageView.image = image
         }
+        
+        scrollForSelectedViewToCenter()
     }
     
     // MARK: - IBAction
@@ -118,7 +113,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     @IBAction func tapPickButton(sender: AnyObject) {
         pickButton.selected = !pickButton.selected
         
-        collectionView.indexPathsForVisibleItems()
         let indexPaths : [NSIndexPath] = collectionView.indexPathsForSelectedItems() as [NSIndexPath]
         let indexPath : NSIndexPath = indexPaths[0] as NSIndexPath
         let visibleIndexPaths: [NSIndexPath] = self.collectionView.indexPathsForVisibleItems() as [NSIndexPath]
@@ -146,18 +140,18 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     func swipeToLeft() {
         if pictureIndex < pictures.count - 1 {
             pictureIndex++
-            updateSelectedForPictureIndex(pictureIndex-1)
+            updateSelectedForPictureIndex()
         }
     }
     
     func swipeToRight() {
         if 0 < pictureIndex {
             pictureIndex--
-            updateSelectedForPictureIndex(pictureIndex+1)
+            updateSelectedForPictureIndex()
         }
     }
     
-    private func updateSelectedForPictureIndex(prevIndex: Int) {
+    private func updateSelectedForPictureIndex() {
         // bigimageを変更
         var asset: PHAsset = pictures[pictureIndex]
         photoFetcher.requestImageForAsset(asset,
@@ -166,14 +160,21 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 self.bigImageView.image = image
         }
         
-        // collectionviewの選択状態を変更
-        let prevCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forRow: prevIndex, inSection: 0)) as DetailImageCell
-        prevCell.setSelected(false)
+        // 選択状態にする
+        collectionView.selectItemAtIndexPath(NSIndexPath(forRow: pictureIndex, inSection: 0),
+            animated: false,
+            scrollPosition: nil)
         
-        let indexPath = NSIndexPath(forRow: pictureIndex, inSection: 0)
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
-        cell.setSelected(true)
+        // 選択したcellが中央に来るようにスクロール
+        scrollForSelectedViewToCenter()
     }
+    
+    private func scrollForSelectedViewToCenter() {
+        collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: pictureIndex, inSection: 0),
+            atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally,
+            animated: true)
+    }
+    
     
     // MARK: - 独自メソッド群
     func deleteUnPickerPictures() {
