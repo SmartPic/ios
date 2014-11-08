@@ -20,7 +20,7 @@ class TutorialView: UIView {
     @IBOutlet weak var secondSectionMainLabel: UILabel!
     @IBOutlet weak var thirdSectionMainLabel: UILabel!
     @IBOutlet weak var thirdSectionSubLabel: UILabel!
-    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var startButton: FlatButton!
     @IBOutlet weak var verticalConstraintMainToButton: NSLayoutConstraint!
     var delegate: TutorialViewDelegate?
 
@@ -58,14 +58,10 @@ class TutorialView: UIView {
             string: NSLocalizedString("TUTORIAL_THIRD_SECTION_SUB", comment:""),
             attributes: thirdSectionSubLabel.attributedText.attributesAtIndex(0, effectiveRange: nil)
         )
+        
         startButton.setTitle(NSLocalizedString("Load photos from your library and start", comment:""), forState: UIControlState.Normal)
-        startButton.layer.cornerRadius = 5
-        startButton.clipsToBounds = true
-        startButton.layer.masksToBounds = false
-        startButton.layer.shadowOffset = CGSizeMake(0, 1)
-        startButton.layer.shadowOpacity = 0.2
-        startButton.layer.shadowColor = UIColor.blackColor().CGColor
-        startButton.layer.shadowRadius = 0.0
+        startButton.normalColor = UIColor.colorWithRGBHex(0x29b9ac)
+        startButton.highlightedColor = UIColor.colorWithRGBHex(0x1a867d)
         
         contentView.frame = bounds;
         self.addSubview(contentView)

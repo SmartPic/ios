@@ -15,7 +15,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     @IBOutlet weak var bigImageView: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pickButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: FlatButton!
     
     var groupInfo: GroupInfo = GroupInfo() {
         didSet {
@@ -31,15 +31,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // saveButton settings
-        saveButton.layer.cornerRadius = 5
-        saveButton.clipsToBounds = true
-        saveButton.layer.masksToBounds = false
-        saveButton.layer.shadowOffset = CGSizeMake(0, 1)
-        saveButton.layer.shadowOpacity = 0.2
-        saveButton.layer.shadowColor = UIColor.blackColor().CGColor
-        saveButton.layer.shadowRadius = 0.0
-        saveButton.backgroundColor = UIColor.colorWithRGBHex(0xe3d42e)
         saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
         
         // 中央画像の挿入
