@@ -17,7 +17,9 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     var tutorialView: TutorialView!
     var noPictureView: NoPictureView!
+    
     var latestDeletedCount: Int = 0
+    
     private var seriesList = [GroupInfo]()
     private let photoFetcher = PhotoFetcher()
 
@@ -129,12 +131,28 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
+        var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "showDeletedNotif", userInfo: nil, repeats: false)
+    }
+    
+    
+    func showDeletedNotif() {
         let deletedCount: Int = latestDeletedCount
+        let deletedSize: Float = DeleteManager.getInstance().lastDeleteSize
+        
         let hud : MBProgressHUD = MBProgressHUD .showHUDAddedTo(self.view, animated: true)
         hud.mode = MBProgressHUDModeText
-        hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
+        
+        println("deletedSize is \(deletedSize)")
+        
+        if deletedSize == 0 {
+            hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
+        }
+        else {
+            hud.labelText = String(format: NSLocalizedString("Deleted %d photos, freed %1.1f MB memory space", comment:""), deletedCount, deletedSize)
+        }
         hud.hide(true, afterDelay: 3)
     }
+    
     
     func tapStartButton() {
         tutorialView.removeFromSuperview()

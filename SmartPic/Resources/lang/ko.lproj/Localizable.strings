@@ -8,6 +8,7 @@
 
 // List page
 "Deleted %d photos" = "%d 장의 사진을 삭제했습니다";
+"Deleted %d photos, freed %1.1f MB memory space" = "%d 장의 사진을 삭제하여, \n%1.1f MB의 용량을 확보하였습니다";
 "Not Organized" = "정리 대상";
 "All" = "모든 사진";
 "photos" = "장의 사진";

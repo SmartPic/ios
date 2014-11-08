@@ -8,6 +8,7 @@
 
 // List page
 "Deleted %d photos" = "Deleted %d photos";
+"Deleted %d photos, freed %1.1f MB memory space" = "%d 枚の画像を削除し、\n%1.1f MB の容量を確保しました";
 "Not Organized" = "Not Organized";
 "All" = "All";
 "photos" = "photos";

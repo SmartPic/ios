@@ -17,6 +17,7 @@ class DeleteManager: NSObject {
     var deleteAssetFileSize:Float = 0
     
     var arrangedAssetIds = [String]()   // 「整理済み」認定されたアセット集
+    var lastDeleteSize:Float = 0        // 直近で削除した写真のサイズ
     
     override private init() {
         super.init()
@@ -49,12 +50,15 @@ class DeleteManager: NSObject {
     
     // 削除したデータ、整理したデータを保存
     func saveDeletedAssets(assets: [PHAsset], arrangedAssets: [PHAsset]) {
+        lastDeleteSize = 0
         saveDeletedAssets(assets)
         saveArrangedAssets(arrangedAssets)
     }
     
     private func saveDeletedAssets(assets: [PHAsset]) {
         var ids = [String]()
+        var delSize = 0
+        
         for asset in assets {
             let a = asset as PHAsset
             
@@ -105,6 +109,8 @@ class DeleteManager: NSObject {
                 imageSize = imageSize/(1024*1024)   // MBに変換
                 
                 self.saveDeletedPhotoSize(imageSize)
+                
+                self.lastDeleteSize = imageSize
             }
         }
     }
