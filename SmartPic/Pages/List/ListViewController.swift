@@ -38,12 +38,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         bannerView.adUnitID = "ca-app-pub-2967292377011754/2952349221"
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
-        self.screenName = "リストページ"
         
         if photoFetcher.isFinishPhotoLoading {
             self.checkAccessToPhotos()
@@ -56,6 +51,12 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
             tutorialView.delegate = self
             self.view.addSubview(tutorialView)
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.screenName = "リストページ"
     }
     
     private func reload() {
@@ -134,6 +135,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         hud.mode = MBProgressHUDModeText
         hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
         hud.hide(true, afterDelay: 3)
+        
+        reload()
     }
     
     func tapStartButton() {
