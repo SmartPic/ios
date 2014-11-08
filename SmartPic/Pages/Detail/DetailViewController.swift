@@ -25,7 +25,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     var pictures: [PHAsset] = []
     
     private var pictureIndex: Int = 0
-    private var prevIndex: Int = 0
     
     var pickedPictureIndexes: [Int] = []
     
@@ -103,8 +102,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         let cell: DetailImageCell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell
         pickButton.selected = cell.isPicked
         
-        prevIndex = indexPath.row
-        
         var asset: PHAsset = pictures[indexPath.row]
         pictureIndex = indexPath.row
         photoFetcher.requestImageForAsset(asset,
@@ -114,13 +111,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
         
         scrollForSelectedViewToCenter()
-    }
-    
-    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell?
-        if cell != nil {
-            cell!.selected = false
-        }
     }
     
     // MARK: - IBAction
@@ -179,27 +169,16 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 self.bigImageView.image = image
         }
         
-        // collectionviewの選択状態を変更
-        let prevCell = collectionView.cellForItemAtIndexPath(NSIndexPath(forRow: prevIndex, inSection: 0)) as DetailImageCell?
-        if prevCell != nil {
-            prevCell!.setSelected(false)
-        }
+        // 選択状態にする
+        collectionView.selectItemAtIndexPath(NSIndexPath(forRow: pictureIndex, inSection: 0),
+            animated: false,
+            scrollPosition: nil)
         
-        let indexPath = NSIndexPath(forRow: pictureIndex, inSection: 0)
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as DetailImageCell?
-        if cell != nil {
-            cell!.setSelected(true)
-            scrollForSelectedViewToCenter()
-        }
-        
-        prevIndex = pictureIndex
+        // 選択したcellが中央に来るようにスクロール
+        scrollForSelectedViewToCenter()
     }
     
     private func scrollForSelectedViewToCenter() {
-        // 選択中のcellの位置を計算
-//        let selectCellPosX = 70 * pictureIndex
-//        let destFrame = CGRectMake(selectCellPosX, 0, 70, 70)
-        
         collectionView.scrollToItemAtIndexPath(NSIndexPath(forRow: pictureIndex, inSection: 0),
             atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally,
             animated: true)
