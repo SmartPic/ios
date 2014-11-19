@@ -16,6 +16,9 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var pickButton: UIButton!
     @IBOutlet weak var saveButton: FlatButton!
+    @IBOutlet weak var leftButton: FlatButton!
+
+    @IBOutlet weak var leftEdgeConst: NSLayoutConstraint!
     
     var groupInfo: GroupInfo = GroupInfo() {
         didSet {
@@ -110,6 +113,13 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         deleteUnPickerPictures()
     }
     
+    // 残すボタン押下時
+    @IBAction func tapLeftButton(sender: AnyObject) {
+//        leftAllPictures()
+        println("のこす!")
+    }
+
+    
     @IBAction func tapPickButton(sender: AnyObject) {
         pickButton.selected = !pickButton.selected
         
@@ -129,8 +139,13 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         
         if (pickedPictureIndexes.count > 0) {
             saveButton.setTitle(NSLocalizedString("Delete all except marked photos", comment:""), forState: UIControlState.Normal)
+            leftButton.hidden = true
+            leftEdgeConst.priority = 800
+            // size change
         } else {
             saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
+            leftButton.hidden = false
+            leftEdgeConst.priority = 250
         }
     }
     
@@ -223,6 +238,18 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                     }
                 }
         })
+    }
+    
+    func leftAllPictures() {
+        let delManager = DeleteManager.getInstance()
+        delManager.saveDeletedAssets([], arrangedAssets: self.pictures)
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            // 解決法
+            // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018
+            _ in self.performSegueWithIdentifier("unwindDetail", sender: nil); return ()
+        })
+        
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

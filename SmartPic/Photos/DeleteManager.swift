@@ -54,6 +54,11 @@ class DeleteManager: NSObject {
     }
     
     private func saveDeletedAssets(assets: [PHAsset]) {
+        
+        if assets.count == 0 {
+            return
+        }
+        
         var ids = [String]()
         for asset in assets {
             let a = asset as PHAsset
