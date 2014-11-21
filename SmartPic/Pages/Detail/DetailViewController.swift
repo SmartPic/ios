@@ -39,7 +39,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         super.viewDidLoad()
         
         saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: .Normal)
-        leftButton.setTitle(NSLocalizedString("Left All", comment:""), forState: .Normal)
+        leftButton.setTitle(NSLocalizedString("Keep All", comment:""), forState: .Normal)
         
         leftButton.setTitleColor(UIColor.colorWithRGBHex(0x4d4949), forState: .Normal)
         leftButton.normalColor = UIColor.whiteColor()

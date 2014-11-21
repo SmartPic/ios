@@ -301,7 +301,7 @@
                                     <constraint firstAttribute="height" constant="50" id="UHV-I5-cRo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Left All">
+                                <state key="normal" title="Keep All">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
