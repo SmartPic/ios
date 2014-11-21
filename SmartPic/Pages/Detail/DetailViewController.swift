@@ -26,6 +26,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
     }
     var pictures: [PHAsset] = []
+    var canKeepAll = true
     
     private var pictureIndex: Int = 0
     
@@ -57,6 +58,13 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 if (image === nil) { return }
                 self.bigImageView.image = image
         }
+        
+        if !canKeepAll {
+            self.leftButton.hidden = true
+            self.leftEdgeConst.priority = 800
+        }
+        
+        self.view.layoutIfNeeded()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -162,8 +170,8 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 options: .CurveEaseOut,
                 animations: { () -> Void in
                     self.saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
-                    self.leftButton.alpha = 1.0
-                    self.leftEdgeConst.priority = 250
+                    self.leftButton.alpha = self.canKeepAll ? 1 : 0
+                    self.leftEdgeConst.priority = self.canKeepAll ? 250 : 800
                     
                     self.view.layoutIfNeeded()
             }, completion: nil)

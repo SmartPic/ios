@@ -114,6 +114,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         if (segue.identifier == "pushDetail") {
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
             detailViewController.groupInfo = sender as GroupInfo
+            detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
+            
         }
     }
     
