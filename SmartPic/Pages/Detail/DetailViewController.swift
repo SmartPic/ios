@@ -37,7 +37,14 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
+        saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: .Normal)
+        leftButton.setTitle(NSLocalizedString("Left All", comment:""), forState: .Normal)
+        
+        leftButton.setTitleColor(UIColor.colorWithRGBHex(0x4d4949), forState: .Normal)
+        leftButton.normalColor = UIColor.whiteColor()
+        leftButton.highlightedColor = UIColor.colorWithRGBHex(0xdedede)
+        leftButton.layer.borderColor = UIColor.colorWithRGBHex(0xe3d42e).CGColor
+        leftButton.layer.borderWidth = 2.0
         
         // imageview settings
         setUpImageView()
@@ -138,16 +145,33 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
         
         if (pickedPictureIndexes.count > 0) {
-            saveButton.setTitle(NSLocalizedString("Delete all except marked photos", comment:""), forState: UIControlState.Normal)
-            leftButton.hidden = true
-            leftEdgeConst.priority = 800
-            // size change
+            
+            UIView.animateWithDuration(0.2,
+                delay: 0,
+                options: .CurveEaseIn,
+                animations: { () -> Void in
+                    self.saveButton.setTitle(NSLocalizedString("Delete all except marked photos", comment:""), forState: UIControlState.Normal)
+                    self.leftButton.alpha = 0.0
+                    self.leftEdgeConst.priority = 800
+                    
+                    self.view.layoutIfNeeded()
+            }, completion: nil)
+
         } else {
-            saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
-            leftButton.hidden = false
-            leftEdgeConst.priority = 250
+            
+            UIView.animateWithDuration(0.2, delay: 0,
+                options: .CurveEaseOut,
+                animations: { () -> Void in
+                    self.saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
+                    self.leftButton.alpha = 1.0
+                    self.leftEdgeConst.priority = 250
+                    
+                    self.view.layoutIfNeeded()
+            }, completion: nil)
+
         }
     }
+    
     
     
     // MARK: Action ( UIGesture )
