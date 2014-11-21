@@ -24,7 +24,7 @@ TUTORIAL_THIRD_SECTION_SUB = "今すぐはじめよう！";
 // Detail page
 "Delete all except marked photos" = "選んだ写真を残してすべて削除";
 "Delete All" = "すべて削除";
-"Left All" = "すべて残す"
+"Left All" = "すべて残す";
 
 // Setting のエラー系文言
 ERROR_MESSAGE_WITH_MOVE = "「写真」へのアクセスが拒否されています。設定より変更してください";

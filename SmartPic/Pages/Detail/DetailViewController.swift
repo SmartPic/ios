@@ -122,8 +122,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     
     // 残すボタン押下時
     @IBAction func tapLeftButton(sender: AnyObject) {
-//        leftAllPictures()
-        println("のこす!")
+        leftAllPictures()
     }
 
     
@@ -271,7 +270,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         dispatch_async(dispatch_get_main_queue(), {
             // 解決法
             // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018
-            _ in self.performSegueWithIdentifier("unwindDetail", sender: nil); return ()
+            _ in self.performSegueWithIdentifier("unwindDetail", sender: 0); return ()
         })
         
     }
