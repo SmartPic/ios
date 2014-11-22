@@ -24,6 +24,11 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        println(UIApplication.sharedApplication().scheduledLocalNotifications)
+        LocalPushManager().registerAll()
+        println(UIApplication.sharedApplication().scheduledLocalNotifications)
+        
         // セグメントコントロールのローカライズ
         segmentedControl.setTitle(NSLocalizedString("Not Organized", comment:""), forSegmentAtIndex: 0)
         segmentedControl.setTitle(NSLocalizedString("All", comment:""), forSegmentAtIndex: 1)
@@ -181,6 +186,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
                 dispatch_async(dispatch_get_main_queue(), {
                     self.reload()
                 })
+                
+                // TODO: ここでローカルプッシュ登録
             }
         }
     }

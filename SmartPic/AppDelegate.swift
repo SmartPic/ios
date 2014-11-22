@@ -45,14 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("何も認証されていない")
         default:
             println("認証された")
-            var notification = UILocalNotification()
-            notification.fireDate = NSDate(timeIntervalSinceNow: 10)
-            notification.timeZone = NSTimeZone.defaultTimeZone()
-            notification.alertBody = "message"
-            notification.alertAction = "OK"
-            notification.soundName = UILocalNotificationDefaultSoundName
-            UIApplication.sharedApplication().scheduleLocalNotification(notification)
-        
         }
     }
 }
