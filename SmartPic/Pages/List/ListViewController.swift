@@ -111,6 +111,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
         if (segue.identifier == "pushDetail") {
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
             detailViewController.groupInfo = sender as GroupInfo
