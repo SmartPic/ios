@@ -17,6 +17,11 @@ class LocalPushManager: NSObject {
         self.registerDaySevenNotification()
     }
     
+    func reset () {
+        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        registerAll()
+    }
+    
     private func registerDayOneNotification () {
         registerWithParams(
             getFireDateWithInterval(1),
