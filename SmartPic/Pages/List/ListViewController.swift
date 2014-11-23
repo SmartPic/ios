@@ -152,7 +152,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
             hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
         }
         else {
-            hud.labelText = "写真を整理しました"
+            hud.labelText =　NSLocalizedString("Photos organized", comment:"")
         }
         hud.hide(true, afterDelay: 3)
     }
