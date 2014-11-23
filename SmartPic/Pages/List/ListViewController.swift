@@ -111,9 +111,13 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        
         if (segue.identifier == "pushDetail") {
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
             detailViewController.groupInfo = sender as GroupInfo
+            detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
+            
         }
     }
     
@@ -143,9 +147,15 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     func showDeletedMessage() {
         let deletedCount: Int = latestDeletedCount
+        
         let hud : MBProgressHUD = MBProgressHUD .showHUDAddedTo(self.view, animated: true)
         hud.mode = MBProgressHUDModeText
-        hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
+        if deletedCount != 0 {
+            hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
+        }
+        else {
+            hud.labelText = NSLocalizedString("Photos organized", comment:"")
+        }
         hud.hide(true, afterDelay: 3)
     }
     
@@ -225,7 +235,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         alert.addAction(UIAlertAction(title: NSLocalizedString("To Settings.", comment:""), style: .Default, handler: { (action) -> Void in
             // 設定画面へ遷移する
             let url = NSURL(string: UIApplicationOpenSettingsURLString)
-            UIApplication.sharedApplication().openURL(url)
+            UIApplication.sharedApplication().openURL(url!)
         }))
         
         self.presentViewController(alert, animated: true, completion: nil)
