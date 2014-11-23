@@ -25,6 +25,13 @@ TUTORIAL_THIRD_SECTION_SUB = "바로 지금 시작해요!";
 "Delete all except marked photos" = "선택한 사진을 제외하고 모두 삭제하기";
 "Delete All" = "모두 삭제하기";
 
+// 何枚消したか画面
+"ALPACA deleted" = "지운 사진 수";
+"status_photos" = "장";
+"Memory Freed" = "비운 메모리 용량";
+"It's as big as" = "음악 파일";
+"music files" = "개분";
+
 // Setting のエラー系文言
 ERROR_MESSAGE_WITH_MOVE = "사진의 액세스 권한이 거부되어 있습니다. 설정에서 변경해 주십시오.";
 ERROR_MESSAGE_WITHOUT_MOVE = "디바이스의 제한으로 인해 사진에 악세스할 수 없습니다. 자녀 보호 설정 등의 설정을 확인해 주십시오.";

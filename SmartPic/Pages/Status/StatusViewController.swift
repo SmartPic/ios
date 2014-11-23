@@ -12,9 +12,12 @@ class StatusViewController: UIViewController, UITableViewDataSource, UITableView
 
     @IBOutlet weak var tableView: UITableView!
     
+    private let deleteManager = DeleteManager.getInstance()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.layoutMargins = UIEdgeInsetsZero
         // Do any additional setup after loading the view.
     }
 
@@ -27,14 +30,29 @@ class StatusViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
      
+        
         var cellIdentifier = ""
         switch indexPath.row {
         case 0:
             cellIdentifier = "PhotoCountCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as StatusCountCell
+            cell.countLabel.text = String(deleteManager.deleteAssetIds.count)
+            cell.countLabel.sizeToFit()
+            return cell
         case 1:
             cellIdentifier = "PhotoSizeCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as StatusSizeCell
+            println("size is \(deleteManager.deleteAssetIds.count)")
+            cell.sizeLabel.text = deleteManager.deleteAssetFileSize.format("%.1f")
+            cell.sizeLabel.sizeToFit()
+            return cell
         case 2:
             cellIdentifier = "ExampleMusicCell"
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as StatusMusicCell
+            println("music is \(deleteManager.deleteAssetFileSize / 5)")
+            cell.musicLabel.text = String(Int(deleteManager.deleteAssetFileSize / 5))
+            cell.musicLabel.sizeToFit()
+            return cell
         default:
             cellIdentifier = ""
         }
