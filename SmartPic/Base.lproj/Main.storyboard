@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--List View Controller-->
@@ -302,7 +301,7 @@
                                     <constraint firstAttribute="height" constant="50" id="UHV-I5-cRo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Left All">
+                                <state key="normal" title="Keep All">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -332,15 +331,15 @@
                             <constraint firstItem="Fse-rh-ABo" firstAttribute="top" secondItem="Qzn-Os-zeZ" secondAttribute="bottom" constant="15" id="1Ch-kA-wts"/>
                             <constraint firstItem="0yt-rX-XVh" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" id="5FZ-tB-TqJ"/>
                             <constraint firstItem="Fse-rh-ABo" firstAttribute="top" secondItem="drO-gh-21z" secondAttribute="bottom" constant="15" id="9EQ-im-LtM"/>
-                            <constraint firstItem="Qzn-Os-zeZ" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leadingMargin" priority="250" constant="20" id="AuJ-89-vcj"/>
+                            <constraint firstItem="Qzn-Os-zeZ" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" priority="250" constant="20" id="AuJ-89-vcj"/>
                             <constraint firstAttribute="trailing" secondItem="kqc-wN-Rq5" secondAttribute="trailing" id="RMs-jG-P9i"/>
                             <constraint firstAttribute="trailing" secondItem="0yt-rX-XVh" secondAttribute="trailing" id="T6J-00-eH2"/>
                             <constraint firstItem="kqc-wN-Rq5" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" id="URa-ey-sRy"/>
                             <constraint firstItem="Qzn-Os-zeZ" firstAttribute="top" secondItem="kqc-wN-Rq5" secondAttribute="bottom" constant="15" id="b5P-r1-uvw"/>
                             <constraint firstItem="kqc-wN-Rq5" firstAttribute="top" secondItem="0yt-rX-XVh" secondAttribute="bottom" id="dWv-Y9-u4f"/>
-                            <constraint firstItem="drO-gh-21z" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leadingMargin" constant="4" id="gkg-jb-iaZ"/>
                             <constraint firstItem="0yt-rX-XVh" firstAttribute="top" secondItem="YMR-RA-b3r" secondAttribute="bottom" id="gki-zx-5U4"/>
                             <constraint firstItem="Qzn-Os-zeZ" firstAttribute="leading" secondItem="drO-gh-21z" secondAttribute="trailing" priority="750" constant="8" id="rAa-Cl-QzR"/>
+                            <constraint firstItem="drO-gh-21z" firstAttribute="leading" secondItem="xdq-9r-MSo" secondAttribute="leading" constant="20" id="ufq-4Q-f3D"/>
                             <constraint firstItem="Qzn-Os-zeZ" firstAttribute="width" secondItem="drO-gh-21z" secondAttribute="width" id="yIb-4d-CK3"/>
                             <constraint firstAttribute="trailing" secondItem="Qzn-Os-zeZ" secondAttribute="trailing" constant="20" id="zK9-R3-e6F"/>
                         </constraints>

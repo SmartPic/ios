@@ -26,6 +26,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
     }
     var pictures: [PHAsset] = []
+    var canKeepAll = true
     
     private var pictureIndex: Int = 0
     
@@ -37,7 +38,14 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
+        saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: .Normal)
+        leftButton.setTitle(NSLocalizedString("Keep All", comment:""), forState: .Normal)
+        
+        leftButton.setTitleColor(UIColor.colorWithRGBHex(0x4d4949), forState: .Normal)
+        leftButton.normalColor = UIColor.whiteColor()
+        leftButton.highlightedColor = UIColor.colorWithRGBHex(0xdedede)
+        leftButton.layer.borderColor = UIColor.colorWithRGBHex(0xe3d42e).CGColor
+        leftButton.layer.borderWidth = 2.0
         
         // imageview settings
         setUpImageView()
@@ -50,6 +58,13 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 if (image === nil) { return }
                 self.bigImageView.image = image
         }
+        
+        if !canKeepAll {
+            self.leftButton.hidden = true
+            self.leftEdgeConst.priority = 800
+        }
+        
+        self.view.layoutIfNeeded()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -115,8 +130,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     
     // 残すボタン押下時
     @IBAction func tapLeftButton(sender: AnyObject) {
-//        leftAllPictures()
-        println("のこす!")
+        leftAllPictures()
     }
 
     
@@ -138,16 +152,33 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         }
         
         if (pickedPictureIndexes.count > 0) {
-            saveButton.setTitle(NSLocalizedString("Delete all except marked photos", comment:""), forState: UIControlState.Normal)
-            leftButton.hidden = true
-            leftEdgeConst.priority = 800
-            // size change
+            
+            UIView.animateWithDuration(0.2,
+                delay: 0,
+                options: .CurveEaseIn,
+                animations: { () -> Void in
+                    self.saveButton.setTitle(NSLocalizedString("Delete all except marked photos", comment:""), forState: UIControlState.Normal)
+                    self.leftButton.alpha = 0.0
+                    self.leftEdgeConst.priority = 800
+                    
+                    self.view.layoutIfNeeded()
+            }, completion: nil)
+
         } else {
-            saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
-            leftButton.hidden = false
-            leftEdgeConst.priority = 250
+            
+            UIView.animateWithDuration(0.2, delay: 0,
+                options: .CurveEaseOut,
+                animations: { () -> Void in
+                    self.saveButton.setTitle(NSLocalizedString("Delete All", comment:""), forState: UIControlState.Normal)
+                    self.leftButton.alpha = self.canKeepAll ? 1 : 0
+                    self.leftEdgeConst.priority = self.canKeepAll ? 250 : 800
+                    
+                    self.view.layoutIfNeeded()
+            }, completion: nil)
+
         }
     }
+    
     
     
     // MARK: Action ( UIGesture )
@@ -247,7 +278,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         dispatch_async(dispatch_get_main_queue(), {
             // 解決法
             // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018
-            _ in self.performSegueWithIdentifier("unwindDetail", sender: nil); return ()
+            _ in self.performSegueWithIdentifier("unwindDetail", sender: 0); return ()
         })
         
     }

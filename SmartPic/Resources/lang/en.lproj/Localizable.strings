@@ -8,6 +8,7 @@
 
 // List page
 "Deleted %d photos" = "Deleted %d photos";
+"Photos organized" = "Photos organized";
 "Not Organized" = "Not Organized";
 "All" = "All";
 "photos" = "photos";
@@ -24,6 +25,7 @@ TUTORIAL_THIRD_SECTION_SUB = "Let's start right now!";
 // Detail page
 "Delete all except marked photos" = "Delete all except marked photos";
 "Delete All" = "Delete All";
+"Keep All" = "Keep All";
 
 // Setting のエラー系文言
 ERROR_MESSAGE_WITH_MOVE = "Access to photos is denied. Please change it from the settings.";
