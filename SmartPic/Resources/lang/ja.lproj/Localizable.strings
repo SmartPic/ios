@@ -8,6 +8,7 @@
 
 // List page
 "Deleted %d photos" = "%d 枚の画像を削除しました";
+"Photos organized" = "写真を整理しました";
 "Not Organized" = "整理対象";
 "All" = "すべて";
 "photos" = "枚の写真";
@@ -24,6 +25,7 @@ TUTORIAL_THIRD_SECTION_SUB = "今すぐはじめよう！";
 // Detail page
 "Delete all except marked photos" = "選んだ写真を残してすべて削除";
 "Delete All" = "すべて削除";
+"Keep All" = "すべて残す";
 
 // 何枚消したか画面
 "ALPACA deleted" = "消した写真";

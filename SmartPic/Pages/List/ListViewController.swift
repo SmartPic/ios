@@ -116,6 +116,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         if (segue.identifier == "pushDetail") {
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
             detailViewController.groupInfo = sender as GroupInfo
+            detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
+            
         }
     }
     
@@ -145,9 +147,15 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     func showDeletedMessage() {
         let deletedCount: Int = latestDeletedCount
+        
         let hud : MBProgressHUD = MBProgressHUD .showHUDAddedTo(self.view, animated: true)
         hud.mode = MBProgressHUDModeText
-        hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
+        if deletedCount != 0 {
+            hud.labelText = String(format: NSLocalizedString("Deleted %d photos", comment:""), deletedCount)
+        }
+        else {
+            hud.labelText = NSLocalizedString("Photos organized", comment:"")
+        }
         hud.hide(true, afterDelay: 3)
     }
     
