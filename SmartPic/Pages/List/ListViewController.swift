@@ -156,7 +156,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         else {
             hud.labelText = NSLocalizedString("Photos organized", comment:"")
         }
-        hud.hide(true, afterDelay: 3)
+        hud.hide(true, afterDelay: 1)
     }
     
     func tapStartButton() {
