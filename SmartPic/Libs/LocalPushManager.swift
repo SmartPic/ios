@@ -11,10 +11,12 @@ import UIKit
 class LocalPushManager: NSObject {
     
     let secondsOfADay = 60 * 60 * 24
+    private let photoFetcher = PhotoFetcher()
    
     func registerAll () {
-        self.registerDayOneNotification()
-        self.registerDaySevenNotification()
+//        self.registerDayOneNotification()
+//        self.registerDaySevenNotification()
+        registerTest()
     }
     
     func reset () {
@@ -33,8 +35,8 @@ class LocalPushManager: NSObject {
     private func registerDaySevenNotification () {
         registerWithParams(
             getFireDateWithInterval(7),
-            message: "message dayo-",
-            buttonStr: "OK"
+            message: "Alpacaを1週間使ってどれくらい容量が空いたか確認してみよう！",
+            buttonStr: "確認する"
         )
     }
     
@@ -58,5 +60,22 @@ class LocalPushManager: NSObject {
         let fireDateFormatted: String = "/".join(dateArr)
         let fireDate: NSDate = formatter.dateFromString(fireDateFormatted)!
         return fireDate
+    }
+
+    // TODO: 消す
+    private func registerTest () {
+        
+        let allSizeNum = photoFetcher.calculateAllSize() * 5
+        var allSizeStr: String
+        if (allSizeNum > 1000) {
+            allSizeStr =
+        }
+        var notification = UILocalNotification()
+        notification.fireDate = NSDate(timeIntervalSinceNow: 10)
+        notification.timeZone = NSTimeZone.localTimeZone()
+        notification.alertBody = "あなたは \(allSizeStr)MB アルバムで使用しています。Alpaca でサクサク整理しよう！"
+        notification.alertAction = "OK"
+        notification.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
 }

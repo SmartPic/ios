@@ -220,5 +220,16 @@ class PhotoFetcher: NSObject {
             PHAssetChangeRequest.deleteAssets(assets)
         }, completionHandler:completionHandler)
     }
+    
+    // 写真の枚数からサイズを推測する
+    func calculateAllSize() -> Int {
+        let allPhotoGroup: [GroupInfo] = allPhotoGroupingByTime()
+        var photoCount = 0
+        let singlePhotoSize = 3// 1枚3MBと仮定
+        for groupInfo: GroupInfo in allPhotoGroup {
+             photoCount += groupInfo.assets.count
+        }
+        return photoCount * singlePhotoSize
+    }
 }
 

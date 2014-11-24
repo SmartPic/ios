@@ -109,7 +109,7 @@ class DeleteManager: NSObject {
         }
     }
     
-    private func saveDeletedPhotoSize(size: Float) {        
+    private func saveDeletedPhotoSize(size: Float) {
         self.deleteAssetFileSize += size
         
         println("削除した画像のサイズ: \(size) => 累計削除ファイルサイズ: \(self.deleteAssetFileSize) MB")

@@ -25,9 +25,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         super.viewDidLoad()
         
         UIApplication.sharedApplication().cancelAllLocalNotifications()
-        println(UIApplication.sharedApplication().scheduledLocalNotifications)
         LocalPushManager().registerAll()
-        println(UIApplication.sharedApplication().scheduledLocalNotifications)
         
         // セグメントコントロールのローカライズ
         segmentedControl.setTitle(NSLocalizedString("Not Organized", comment:""), forSegmentAtIndex: 0)
