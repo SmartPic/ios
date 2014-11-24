@@ -153,6 +153,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
         
         if (pickedPictureIndexes.count > 0) {
             
+            saveButton.setImage(nil, forState: .Normal)
             UIView.animateWithDuration(0.2,
                 delay: 0,
                 options: .CurveEaseIn,
@@ -165,7 +166,8 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
             }, completion: nil)
 
         } else {
-            
+
+            saveButton.setImage(UIImage(named: "delete_icon"), forState: .Normal)
             UIView.animateWithDuration(0.2, delay: 0,
                 options: .CurveEaseOut,
                 animations: { () -> Void in
