@@ -52,6 +52,7 @@ class AnalyticsManager: NSObject {
         defaults.synchronize()
     }
     
+    // 最初のセッションで削除したかどうかを管理
     func configureDeletedFirstSessionDimension () {
         // 最初のセッションでなければ無視
         if (defaults.boolForKey("FirstSession") == false) { return }
@@ -59,6 +60,7 @@ class AnalyticsManager: NSObject {
         tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.DeletedFirstSession.rawValue), value: "Yes")
     }
     
+    // グループ数、グループごとの写真数をセット
     func configureCountsDimension (groupInfoList: [GroupInfo]) {
         tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.GroupCount.rawValue), value: "\(groupInfoList.count)")
         var photoCount = 0
@@ -69,6 +71,7 @@ class AnalyticsManager: NSObject {
         tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.PictureCountPerGroup.rawValue), value: pictureCountPerGroup)
     }
     
+    // プッシュ通知許可状態をセット
     // allowed: "Yes" or "No"
     func configureNotificationDemension (allowed: String) {
         tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.AllowedPushNotification.rawValue), value: allowed)
