@@ -41,9 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let allowedType = notificationSettings.types
         switch allowedType {
         case UIUserNotificationType.None:
-            println("何も認証されていない")
+            AnalyticsManager().configureNotificationDemension("No")
         default:
-            println("認証された")
+            AnalyticsManager().configureNotificationDemension("Yes")
         }
     }
 }

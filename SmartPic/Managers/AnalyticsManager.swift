@@ -14,7 +14,7 @@ enum AnalyticsDimension: UInt {
     case DeletedFirstSession
     case GroupCount
     case PictureCountPerGroup
-    case AllowedPushNotificaion
+    case AllowedPushNotification
 }
 
 class AnalyticsManager: NSObject {
@@ -67,5 +67,10 @@ class AnalyticsManager: NSObject {
         }
         let pictureCountPerGroup = ( Float(photoCount) / Float(groupInfoList.count) ).format("%.1f")
         tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.PictureCountPerGroup.rawValue), value: pictureCountPerGroup)
+    }
+    
+    // allowed: "Yes" or "No"
+    func configureNotificationDemension (allowed: String) {
+        tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.AllowedPushNotification.rawValue), value: allowed)
     }
 }
