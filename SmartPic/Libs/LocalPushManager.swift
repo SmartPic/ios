@@ -14,9 +14,8 @@ class LocalPushManager: NSObject {
     private let photoFetcher = PhotoFetcher()
    
     func registerAll () {
-//        self.registerDayOneNotification()
-//        self.registerDaySevenNotification()
-        registerTest()
+        registerDayOneNotification()
+        registerDaySevenNotification()
     }
     
     func reset () {
@@ -25,10 +24,18 @@ class LocalPushManager: NSObject {
     }
     
     private func registerDayOneNotification () {
+        let allSizeNum = photoFetcher.calculateAllSize()
+        var allSizeStr: String
+        if (allSizeNum > 1000) {
+            allSizeStr = (Float(allSizeNum) / 1000).format("%.1f") + "GB"
+        } else {
+            allSizeStr = String(allSizeNum) + "MB"
+        }
+        
         registerWithParams(
             getFireDateWithInterval(1),
-            message: "message dayo-",
-            buttonStr: "OK"
+            message: "あなたは \(allSizeStr) アルバムで使用しています。Alpaca でサクサク整理しよう！",
+            buttonStr: "サクサク整理する"
         )
     }
     
@@ -60,22 +67,5 @@ class LocalPushManager: NSObject {
         let fireDateFormatted: String = "/".join(dateArr)
         let fireDate: NSDate = formatter.dateFromString(fireDateFormatted)!
         return fireDate
-    }
-
-    // TODO: 消す
-    private func registerTest () {
-        
-        let allSizeNum = photoFetcher.calculateAllSize() * 5
-        var allSizeStr: String
-        if (allSizeNum > 1000) {
-            allSizeStr =
-        }
-        var notification = UILocalNotification()
-        notification.fireDate = NSDate(timeIntervalSinceNow: 10)
-        notification.timeZone = NSTimeZone.localTimeZone()
-        notification.alertBody = "あなたは \(allSizeStr)MB アルバムで使用しています。Alpaca でサクサク整理しよう！"
-        notification.alertAction = "OK"
-        notification.soundName = UILocalNotificationDefaultSoundName
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
 }
