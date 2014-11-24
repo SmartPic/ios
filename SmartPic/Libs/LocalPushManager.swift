@@ -34,7 +34,7 @@ class LocalPushManager: NSObject {
         
         registerWithParams(
             getFireDateWithInterval(1),
-            message: "あなたは \(allSizeStr) 程アルバムで使用しています。Alpaca でサクサク整理しよう！",
+            message: "あなたは \(allSizeStr) 程アルバムで使用しています。ALPACA でサクサク整理しよう！",
             buttonStr: "サクサク整理する"
         )
     }
@@ -42,7 +42,7 @@ class LocalPushManager: NSObject {
     private func registerDaySevenNotification () {
         registerWithParams(
             getFireDateWithInterval(7),
-            message: "Alpacaを1週間使ってどれくらい容量が空いたか確認してみよう！",
+            message: "ALPACA を1週間使ってどれくらい容量が空いたか確認してみよう！",
             buttonStr: "確認する"
         )
     }
