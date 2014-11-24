@@ -34,7 +34,7 @@ class LocalPushManager: NSObject {
         
         registerWithParams(
             getFireDateWithInterval(1),
-            message: "あなたは \(allSizeStr) アルバムで使用しています。Alpaca でサクサク整理しよう！",
+            message: "あなたは \(allSizeStr) 程アルバムで使用しています。Alpaca でサクサク整理しよう！",
             buttonStr: "サクサク整理する"
         )
     }
