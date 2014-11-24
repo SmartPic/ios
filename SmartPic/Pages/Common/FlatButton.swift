@@ -16,7 +16,7 @@ class FlatButton: UIButton {
         }
     }
     
-    var highlightedColor: UIColor = UIColor.colorWithRGBHex(0xeeb23e)
+    var highlightedColor: UIColor = UIColor.colorWithRGBHex(0xc0b42c)
     
     override func awakeFromNib() {
         super.awakeFromNib()

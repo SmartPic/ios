@@ -8,6 +8,7 @@
 
 // List page
 "Deleted %d photos" = "%d 장의 사진을 삭제했습니다";
+"Photos organized" = "사진을 정리했습니다";
 "Not Organized" = "정리 대상";
 "All" = "모든 사진";
 "photos" = "장의 사진";
@@ -24,6 +25,14 @@ TUTORIAL_THIRD_SECTION_SUB = "바로 지금 시작해요!";
 // Detail page
 "Delete all except marked photos" = "선택한 사진을 제외하고 모두 삭제하기";
 "Delete All" = "모두 삭제하기";
+"Keep All" = "모두 남기기";
+
+// 何枚消したか画面
+"ALPACA deleted" = "지운 사진 수";
+"status_photos" = "장";
+"Memory Freed" = "비운 메모리 용량";
+"It's as big as" = "음악 파일";
+"music files" = "개분";
 
 // Setting のエラー系文言
 ERROR_MESSAGE_WITH_MOVE = "사진의 액세스 권한이 거부되어 있습니다. 설정에서 변경해 주십시오.";
