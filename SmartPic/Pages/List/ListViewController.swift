@@ -143,6 +143,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         }
         
         reload()
+        
+        AnalyticsManager().configureDeletedFirstSessionDimension()
     }
     
     func showDeletedMessage() {
@@ -190,6 +192,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
                 // 許可されてる
                 dispatch_async(dispatch_get_main_queue(), {
                     self.reload()
+                    AnalyticsManager().configureCountsDimension(self.seriesList)
                 })
                 
                 // ローカルプッシュ登録
@@ -216,6 +219,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         case .Authorized:
             // 許可されてる
             self.reload()
+            AnalyticsManager().configureCountsDimension(seriesList)
         }
     }
     

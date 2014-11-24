@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GAI.sharedInstance().dispatchInterval = 20
         GAI.sharedInstance().logger.logLevel = GAILogLevel.Error
         GAI.sharedInstance().trackerWithTrackingId("UA-55951991-1")
+        AnalyticsManager().configureDateDimensions()
         
         // UI
         UINavigationBar.appearance().barTintColor = UIColor.colorWithRGBHex(0x29b9ac)
@@ -40,9 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let allowedType = notificationSettings.types
         switch allowedType {
         case UIUserNotificationType.None:
-            println("何も認証されていない")
+            AnalyticsManager().configureNotificationDemension("No")
         default:
-            println("認証された")
+            AnalyticsManager().configureNotificationDemension("Yes")
         }
     }
 }
