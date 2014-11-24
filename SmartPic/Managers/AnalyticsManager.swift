@@ -52,11 +52,8 @@ class AnalyticsManager: NSObject {
         defaults.synchronize()
     }
     
-    // 最初のセッションで削除したかどうかを管理
+    // 最初のセッションで削除した状態をセット
     func configureDeletedFirstSessionDimension () {
-        // 最初のセッションでなければ無視
-        if (defaults.boolForKey("FirstSession") == false) { return }
-        
         tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.DeletedFirstSession.rawValue), value: "Yes")
     }
     
