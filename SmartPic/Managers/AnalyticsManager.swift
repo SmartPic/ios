@@ -46,9 +46,16 @@ class AnalyticsManager: NSObject {
             let now: NSDate = NSDate()
             let diffSec: Double = now.timeIntervalSinceDate(firstDate)
             let secondsOfADay: Double = 60 * 60 * 24
-            let dayFromFirstDay: Double = floor(diffSec/secondsOfADay)
+            let dayFromFirstDay: Int = Int(floor(diffSec/secondsOfADay))
             tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.DayFromFirstDay.rawValue), value: "\(dayFromFirstDay)")
         }
         defaults.synchronize()
+    }
+    
+    func configureDeletedFirstSessionDimension () {
+        // 最初のセッションでなければ無視
+        if (defaults.boolForKey("FirstSession") == false) { return }
+        
+        tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.DeletedFirstSession.rawValue), value: "Yes")
     }
 }

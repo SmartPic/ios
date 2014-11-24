@@ -143,6 +143,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         }
         
         reload()
+        
+        AnalyticsManager().configureDeletedFirstSessionDimension()
     }
     
     func showDeletedMessage() {
