@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--List View Controller-->
@@ -197,7 +196,7 @@
                             </button>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
-                            <rect key="frame" x="58.5" y="6" width="203" height="32"/>
+                            <rect key="frame" x="59" y="6" width="203" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Not Organized"/>
@@ -309,14 +308,13 @@
                                     <outlet property="delegate" destination="BC3-BM-sXh" id="5Ra-VN-6NN"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drO-gh-21z" customClass="FlatButton" customModule="SmartPic" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drO-gh-21z" customClass="FlatButton" customModule="SmartPic" customModuleProvider="target">
                                 <rect key="frame" x="20" y="503" width="136" height="50"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.83137254900000002" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UHV-I5-cRo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Keep All">
+                                <state key="normal" title="Keep All" image="keep_icon">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -324,14 +322,13 @@
                                     <action selector="tapLeftButton:" destination="BC3-BM-sXh" eventType="touchUpInside" id="Adj-TG-0Su"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzn-Os-zeZ" customClass="FlatButton" customModule="SmartPic" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzn-Os-zeZ" customClass="FlatButton" customModule="SmartPic" customModuleProvider="target">
                                 <rect key="frame" x="164" y="503" width="136" height="50"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.83137254900000002" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UdR-kS-cNJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Delete All">
+                                <state key="normal" title="Delete All" image="delete_icon">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -685,10 +682,12 @@
     </scenes>
     <resources>
         <image name="close" width="22" height="22"/>
+        <image name="delete_icon" width="22" height="22"/>
         <image name="info" width="22" height="22"/>
         <image name="info1" width="112" height="125"/>
         <image name="info2" width="112" height="125"/>
         <image name="info3" width="112" height="125"/>
+        <image name="keep_icon" width="22" height="22"/>
         <image name="pick_button" width="80" height="85"/>
         <image name="selected_mask" width="70" height="70"/>
         <image name="stared_mask" width="70" height="70"/>

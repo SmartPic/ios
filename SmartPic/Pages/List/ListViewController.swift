@@ -194,6 +194,9 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
                     self.reload()
                     AnalyticsManager().configureCountsDimension(self.seriesList)
                 })
+                
+                // ローカルプッシュ登録
+                LocalPushManager().registerAll()
             }
         }
     }
