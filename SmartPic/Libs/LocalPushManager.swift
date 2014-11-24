@@ -50,7 +50,7 @@ class LocalPushManager: NSObject {
     private func registerWithParams (fireDate: NSDate, message: String, buttonStr: String) {
         var notification = UILocalNotification()
         notification.fireDate = fireDate
-        notification.timeZone = NSTimeZone.localTimeZone()
+        notification.timeZone = NSTimeZone.defaultTimeZone()
         notification.alertBody = message
         notification.alertAction = buttonStr
         notification.soundName = UILocalNotificationDefaultSoundName
