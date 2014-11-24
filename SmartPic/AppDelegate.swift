@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GAI.sharedInstance().dispatchInterval = 20
         GAI.sharedInstance().logger.logLevel = GAILogLevel.Error
         GAI.sharedInstance().trackerWithTrackingId("UA-55951991-1")
+        AnalyticsManager().configureDateDimensions()
         
         // UI
         UINavigationBar.appearance().barTintColor = UIColor.colorWithRGBHex(0x29b9ac)
