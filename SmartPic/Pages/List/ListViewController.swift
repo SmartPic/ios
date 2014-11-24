@@ -191,6 +191,9 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
                 dispatch_async(dispatch_get_main_queue(), {
                     self.reload()
                 })
+                
+                // ローカルプッシュ登録
+                LocalPushManager().registerAll()
             }
         }
     }
