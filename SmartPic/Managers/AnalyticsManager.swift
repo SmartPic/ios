@@ -58,4 +58,14 @@ class AnalyticsManager: NSObject {
         
         tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.DeletedFirstSession.rawValue), value: "Yes")
     }
+    
+    func configureCountsDimension (groupInfoList: [GroupInfo]) {
+        tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.GroupCount.rawValue), value: "\(groupInfoList.count)")
+        var photoCount = 0
+        for groupInfo: GroupInfo in groupInfoList {
+            photoCount += groupInfo.assets.count
+        }
+        let pictureCountPerGroup = ( Float(photoCount) / Float(groupInfoList.count) ).format("%.1f")
+        tracker.set(GAIFields.customDimensionForIndex(AnalyticsDimension.PictureCountPerGroup.rawValue), value: pictureCountPerGroup)
+    }
 }

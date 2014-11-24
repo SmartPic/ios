@@ -192,6 +192,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
                 // 許可されてる
                 dispatch_async(dispatch_get_main_queue(), {
                     self.reload()
+                    AnalyticsManager().configureCountsDimension(self.seriesList)
                 })
             }
         }
@@ -215,6 +216,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         case .Authorized:
             // 許可されてる
             self.reload()
+            AnalyticsManager().configureCountsDimension(seriesList)
         }
     }
     
