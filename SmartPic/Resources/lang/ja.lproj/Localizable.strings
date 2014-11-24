@@ -27,6 +27,13 @@ TUTORIAL_THIRD_SECTION_SUB = "今すぐはじめよう！";
 "Delete All" = "すべて削除";
 "Keep All" = "すべて残す";
 
+// 何枚消したか画面
+"ALPACA deleted" = "消した写真";
+"status_photos" = "枚";
+"Memory Freed" = "空けたメモリー容量";
+"It's as big as" = "音楽ファイルでいうと";
+"music files" = "曲分";
+
 // Setting のエラー系文言
 ERROR_MESSAGE_WITH_MOVE = "「写真」へのアクセスが拒否されています。設定より変更してください";
 ERROR_MESSAGE_WITHOUT_MOVE = "端末の制限により写真にアクセスできません。ペアレンタルコントロールなど、端末の設定をご確認ください";

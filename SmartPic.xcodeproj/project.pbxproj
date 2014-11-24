@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		2002EC4F19E41DFF008044AA /* PhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */; };
 		206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A2A0219F7DBB200338E54 /* DeleteManager.swift */; };
+		20DB8AA11A20910300F7FA32 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB8AA01A20910300F7FA32 /* StatusViewController.swift */; };
+		20DB8AA31A21DE6A00F7FA32 /* StatusCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB8AA21A21DE6A00F7FA32 /* StatusCountCell.swift */; };
+		20DB8AA51A21DE7900F7FA32 /* StatusSizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB8AA41A21DE7900F7FA32 /* StatusSizeCell.swift */; };
+		20DB8AA71A21DE9E00F7FA32 /* StatusMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB8AA61A21DE9E00F7FA32 /* StatusMusicCell.swift */; };
 		3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46919E176DA008079CE /* ListViewController.swift */; };
 		3F49A46C19E17A47008079CE /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46B19E17A47008079CE /* ListCell.swift */; };
 		3F5C301719FCD704002F074F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C301619FCD704002F074F /* TutorialView.swift */; };
@@ -49,6 +53,10 @@
 		1D688EABF9B5ED43081DC70F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFetcher.swift; path = Photos/PhotoFetcher.swift; sourceTree = "<group>"; };
 		206A2A0219F7DBB200338E54 /* DeleteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeleteManager.swift; path = Photos/DeleteManager.swift; sourceTree = "<group>"; };
+		20DB8AA01A20910300F7FA32 /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusViewController.swift; path = Status/StatusViewController.swift; sourceTree = "<group>"; };
+		20DB8AA21A21DE6A00F7FA32 /* StatusCountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusCountCell.swift; path = Status/StatusCountCell.swift; sourceTree = "<group>"; };
+		20DB8AA41A21DE7900F7FA32 /* StatusSizeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusSizeCell.swift; path = Status/StatusSizeCell.swift; sourceTree = "<group>"; };
+		20DB8AA61A21DE9E00F7FA32 /* StatusMusicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusMusicCell.swift; path = Status/StatusMusicCell.swift; sourceTree = "<group>"; };
 		3F01116F19F69B5E005B5F2F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3F01117119F69B6A005B5F2F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3F01117319F69B71005B5F2F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -116,9 +124,21 @@
 			name = Photos;
 			sourceTree = "<group>";
 		};
+		20DB8A9F1A2090F200F7FA32 /* Status */ = {
+			isa = PBXGroup;
+			children = (
+				20DB8AA01A20910300F7FA32 /* StatusViewController.swift */,
+				20DB8AA21A21DE6A00F7FA32 /* StatusCountCell.swift */,
+				20DB8AA41A21DE7900F7FA32 /* StatusSizeCell.swift */,
+				20DB8AA61A21DE9E00F7FA32 /* StatusMusicCell.swift */,
+			);
+			name = Status;
+			sourceTree = "<group>";
+		};
 		3F49A46719E1767C008079CE /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				20DB8A9F1A2090F200F7FA32 /* Status */,
 				3FAF0B161A0BB7960057686D /* Common */,
 				3FA754CA19E40CF200EB7FBB /* Detail */,
 				3F49A46819E17698008079CE /* List */,
@@ -416,10 +436,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20DB8AA11A20910300F7FA32 /* StatusViewController.swift in Sources */,
 				3F49A46C19E17A47008079CE /* ListCell.swift in Sources */,
 				3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */,
 				3F9C028C19FE7E6700442726 /* NoPictureView.swift in Sources */,
 				2002EC4F19E41DFF008044AA /* PhotoFetcher.swift in Sources */,
+				20DB8AA31A21DE6A00F7FA32 /* StatusCountCell.swift in Sources */,
 				3FAF0B181A0BB7C90057686D /* FlatButton.swift in Sources */,
 				3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */,
 				206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */,
@@ -427,7 +449,9 @@
 				3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */,
 				3F5C301719FCD704002F074F /* TutorialView.swift in Sources */,
 				3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */,
+				20DB8AA71A21DE9E00F7FA32 /* StatusMusicCell.swift in Sources */,
 				3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */,
+				20DB8AA51A21DE7900F7FA32 /* StatusSizeCell.swift in Sources */,
 				D92D57BA19EAE85000B87C20 /* GroupInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
