@@ -144,7 +144,12 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         
         reload()
         
-        AnalyticsManager().configureDeletedFirstSessionDimension()
+        // 最初のセッションの場合
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if (defaults.boolForKey("FirstSession") == true) {
+            LocalPushManager().reset()
+            AnalyticsManager().configureDeletedFirstSessionDimension()
+        }
     }
     
     func showDeletedMessage() {
