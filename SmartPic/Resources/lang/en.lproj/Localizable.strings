@@ -43,5 +43,5 @@ ERROR_MESSAGE_WITHOUT_MOVE = "Your phone doesn't allow us to access photos. Plea
 
 // ローカルプッシュ
 "Open ALPACA" = "Open ALPACA";
-"The camera roll's size is approximately %@. Delete abundant photos with ALPACA!" = "The camera roll's size is approximately %@. Delete abundant photos with ALPACA!";
+"The camera roll's size is approximately %@. Delete abundant photos!" = "The camera roll's size is approximately %@. Delete abundant photos!";
 "Loot at the result of using ALPACA for a week!" = "Loot at the result of using ALPACA for a week!";

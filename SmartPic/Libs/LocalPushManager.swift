@@ -34,7 +34,7 @@ class LocalPushManager: NSObject {
         
         registerWithParams(
             getFireDateWithInterval(1),
-            message: String(format: NSLocalizedString("The camera roll's size is approximately %@. Delete abundant photos with ALPACA!", comment:""), allSizeStr),
+            message: String(format: NSLocalizedString("The camera roll's size is approximately %@. Delete abundant photos!", comment:""), allSizeStr),
             buttonStr: NSLocalizedString("Open ALPACA", comment:"")
         )
     }
