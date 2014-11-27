@@ -34,16 +34,16 @@ class LocalPushManager: NSObject {
         
         registerWithParams(
             getFireDateWithInterval(1),
-            message: "あなたは \(allSizeStr) 程アルバムで使用しています。ALPACA でサクサク整理しよう！",
-            buttonStr: "整理する"
+            message: String(format: NSLocalizedString("The camera roll's size is approximately %@. Delete abundant photos!", comment:""), allSizeStr),
+            buttonStr: NSLocalizedString("Open ALPACA", comment:"")
         )
     }
     
     private func registerDaySevenNotification () {
         registerWithParams(
             getFireDateWithInterval(7),
-            message: "ALPACA を1週間使ってどれくらい容量が空いたか確認してみよう！",
-            buttonStr: "確認する"
+            message: NSLocalizedString("Loot at the result of using ALPACA for a week!", comment:""),
+            buttonStr: NSLocalizedString("Open ALPACA", comment:"")
         )
     }
     
