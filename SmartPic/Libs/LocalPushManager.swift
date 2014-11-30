@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum LocalPushId: Int {
+    case DayOne = 1
+    case DaySeven
+}
+
 class LocalPushManager: NSObject {
     
     let secondsOfADay = 60 * 60 * 24
@@ -35,7 +40,8 @@ class LocalPushManager: NSObject {
         registerWithParams(
             getFireDateWithInterval(1),
             message: String(format: NSLocalizedString("The camera roll's size is approximately %@. Delete abundant photos!", comment:""), allSizeStr),
-            buttonStr: NSLocalizedString("Open ALPACA", comment:"")
+            buttonStr: NSLocalizedString("Open ALPACA", comment:""),
+            pushId: LocalPushId.DayOne.rawValue
         )
     }
     
@@ -43,17 +49,19 @@ class LocalPushManager: NSObject {
         registerWithParams(
             getFireDateWithInterval(7),
             message: NSLocalizedString("Loot at the result of using ALPACA for a week!", comment:""),
-            buttonStr: NSLocalizedString("Open ALPACA", comment:"")
+            buttonStr: NSLocalizedString("Open ALPACA", comment:""),
+            pushId: LocalPushId.DaySeven.rawValue
         )
     }
     
-    private func registerWithParams (fireDate: NSDate, message: String, buttonStr: String) {
+    private func registerWithParams (fireDate: NSDate, message: String, buttonStr: String, pushId: Int) {
         var notification = UILocalNotification()
         notification.fireDate = fireDate
         notification.timeZone = NSTimeZone.defaultTimeZone()
         notification.alertBody = message
         notification.alertAction = buttonStr
         notification.soundName = UILocalNotificationDefaultSoundName
+        notification.userInfo = ["pushId": pushId]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
