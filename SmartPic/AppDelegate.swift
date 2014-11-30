@@ -56,7 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
                     let statusNavigationViewController: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("StatusNavigationController") as UINavigationController
                     self.window?.makeKeyAndVisible()
-                    self.window?.rootViewController?.presentViewController(statusNavigationViewController, animated: true, completion: nil)
+                    if let navigationController: UINavigationController = self.window?.rootViewController as? UINavigationController {
+                        if (!navigationController.visibleViewController.isKindOfClass(StatusViewController)) {
+                            navigationController.presentViewController(statusNavigationViewController, animated: true, completion: nil)
+                        }
+                    }
                 }
                 
                 // Analytics のイベント送信
