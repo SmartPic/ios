@@ -33,7 +33,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         
+        if launchOptions != nil {
+            let notification: UILocalNotification = launchOptions![UIApplicationLaunchOptionsLocalNotificationKey] as UILocalNotification
+            handleByNotification(notification)
+        }
+        
         return true
+    }
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        if (application.applicationState == UIApplicationState.Inactive) {
+            handleByNotification(notification)
+        }
+    }
+    
+    private func handleByNotification(notification: UILocalNotification) {
+        if let userInfo = notification.userInfo {
+            if let pushId: Int = userInfo["pushId"] as? Int {
+                if (pushId == LocalPushId.DaySeven.rawValue) {
+                    let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let statusNavigationViewController: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("StatusNavigationController") as UINavigationController
+                    self.window?.makeKeyAndVisible()
+                    self.window?.rootViewController?.presentViewController(statusNavigationViewController, animated: true, completion: nil)
+                }
+                
+                let tracker = GAI.sharedInstance().defaultTracker;
+                tracker.send(GAIDictionaryBuilder.createEventWithCategory("launch by push", action: "localpush", label: "PUSHID-\(pushId)", value: 1).build())
+            }
+        }
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
