@@ -1,15 +1,15 @@
 PODS:
-  - Google-Mobile-Ads-SDK (6.12.0)
+  - Google-Mobile-Ads-SDK (6.12.2)
   - GoogleAnalytics-iOS-SDK (3.0.9)
   - MBProgressHUD (0.9)
 
 DEPENDENCIES:
-  - Google-Mobile-Ads-SDK (~> 6.10)
+  - Google-Mobile-Ads-SDK (~> 6.12.2)
   - GoogleAnalytics-iOS-SDK (~> 3.0.9)
   - MBProgressHUD (~> 0.8)
 
 SPEC CHECKSUMS:
-  Google-Mobile-Ads-SDK: b1b5cfd1b604a8412faa5536586b13a4b640f344
+  Google-Mobile-Ads-SDK: 9761186eb5dc5e1493e71dcce2b525159f763d42
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
 

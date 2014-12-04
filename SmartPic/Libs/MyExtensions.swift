@@ -26,3 +26,10 @@ extension UIColor {
         return UIColor(red: CGFloat(r / 255.0), green: CGFloat(g / 255.0), blue:CGFloat(b / 255.0), alpha: CGFloat(alpha))
     }
 }
+
+extension Float {
+    func format(formatedString: String) -> String {
+        let str: NSString = NSString(format: formatedString, self)
+        return str
+    }
+}

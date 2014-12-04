@@ -16,7 +16,7 @@ class FlatButton: UIButton {
         }
     }
     
-    var highlightedColor: UIColor = UIColor.colorWithRGBHex(0xeeb23e)
+    var highlightedColor: UIColor = UIColor.colorWithRGBHex(0xc0b42c)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,9 +28,12 @@ class FlatButton: UIButton {
         self.layer.shadowOpacity = 0.2
         self.layer.shadowColor = UIColor.blackColor().CGColor
         self.layer.shadowRadius = 0.0
+        
+        self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 3, 15)
     }
     
     func setHighlighted(highlighted: Bool) {
         self.backgroundColor = highlighted ? highlightedColor : normalColor
     }
+    
 }

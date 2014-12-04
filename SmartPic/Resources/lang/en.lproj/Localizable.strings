@@ -8,6 +8,7 @@
 
 // List page
 "Deleted %d photos" = "Deleted %d photos";
+"Photos organized" = "Photos organized";
 "Not Organized" = "Not Organized";
 "All" = "All";
 "photos" = "photos";
@@ -24,6 +25,14 @@ TUTORIAL_THIRD_SECTION_SUB = "Let's start right now!";
 // Detail page
 "Delete all except marked photos" = "Delete all except marked photos";
 "Delete All" = "Delete All";
+"Keep All" = "Keep All";
+
+// 何枚消したか画面
+"ALPACA deleted" = "ALPACA deleted";
+"status_photos" = "photos";
+"Memory Freed" = "Memory Freed";
+"It's as big as" = "It's as big as";
+"music files" = "music files";
 
 // Setting のエラー系文言
 ERROR_MESSAGE_WITH_MOVE = "Access to photos is denied. Please change it from the settings.";
@@ -31,3 +40,8 @@ ERROR_MESSAGE_WITHOUT_MOVE = "Your phone doesn't allow us to access photos. Plea
 "Error" = "Error";
 "Cancel" = "Cancel";
 "To Settings." = "To Settings.";
+
+// ローカルプッシュ
+"Open ALPACA" = "Open ALPACA";
+"The camera roll's size is approximately %@. Delete abundant photos!" = "The camera roll's size is approximately %@. Delete abundant photos!";
+"Loot at the result of using ALPACA for a week!" = "Loot at the result of using ALPACA for a week!";

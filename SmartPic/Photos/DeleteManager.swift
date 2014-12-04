@@ -54,6 +54,11 @@ class DeleteManager: NSObject {
     }
     
     private func saveDeletedAssets(assets: [PHAsset]) {
+        
+        if assets.count == 0 {
+            return
+        }
+        
         var ids = [String]()
         for asset in assets {
             let a = asset as PHAsset
@@ -109,7 +114,7 @@ class DeleteManager: NSObject {
         }
     }
     
-    private func saveDeletedPhotoSize(size: Float) {        
+    private func saveDeletedPhotoSize(size: Float) {
         self.deleteAssetFileSize += size
         
         println("削除した画像のサイズ: \(size) => 累計削除ファイルサイズ: \(self.deleteAssetFileSize) MB")

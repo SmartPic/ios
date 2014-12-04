@@ -16,42 +16,69 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        let settings = UIUserNotificationSettings(
+            forTypes: .Badge | .Sound | .Alert,
+            categories: nil)
+        application.registerUserNotificationSettings(settings);
+        
         // Google Analytics
         GAI.sharedInstance().trackUncaughtExceptions = true
         GAI.sharedInstance().dispatchInterval = 20
         GAI.sharedInstance().logger.logLevel = GAILogLevel.Error
         GAI.sharedInstance().trackerWithTrackingId("UA-55951991-1")
+        AnalyticsManager().configureDateDimensions()
         
         // UI
         UINavigationBar.appearance().barTintColor = UIColor.colorWithRGBHex(0x29b9ac)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         
+        if launchOptions != nil {
+            let notification: UILocalNotification = launchOptions![UIApplicationLaunchOptionsLocalNotificationKey] as UILocalNotification
+            handleByNotification(notification)
+        }
+        
         return true
     }
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        if (application.applicationState == UIApplicationState.Inactive) {
+            handleByNotification(notification)
+        }
     }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    // UILocalNotification によって起動後の処理
+    private func handleByNotification(notification: UILocalNotification) {
+        if let userInfo = notification.userInfo {
+            if let pushId: Int = userInfo["pushId"] as? Int {
+                // 7日目プッシュでは StatusViewController を開く
+                if (pushId == LocalPushId.DaySeven.rawValue) {
+                    let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let statusNavigationViewController: UINavigationController = storyboard.instantiateViewControllerWithIdentifier("StatusNavigationController") as UINavigationController
+                    self.window?.makeKeyAndVisible()
+                    if let navigationController: UINavigationController = self.window?.rootViewController as? UINavigationController {
+                        if (!navigationController.visibleViewController.isKindOfClass(StatusViewController)) {
+                            navigationController.presentViewController(statusNavigationViewController, animated: true, completion: nil)
+                        }
+                    }
+                }
+                
+                // Analytics のイベント送信
+                let tracker = GAI.sharedInstance().defaultTracker;
+                tracker.send(GAIDictionaryBuilder.createEventWithCategory("launch by push", action: "localpush", label: "PUSHID-\(pushId)", value: 1).build())
+            }
+        }
     }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+        
+        let allowedType = notificationSettings.types
+        switch allowedType {
+        case UIUserNotificationType.None:
+            AnalyticsManager().configureNotificationDemension("No")
+        default:
+            AnalyticsManager().configureNotificationDemension("Yes")
+        }
     }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
 }
 
