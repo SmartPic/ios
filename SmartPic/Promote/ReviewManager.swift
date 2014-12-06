@@ -10,6 +10,8 @@ import UIKit
 
 private let reviewManager = ReviewManager()
 
+private let kReviewDeleteCount = "REVIEW_DELETE_COUNT"
+
 class ReviewManager: NSObject {
    
     private override init() {
@@ -26,7 +28,26 @@ class ReviewManager: NSObject {
     
     /////////////////////////////////////////////////
     
-    func addDeleteEvent(num: Int) -> Bool {
-        return true
+    private func saveDeleteCount() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(deleteCount, forKey: kReviewDeleteCount)
+        defaults.synchronize()
     }
+    
+    func addDeleteCount(count: Int) {
+        deleteCount += count
+        
+        println("current count is \(deleteCount)")
+        
+        saveDeleteCount()
+    }
+    
+    func shouldShowReviewAlert() -> Bool {
+        if deleteCount >= 10 {
+            return true
+        }
+        
+        return false
+    }
+    
 }

@@ -143,6 +143,13 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         }
         
         reload()
+        
+        
+        // レビュー表示
+        let reviewManager = ReviewManager.getInstance()
+        if reviewManager.shouldShowReviewAlert() {
+            println("レビューアラートを表示!")
+        }
     }
     
     func showDeletedMessage() {
