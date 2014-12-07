@@ -99,13 +99,7 @@ class PhotoFetcher: NSObject {
                     // 全ての画像取得
                     // 日付ごとにグルーピング
                     } else {
-                        
-                        let dateFormatter: NSDateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "yyyy/MM/dd"
-                        let prevDateStr: String = dateFormatter.stringFromDate(prevDate!)
-                        let thisDateStr: String = dateFormatter.stringFromDate(date)
-                        
-                        if (thisDateStr != prevDateStr) {
+                        if (!date.isEqualToDateWithoutTime(prevDate!)) {
                             var group = GroupInfo(assets: innerAssets)
                             self.groups.append(group)
                             
@@ -180,12 +174,7 @@ class PhotoFetcher: NSObject {
                         // 全ての画像取得
                         // 日付ごとにグルーピング
                         } else {
-                            let dateFormatter: NSDateFormatter = NSDateFormatter()
-                            dateFormatter.dateFormat = "yyyy/MM/dd"
-                            let prevDateStr: String = dateFormatter.stringFromDate(prevDate!)
-                            let thisDateStr: String = dateFormatter.stringFromDate(date)
-                            
-                            if (thisDateStr != prevDateStr) {
+                            if (!date.isEqualToDateWithoutTime(prevDate!)) {
                                 var group = GroupInfo(assets: innerAssets)
                                 self.groups.append(group)
                                 

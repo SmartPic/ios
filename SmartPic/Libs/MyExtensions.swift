@@ -33,3 +33,15 @@ extension Float {
         return str
     }
 }
+
+extension NSDate {
+    // 日付が同じかどうか
+    func isEqualToDateWithoutTime(compareDate: NSDate) -> Bool {
+        let dateFormatter: NSDateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let compareDateStr: String = dateFormatter.stringFromDate(compareDate)
+        let selfDateStr: String = dateFormatter.stringFromDate(self)
+        
+        return selfDateStr == compareDateStr
+    }
+}
