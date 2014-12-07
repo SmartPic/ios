@@ -149,7 +149,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         let reviewManager = ReviewManager.getInstance()
         if reviewManager.shouldShowReviewAlert() {
             PromoteView.showPromoteAlert()
-
+        }
+        
         // 最初のセッションの場合
         let defaults = NSUserDefaults.standardUserDefaults()
         if (defaults.boolForKey("FirstSession") == true) {

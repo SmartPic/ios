@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // レビューしたかどうかはリセット
             let reviewManager = ReviewManager.getInstance()
             reviewManager.resetReviewDone()
+        }
 
         if launchOptions != nil {
             let notification: UILocalNotification = launchOptions![UIApplicationLaunchOptionsLocalNotificationKey] as UILocalNotification
