@@ -23,7 +23,6 @@ class PromoteView: UIView {
     class func showPromoteAlert() {
         let view = self.view()
         
-        // TODO: promote view に Auto Layout つける
         let window = UIApplication.sharedApplication().keyWindow
         window!.addSubview(view)
         

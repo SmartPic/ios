@@ -77,16 +77,18 @@ class ReviewManager: NSObject {
     }
     
     func shouldShowReviewAlert() -> Bool {
-        // す
+        // すでにレビュー済みの場合は表示しない
         if isReviewDone {
             return false
         }
         
+        // 10枚以上削除したら表示する
         if deleteCount >= 10 {
             return true
         }
-        
-        return false
+        else {
+            return false
+        }
     }
     
 }
