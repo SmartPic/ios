@@ -260,6 +260,10 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                         let delManager = DeleteManager.getInstance()
                         delManager.saveDeletedAssets(delTargetAssets, arrangedAssets: self.pictures)
                         
+                        // レビューアラート用の表示
+                        let reviewManager = ReviewManager.getInstance()
+                        reviewManager.addDeleteCount(delCount)
+                        
                         dispatch_async(dispatch_get_main_queue(), {
                             // 解決法
                             // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018
