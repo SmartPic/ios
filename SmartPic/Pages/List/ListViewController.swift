@@ -51,8 +51,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
             tutorialView.delegate = self
             self.view.addSubview(tutorialView)
         }
-        
-        PromoteView.showPromoteAlert()
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -150,7 +149,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         // レビュー表示
         let reviewManager = ReviewManager.getInstance()
         if reviewManager.shouldShowReviewAlert() {
-            println("レビューアラートを表示!")
+            PromoteView.showPromoteAlert()
         }
     }
     
@@ -250,11 +249,5 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    
-    // MARK: - レビュー表示
-    
-    private func showReviewAlert() {
-        let promoteView = PromoteView.view()
-        self.view.addSubview(promoteView)
-    }
+
 }

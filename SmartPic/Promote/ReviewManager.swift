@@ -34,6 +34,8 @@ class ReviewManager: NSObject {
         
         deleteCount = defaults.integerForKey(kReviewDeleteCount)
         isReviewDone = defaults.boolForKey(kReviewDone)
+        
+        isReviewDone = false
     }
     
     private func saveDeleteCount() {
@@ -71,6 +73,11 @@ class ReviewManager: NSObject {
     }
     
     func shouldShowReviewAlert() -> Bool {
+        // す
+        if isReviewDone {
+            return false
+        }
+        
         if deleteCount >= 10 {
             return true
         }
