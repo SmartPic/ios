@@ -26,6 +26,7 @@
                                 <constraint firstAttribute="width" constant="260" id="5YT-5e-ybC"/>
                                 <constraint firstAttribute="height" constant="45" id="pkH-V6-o4G"/>
                             </constraints>
+                            <color key="tintColor" red="0.12549019607843137" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="レビューを書く">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -38,7 +39,8 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="59" id="iP7-Ob-zik"/>
                             </constraints>
-                            <string key="text">これからも無料で機能を増やしていくために、★5レビューで応援してもらえると嬉しいパカ！</string>
+                            <string key="text">これからも無料で機能を増やしていくために、
+★5レビューで応援してもらえると嬉しいパカ！</string>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -48,7 +50,8 @@
                             <constraints>
                                 <constraint firstAttribute="height" constant="51" id="zF2-Xb-hUN"/>
                             </constraints>
-                            <string key="text">ALPACAのご利用ありがとうございます！</string>
+                            <string key="text">ALPACAのご利用
+ありがとうございます！</string>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -60,6 +63,7 @@
                                 <constraint firstAttribute="width" constant="260" id="fNf-Vz-uSi"/>
                                 <constraint firstAttribute="height" constant="33" id="iBi-xN-G7a"/>
                             </constraints>
+                            <color key="tintColor" red="0.12549019607843137" green="0.40392156862745099" blue="0.40392156862745099" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" title="今はしない">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
