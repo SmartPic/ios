@@ -11,13 +11,13 @@ import UIKit
 private let reviewManager = ReviewManager()
 
 private let kReviewDeleteCount = "REVIEW_DELETE_COUNT"
+private let kReviewDone = "REVIEW_DONE"
 
 class ReviewManager: NSObject {
    
     private override init() {
         super.init()
-        
-        // initialize
+        loadData()
     }
     
     class func getInstance() -> ReviewManager {
@@ -25,13 +25,41 @@ class ReviewManager: NSObject {
     }
     
     private var deleteCount: Int = 0
+    private var isReviewDone = false
     
     /////////////////////////////////////////////////
+    
+    private func loadData() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        deleteCount = defaults.integerForKey(kReviewDeleteCount)
+        isReviewDone = defaults.boolForKey(kReviewDone)
+    }
     
     private func saveDeleteCount() {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setInteger(deleteCount, forKey: kReviewDeleteCount)
         defaults.synchronize()
+    }
+    
+    // TODO: アプリのversionがあがったらレビュー状況をリセットする
+    func resetReviewDone() {
+        
+    }
+    
+    // レビューしたら、そのversionではもう表示しない
+    func checkReviewDone() {
+        isReviewDone = true
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setBool(isReviewDone, forKey: kReviewDone)
+        defaults.synchronize()
+    }
+    
+    func resetDeleteCount() {
+        deleteCount = 0
+        
+        saveDeleteCount()
     }
     
     func addDeleteCount(count: Int) {

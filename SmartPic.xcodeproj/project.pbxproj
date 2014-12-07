@@ -10,6 +10,8 @@
 		2002EC4F19E41DFF008044AA /* PhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */; };
 		206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A2A0219F7DBB200338E54 /* DeleteManager.swift */; };
 		20CB5AE81A3359B300E1F6CC /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CB5AE71A3359B300E1F6CC /* ReviewManager.swift */; };
+		20CB5AEB1A33D7A700E1F6CC /* PromoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CB5AEA1A33D7A700E1F6CC /* PromoteView.swift */; };
+		20CB5AED1A33D88400E1F6CC /* PromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20CB5AEC1A33D88400E1F6CC /* PromoteView.xib */; };
 		20DB8AA11A20910300F7FA32 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB8AA01A20910300F7FA32 /* StatusViewController.swift */; };
 		20DB8AA31A21DE6A00F7FA32 /* StatusCountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB8AA21A21DE6A00F7FA32 /* StatusCountCell.swift */; };
 		20DB8AA51A21DE7900F7FA32 /* StatusSizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB8AA41A21DE7900F7FA32 /* StatusSizeCell.swift */; };
@@ -55,6 +57,8 @@
 		2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFetcher.swift; path = Photos/PhotoFetcher.swift; sourceTree = "<group>"; };
 		206A2A0219F7DBB200338E54 /* DeleteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeleteManager.swift; path = Photos/DeleteManager.swift; sourceTree = "<group>"; };
 		20CB5AE71A3359B300E1F6CC /* ReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReviewManager.swift; path = SmartPic/Promote/ReviewManager.swift; sourceTree = SOURCE_ROOT; };
+		20CB5AEA1A33D7A700E1F6CC /* PromoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteView.swift; path = View/PromoteView.swift; sourceTree = "<group>"; };
+		20CB5AEC1A33D88400E1F6CC /* PromoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoteView.xib; sourceTree = "<group>"; };
 		20DB8AA01A20910300F7FA32 /* StatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusViewController.swift; path = Status/StatusViewController.swift; sourceTree = "<group>"; };
 		20DB8AA21A21DE6A00F7FA32 /* StatusCountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusCountCell.swift; path = Status/StatusCountCell.swift; sourceTree = "<group>"; };
 		20DB8AA41A21DE7900F7FA32 /* StatusSizeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StatusSizeCell.swift; path = Status/StatusSizeCell.swift; sourceTree = "<group>"; };
@@ -132,6 +136,15 @@
 				20CB5AE71A3359B300E1F6CC /* ReviewManager.swift */,
 			);
 			name = Promote;
+			sourceTree = "<group>";
+		};
+		20CB5AE91A33D79100E1F6CC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20CB5AEA1A33D7A700E1F6CC /* PromoteView.swift */,
+				20CB5AEC1A33D88400E1F6CC /* PromoteView.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		20DB8A9F1A2090F200F7FA32 /* Status */ = {
@@ -235,6 +248,7 @@
 		3FBD50D919E175840096E154 /* SmartPic */ = {
 			isa = PBXGroup;
 			children = (
+				20CB5AE91A33D79100E1F6CC /* View */,
 				3FBD50DC19E175840096E154 /* AppDelegate.swift */,
 				3FD4C6B719F4A96D00FFE768 /* SmartPic-Bridging-Header.h */,
 				3FBD50E019E175840096E154 /* Main.storyboard */,
@@ -394,6 +408,7 @@
 				3F5C301919FCD714002F074F /* TutorialView.xib in Resources */,
 				3FBD50E219E175840096E154 /* Main.storyboard in Resources */,
 				3F9C029019FE7E8900442726 /* NoPictureView.xib in Resources */,
+				20CB5AED1A33D88400E1F6CC /* PromoteView.xib in Resources */,
 				3F93FABD19FCAC37009F9C3B /* Localizable.strings in Resources */,
 				3FBD50E719E175840096E154 /* LaunchScreen.xib in Resources */,
 				3FBD50E419E175840096E154 /* Images.xcassets in Resources */,
@@ -453,6 +468,7 @@
 				3F9C028C19FE7E6700442726 /* NoPictureView.swift in Sources */,
 				2002EC4F19E41DFF008044AA /* PhotoFetcher.swift in Sources */,
 				20DB8AA31A21DE6A00F7FA32 /* StatusCountCell.swift in Sources */,
+				20CB5AEB1A33D7A700E1F6CC /* PromoteView.swift in Sources */,
 				3FAF0B181A0BB7C90057686D /* FlatButton.swift in Sources */,
 				3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */,
 				206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */,
