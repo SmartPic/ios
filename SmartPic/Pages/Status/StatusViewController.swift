@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatusViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class StatusViewController: GAITrackedViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,6 +21,10 @@ class StatusViewController: UIViewController, UITableViewDataSource, UITableView
         // Do any additional setup after loading the view.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = "効果ページ"
+    }
 
     // MARK: - UITableViewDataSource
     
