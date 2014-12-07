@@ -28,11 +28,13 @@
 		3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */; };
 		3FAF0B181A0BB7C90057686D /* FlatButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAF0B171A0BB7C90057686D /* FlatButton.swift */; };
 		3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB0A74D19E8F24300F06677 /* DetailImageCell.swift */; };
+		3FB59FFA1A22F09E008D2862 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB59FF91A22F09E008D2862 /* AnalyticsManager.swift */; };
 		3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD50DC19E175840096E154 /* AppDelegate.swift */; };
 		3FBD50E219E175840096E154 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E019E175840096E154 /* Main.storyboard */; };
 		3FBD50E419E175840096E154 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E319E175840096E154 /* Images.xcassets */; };
 		3FBD50E719E175840096E154 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E519E175840096E154 /* LaunchScreen.xib */; };
 		3FBD50F319E175840096E154 /* SmartPicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD50F219E175840096E154 /* SmartPicTests.swift */; };
+		3FDC64A01A203AB500145539 /* LocalPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC649F1A203AB500145539 /* LocalPushManager.swift */; };
 		3FF1F55619F69FB700F027E0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01116F19F69B5E005B5F2F /* CoreData.framework */; };
 		3FF1F55719F69FC100F027E0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117119F69B6A005B5F2F /* SystemConfiguration.framework */; };
 		3FF1F55819F69FD700F027E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117519F69C71005B5F2F /* AdSupport.framework */; };
@@ -82,6 +84,7 @@
 		3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3FAF0B171A0BB7C90057686D /* FlatButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlatButton.swift; sourceTree = "<group>"; };
 		3FB0A74D19E8F24300F06677 /* DetailImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailImageCell.swift; sourceTree = "<group>"; };
+		3FB59FF91A22F09E008D2862 /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		3FBD50D719E175840096E154 /* SmartPic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartPic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FBD50DB19E175840096E154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FBD50DC19E175840096E154 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 		3FBD50F119E175840096E154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FBD50F219E175840096E154 /* SmartPicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPicTests.swift; sourceTree = "<group>"; };
 		3FD4C6B719F4A96D00FFE768 /* SmartPic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartPic-Bridging-Header.h"; sourceTree = "<group>"; };
+		3FDC649F1A203AB500145539 /* LocalPushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPushManager.swift; sourceTree = "<group>"; };
 		6E51978BDE9C42F6C83CD5DC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D92D57B919EAE85000B87C20 /* GroupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupInfo.swift; path = Model/GroupInfo.swift; sourceTree = "<group>"; };
 		EF35E64378D740D1B0AEB093 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				3FA754C819E4092700EB7FBB /* MyExtensions.swift */,
+				3FDC649F1A203AB500145539 /* LocalPushManager.swift */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -223,6 +228,14 @@
 				3FAF0B171A0BB7C90057686D /* FlatButton.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		3FB59FF81A22F055008D2862 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3FB59FF91A22F09E008D2862 /* AnalyticsManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		3FBD50CE19E175840096E154 = {
@@ -254,6 +267,7 @@
 				3FBD50E019E175840096E154 /* Main.storyboard */,
 				3FBD50E319E175840096E154 /* Images.xcassets */,
 				3FBD50E519E175840096E154 /* LaunchScreen.xib */,
+				3FB59FF81A22F055008D2862 /* Managers */,
 				D92D57B819EAE81300B87C20 /* Model */,
 				2002EC4B19E41DA9008044AA /* Photos */,
 				3FA754C719E408DA00EB7FBB /* Libs */,
@@ -462,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB59FFA1A22F09E008D2862 /* AnalyticsManager.swift in Sources */,
 				20DB8AA11A20910300F7FA32 /* StatusViewController.swift in Sources */,
 				3F49A46C19E17A47008079CE /* ListCell.swift in Sources */,
 				3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */,
@@ -472,6 +487,7 @@
 				3FAF0B181A0BB7C90057686D /* FlatButton.swift in Sources */,
 				3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */,
 				206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */,
+				3FDC64A01A203AB500145539 /* LocalPushManager.swift in Sources */,
 				3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */,
 				3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */,
 				3F5C301719FCD704002F074F /* TutorialView.swift in Sources */,
@@ -593,7 +609,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: yuki tanabe (RB8FPLPDWC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yuki tanabe (RB8FPLPDWC)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -606,6 +623,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "8ac4998b-52d8-44e1-bd45-558271d1e31e";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -638,8 +656,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: yuki tanabe (RB8FPLPDWC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yuki tanabe (RB8FPLPDWC)";
 				INFOPLIST_FILE = SmartPic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -647,7 +665,7 @@
 					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8a3d6285-980b-4905-bbf7-38a1adf63722";
+				PROVISIONING_PROFILE = "8ac4998b-52d8-44e1-bd45-558271d1e31e";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
 			};
 			name = Release;

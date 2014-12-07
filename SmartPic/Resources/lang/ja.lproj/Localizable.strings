@@ -40,3 +40,8 @@ ERROR_MESSAGE_WITHOUT_MOVE = "端末の制限により写真にアクセスで�
 "Error" = "エラー";
 "Cancel" = "キャンセル";
 "To Settings." = "設定画面へ";
+
+// ローカルプッシュ
+"Open ALPACA" = "アプリを開く";
+"The camera roll's size is approximately %@. Delete abundant photos!" = "約 %@ 写真データで使用しています。ALPACA でいらない写真を削除しよう！";
+"Loot at the result of using ALPACA for a week!" = "ALPACA を1週間使った成果を確認してみよう！";

@@ -145,11 +145,16 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         
         reload()
         
-        
         // レビュー表示
         let reviewManager = ReviewManager.getInstance()
         if reviewManager.shouldShowReviewAlert() {
             PromoteView.showPromoteAlert()
+
+        // 最初のセッションの場合
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if (defaults.boolForKey("FirstSession") == true) {
+            LocalPushManager().reset()
+            AnalyticsManager().configureDeletedFirstSessionDimension()
         }
     }
     
@@ -198,7 +203,11 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
                 // 許可されてる
                 dispatch_async(dispatch_get_main_queue(), {
                     self.reload()
+                    AnalyticsManager().configureCountsDimension(self.seriesList)
                 })
+                
+                // ローカルプッシュ登録
+                LocalPushManager().registerAll()
             }
         }
     }
@@ -221,6 +230,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         case .Authorized:
             // 許可されてる
             self.reload()
+            AnalyticsManager().configureCountsDimension(seriesList)
         }
     }
     
