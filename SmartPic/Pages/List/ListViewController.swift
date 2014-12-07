@@ -51,6 +51,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
             tutorialView.delegate = self
             self.view.addSubview(tutorialView)
         }
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -143,6 +144,12 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         }
         
         reload()
+        
+        // レビュー表示
+        let reviewManager = ReviewManager.getInstance()
+        if reviewManager.shouldShowReviewAlert() {
+            PromoteView.showPromoteAlert()
+        }
         
         // 最初のセッションの場合
         let defaults = NSUserDefaults.standardUserDefaults()
@@ -252,4 +259,6 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         
         self.presentViewController(alert, animated: true, completion: nil)
     }
+    
+
 }
