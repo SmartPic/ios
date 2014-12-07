@@ -634,6 +634,12 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="17h-5t-cBk">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="actionBtnTouched:" destination="8Bn-CZ-X5H" id="23d-fA-b5o"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="jus-cH-2CD" id="pfg-bl-ML2"/>

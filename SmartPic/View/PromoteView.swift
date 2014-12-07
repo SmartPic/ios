@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let kAppStoreUrl = "https://itunes.apple.com/app/id934444072?mt=8"
-
 class PromoteView: UIView {
 
     @IBOutlet weak var baseView: UIView!
