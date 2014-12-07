@@ -34,8 +34,6 @@ class ReviewManager: NSObject {
         
         deleteCount = defaults.integerForKey(kReviewDeleteCount)
         isReviewDone = defaults.boolForKey(kReviewDone)
-        
-        isReviewDone = false
     }
     
     private func saveDeleteCount() {
@@ -44,9 +42,15 @@ class ReviewManager: NSObject {
         defaults.synchronize()
     }
     
-    // TODO: アプリのversionがあがったらレビュー状況をリセットする
+    // アプリのversionがあがったらレビュー状況をリセットする
     func resetReviewDone() {
+        deleteCount = 0
+        isReviewDone = false
         
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setInteger(deleteCount, forKey: kReviewDeleteCount)
+        defaults.setBool(isReviewDone, forKey: kReviewDone)
+        defaults.synchronize()
     }
     
     // レビューしたら、そのversionではもう表示しない

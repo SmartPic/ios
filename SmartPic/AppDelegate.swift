@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let kAppVersion = "APP_VERSION"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -26,6 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.colorWithRGBHex(0x29b9ac)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        
+        if isUpdate() {
+            // アップデート時に行う処理
+            
+            // レビューしたかどうかはリセット
+            let reviewManager = ReviewManager.getInstance()
+            reviewManager.resetReviewDone()
+        }
         
         return true
     }
@@ -53,5 +63,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    
+    private func isUpdate() -> Bool {
+        let currentVersion = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let saveVersion = defaults.objectForKey(kAppVersion) as? String
+        
+        if saveVersion == nil {
+            // 初めてのインストール
+            defaults.setObject(currentVersion, forKey: kAppVersion)
+            println("first install! current version:[\(currentVersion!)]")
+            return true
+        }
+        else {
+            // バージョンが違う
+            if saveVersion != currentVersion {
+                defaults.setObject(currentVersion, forKey: kAppVersion)
+                println("save version:[\(saveVersion!)] <-> current version:[\(currentVersion!)]")
+                return true
+            }
+            else {
+                println("same version")
+                return false
+            }
+        }
+    }
 }
 
