@@ -9,7 +9,7 @@
 import UIKit
 import Social
 
-class StatusViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class StatusViewController: GAITrackedViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,6 +29,10 @@ class StatusViewController: UIViewController, UITableViewDataSource, UITableView
 
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = "効果ページ"
+    }
 
     // MARK: - UITableViewDataSource
     
