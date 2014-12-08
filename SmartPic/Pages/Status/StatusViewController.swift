@@ -15,11 +15,18 @@ class StatusViewController: UIViewController, UITableViewDataSource, UITableView
     
     private let deleteManager = DeleteManager.getInstance()
     
+    var isShareMode = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.layoutMargins = UIEdgeInsetsZero
-        // Do any additional setup after loading the view.
+
+        // シェアモードならいきなりShareシートを表示
+        if isShareMode {
+            showShareSheet()
+        }
+
     }
 
 

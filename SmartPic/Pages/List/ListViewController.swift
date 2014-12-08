@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ListViewController: GAITrackedViewController, UITableViewDataSource, UITableViewDelegate, TutorialViewDelegate {
+class ListViewController: GAITrackedViewController, UITableViewDataSource, UITableViewDelegate, TutorialViewDelegate, PromoteViewDelegate {
     
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak private var tableView: UITableView!
@@ -114,11 +114,17 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         
-        if (segue.identifier == "pushDetail") {
+        if segue.identifier == "pushDetail" {
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
             detailViewController.groupInfo = sender as GroupInfo
             detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
-            
+        }
+        else if segue.identifier == "showStatus" {
+            if sender != nil {
+                let nav = segue.destinationViewController as UINavigationController
+                let statusViewController = nav.viewControllers.first as StatusViewController
+                statusViewController.isShareMode = sender!.boolValue
+            }
         }
     }
     
@@ -145,10 +151,20 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         
         reload()
         
-        // レビュー表示
-        let reviewManager = ReviewManager.getInstance()
-        if reviewManager.shouldShowReviewAlert() {
-            PromoteView.showPromoteAlert()
+        // スコア表示
+        let archivementManager = ArchivementManager.getInstance()
+        let score = archivementManager.pointScoreIfArchive()
+        if score != nil {
+            println("score is \(score!)")
+            PromoteView.showPromoteShareAlert(score!, delegate:self)
+            archivementManager.saveArchiveActionDone(score!)
+        }
+        else {
+            // レビュー表示
+            let reviewManager = ReviewManager.getInstance()
+            if reviewManager.shouldShowReviewAlert() {
+                PromoteView.showPromoteAlert()
+            }
         }
         
         // 最初のセッションの場合
@@ -180,6 +196,13 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         photoFetcher.setFinishPhotoLoading()
         
         requestAccessToPhotos()
+    }
+    
+    
+    // MARK: PromoteViewDelegate
+    
+    func didTapShareStatusButton() {
+        self.performSegueWithIdentifier("showStatus", sender: true)
     }
     
     
@@ -260,5 +283,6 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-
+    
+    
 }

@@ -124,7 +124,11 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="actionButton" destination="Uh0-dA-og3" id="piN-Ow-JR1"/>
                 <outlet property="baseView" destination="gBy-Gu-1JH" id="ORe-tM-zM1"/>
+                <outlet property="detailTextLabel" destination="Egs-wm-uqQ" id="Znf-zZ-9HK"/>
+                <outlet property="noneButton" destination="rCa-vC-68g" id="94z-L3-Apk"/>
+                <outlet property="titleLabel" destination="3BK-so-Ejn" id="B5l-5o-taq"/>
             </connections>
             <point key="canvasLocation" x="215.5" y="198"/>
         </view>

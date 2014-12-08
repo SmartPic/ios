@@ -38,7 +38,7 @@ class ArchivementManager: NSObject {
         }
         
         if maxArchivePoint != nil {
-            // すでにアクション済みの達成なら nil を返す
+            
             if isArchivementActionDone(maxArchivePoint!) {
                 return nil
             }
