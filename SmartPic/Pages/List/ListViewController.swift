@@ -113,14 +113,13 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        
         if segue.identifier == "pushDetail" {
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
             detailViewController.groupInfo = sender as GroupInfo
             detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
         }
         else if segue.identifier == "showStatus" {
-            if sender != nil {
+            if sender is Bool {
                 let nav = segue.destinationViewController as UINavigationController
                 let statusViewController = nav.viewControllers.first as StatusViewController
                 statusViewController.isShareMode = sender!.boolValue
