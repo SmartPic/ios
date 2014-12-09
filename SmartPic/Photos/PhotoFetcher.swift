@@ -113,10 +113,16 @@ class PhotoFetcher: NSObject {
             }
         }
         
-        if (!innerAssets.isEmpty
-            && (!isExceptDeleted || self.shouldAppendAssets(innerAssets))) {
-            var group = GroupInfo(assets: innerAssets)
-            self.groups.append(group)
+        if (!innerAssets.isEmpty) {
+            if (isExceptDeleted) {
+                if (self.shouldAppendAssets(innerAssets)) {
+                    var group = GroupInfo(assets: innerAssets)
+                    self.groups.append(group)
+                }
+            } else {
+                var group = GroupInfo(assets: innerAssets)
+                self.groups.append(group)
+            }
         }
         
         return self.groups
@@ -191,7 +197,12 @@ class PhotoFetcher: NSObject {
         }
         
         if (!innerAssets.isEmpty) {
-            if (!isExceptDeleted || self.shouldAppendAssets(innerAssets)) {
+            if (isExceptDeleted) {
+                if (self.shouldAppendAssets(innerAssets)) {
+                    var group = GroupInfo(assets: innerAssets)
+                    self.groups.append(group)
+                }
+            } else {
                 var group = GroupInfo(assets: innerAssets)
                 self.groups.append(group)
             }
