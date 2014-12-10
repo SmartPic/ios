@@ -13,7 +13,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBy-Gu-1JH">
                     <rect key="frame" x="25" y="69" width="300" height="327"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uh0-dA-og3" customClass="FlatButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uh0-dA-og3" customClass="FlatButton" customModule="SmartPic" customModuleProvider="target">
                             <rect key="frame" x="20" y="221" width="260" height="45"/>
                             <color key="backgroundColor" red="0.96299027420000005" green="0.96299027420000005" blue="0.96299027420000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -50,7 +50,7 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCa-vC-68g" customClass="FlatButton">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCa-vC-68g" customClass="FlatButton" customModule="SmartPic" customModuleProvider="target">
                             <rect key="frame" x="20" y="274" width="260" height="33"/>
                             <color key="backgroundColor" red="0.96299027420000005" green="0.96299027420000005" blue="0.96299027420000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
