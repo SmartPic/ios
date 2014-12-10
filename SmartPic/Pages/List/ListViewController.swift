@@ -162,7 +162,7 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
             // レビュー表示
             let reviewManager = ReviewManager.getInstance()
             if reviewManager.shouldShowReviewAlert() {
-                PromoteView.showPromoteAlert()
+                PromoteView.showPromoteReviewAlert()
             }
         }
         

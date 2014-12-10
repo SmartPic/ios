@@ -16,8 +16,8 @@ class PromoteView: UIView {
 
     @IBOutlet weak var baseView: UIView!
     
-    @IBOutlet weak var actionButton: UIButton!
-    @IBOutlet weak var noneButton: UIButton!
+    @IBOutlet weak var actionButton: FlatButton!
+    @IBOutlet weak var noneButton: FlatButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailTextLabel: UILabel!
     
@@ -30,7 +30,7 @@ class PromoteView: UIView {
         return views.first! as PromoteView
     }
     
-    class func showPromoteAlert(isShareMode: Bool = false) {
+    class func showPromoteReviewAlert() {
         let view = self.view()
         
         let window = UIApplication.sharedApplication().keyWindow
@@ -54,6 +54,13 @@ class PromoteView: UIView {
     override func awakeFromNib() {
         baseView.layer.cornerRadius = 5.0
         baseView.layer.masksToBounds = true
+        
+        
+        noneButton.setTitleColor(UIColor.colorWithRGBHex(0x4d4949), forState: .Normal)
+        noneButton.normalColor = UIColor.whiteColor()
+        noneButton.highlightedColor = UIColor.colorWithRGBHex(0xdedede)
+        noneButton.layer.borderColor = UIColor.colorWithRGBHex(0xe3d42e).CGColor
+        noneButton.layer.borderWidth = 2.0
     }
     
     func setUpShareMode(score:Int) {
@@ -79,12 +86,7 @@ class PromoteView: UIView {
             }
         }
         
-        UIView.animateWithDuration(0.2, delay: 0, options: nil,
-            animations: { () -> Void in
-                self.alpha = 0.0
-        }) { (finished) -> Void in
-            self.removeFromSuperview()
-        }
+        removeView()
     }
 
     @IBAction func laterBtnTouched(sender: AnyObject) {
@@ -93,7 +95,12 @@ class PromoteView: UIView {
             let reviewManager = ReviewManager.getInstance()
             reviewManager.resetDeleteCount()
         }
-        
+
+
+        removeView()
+    }
+    
+    private func removeView() {
         UIView.animateWithDuration(0.2, delay: 0, options: nil,
             animations: { () -> Void in
                 self.alpha = 0.0
