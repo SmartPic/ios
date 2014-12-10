@@ -123,4 +123,6 @@ class DeleteManager: NSObject {
         defaults.setObject(self.deleteAssetFileSize, forKey: "DELETE_ASSET_FILE_SIZE")
         defaults.synchronize()
     }
+    
+    
 }

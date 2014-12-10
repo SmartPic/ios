@@ -13,13 +13,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gBy-Gu-1JH">
                     <rect key="frame" x="25" y="69" width="300" height="327"/>
                     <subviews>
-                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="tutorial_01" translatesAutoresizingMaskIntoConstraints="NO" id="RNK-XB-7Q7">
-                            <rect key="frame" x="0.0" y="53" width="300" height="103"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="103" id="jDv-7k-CZA"/>
-                            </constraints>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uh0-dA-og3">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uh0-dA-og3" customClass="FlatButton">
                             <rect key="frame" x="20" y="221" width="260" height="45"/>
                             <color key="backgroundColor" red="0.96299027420000005" green="0.96299027420000005" blue="0.96299027420000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -56,7 +50,7 @@
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCa-vC-68g">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rCa-vC-68g" customClass="FlatButton">
                             <rect key="frame" x="20" y="274" width="260" height="33"/>
                             <color key="backgroundColor" red="0.96299027420000005" green="0.96299027420000005" blue="0.96299027420000005" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -71,15 +65,21 @@
                                 <action selector="laterBtnTouched:" destination="iN0-l3-epB" eventType="touchUpInside" id="jNa-b3-rU7"/>
                             </connections>
                         </button>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="happy_alpaca" translatesAutoresizingMaskIntoConstraints="NO" id="RNK-XB-7Q7">
+                            <rect key="frame" x="0.0" y="72" width="300" height="103"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="103" id="jDv-7k-CZA"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="Uh0-dA-og3" firstAttribute="top" secondItem="Egs-wm-uqQ" secondAttribute="bottom" constant="-2" id="5O0-Pv-yjs"/>
                         <constraint firstAttribute="width" constant="300" id="Dg2-OV-daA"/>
-                        <constraint firstItem="RNK-XB-7Q7" firstAttribute="top" secondItem="3BK-so-Ejn" secondAttribute="bottom" constant="-18" id="Ld4-iN-O2h"/>
+                        <constraint firstItem="RNK-XB-7Q7" firstAttribute="top" secondItem="3BK-so-Ejn" secondAttribute="bottom" constant="1" id="Ld4-iN-O2h"/>
                         <constraint firstItem="3BK-so-Ejn" firstAttribute="leading" secondItem="gBy-Gu-1JH" secondAttribute="leading" constant="8" id="OvB-9b-Rlb"/>
                         <constraint firstAttribute="centerX" secondItem="Uh0-dA-og3" secondAttribute="centerX" id="VzF-TU-URV"/>
-                        <constraint firstItem="Egs-wm-uqQ" firstAttribute="top" secondItem="RNK-XB-7Q7" secondAttribute="bottom" constant="8" id="YPO-Gk-gB6"/>
+                        <constraint firstItem="Egs-wm-uqQ" firstAttribute="top" secondItem="RNK-XB-7Q7" secondAttribute="bottom" constant="-11" id="YPO-Gk-gB6"/>
                         <constraint firstAttribute="trailing" secondItem="3BK-so-Ejn" secondAttribute="trailing" constant="7" id="dL5-YV-jmv"/>
                         <constraint firstAttribute="trailing" secondItem="3BK-so-Ejn" secondAttribute="trailing" constant="-17" id="dYU-Lr-Xjf"/>
                         <constraint firstItem="Egs-wm-uqQ" firstAttribute="leading" secondItem="gBy-Gu-1JH" secondAttribute="leading" constant="8" id="dky-e1-QqI"/>
@@ -124,12 +124,16 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="actionButton" destination="Uh0-dA-og3" id="piN-Ow-JR1"/>
                 <outlet property="baseView" destination="gBy-Gu-1JH" id="ORe-tM-zM1"/>
+                <outlet property="detailTextLabel" destination="Egs-wm-uqQ" id="Znf-zZ-9HK"/>
+                <outlet property="noneButton" destination="rCa-vC-68g" id="94z-L3-Apk"/>
+                <outlet property="titleLabel" destination="3BK-so-Ejn" id="B5l-5o-taq"/>
             </connections>
             <point key="canvasLocation" x="215.5" y="198"/>
         </view>
     </objects>
     <resources>
-        <image name="tutorial_01" width="300" height="103"/>
+        <image name="happy_alpaca" width="200" height="100"/>
     </resources>
 </document>
