@@ -86,7 +86,7 @@ class PromoteView: UIView {
             }
         }
         
-        removeView()
+        removeViewWithAnimation()
     }
 
     @IBAction func laterBtnTouched(sender: AnyObject) {
@@ -97,10 +97,10 @@ class PromoteView: UIView {
         }
 
 
-        removeView()
+        removeViewWithAnimation()
     }
     
-    private func removeView() {
+    private func removeViewWithAnimation() {
         UIView.animateWithDuration(0.2, delay: 0, options: nil,
             animations: { () -> Void in
                 self.alpha = 0.0
