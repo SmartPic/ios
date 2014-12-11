@@ -45,3 +45,9 @@ ERROR_MESSAGE_WITHOUT_MOVE = "디바이스의 제한으로 인해 사진에 악�
 "Open ALPACA" = "ALPACA를 열기";
 "The camera roll's size is approximately %@. Delete abundant photos!" = "약 %@의 사진 파일이 있습니다. 필요없는 사진을 삭제하세요!";
 "Loot at the result of using ALPACA for a week!" = "ALPACA를 1주일간 사용한 효과를 확인해 보아요!";
+
+// レビュー促進
+"Write review" = "레뷰를 쓰기";
+"Not now" = "나중에 하기";
+"Thank you for using ALPACA!" = "ALPACA를 이용해 주셔서 감사합니다!";
+"To add new free features, \nyour 5 star review will cheer us up" = "앞으로도 무료로 기능을 추가하기 위해서\n별 다섯 레뷰로 응원해주시면 정말 기쁘겠습니다!";
