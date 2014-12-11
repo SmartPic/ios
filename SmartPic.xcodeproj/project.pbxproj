@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2002EC4F19E41DFF008044AA /* PhotoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */; };
 		206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A2A0219F7DBB200338E54 /* DeleteManager.swift */; };
+		20C394BB1A39CDE7005B112B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C394BA1A39CDE7005B112B /* SettingViewController.swift */; };
 		20CB5AE81A3359B300E1F6CC /* ReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CB5AE71A3359B300E1F6CC /* ReviewManager.swift */; };
 		20CB5AEB1A33D7A700E1F6CC /* PromoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CB5AEA1A33D7A700E1F6CC /* PromoteView.swift */; };
 		20CB5AED1A33D88400E1F6CC /* PromoteView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20CB5AEC1A33D88400E1F6CC /* PromoteView.xib */; };
@@ -60,6 +61,7 @@
 		1D688EABF9B5ED43081DC70F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		2002EC4E19E41DFF008044AA /* PhotoFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoFetcher.swift; path = Photos/PhotoFetcher.swift; sourceTree = "<group>"; };
 		206A2A0219F7DBB200338E54 /* DeleteManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeleteManager.swift; path = Photos/DeleteManager.swift; sourceTree = "<group>"; };
+		20C394BA1A39CDE7005B112B /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingViewController.swift; path = Pages/Setting/SettingViewController.swift; sourceTree = "<group>"; };
 		20CB5AE71A3359B300E1F6CC /* ReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReviewManager.swift; path = SmartPic/Promote/ReviewManager.swift; sourceTree = SOURCE_ROOT; };
 		20CB5AEA1A33D7A700E1F6CC /* PromoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PromoteView.swift; path = View/PromoteView.swift; sourceTree = "<group>"; };
 		20CB5AEC1A33D88400E1F6CC /* PromoteView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoteView.xib; sourceTree = "<group>"; };
@@ -138,6 +140,15 @@
 			name = Photos;
 			sourceTree = "<group>";
 		};
+		20C394B91A39CDC6005B112B /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				20C394BA1A39CDE7005B112B /* SettingViewController.swift */,
+			);
+			name = Setting;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		20CB5AE61A33599600E1F6CC /* Promote */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +181,7 @@
 		3F49A46719E1767C008079CE /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				20C394B91A39CDC6005B112B /* Setting */,
 				20DB8A9F1A2090F200F7FA32 /* Status */,
 				3FAF0B161A0BB7960057686D /* Common */,
 				3FA754CA19E40CF200EB7FBB /* Detail */,
@@ -494,6 +506,7 @@
 				20CB5AEB1A33D7A700E1F6CC /* PromoteView.swift in Sources */,
 				3FAF0B181A0BB7C90057686D /* FlatButton.swift in Sources */,
 				3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */,
+				20C394BB1A39CDE7005B112B /* SettingViewController.swift in Sources */,
 				206A2A0319F7DBB200338E54 /* DeleteManager.swift in Sources */,
 				3FDC64A01A203AB500145539 /* LocalPushManager.swift in Sources */,
 				3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */,
