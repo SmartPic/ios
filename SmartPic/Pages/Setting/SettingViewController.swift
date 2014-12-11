@@ -67,7 +67,7 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         switch indexPath.row {
         case SettingType.Request.rawValue:
-            Helpshift.sharedInstance().showConversation(self, withOptions: nil)
+            Helpshift.sharedInstance().showConversation(self, withOptions: ["hideNameAndEmail":"YES"])
         case SettingType.Review.rawValue:
             UIApplication.sharedApplication().openURL(NSURL(string: kAppStoreUrl)!)
         default:
