@@ -45,3 +45,20 @@ ERROR_MESSAGE_WITHOUT_MOVE = "Your phone doesn't allow us to access photos. Plea
 "Open ALPACA" = "Open ALPACA";
 "The camera roll's size is approximately %@. Delete abundant photos!" = "The camera roll's size is approximately %@. Delete abundant photos!";
 "Loot at the result of using ALPACA for a week!" = "Loot at the result of using ALPACA for a week!";
+
+// レビュー促進
+"Write review" = "Write review";
+"Not now" = "Not now";
+"Thank you for using ALPACA!" = "Thank you for using ALPACA!";
+"To add new free features, \nyour 5 star review will cheer us up" = "To add new free features, \nyour 5 star review will cheer us up";
+
+// シェア促進
+"Share" = "Share";
+"Congratulations! You've deleted %d photos!" = "Congratulations!\nYou've deleted %d photos!";
+"Share the result of using ALPACA!" = "Share the result of using ALPACA!";
+
+// シェア画面
+"Share the ALPACA score" = "Share the ALPACA score";
+"Share how many photo ALPACA deleted!" = "Share how many photo ALPACA deleted!";
+"Cancel" = "Cancel";
+"ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app" = "ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app";
