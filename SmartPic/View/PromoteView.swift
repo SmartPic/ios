@@ -55,12 +55,11 @@ class PromoteView: UIView {
         baseView.layer.cornerRadius = 5.0
         baseView.layer.masksToBounds = true
         
-        
-        noneButton.setTitleColor(UIColor.colorWithRGBHex(0x4d4949), forState: .Normal)
-        noneButton.normalColor = UIColor.whiteColor()
-        noneButton.highlightedColor = UIColor.colorWithRGBHex(0xdedede)
-        noneButton.layer.borderColor = UIColor.colorWithRGBHex(0xe3d42e).CGColor
-        noneButton.layer.borderWidth = 2.0
+        actionButton.setTitleColor(UIColor.colorWithRGBHex(0x4d4949), forState: .Normal)
+        actionButton.normalColor = UIColor.whiteColor()
+        actionButton.highlightedColor = UIColor.colorWithRGBHex(0xdedede)
+        actionButton.layer.borderColor = UIColor.colorWithRGBHex(0xe3d42e).CGColor
+        actionButton.layer.borderWidth = 2.0
     }
     
     func setUpShareMode(score:Int) {

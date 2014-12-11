@@ -71,12 +71,12 @@ class ReviewManager: NSObject {
     func addDeleteCount(count: Int) {
         deleteCount += count
         
-        println("current count is \(deleteCount)")
-        
         saveDeleteCount()
     }
     
     func shouldShowReviewAlert() -> Bool {
+        return true
+        
         // すでにレビュー済みの場合は表示しない
         if isReviewDone {
             return false

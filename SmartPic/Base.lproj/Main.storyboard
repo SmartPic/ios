@@ -324,7 +324,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qzn-Os-zeZ" customClass="FlatButton" customModule="SmartPic" customModuleProvider="target">
                                 <rect key="frame" x="164" y="503" width="136" height="50"/>
-                                <color key="backgroundColor" red="0.89019607840000003" green="0.83137254900000002" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.88627450980392153" green="0.82745098039215681" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UdR-kS-cNJ"/>
                                 </constraints>
