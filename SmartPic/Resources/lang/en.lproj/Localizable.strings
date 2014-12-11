@@ -56,3 +56,9 @@ ERROR_MESSAGE_WITHOUT_MOVE = "Your phone doesn't allow us to access photos. Plea
 "Share" = "Share";
 "Congratulations! You've deleted %d photos!" = "Congratulations!\nYou've deleted %d photos!";
 "Share the result of using ALPACA!" = "Share the result of using ALPACA!";
+
+// シェア画面
+"Share the ALPACA score" = "Share the ALPACA score";
+"Share how many photo ALPACA deleted!" = "Share how many photo ALPACA deleted!";
+"Cancel" = "Cancel";
+"ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app" = "ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app";

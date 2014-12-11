@@ -74,25 +74,25 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
     
     
     private func showShareSheet() {
-        let alert = UIAlertController(title: "ALPACAスコアをシェアする",
-            message: "ALPACAで削除した成果をシェアしよう", preferredStyle: .ActionSheet)
+        let alert = UIAlertController(title: NSLocalizedString("Share the ALPACA score", comment: ""),
+            message: NSLocalizedString("Share how many photo ALPACA deleted!", comment: ""), preferredStyle: .ActionSheet)
         
         // Twitter
-        alert.addAction(UIAlertAction(title: "Twitterにシェア",
+        alert.addAction(UIAlertAction(title: "Twitter",
             style: .Default,
             handler: { (action) -> Void in
                 self.shareTwitter()
         }))
         
         // Facebook
-        alert.addAction(UIAlertAction(title: "Facebookにシェア",
+        alert.addAction(UIAlertAction(title: "Facebook",
             style: .Default,
             handler: { (action) -> Void in
                 self.shareFacebook()
         }))
         
         // Cancel
-        alert.addAction(UIAlertAction(title: "キャンセル",
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""),
             style: .Cancel,
             handler: nil))
         
@@ -132,9 +132,11 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
         
         let count = deleteManager.deleteAssetIds.count
         let size = deleteManager.deleteAssetFileSize.format("%.1f")
+        println("size is \(size)")
         
         let vc = SLComposeViewController(forServiceType: serviceType)
-        vc.setInitialText("ALPACAで\(count)枚の写真を削除し、\(size)MBの空き容量を獲得しました！ #ALPACA")
+        let message = NSString(format: NSLocalizedString("ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app", comment: ""), count, String(size))
+        vc.setInitialText(message)
         vc.addImage(captureStatusView())
         vc.addURL(NSURL(string: kAppStoreUrl))
         

@@ -58,3 +58,8 @@ ERROR_MESSAGE_WITHOUT_MOVE = "디바이스의 제한으로 인해 사진에 악�
 "Congratulations! You've deleted %d photos!" = "축하드립니다!\n%d장의 사진을 삭제하셨습니다!";
 "Share the result of using ALPACA!" = "ALPACA의 성과를 친구와 공유해보세요!";
 
+// シェア画面
+"Share the ALPACA score" = "ALPACA스코어를 공유하기";
+"Share how many photo ALPACA deleted!" = "ALPACA로 삭제한 성과를 공유하세요!";
+"Cancel" = "취소하기";
+"ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app" = "ALPACA로 %d장의 사진을 삭제하여, %@ MB의 용량을 획득! #ALPACA_app";
