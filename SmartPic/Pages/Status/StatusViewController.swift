@@ -132,7 +132,6 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
         
         let count = deleteManager.deleteAssetIds.count
         let size = deleteManager.deleteAssetFileSize.format("%.1f")
-        println("size is \(size)")
         
         let vc = SLComposeViewController(forServiceType: serviceType)
         let message = NSString(format: NSLocalizedString("ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app", comment: ""), count, String(size))
