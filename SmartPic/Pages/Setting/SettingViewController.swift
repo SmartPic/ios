@@ -54,8 +54,12 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "このアプリについて"
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 70
+        return 60
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -71,6 +75,12 @@ class SettingViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    
+    // MARK: - IBAction
+    
+    @IBAction func closeBtnTouched(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     
 
 }
