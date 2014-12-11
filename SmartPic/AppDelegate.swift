@@ -10,6 +10,10 @@ import UIKit
 
 private let kAppVersion = "APP_VERSION"
 
+private let kHelpShiftApiKey = "bc99d227f317fe7079c6ba1189dfc6f7"
+private let kHelpShiftDomain = "alpaca.helpshift.com"
+private let kHelpShiftAppId = "alpaca_platform_20141211090629025-705534147673551"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        // start help shift
+        Helpshift.installForApiKey(kHelpShiftApiKey, domainName: kHelpShiftDomain, appID: kHelpShiftAppId)
         
         let settings = UIUserNotificationSettings(
             forTypes: .Badge | .Sound | .Alert,
