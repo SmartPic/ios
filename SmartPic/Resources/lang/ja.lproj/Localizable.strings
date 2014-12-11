@@ -45,3 +45,20 @@ ERROR_MESSAGE_WITHOUT_MOVE = "端末の制限により写真にアクセスで�
 "Open ALPACA" = "アプリを開く";
 "The camera roll's size is approximately %@. Delete abundant photos!" = "約 %@ 写真データで使用しています。ALPACA でいらない写真を削除しよう！";
 "Loot at the result of using ALPACA for a week!" = "ALPACA を1週間使った成果を確認してみよう！";
+
+// レビュー促進
+"Write review" = "レビューを書く";
+"Not now" = "今はしない";
+"Thank you for using ALPACA!" = "ALPACAのご利用\nありがとうございます！";
+"To add new free features, \nyour 5 star review will cheer us up" = "これからも無料で機能を増やしていくために、\n★5レビューで応援してもらえると嬉しいパカ！";
+
+// シェア促進
+"Share" = "シェアする";
+"Congratulations! You've deleted %d photos!" = "おめでとうございます！\n%d 枚の写真を削除しました！";
+"Share the result of using ALPACA!" = "ALPACAでのこれまでの成果を\n友達にシェアしませんパカ？";
+
+// シェア画面
+"Share the ALPACA score" = "ALPACAスコアをシェアする";
+"Share how many photo ALPACA deleted!" = "ALPACAで削除した成果をシェアしよう！";
+"Cancel" = "キャンセル";
+"ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app" = "ALPACAで %d 枚の写真を削除し、%@ MBの空き容量を獲得しました！ #ALPACA_app";

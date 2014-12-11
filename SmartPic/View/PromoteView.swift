@@ -33,6 +33,7 @@ class PromoteView: UIView {
     class func showPromoteReviewAlert() {
         let view = self.view()
         
+        view.setUpReviewMode()
         let window = UIApplication.sharedApplication().keyWindow
         window!.addSubview(view)
         
@@ -55,20 +56,29 @@ class PromoteView: UIView {
         baseView.layer.cornerRadius = 5.0
         baseView.layer.masksToBounds = true
         
+        actionButton.setTitleColor(UIColor.colorWithRGBHex(0x4d4949), forState: .Normal)
+        actionButton.normalColor = UIColor.whiteColor()
+        actionButton.highlightedColor = UIColor.colorWithRGBHex(0xdedede)
+        actionButton.layer.borderColor = UIColor.colorWithRGBHex(0xe3d42e).CGColor
+        actionButton.layer.borderWidth = 2.0
+    }
+    
+    func setUpReviewMode() {
+        isShareMode = false
         
-        noneButton.setTitleColor(UIColor.colorWithRGBHex(0x4d4949), forState: .Normal)
-        noneButton.normalColor = UIColor.whiteColor()
-        noneButton.highlightedColor = UIColor.colorWithRGBHex(0xdedede)
-        noneButton.layer.borderColor = UIColor.colorWithRGBHex(0xe3d42e).CGColor
-        noneButton.layer.borderWidth = 2.0
+        actionButton.setTitle(NSLocalizedString("Write review", comment:""), forState: .Normal)
+        noneButton.setTitle(NSLocalizedString("Not now", comment:""), forState: .Normal)
+        titleLabel.text = NSLocalizedString("Thank you for using ALPACA!", comment:"")
+        detailTextLabel.text = NSLocalizedString("To add new free features, \nyour 5 star review will cheer us up", comment:"")
     }
     
     func setUpShareMode(score:Int) {
         isShareMode = true
         
-        actionButton.setTitle("シェアする", forState: .Normal)
-        titleLabel.text = "おめでとうございます！\n\(score) 枚の写真を削除しました！"
-        detailTextLabel.text = "ALPACAでのこれまでの成果を\n友達にシェアしませんパカ？"
+        actionButton.setTitle(NSLocalizedString("Share", comment:""), forState: .Normal)
+        noneButton.setTitle(NSLocalizedString("Not now", comment:""), forState: .Normal)
+        titleLabel.text =  String(format: NSLocalizedString("Congratulations! You've deleted %d photos!", comment:""), score)
+        detailTextLabel.text = NSLocalizedString("Share the result of using ALPACA!", comment: "")
     }
     
     @IBAction func reviewBtnTouched(sender: AnyObject) {
