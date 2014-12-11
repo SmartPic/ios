@@ -51,3 +51,8 @@ ERROR_MESSAGE_WITHOUT_MOVE = "Your phone doesn't allow us to access photos. Plea
 "Not now" = "Not now";
 "Thank you for using ALPACA!" = "Thank you for using ALPACA!";
 "To add new free features, \nyour 5 star review will cheer us up" = "To add new free features, \nyour 5 star review will cheer us up";
+
+// シェア促進
+"Share" = "Share";
+"Congratulations! You've deleted %d photos!" = "Congratulations!\nYou've deleted %d photos!";
+"Share the result of using ALPACA!" = "Share the result of using ALPACA!";

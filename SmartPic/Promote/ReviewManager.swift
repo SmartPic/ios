@@ -75,8 +75,6 @@ class ReviewManager: NSObject {
     }
     
     func shouldShowReviewAlert() -> Bool {
-        return true
-        
         // すでにレビュー済みの場合は表示しない
         if isReviewDone {
             return false

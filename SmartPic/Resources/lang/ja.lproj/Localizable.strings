@@ -51,3 +51,8 @@ ERROR_MESSAGE_WITHOUT_MOVE = "端末の制限により写真にアクセスで�
 "Not now" = "今はしない";
 "Thank you for using ALPACA!" = "ALPACAのご利用\nありがとうございます！";
 "To add new free features, \nyour 5 star review will cheer us up" = "これからも無料で機能を増やしていくために、\n★5レビューで応援してもらえると嬉しいパカ！";
+
+// シェア促進
+"Share" = "シェアする";
+"Congratulations! You've deleted %d photos!" = "おめでとうございます！\n%d 枚の写真を削除しました！";
+"Share the result of using ALPACA!" = "ALPACAでのこれまでの成果を\n友達にシェアしませんパカ？";

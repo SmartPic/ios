@@ -20,7 +20,7 @@ class ArchivementManager: NSObject {
         return archivementManager
     }
     
-    private let archivePoint = [2, 100, 300, 500, 700, 1000]   // この枚数の削除を達成したときにアクションを行う
+    private let archivePoint = [6, 100, 300, 500, 700, 1000]   // この枚数の削除を達成したときにアクションを行う
     
     //////////////////////////////////////
     

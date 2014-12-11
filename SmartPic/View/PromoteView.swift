@@ -75,10 +75,10 @@ class PromoteView: UIView {
     func setUpShareMode(score:Int) {
         isShareMode = true
         
-        actionButton.setTitle("シェアする", forState: .Normal)
+        actionButton.setTitle(NSLocalizedString("Share", comment:""), forState: .Normal)
         noneButton.setTitle(NSLocalizedString("Not now", comment:""), forState: .Normal)
-        titleLabel.text = "おめでとうございます！\n\(score) 枚の写真を削除しました！"
-        detailTextLabel.text = "ALPACAでのこれまでの成果を\n友達にシェアしませんパカ？"
+        titleLabel.text =  String(format: NSLocalizedString("Congratulations! You've deleted %d photos!", comment:""), score)
+        detailTextLabel.text = NSLocalizedString("Share the result of using ALPACA!", comment: "")
     }
     
     @IBAction func reviewBtnTouched(sender: AnyObject) {
