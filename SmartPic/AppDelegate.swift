@@ -16,10 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        Parse.setApplicationId("mrMOryI0lhKW3PIKTRdF2rUsNUAs2CeaeC8eEGWh", clientKey: "i1nIusyCXHRcCpNTNhdSiKtNWhKZDwKlDuviRqGu")
+        
         let settings = UIUserNotificationSettings(
             forTypes: .Badge | .Sound | .Alert,
             categories: nil)
-        application.registerUserNotificationSettings(settings);
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
         
         // Google Analytics
         GAI.sharedInstance().trackUncaughtExceptions = true
@@ -68,6 +71,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 tracker.send(GAIDictionaryBuilder.createEventWithCategory("launch by push", action: "localpush", label: "PUSHID-\(pushId)", value: 1).build())
             }
         }
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // Store the deviceToken in the current installation and save it to Parse.
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation();
+        currentInstallation.setDeviceTokenFromData(deviceToken);
+        currentInstallation.channels = ["global"];
+        currentInstallation.saveInBackgroundWithBlock { (isSuccess, error) -> Void in
+            println("oke")
+        }
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        println(error)
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo);
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
