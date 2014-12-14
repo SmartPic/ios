@@ -85,7 +85,6 @@
                         <outlet property="collectionContainer" destination="9Cx-xI-Nmv" id="lcI-hA-vGr"/>
                         <outlet property="segmentedControl" destination="p69-C4-ghl" id="VEj-xv-Kg1"/>
                         <outlet property="tableContainer" destination="5Cc-CY-R0e" id="zNb-HS-dks"/>
-                        <outlet property="tableContainerView" destination="5Cc-CY-R0e" id="Ncx-2D-cPS"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
                     </connections>
                 </viewController>
@@ -713,13 +712,14 @@
             </objects>
             <point key="canvasLocation" x="437" y="-98"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Group Collection View Controller-->
         <scene sceneID="lU8-U2-q9Q">
             <objects>
-                <collectionViewController id="8MH-E5-51O" sceneMemberID="viewController">
+                <collectionViewController id="8MH-E5-51O" customClass="GroupCollectionViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="W0p-2O-ohr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.90588235294117647" green="0.92156862745098034" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="M1b-8n-7aU">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>

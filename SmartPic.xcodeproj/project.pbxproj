@@ -37,6 +37,7 @@
 		3FBD50E719E175840096E154 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3FBD50E519E175840096E154 /* LaunchScreen.xib */; };
 		3FBD50F319E175840096E154 /* SmartPicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD50F219E175840096E154 /* SmartPicTests.swift */; };
 		3FD057CA1A3D683A0077C787 /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD057C91A3D683A0077C787 /* GroupTableViewController.swift */; };
+		3FD057CC1A3D7E9D0077C787 /* GroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD057CB1A3D7E9D0077C787 /* GroupCollectionViewController.swift */; };
 		3FDC64A01A203AB500145539 /* LocalPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC649F1A203AB500145539 /* LocalPushManager.swift */; };
 		3FF1F55619F69FB700F027E0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01116F19F69B5E005B5F2F /* CoreData.framework */; };
 		3FF1F55719F69FC100F027E0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117119F69B6A005B5F2F /* SystemConfiguration.framework */; };
@@ -100,6 +101,7 @@
 		3FBD50F119E175840096E154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FBD50F219E175840096E154 /* SmartPicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartPicTests.swift; sourceTree = "<group>"; };
 		3FD057C91A3D683A0077C787 /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
+		3FD057CB1A3D7E9D0077C787 /* GroupCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewController.swift; sourceTree = "<group>"; };
 		3FD4C6B719F4A96D00FFE768 /* SmartPic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartPic-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FDC649F1A203AB500145539 /* LocalPushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPushManager.swift; sourceTree = "<group>"; };
 		6E51978BDE9C42F6C83CD5DC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,13 +186,14 @@
 			isa = PBXGroup;
 			children = (
 				3F49A46919E176DA008079CE /* ListViewController.swift */,
+				3FD057C91A3D683A0077C787 /* GroupTableViewController.swift */,
+				3FD057CB1A3D7E9D0077C787 /* GroupCollectionViewController.swift */,
 				3F49A46B19E17A47008079CE /* ListCell.swift */,
 				3FA49E7519E23D0200D86E8A /* ListImageCell.swift */,
 				3F5C301619FCD704002F074F /* TutorialView.swift */,
 				3F5C301819FCD713002F074F /* TutorialView.xib */,
 				3F9C028B19FE7E6700442726 /* NoPictureView.swift */,
 				3F9C028F19FE7E8900442726 /* NoPictureView.xib */,
-				3FD057C91A3D683A0077C787 /* GroupTableViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 			files = (
 				3FB59FFA1A22F09E008D2862 /* AnalyticsManager.swift in Sources */,
 				20DB8AA11A20910300F7FA32 /* StatusViewController.swift in Sources */,
+				3FD057CC1A3D7E9D0077C787 /* GroupCollectionViewController.swift in Sources */,
 				3F49A46C19E17A47008079CE /* ListCell.swift in Sources */,
 				3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */,
 				20F8EF071A389EF6005EEC56 /* Const.swift in Sources */,

@@ -15,7 +15,6 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     @IBOutlet weak var collectionContainer: UIView!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var tableContainerView: UIView!
     
     var tutorialView: TutorialView!
     var noPictureView: NoPictureView!
@@ -28,6 +27,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         // セグメントコントロールのローカライズ
         segmentedControl.setTitle(NSLocalizedString("Not Organized", comment:""), forSegmentAtIndex: 0)
         segmentedControl.setTitle(NSLocalizedString("All", comment:""), forSegmentAtIndex: 1)
+        self.showContainerAtIndex(segmentedControl.selectedSegmentIndex)
         
         // Admob 設定
         bannerView.adSize = kGADAdSizeBanner
@@ -48,23 +48,12 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
             tutorialView.delegate = self
             self.view.addSubview(tutorialView)
         }
-    
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.screenName = "リストページ"
-    }
-    
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-        if (identifier == "embedGroupTable") {
-            return (segmentedControl.selectedSegmentIndex == 0)
-        } else if (identifier == "embedGroupCollection") {
-            collectionContainer.hidden = true
-            return false//(segmentedControl.selectedSegmentIndex == 1)
-        }
-        return true;
     }
     
 //    private func reload() {
@@ -98,14 +87,28 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
                 statusViewController.isShareMode = sender!.boolValue
             }
         } else if segue.identifier == "embedGroupTable" {
-            let listTableViewController: GroupTableViewController = segue.destinationViewController as GroupTableViewController
-            listTableViewController.delegate = self
+            let groupTableViewController: GroupTableViewController = segue.destinationViewController as GroupTableViewController
+            groupTableViewController.delegate = self
+        } else if segue.identifier == "embedGroupCollection" {
+            let groupCollectionViewController: GroupCollectionViewController = segue.destinationViewController as GroupCollectionViewController
+            //groupCollectionViewController.delegate = self
+        }
+    }
+    
+    func showContainerAtIndex(index: Int) {
+        if (index == 0) {
+            collectionContainer.hidden = true
+            tableContainer.hidden = false
+        } else if (index == 1) {
+            tableContainer.hidden = true
+            collectionContainer.hidden = false
         }
     }
 
     // MARK: IBAction
 
     @IBAction func segmentControlChanged(sender: AnyObject) {
+        self.showContainerAtIndex(segmentedControl.selectedSegmentIndex)
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
