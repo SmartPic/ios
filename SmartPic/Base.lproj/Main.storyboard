@@ -21,7 +21,13 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Cc-CY-R0e">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                                 <connections>
-                                    <segue destination="91K-zr-Ggg" kind="embed" id="YEH-Ts-Dlu"/>
+                                    <segue destination="91K-zr-Ggg" kind="embed" identifier="embedGroupTable" id="YEH-Ts-Dlu"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Cx-xI-Nmv">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                                <connections>
+                                    <segue destination="8MH-E5-51O" kind="embed" identifier="embedGroupCollection" id="N7M-U3-D7A"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpJ-UE-gAX" customClass="GADBannerView">
@@ -35,12 +41,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9Cx-xI-Nmv" secondAttribute="trailing" id="5AD-ks-1Vf"/>
                             <constraint firstItem="PpJ-UE-gAX" firstAttribute="top" secondItem="5Cc-CY-R0e" secondAttribute="bottom" id="OrF-O9-L2Q"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PpJ-UE-gAX" secondAttribute="bottom" id="U4S-xe-O2m"/>
                             <constraint firstItem="5Cc-CY-R0e" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="Vys-vq-hBT"/>
                             <constraint firstItem="5Cc-CY-R0e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="eat-DN-Wad"/>
                             <constraint firstAttribute="trailing" secondItem="5Cc-CY-R0e" secondAttribute="trailing" id="eft-X0-eR1"/>
                             <constraint firstAttribute="centerX" secondItem="PpJ-UE-gAX" secondAttribute="centerX" id="faL-7h-95K"/>
+                            <constraint firstItem="9Cx-xI-Nmv" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="i5x-MM-jMo"/>
+                            <constraint firstItem="9Cx-xI-Nmv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="oLo-a3-TI3"/>
+                            <constraint firstItem="PpJ-UE-gAX" firstAttribute="top" secondItem="9Cx-xI-Nmv" secondAttribute="bottom" id="zQl-H9-1OP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9px-aZ-Tq5">
@@ -72,7 +82,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bannerView" destination="PpJ-UE-gAX" id="G3O-9O-kuD"/>
+                        <outlet property="collectionContainer" destination="9Cx-xI-Nmv" id="lcI-hA-vGr"/>
                         <outlet property="segmentedControl" destination="p69-C4-ghl" id="VEj-xv-Kg1"/>
+                        <outlet property="tableContainer" destination="5Cc-CY-R0e" id="zNb-HS-dks"/>
                         <outlet property="tableContainerView" destination="5Cc-CY-R0e" id="Ncx-2D-cPS"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
                     </connections>
@@ -699,7 +711,30 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihD-lF-sQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="522" y="-100"/>
+            <point key="canvasLocation" x="437" y="-98"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="lU8-U2-q9Q">
+            <objects>
+                <collectionViewController id="8MH-E5-51O" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="W0p-2O-ohr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="M1b-8n-7aU">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <connections>
+                            <outlet property="dataSource" destination="8MH-E5-51O" id="JwR-W0-T3i"/>
+                            <outlet property="delegate" destination="8MH-E5-51O" id="ST3-DA-prp"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="teX-jA-BdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="-98"/>
         </scene>
     </scenes>
     <resources>

@@ -9,8 +9,10 @@
 import UIKit
 import Photos
 
-class ListViewController: GAITrackedViewController, TutorialViewDelegate, PromoteViewDelegate, ListTableViewDelegate {
+class ListViewController: GAITrackedViewController, TutorialViewDelegate, PromoteViewDelegate, GroupTableViewDelegate {
     
+    @IBOutlet weak var tableContainer: UIView!
+    @IBOutlet weak var collectionContainer: UIView!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var tableContainerView: UIView!
@@ -56,10 +58,11 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-        if (identifier == "embedListTable") {
+        if (identifier == "embedGroupTable") {
             return (segmentedControl.selectedSegmentIndex == 0)
-        } else if (identifier == "embedListCollection") {
-            return (segmentedControl.selectedSegmentIndex == 1)
+        } else if (identifier == "embedGroupCollection") {
+            collectionContainer.hidden = true
+            return false//(segmentedControl.selectedSegmentIndex == 1)
         }
         return true;
     }
@@ -94,8 +97,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
                 let statusViewController = nav.viewControllers.first as StatusViewController
                 statusViewController.isShareMode = sender!.boolValue
             }
-        } else if segue.identifier == "embedListTable" {
-            let listTableViewController: ListTableViewController = segue.destinationViewController as ListTableViewController
+        } else if segue.identifier == "embedGroupTable" {
+            let listTableViewController: GroupTableViewController = segue.destinationViewController as GroupTableViewController
             listTableViewController.delegate = self
         }
     }
