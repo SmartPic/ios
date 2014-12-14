@@ -18,6 +18,7 @@
 		20DB8AA71A21DE9E00F7FA32 /* StatusMusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB8AA61A21DE9E00F7FA32 /* StatusMusicCell.swift */; };
 		20F8EF051A350614005EEC56 /* ArchivementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8EF041A350614005EEC56 /* ArchivementManager.swift */; };
 		20F8EF071A389EF6005EEC56 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F8EF061A389EF6005EEC56 /* Const.swift */; };
+		3F2E17281A3D1DFB0058574E /* ListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2E17271A3D1DFB0058574E /* ListTableViewController.swift */; };
 		3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46919E176DA008079CE /* ListViewController.swift */; };
 		3F49A46C19E17A47008079CE /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F49A46B19E17A47008079CE /* ListCell.swift */; };
 		3F5C301719FCD704002F074F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5C301619FCD704002F074F /* TutorialView.swift */; };
@@ -74,6 +75,7 @@
 		3F01117319F69B71005B5F2F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3F01117519F69C71005B5F2F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3F01117719F69DBA005B5F2F /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = ../../../Downloads/GoogleAnalyticsServicesiOS_3.09/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		3F2E17271A3D1DFB0058574E /* ListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewController.swift; sourceTree = "<group>"; };
 		3F49A46919E176DA008079CE /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3F49A46B19E17A47008079CE /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		3F5C301619FCD704002F074F /* TutorialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				3F5C301819FCD713002F074F /* TutorialView.xib */,
 				3F9C028B19FE7E6700442726 /* NoPictureView.swift */,
 				3F9C028F19FE7E8900442726 /* NoPictureView.xib */,
+				3F2E17271A3D1DFB0058574E /* ListTableViewController.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				3FB59FFA1A22F09E008D2862 /* AnalyticsManager.swift in Sources */,
 				20DB8AA11A20910300F7FA32 /* StatusViewController.swift in Sources */,
 				3F49A46C19E17A47008079CE /* ListCell.swift in Sources */,
+				3F2E17281A3D1DFB0058574E /* ListTableViewController.swift in Sources */,
 				3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */,
 				20F8EF071A389EF6005EEC56 /* Const.swift in Sources */,
 				3F9C028C19FE7E6700442726 /* NoPictureView.swift in Sources */,

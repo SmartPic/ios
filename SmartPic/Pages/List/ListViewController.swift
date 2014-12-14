@@ -9,16 +9,15 @@
 import UIKit
 import Photos
 
-class ListViewController: GAITrackedViewController, UITableViewDataSource, UITableViewDelegate, TutorialViewDelegate, PromoteViewDelegate {
+class ListViewController: GAITrackedViewController, TutorialViewDelegate, PromoteViewDelegate, ListTableViewDelegate {
     
     @IBOutlet weak var bannerView: GADBannerView!
-    @IBOutlet weak private var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var tableContainerView: UIView!
     
     var tutorialView: TutorialView!
     var noPictureView: NoPictureView!
     var latestDeletedCount: Int = 0
-    private var seriesList = [GroupInfo]()
     private let photoFetcher = PhotoFetcher()
 
     override func viewDidLoad() {
@@ -28,11 +27,6 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         segmentedControl.setTitle(NSLocalizedString("Not Organized", comment:""), forSegmentAtIndex: 0)
         segmentedControl.setTitle(NSLocalizedString("All", comment:""), forSegmentAtIndex: 1)
         
-        // UIRefreshControl
-        let refreshControl: UIRefreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        tableView.addSubview(refreshControl)
-
         // Admob 設定
         bannerView.adSize = kGADAdSizeBanner
         bannerView.adUnitID = "ca-app-pub-2967292377011754/2952349221"
@@ -44,7 +38,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
             self.checkAccessToPhotos()
         }
         else {
-            tableView.hidden = true
+            // TODO
+//            tableView.hidden = true
             
             // チュートリアル表示
             tutorialView = TutorialView(frame: self.view.frame)
@@ -60,56 +55,31 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         self.screenName = "リストページ"
     }
     
-    private func reload() {
-        noPictureView?.removeFromSuperview()
-        if (segmentedControl.selectedSegmentIndex == 0) {
-            seriesList = photoFetcher.targetPhotoGroupingByTime()
-            if (seriesList.count == 0) {
-                // 整理対象ないよビュー表示
-                noPictureView = NoPictureView(frame: self.view.frame)
-                self.view.addSubview(noPictureView)
-                return
-            }
+    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+        if (identifier == "embedListTable") {
+            return (segmentedControl.selectedSegmentIndex == 0)
+        } else if (identifier == "embedListCollection") {
+            return (segmentedControl.selectedSegmentIndex == 1)
         }
-        else {
-            seriesList = photoFetcher.allPhotoGroupingByTime()
-        }
-        tableView.reloadData()
+        return true;
     }
     
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return seriesList.count
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        // TODO 動的に高さ計算して返す
-        return 110;
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: ListCell = tableView.dequeueReusableCellWithIdentifier(ListCell.className) as ListCell
-        
-        let group = seriesList[indexPath.row]
-        
-        cell.addressLabel.text = nil
-        group.loadAddressStr { (address, error) -> Void in
-            if error != nil {
-                cell.addressLabel.text = nil
-            }
-            else {
-                cell.addressLabel.text = address
-            }
-        }
-        cell.dateLabel.text = group.dateStrFromDate()
-        cell.groupInfo = group
-        
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("pushDetail", sender: seriesList[indexPath.row])
-    }
+//    private func reload() {
+//        noPictureView?.removeFromSuperview()
+//        if (segmentedControl.selectedSegmentIndex == 0) {
+//            seriesList = photoFetcher.targetPhotoGroupingByTime()
+//            if (seriesList.count == 0) {
+//                // 整理対象ないよビュー表示
+//                noPictureView = NoPictureView(frame: self.view.frame)
+//                self.view.addSubview(noPictureView)
+//                return
+//            }
+//        }
+//        else {
+//            seriesList = photoFetcher.allPhotoGroupingByTime()
+//        }
+//        tableView.reloadData()
+//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -124,19 +94,15 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
                 let statusViewController = nav.viewControllers.first as StatusViewController
                 statusViewController.isShareMode = sender!.boolValue
             }
+        } else if segue.identifier == "embedListTable" {
+            let listTableViewController: ListTableViewController = segue.destinationViewController as ListTableViewController
+            listTableViewController.delegate = self
         }
-    }
-    
-    // プルダウンリフレッシュで table 更新
-    func onRefresh(refreshControl: UIRefreshControl) {
-        reload()
-        refreshControl.endRefreshing()
     }
 
     // MARK: IBAction
 
     @IBAction func segmentControlChanged(sender: AnyObject) {
-        reload()
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
@@ -147,8 +113,6 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
         else {
             var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "showDeletedMessage", userInfo: nil, repeats: false)
         }
-        
-        reload()
         
         // スコア表示
         let archivementManager = ArchivementManager.getInstance()
@@ -190,13 +154,22 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
     
     func tapStartButton() {
         tutorialView.removeFromSuperview()
-        tableView.hidden = false
+//        tableView.hidden = false
         
         photoFetcher.setFinishPhotoLoading()
         
         requestAccessToPhotos()
     }
     
+    func tapCell(groupInfo: GroupInfo) {
+        self.performSegueWithIdentifier("pushDetail", sender: groupInfo)
+    }
+    
+    func emptyGroupInfoList() {
+        noPictureView?.removeFromSuperview()
+        noPictureView = NoPictureView(frame: self.view.frame)
+        self.view.addSubview(noPictureView)
+    }
     
     // MARK: PromoteViewDelegate
     
@@ -225,8 +198,8 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
             case .Authorized:
                 // 許可されてる
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.reload()
-                    AnalyticsManager().configureCountsDimension(self.seriesList)
+//                    self.reload()
+//                    AnalyticsManager().configureCountsDimension(self.seriesList)
                 })
                 
                 // ローカルプッシュ登録
@@ -252,8 +225,10 @@ class ListViewController: GAITrackedViewController, UITableViewDataSource, UITab
 
         case .Authorized:
             // 許可されてる
-            self.reload()
-            AnalyticsManager().configureCountsDimension(seriesList)
+            // TODO
+            println()
+//            self.reload()
+//            AnalyticsManager().configureCountsDimension(seriesList)
         }
     }
     
