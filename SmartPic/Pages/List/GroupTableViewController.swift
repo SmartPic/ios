@@ -1,5 +1,5 @@
 //
-//  ListTableViewController.swift
+//  GroupTableViewController.swift
 //  SmartPic
 //
 //  Created by tanabe yuki on 2014/12/14.
@@ -9,17 +9,15 @@
 import UIKit
 import Photos
 
-protocol ListTableViewDelegate {
+protocol GroupTableViewDelegate {
     func tapCell(groupInfo: GroupInfo)
     func emptyGroupInfoList()
 }
 
-class ListTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+class GroupTableViewController: UITableViewController {
+
     // MARK: Properties
 
-    @IBOutlet weak var tableView: UITableView!
-    
     var seriesList = [GroupInfo]()
     var delegate: ListTableViewDelegate?
     private let photoFetcher = PhotoFetcher()
@@ -44,16 +42,16 @@ class ListTableViewController: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: UITableView delegate, datasourse
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return seriesList.count
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         // TODO 動的に高さ計算して返す
         return 110;
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeueReusableCellWithIdentifier(ListCell.className) as ListCell
         
         let group = seriesList[indexPath.row]
@@ -73,7 +71,7 @@ class ListTableViewController: UIViewController, UITableViewDataSource, UITableV
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         delegate?.tapCell(seriesList[indexPath.row])
     }
     
