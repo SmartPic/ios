@@ -41,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.colorWithRGBHex(0x29b9ac)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
+        let textTitleOptions = ["UITextAttributeTextColor":UIColor.whiteColor()]
+        UINavigationBar.appearance().titleTextAttributes = textTitleOptions
         
         if isUpdate() {
             // アップデート時に行う処理
