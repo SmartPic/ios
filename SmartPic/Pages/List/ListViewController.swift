@@ -52,7 +52,6 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         self.screenName = "リストページ"
     }
     
@@ -108,6 +107,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     // MARK: IBAction
 
     @IBAction func segmentControlChanged(sender: AnyObject) {
+        noPictureView?.removeFromSuperview()
         self.showContainerAtIndex(segmentedControl.selectedSegmentIndex)
     }
     
