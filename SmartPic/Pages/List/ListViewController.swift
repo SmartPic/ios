@@ -40,9 +40,6 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
             self.checkAccessToPhotos()
         }
         else {
-            // TODO
-//            tableView.hidden = true
-            
             // チュートリアル表示
             tutorialView = TutorialView(frame: self.view.frame)
             tutorialView.delegate = self
@@ -54,23 +51,6 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         super.viewWillAppear(animated)
         self.screenName = "リストページ"
     }
-    
-//    private func reload() {
-//        noPictureView?.removeFromSuperview()
-//        if (segmentedControl.selectedSegmentIndex == 0) {
-//            seriesList = photoFetcher.targetPhotoGroupingByTime()
-//            if (seriesList.count == 0) {
-//                // 整理対象ないよビュー表示
-//                noPictureView = NoPictureView(frame: self.view.frame)
-//                self.view.addSubview(noPictureView)
-//                return
-//            }
-//        }
-//        else {
-//            seriesList = photoFetcher.allPhotoGroupingByTime()
-//        }
-//        tableView.reloadData()
-//    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -160,7 +140,6 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     
     func tapStartButton() {
         tutorialView.removeFromSuperview()
-//        tableView.hidden = false
         
         photoFetcher.setFinishPhotoLoading()
         

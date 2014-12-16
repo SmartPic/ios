@@ -51,7 +51,6 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     
     private func reload() {
         groupInfoList = photoFetcher.allPhotoGroupingByTime()
-        println(groupInfoList)
         for (var i = 0; i < groupInfoList.count; i++) {
             let groupInfo: GroupInfo = groupInfoList[i]
             cellInfoList.append([
