@@ -19,6 +19,5 @@ class ListImageCell: UICollectionViewCell {
         super.awakeFromNib()
         listImageView.contentMode = .ScaleAspectFill
         photosLabel.text = NSLocalizedString("photos", comment: "")
-        
     }
 }
