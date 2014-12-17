@@ -46,7 +46,6 @@
 		3FF1F55819F69FD700F027E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117519F69C71005B5F2F /* AdSupport.framework */; };
 		3FF1F55919F69FE200F027E0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117319F69B71005B5F2F /* libz.dylib */; };
 		3FF1F55A19F69FEB00F027E0 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117719F69DBA005B5F2F /* libGoogleAnalyticsServices.a */; };
-		3FF357E31A405FB2002FFC94 /* DeviceUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF357E21A405FB2002FFC94 /* DeviceUtil.swift */; };
 		C1AB0E7C207F45E2832ED219 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF35E64378D740D1B0AEB093 /* libPods.a */; };
 		D92D57BA19EAE85000B87C20 /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92D57B919EAE85000B87C20 /* GroupInfo.swift */; };
 /* End PBXBuildFile section */
@@ -109,7 +108,6 @@
 		3FD057CB1A3D7E9D0077C787 /* GroupCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewController.swift; sourceTree = "<group>"; };
 		3FD4C6B719F4A96D00FFE768 /* SmartPic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartPic-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FDC649F1A203AB500145539 /* LocalPushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPushManager.swift; sourceTree = "<group>"; };
-		3FF357E21A405FB2002FFC94 /* DeviceUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceUtil.swift; sourceTree = "<group>"; };
 		6E51978BDE9C42F6C83CD5DC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D92D57B919EAE85000B87C20 /* GroupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupInfo.swift; path = Model/GroupInfo.swift; sourceTree = "<group>"; };
 		EF35E64378D740D1B0AEB093 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,7 +225,6 @@
 			children = (
 				3FA754C819E4092700EB7FBB /* MyExtensions.swift */,
 				3FDC649F1A203AB500145539 /* LocalPushManager.swift */,
-				3FF357E21A405FB2002FFC94 /* DeviceUtil.swift */,
 			);
 			path = Libs;
 			sourceTree = "<group>";
@@ -519,7 +516,6 @@
 				3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */,
 				3F5C301719FCD704002F074F /* TutorialView.swift in Sources */,
 				3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */,
-				3FF357E31A405FB2002FFC94 /* DeviceUtil.swift in Sources */,
 				20DB8AA71A21DE9E00F7FA32 /* StatusMusicCell.swift in Sources */,
 				3F49A46A19E176DA008079CE /* ListViewController.swift in Sources */,
 				20CB5AE81A3359B300E1F6CC /* ReviewManager.swift in Sources */,

@@ -31,7 +31,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let device = DeviceUtil().iOSDevice()
+        let device = UIDevice().segmentName()
         if (device == "iPhone6") {
             cellSize = CGSizeMake(71, 71)
         } else if (device == "iPhone6 Plus") {
