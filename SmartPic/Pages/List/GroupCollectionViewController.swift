@@ -18,8 +18,8 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     
     // MARK: Properties
     
-    var groupInfoList = [GroupInfo]()
     var delegate: GroupCollectionViewDelegate?
+    private var groupInfoList = [GroupInfo]()
     private let photoFetcher = PhotoFetcher()
     private var cellInfoList: [NSDictionary] = []
     private var cellSize: CGSize = CGSizeMake(77, 77)
@@ -78,7 +78,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cellInfo: NSDictionary = cellInfoList[indexPath.row]
+        let cellInfo: Dictionary = cellInfoList[indexPath.row]
         let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
         if (cellInfo["type"] as String == "image") {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionImageCell", forIndexPath: indexPath) as CollectionImageCell

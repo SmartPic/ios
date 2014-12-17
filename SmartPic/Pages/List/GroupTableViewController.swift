@@ -17,8 +17,8 @@ class GroupTableViewController: UITableViewController {
 
     // MARK: Properties
 
-    var groupInfoList = [GroupInfo]()
     var delegate: GroupTableViewDelegate?
+    private var groupInfoList = [GroupInfo]()
     private let photoFetcher = PhotoFetcher()
     
     
