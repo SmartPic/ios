@@ -47,7 +47,6 @@ class GroupTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        // TODO 動的に高さ計算して返す
         return 110;
     }
     
