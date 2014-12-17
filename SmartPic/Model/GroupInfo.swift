@@ -39,6 +39,29 @@ class GroupInfo: NSObject {
         return dateFormatter.stringFromDate(self.date!)
     }
     
+    func dateDictFromDate() -> Dictionary<String,String> {
+        var dateDict = [
+            "year": "",
+            "date": "",
+            "day": ""
+        ]
+        
+        if date == nil {
+            return dateDict
+        }
+        
+        var dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd/E"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        let dateStr: String = dateFormatter.stringFromDate(self.date!)
+        let dateArr = dateStr.componentsSeparatedByString("/")
+        dateDict["year"] = dateArr[0]
+        dateDict["date"] = dateArr[1] + "/" + dateArr[2]
+        dateDict["day"] = dateArr[3]
+        
+        return dateDict
+    }
+    
     func placeFromAsset(asset: PHAsset?) -> CLLocation? {
         if asset == nil {
             return nil
