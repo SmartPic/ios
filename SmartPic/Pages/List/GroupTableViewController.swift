@@ -9,7 +9,7 @@
 import UIKit
 
 protocol GroupTableViewDelegate {
-    func tapCell(groupInfo: GroupInfo)
+    func tapGroup(groupInfo: GroupInfo, title: String)
     func emptyGroupInfoList()
 }
 
@@ -17,7 +17,7 @@ class GroupTableViewController: UITableViewController {
 
     // MARK: Properties
 
-    var seriesList = [GroupInfo]()
+    var groupInfoList = [GroupInfo]()
     var delegate: GroupTableViewDelegate?
     private let photoFetcher = PhotoFetcher()
     
@@ -31,18 +31,19 @@ class GroupTableViewController: UITableViewController {
         let refreshControl: UIRefreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
+        
+        reload()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        reload()
     }
     
     
     // MARK: UITableView delegate, datasourse
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return seriesList.count
+        return groupInfoList.count
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -53,7 +54,7 @@ class GroupTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: ListCell = tableView.dequeueReusableCellWithIdentifier(ListCell.className) as ListCell
         
-        let group = seriesList[indexPath.row]
+        let group = groupInfoList[indexPath.row]
         
         cell.addressLabel.text = nil
         group.loadAddressStr { (address, error) -> Void in
@@ -71,15 +72,16 @@ class GroupTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        delegate?.tapCell(seriesList[indexPath.row])
+        let groupInfo: GroupInfo = groupInfoList[indexPath.row]
+        delegate?.tapGroup(groupInfo, title: "")
     }
     
     
     // MARK: Private methods
     
-    private func reload() {
-        seriesList = photoFetcher.targetPhotoGroupingByTime()
-        if (seriesList.count == 0) {
+    func reload() {
+        groupInfoList = photoFetcher.targetPhotoGroupingByTime()
+        if (groupInfoList.count == 0) {
             // 整理対象ないよビュー表示
             delegate?.emptyGroupInfoList()
         }

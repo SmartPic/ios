@@ -10,8 +10,8 @@ import UIKit
 import Photos
 
 protocol GroupCollectionViewDelegate {
-    func tapCell(groupInfo: GroupInfo)
-    func emptyGroupInfoList()
+    func tapGroup(groupInfo: GroupInfo, title: String)
+    func tapImage(asset: PHAsset)
 }
 
 class GroupCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -42,15 +42,17 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         let refreshControl: UIRefreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         collectionView?.addSubview(refreshControl)
+        
+        reload()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        reload()
     }
     
-    private func reload() {
+    func reload() {
         groupInfoList = photoFetcher.allPhotoGroupingByTime()
+        cellInfoList = []
         for (var i = 0; i < groupInfoList.count; i++) {
             let groupInfo: GroupInfo = groupInfoList[i]
             cellInfoList.append([
@@ -94,6 +96,15 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
             cell.dateLabel.text = dateDict["date"]
             cell.dayLabel.text = dateDict["day"]
             return cell
+        }
+    }
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let cellInfo: NSDictionary = cellInfoList[indexPath.row]
+        if (cellInfo["type"] as String == "image") {
+            println("tap image")
+        } else if (cellInfo["type"] as String == "date") {
+            delegate?.tapGroup(groupInfoList[cellInfo["groupIndex"] as Int], title:"2014/11/11")
         }
     }
     

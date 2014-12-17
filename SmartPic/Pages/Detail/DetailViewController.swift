@@ -17,7 +17,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     @IBOutlet weak var pickButton: UIButton!
     @IBOutlet weak var saveButton: FlatButton!
     @IBOutlet weak var leftButton: FlatButton!
-
     @IBOutlet weak var leftEdgeConst: NSLayoutConstraint!
     
     var groupInfo: GroupInfo = GroupInfo() {

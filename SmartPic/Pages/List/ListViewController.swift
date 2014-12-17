@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class ListViewController: GAITrackedViewController, TutorialViewDelegate, PromoteViewDelegate, GroupTableViewDelegate {
+class ListViewController: GAITrackedViewController, TutorialViewDelegate, PromoteViewDelegate, GroupTableViewDelegate, GroupCollectionViewDelegate {
     
     @IBOutlet weak var tableContainer: UIView!
     @IBOutlet weak var collectionContainer: UIView!
@@ -19,6 +19,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     var tutorialView: TutorialView!
     var noPictureView: NoPictureView!
     var latestDeletedCount: Int = 0
+    var groupTableViewController: GroupTableViewController!
+    var groupCollectionViewController: GroupCollectionViewController!
     private let photoFetcher = PhotoFetcher()
 
     override func viewDidLoad() {
@@ -56,7 +58,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         
         if segue.identifier == "pushDetail" {
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
-            detailViewController.groupInfo = sender as GroupInfo
+            detailViewController.groupInfo = sender?["groupInfo"] as GroupInfo
+            detailViewController.title = sender?["title"] as? String
             detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
         }
         else if segue.identifier == "showStatus" {
@@ -66,11 +69,11 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
                 statusViewController.isShareMode = sender!.boolValue
             }
         } else if segue.identifier == "embedGroupTable" {
-            let groupTableViewController: GroupTableViewController = segue.destinationViewController as GroupTableViewController
+            groupTableViewController = segue.destinationViewController as GroupTableViewController
             groupTableViewController.delegate = self
         } else if segue.identifier == "embedGroupCollection" {
-            let groupCollectionViewController: GroupCollectionViewController = segue.destinationViewController as GroupCollectionViewController
-            //groupCollectionViewController.delegate = self
+            groupCollectionViewController = segue.destinationViewController as GroupCollectionViewController
+            groupCollectionViewController.delegate = self
         }
     }
     
@@ -87,6 +90,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     // MARK: IBAction
 
     @IBAction func segmentControlChanged(sender: AnyObject) {
+        self.reload()
         noPictureView?.removeFromSuperview()
         self.showContainerAtIndex(segmentedControl.selectedSegmentIndex)
     }
@@ -99,6 +103,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         else {
             var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "showDeletedMessage", userInfo: nil, repeats: false)
         }
+        
+        self.reload()
         
         // スコア表示
         let archivementManager = ArchivementManager.getInstance()
@@ -146,14 +152,25 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         requestAccessToPhotos()
     }
     
-    func tapCell(groupInfo: GroupInfo) {
-        self.performSegueWithIdentifier("pushDetail", sender: groupInfo)
+    func tapGroup(groupInfo: GroupInfo, title: String) {
+        self.performSegueWithIdentifier("pushDetail", sender: ["groupInfo": groupInfo, "title": title])
     }
     
     func emptyGroupInfoList() {
         noPictureView?.removeFromSuperview()
         noPictureView = NoPictureView(frame: self.view.frame)
         self.view.addSubview(noPictureView)
+    }
+    
+    func tapImage(asset: PHAsset) {
+    }
+    
+    private func reload() {
+        if (segmentedControl.selectedSegmentIndex == 0) {
+            groupTableViewController.reload()
+        } else if (segmentedControl.selectedSegmentIndex == 1) {
+            groupCollectionViewController.reload()
+        }
     }
     
     // MARK: PromoteViewDelegate
@@ -183,7 +200,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
             case .Authorized:
                 // 許可されてる
                 dispatch_async(dispatch_get_main_queue(), {
-//                    self.reload()
+                    self.reload()
 //                    AnalyticsManager().configureCountsDimension(self.seriesList)
                 })
                 
@@ -210,9 +227,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
 
         case .Authorized:
             // 許可されてる
-            // TODO
-            println()
-//            self.reload()
+            self.reload()
 //            AnalyticsManager().configureCountsDimension(seriesList)
         }
     }
