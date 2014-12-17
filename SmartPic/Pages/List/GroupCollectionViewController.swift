@@ -102,11 +102,12 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cellInfo: NSDictionary = cellInfoList[indexPath.row]
+        let cellInfo: Dictionary = cellInfoList[indexPath.row]
+        let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
         if (cellInfo["type"] as String == "image") {
             println("tap image")
         } else if (cellInfo["type"] as String == "date") {
-            delegate?.tapGroup(groupInfoList[cellInfo["groupIndex"] as Int], title:"2014/11/11")
+            delegate?.tapGroup(groupInfoList[cellInfo["groupIndex"] as Int], title:groupInfo.dateStrFromDate())
         }
     }
     
