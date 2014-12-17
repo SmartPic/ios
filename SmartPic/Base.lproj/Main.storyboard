@@ -821,10 +821,10 @@
             </objects>
             <point key="canvasLocation" x="838" y="-98"/>
         </scene>
-        <!--View Controller-->
+        <!--Full Screen View Controller-->
         <scene sceneID="vYx-Md-Jlu">
             <objects>
-                <viewController id="KIU-dd-Pxo" sceneMemberID="viewController">
+                <viewController id="KIU-dd-Pxo" customClass="FullScreenViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ptb-tQ-hVf"/>
                         <viewControllerLayoutGuide type="bottom" id="L9d-Lh-3CU"/>
@@ -832,8 +832,27 @@
                     <view key="view" contentMode="scaleToFill" id="Xnh-7S-fK9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wOH-xX-qRk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-3J-yD3">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    </imageView>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wOH-xX-qRk" secondAttribute="trailing" id="Fa7-xV-sKP"/>
+                            <constraint firstItem="L9d-Lh-3CU" firstAttribute="top" secondItem="wOH-xX-qRk" secondAttribute="bottom" id="bO1-04-cQK"/>
+                            <constraint firstItem="wOH-xX-qRk" firstAttribute="top" secondItem="Xnh-7S-fK9" secondAttribute="top" id="iG5-Fa-mTy"/>
+                            <constraint firstItem="wOH-xX-qRk" firstAttribute="leading" secondItem="Xnh-7S-fK9" secondAttribute="leading" id="vFq-NA-X3i"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="kNp-3J-yD3" id="Kgq-vp-axI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43Z-Eh-LPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
