@@ -88,6 +88,10 @@ class GroupTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    func sendLog() {
+        AnalyticsManager().configureCountsDimension(groupInfoList)
+    }
+    
     // プルダウンリフレッシュで table 更新
     func onRefresh(refreshControl: UIRefreshControl) {
         reload()

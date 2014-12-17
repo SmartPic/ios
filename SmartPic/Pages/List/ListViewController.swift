@@ -201,7 +201,9 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
                 // 許可されてる
                 dispatch_async(dispatch_get_main_queue(), {
                     self.reload()
-//                    AnalyticsManager().configureCountsDimension(self.seriesList)
+                    if (self.segmentedControl.selectedSegmentIndex == 0) {
+                        self.groupTableViewController.sendLog()
+                    }
                 })
                 
                 // ローカルプッシュ登録
@@ -228,7 +230,9 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         case .Authorized:
             // 許可されてる
             self.reload()
-//            AnalyticsManager().configureCountsDimension(seriesList)
+            if (self.segmentedControl.selectedSegmentIndex == 0) {
+                self.groupTableViewController.sendLog()
+            }
         }
     }
     
