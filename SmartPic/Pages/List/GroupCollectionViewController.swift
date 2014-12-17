@@ -105,9 +105,10 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         let cellInfo: Dictionary = cellInfoList[indexPath.row]
         let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
         if (cellInfo["type"] as String == "image") {
-            println("tap image")
+            let asset: PHAsset = groupInfo.assets[cellInfo["assetIndex"] as Int]
+            delegate?.tapImage(asset)
         } else if (cellInfo["type"] as String == "date") {
-            delegate?.tapGroup(groupInfoList[cellInfo["groupIndex"] as Int], title:groupInfo.dateStrFromDate())
+            delegate?.tapGroup(groupInfo, title:groupInfo.dateStrFromDate())
         }
     }
     

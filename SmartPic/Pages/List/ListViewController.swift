@@ -163,6 +163,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     }
     
     func tapImage(asset: PHAsset) {
+        self.performSegueWithIdentifier("modalFullScreen", sender: self)
     }
     
     private func reload() {

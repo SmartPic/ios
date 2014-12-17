@@ -87,6 +87,7 @@
                         <outlet property="segmentedControl" destination="p69-C4-ghl" id="VEj-xv-Kg1"/>
                         <outlet property="tableContainer" destination="5Cc-CY-R0e" id="zNb-HS-dks"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
+                        <segue destination="KIU-dd-Pxo" kind="modal" identifier="modalFullScreen" modalPresentationStyle="fullScreen" animates="NO" id="egZ-wM-KMn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -819,6 +820,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="teX-jA-BdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="838" y="-98"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="vYx-Md-Jlu">
+            <objects>
+                <viewController id="KIU-dd-Pxo" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ptb-tQ-hVf"/>
+                        <viewControllerLayoutGuide type="bottom" id="L9d-Lh-3CU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xnh-7S-fK9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="43Z-Eh-LPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1450" y="-105"/>
         </scene>
     </scenes>
     <resources>
