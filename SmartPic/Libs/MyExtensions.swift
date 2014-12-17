@@ -66,7 +66,7 @@ extension UIDevice {
                     return "iPhone5/5s/5c"
                 case 1334:
                     return "iPhone6"
-                case 1920:
+                case 2208:
                     return "iPhone6 Plus"
                 default:
                     return "unknown"

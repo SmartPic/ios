@@ -23,7 +23,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     private let photoFetcher = PhotoFetcher()
     private var cellInfoList: [NSDictionary] = []
     private var cellSize: CGSize = CGSizeMake(77, 77)
-    private var cellMinPadding: Float = 4
+    private var cellMinPadding: CGFloat = 4
     
     
     // MARK: UIViewController
@@ -34,8 +34,10 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         let device = UIDevice().segmentName()
         if (device == "iPhone6") {
             cellSize = CGSizeMake(71, 71)
+            cellMinPadding = 5
         } else if (device == "iPhone6 Plus") {
             cellSize = CGSizeMake(78, 78)
+            cellMinPadding = 6
         }
         
         // UIRefreshControl
@@ -110,6 +112,10 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return cellSize
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
+        return cellMinPadding
     }
     
     // MARK: Private methods
