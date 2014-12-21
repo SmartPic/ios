@@ -87,6 +87,7 @@
                         <outlet property="segmentedControl" destination="p69-C4-ghl" id="VEj-xv-Kg1"/>
                         <outlet property="tableContainer" destination="5Cc-CY-R0e" id="zNb-HS-dks"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
+                        <segue destination="KIU-dd-Pxo" kind="modal" identifier="modalFullScreen" modalPresentationStyle="fullScreen" animates="NO" id="egZ-wM-KMn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -820,8 +821,63 @@
             </objects>
             <point key="canvasLocation" x="838" y="-98"/>
         </scene>
+        <!--Full Screen View Controller-->
+        <scene sceneID="vYx-Md-Jlu">
+            <objects>
+                <viewController id="KIU-dd-Pxo" customClass="FullScreenViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ptb-tQ-hVf"/>
+                        <viewControllerLayoutGuide type="bottom" id="L9d-Lh-3CU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Xnh-7S-fK9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="wOH-xX-qRk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-3J-yD3">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                    </imageView>
+                                </subviews>
+                                <connections>
+                                    <outlet property="delegate" destination="KIU-dd-Pxo" id="t7l-37-KVf"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-UM-NI3">
+                                <rect key="frame" x="270" y="518" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="F7a-4u-rUv"/>
+                                    <constraint firstAttribute="width" constant="50" id="JN5-0J-p6j"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="bin">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapBinButton:" destination="KIU-dd-Pxo" eventType="touchUpInside" id="6ui-DS-Qyt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tOs-UM-NI3" secondAttribute="trailing" id="DS9-NA-Zjw"/>
+                            <constraint firstItem="L9d-Lh-3CU" firstAttribute="top" secondItem="tOs-UM-NI3" secondAttribute="bottom" id="o8q-38-9hH"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="kNp-3J-yD3" id="Kgq-vp-axI"/>
+                        <segue destination="hWa-iT-aJL" kind="unwind" identifier="unwindFullScreen" unwindAction="returnFromFullScreen:" id="r19-Tl-gjS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="43Z-Eh-LPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hWa-iT-aJL" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1450" y="-105"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="bin" width="18" height="20"/>
         <image name="close" width="22" height="22"/>
         <image name="delete_icon" width="22" height="22"/>
         <image name="info" width="22" height="22"/>

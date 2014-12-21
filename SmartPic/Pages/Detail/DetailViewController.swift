@@ -251,7 +251,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 else {
                     if success {
                         let tracker = GAI.sharedInstance().defaultTracker;
-                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "", value: delCount).build())
+                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "detail", value: delCount).build())
                         
                         println("delete success!")
                         

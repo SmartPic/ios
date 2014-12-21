@@ -61,8 +61,11 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
             detailViewController.groupInfo = sender?["groupInfo"] as GroupInfo
             detailViewController.title = sender?["title"] as? String
             detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
-        }
-        else if segue.identifier == "showStatus" {
+        } else if segue.identifier == "modalFullScreen" {
+            let fullScreenViewController = segue.destinationViewController as FullScreenViewController
+            fullScreenViewController.asset = sender as PHAsset
+            
+        } else if segue.identifier == "showStatus" {
             if sender is Bool {
                 let nav = segue.destinationViewController as UINavigationController
                 let statusViewController = nav.viewControllers.first as StatusViewController
@@ -96,6 +99,14 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
+        returnWithDeleteAction()
+    }
+    
+    @IBAction func returnFromFullScreen(segue: UIStoryboardSegue) {
+        returnWithDeleteAction()
+    }
+    
+    private func returnWithDeleteAction() {
         let iOS81 = NSOperatingSystemVersion(majorVersion: 8, minorVersion: 1, patchVersion: 0)
         if NSProcessInfo().isOperatingSystemAtLeastVersion(iOS81) {
             showDeletedMessage()
@@ -163,6 +174,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     }
     
     func tapImage(asset: PHAsset) {
+        self.performSegueWithIdentifier("modalFullScreen", sender: asset)
     }
     
     private func reload() {

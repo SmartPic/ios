@@ -40,6 +40,7 @@
 		3FBD50F319E175840096E154 /* SmartPicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBD50F219E175840096E154 /* SmartPicTests.swift */; };
 		3FD057CA1A3D683A0077C787 /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD057C91A3D683A0077C787 /* GroupTableViewController.swift */; };
 		3FD057CC1A3D7E9D0077C787 /* GroupCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD057CB1A3D7E9D0077C787 /* GroupCollectionViewController.swift */; };
+		3FDB92EA1A41BBBD00D926CC /* FullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDB92E91A41BBBD00D926CC /* FullScreenViewController.swift */; };
 		3FDC64A01A203AB500145539 /* LocalPushManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC649F1A203AB500145539 /* LocalPushManager.swift */; };
 		3FF1F55619F69FB700F027E0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01116F19F69B5E005B5F2F /* CoreData.framework */; };
 		3FF1F55719F69FC100F027E0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117119F69B6A005B5F2F /* SystemConfiguration.framework */; };
@@ -107,6 +108,7 @@
 		3FD057C91A3D683A0077C787 /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
 		3FD057CB1A3D7E9D0077C787 /* GroupCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupCollectionViewController.swift; sourceTree = "<group>"; };
 		3FD4C6B719F4A96D00FFE768 /* SmartPic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartPic-Bridging-Header.h"; sourceTree = "<group>"; };
+		3FDB92E91A41BBBD00D926CC /* FullScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenViewController.swift; sourceTree = "<group>"; };
 		3FDC649F1A203AB500145539 /* LocalPushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPushManager.swift; sourceTree = "<group>"; };
 		6E51978BDE9C42F6C83CD5DC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D92D57B919EAE85000B87C20 /* GroupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupInfo.swift; path = Model/GroupInfo.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		3F49A46719E1767C008079CE /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				3FDB92E81A41BB9400D926CC /* FullScreen */,
 				20DB8A9F1A2090F200F7FA32 /* Status */,
 				3FAF0B161A0BB7960057686D /* Common */,
 				3FA754CA19E40CF200EB7FBB /* Detail */,
@@ -320,6 +323,14 @@
 				3FBD50F119E175840096E154 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3FDB92E81A41BB9400D926CC /* FullScreen */ = {
+			isa = PBXGroup;
+			children = (
+				3FDB92E91A41BBBD00D926CC /* FullScreenViewController.swift */,
+			);
+			path = FullScreen;
 			sourceTree = "<group>";
 		};
 		C1C9500F9CA64C77A648F961 /* Frameworks */ = {
@@ -514,6 +525,7 @@
 				3FDC64A01A203AB500145539 /* LocalPushManager.swift in Sources */,
 				3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */,
 				3FB0A74E19E8F24300F06677 /* DetailImageCell.swift in Sources */,
+				3FDB92EA1A41BBBD00D926CC /* FullScreenViewController.swift in Sources */,
 				3F5C301719FCD704002F074F /* TutorialView.swift in Sources */,
 				3FBD50DD19E175840096E154 /* AppDelegate.swift in Sources */,
 				20DB8AA71A21DE9E00F7FA32 /* StatusMusicCell.swift in Sources */,
