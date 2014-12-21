@@ -91,13 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let currentInstallation: PFInstallation = PFInstallation.currentInstallation();
         currentInstallation.setDeviceTokenFromData(deviceToken);
         currentInstallation.channels = ["global"];
-        currentInstallation.saveInBackgroundWithBlock { (isSuccess, error) -> Void in
-            println("oke")
-        }
-    }
-    
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        println(error)
+        currentInstallation.saveInBackgroundWithBlock { (isSuccess, error) -> Void in }
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {

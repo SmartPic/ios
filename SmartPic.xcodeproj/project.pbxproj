@@ -631,7 +631,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "68e50432-9d61-4d01-8d22-35fe8cd236b1";
+				PROVISIONING_PROFILE = "b5cd90b2-a285-450f-974d-44f512a3729b";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -668,7 +668,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "8ac4998b-52d8-44e1-bd45-558271d1e31e";
+				PROVISIONING_PROFILE = "ee836b17-e42e-4574-9ed2-7eaa7b891bb3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -693,7 +693,7 @@
 					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "68e50432-9d61-4d01-8d22-35fe8cd236b1";
+				PROVISIONING_PROFILE = "b5cd90b2-a285-450f-974d-44f512a3729b";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -718,7 +718,7 @@
 					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ac4998b-52d8-44e1-bd45-558271d1e31e";
+				PROVISIONING_PROFILE = "ee836b17-e42e-4574-9ed2-7eaa7b891bb3";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
 			};
 			name = Release;
