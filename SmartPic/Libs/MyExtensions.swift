@@ -39,6 +39,7 @@ extension NSDate {
     func isEqualToDateWithoutTime(compareDate: NSDate) -> Bool {
         let dateFormatter: NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         let compareDateStr: String = dateFormatter.stringFromDate(compareDate)
         let selfDateStr: String = dateFormatter.stringFromDate(self)
         
