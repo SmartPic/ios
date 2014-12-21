@@ -99,6 +99,14 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
+        returnWithDeleteAction()
+    }
+    
+    @IBAction func returnFromFullScreen(segue: UIStoryboardSegue) {
+        returnWithDeleteAction()
+    }
+    
+    private func returnWithDeleteAction() {
         let iOS81 = NSOperatingSystemVersion(majorVersion: 8, minorVersion: 1, patchVersion: 0)
         if NSProcessInfo().isOperatingSystemAtLeastVersion(iOS81) {
             showDeletedMessage()

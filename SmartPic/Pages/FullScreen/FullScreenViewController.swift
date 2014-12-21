@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class FullScreenViewController: UIViewController {
+class FullScreenViewController: UIViewController, UIScrollViewDelegate {
     
     var asset: PHAsset!
     private let photoFetcher = PhotoFetcher()
@@ -23,14 +23,49 @@ class FullScreenViewController: UIViewController {
                 if (image === nil) { return }
                 self.imageView.image = image
         }
+        
+        let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapImageView")
+        imageView.addGestureRecognizer(gestureRecognizer)
     }
     
-    // TODO: UIScrollView の関係で反応しない
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        self.dismissViewControllerAnimated(false, completion: nil)
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return imageView
     }
     
-    override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
+    @IBAction func tapBinButton(sender: AnyObject) {
+        var delCount: Int = 1
+        photoFetcher.deleteImageAssets([asset],
+            completionHandler: { (success, error) -> Void in
+                if error != nil {
+                    println("error occured. error is \(error!)")
+                }
+                else {
+                    if success {
+                        let tracker = GAI.sharedInstance().defaultTracker;
+                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "fullscreen", value: delCount).build())
+                        
+                        // 削除した画像のID、残した画像のIDを記憶しておく
+                        let delManager = DeleteManager.getInstance()
+                        delManager.saveDeletedAssets([self.asset], arrangedAssets: [])
+                        
+                        // レビューアラート用の表示
+                        let reviewManager = ReviewManager.getInstance()
+                        reviewManager.addDeleteCount(delCount)
+                        
+                        dispatch_async(dispatch_get_main_queue(), {
+                            // 解決法
+                            // http://stackoverflow.com/questions/24296023/animatewithdurationanimationscompletion-in-swift/24297018#24297018
+                            _ in self.performSegueWithIdentifier("unwindFullScreen", sender: delCount); return ()
+                        })
+                    }
+                    else {
+                        println("delete failed..")
+                    }
+                }
+        })
+    }
+    
+    func tapImageView() {
         self.dismissViewControllerAnimated(false, completion: nil)
     }
 }
