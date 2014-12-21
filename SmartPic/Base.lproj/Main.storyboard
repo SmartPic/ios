@@ -833,23 +833,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="wOH-xX-qRk">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="wOH-xX-qRk">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-3J-yD3">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-3J-yD3">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="568" id="2i2-6k-cIM"/>
-                                            <constraint firstAttribute="width" constant="320" id="ALB-ob-I0P"/>
-                                        </constraints>
                                     </imageView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="kNp-3J-yD3" secondAttribute="trailing" id="2Dx-Bc-ZOb"/>
-                                    <constraint firstAttribute="bottom" secondItem="kNp-3J-yD3" secondAttribute="bottom" id="Aaw-cz-DtR"/>
-                                    <constraint firstItem="kNp-3J-yD3" firstAttribute="leading" secondItem="wOH-xX-qRk" secondAttribute="leading" id="UoC-A8-G8n"/>
-                                    <constraint firstItem="kNp-3J-yD3" firstAttribute="top" secondItem="wOH-xX-qRk" secondAttribute="top" id="ePS-lC-0ns"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="KIU-dd-Pxo" id="t7l-37-KVf"/>
                                 </connections>
@@ -871,18 +861,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="L9d-Lh-3CU" firstAttribute="top" secondItem="wOH-xX-qRk" secondAttribute="bottom" id="73M-0w-iMN"/>
                             <constraint firstAttribute="trailing" secondItem="tOs-UM-NI3" secondAttribute="trailing" id="DS9-NA-Zjw"/>
                             <constraint firstItem="L9d-Lh-3CU" firstAttribute="top" secondItem="tOs-UM-NI3" secondAttribute="bottom" id="o8q-38-9hH"/>
-                            <constraint firstItem="wOH-xX-qRk" firstAttribute="top" secondItem="Xnh-7S-fK9" secondAttribute="top" id="pWT-Ae-Os3"/>
-                            <constraint firstItem="wOH-xX-qRk" firstAttribute="leading" secondItem="Xnh-7S-fK9" secondAttribute="leading" id="rQ3-SF-USW"/>
-                            <constraint firstAttribute="trailing" secondItem="wOH-xX-qRk" secondAttribute="trailing" id="uoU-8f-aoc"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="kNp-3J-yD3" id="Kgq-vp-axI"/>
-                        <outlet property="imageViewHeightConstraint" destination="2i2-6k-cIM" id="c1Y-jF-8Rw"/>
-                        <outlet property="imageViewWidthConstraint" destination="ALB-ob-I0P" id="knR-s2-isI"/>
                         <segue destination="hWa-iT-aJL" kind="unwind" identifier="unwindFullScreen" unwindAction="returnFromFullScreen:" id="r19-Tl-gjS"/>
                     </connections>
                 </viewController>

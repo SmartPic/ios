@@ -14,8 +14,6 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
     var asset: PHAsset!
     private let photoFetcher = PhotoFetcher()
     
-    @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var imageViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
 
     override func viewDidLoad() {
@@ -28,9 +26,6 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
         
         let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapImageView")
         imageView.addGestureRecognizer(gestureRecognizer)
-        
-        imageViewWidthConstraint.constant = self.view.frame.size.width
-        imageViewHeightConstraint.constant = self.view.frame.size.height
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
