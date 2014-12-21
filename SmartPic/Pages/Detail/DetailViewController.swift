@@ -17,7 +17,6 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
     @IBOutlet weak var pickButton: UIButton!
     @IBOutlet weak var saveButton: FlatButton!
     @IBOutlet weak var leftButton: FlatButton!
-
     @IBOutlet weak var leftEdgeConst: NSLayoutConstraint!
     
     var groupInfo: GroupInfo = GroupInfo() {
@@ -252,13 +251,17 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 else {
                     if success {
                         let tracker = GAI.sharedInstance().defaultTracker;
-                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "", value: delCount).build())
+                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "detail", value: delCount).build())
                         
                         println("delete success!")
                         
                         // 削除した画像のID、残した画像のIDを記憶しておく
                         let delManager = DeleteManager.getInstance()
                         delManager.saveDeletedAssets(delTargetAssets, arrangedAssets: self.pictures)
+                        
+                        // レビューアラート用の表示
+                        let reviewManager = ReviewManager.getInstance()
+                        reviewManager.addDeleteCount(delCount)
                         
                         dispatch_async(dispatch_get_main_queue(), {
                             // 解決法

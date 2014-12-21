@@ -7,20 +7,32 @@
 //
 
 import UIKit
+import Social
 
-class StatusViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class StatusViewController: GAITrackedViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
     private let deleteManager = DeleteManager.getInstance()
     
+    var isShareMode = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.layoutMargins = UIEdgeInsetsZero
-        // Do any additional setup after loading the view.
+
+        // シェアモードならいきなりShareシートを表示
+        if isShareMode {
+            showShareSheet()
+        }
+
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = "効果ページ"
+    }
 
     // MARK: - UITableViewDataSource
     
@@ -42,7 +54,6 @@ class StatusViewController: UIViewController, UITableViewDataSource, UITableView
         case 1:
             cellIdentifier = "PhotoSizeCell"
             let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) as StatusSizeCell
-            println("size is \(deleteManager.deleteAssetIds.count)")
             cell.sizeLabel.text = deleteManager.deleteAssetFileSize.format("%.1f")
             cell.sizeLabel.sizeToFit()
             return cell
@@ -62,10 +73,95 @@ class StatusViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     
+    private func showShareSheet() {
+        let alert = UIAlertController(title: NSLocalizedString("Share the ALPACA score", comment: ""),
+            message: NSLocalizedString("Share how many photo ALPACA deleted!", comment: ""), preferredStyle: .ActionSheet)
+        
+        // Twitter
+        alert.addAction(UIAlertAction(title: "Twitter",
+            style: .Default,
+            handler: { (action) -> Void in
+                self.shareTwitter()
+        }))
+        
+        // Facebook
+        alert.addAction(UIAlertAction(title: "Facebook",
+            style: .Default,
+            handler: { (action) -> Void in
+                self.shareFacebook()
+        }))
+        
+        // Cancel
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""),
+            style: .Cancel,
+            handler: nil))
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    private func captureStatusView() -> UIImage {
+        let size = CGSizeMake(tableView.frame.size.width, 168 * 3)
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        
+        let tableOffset = tableView.contentOffset
+        tableView.contentOffset = CGPointMake(0, 0)
+        
+        let context = UIGraphicsGetCurrentContext()
+        let point = self.view.frame.origin
+        let affineMoveLeftTop: CGAffineTransform = CGAffineTransformMakeTranslation(-point.x, -point.y)
+        CGContextConcatCTM(context, affineMoveLeftTop)
+        
+        // viewから画像を切り取る
+        self.view.layer.renderInContext(context)
+        
+        // UIImage として取得
+        let cnvImg = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        tableView.contentOffset = tableOffset
+
+        return cnvImg
+    }
+    
+    
+    // MARK: - Share SNS
+    
+    private func composeViewController(serviceType: String) -> SLComposeViewController {
+        
+        let count = deleteManager.deleteAssetIds.count
+        let size = deleteManager.deleteAssetFileSize.format("%.1f")
+        
+        let vc = SLComposeViewController(forServiceType: serviceType)
+        let message = NSString(format: NSLocalizedString("ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app", comment: ""), count, String(size))
+        vc.setInitialText(message)
+        vc.addImage(captureStatusView())
+        vc.addURL(NSURL(string: kAppStoreUrl))
+        
+        return vc
+    }
+    
+    private func shareTwitter() {
+        let vc = composeViewController(SLServiceTypeTwitter)
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    private func shareFacebook() {
+        let vc = composeViewController(SLServiceTypeFacebook)
+        self.presentViewController(vc, animated: true, completion: nil)
+    }
+    
+    
     // MARK: - IBAction
     
     @IBAction func closeBtnTouched(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    @IBAction func actionBtnTouched(sender: AnyObject) {
+        showShareSheet()
+    }
+    
 
 }

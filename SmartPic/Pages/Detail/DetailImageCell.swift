@@ -28,6 +28,5 @@ class DetailImageCell: UICollectionViewCell {
         super.awakeFromNib()
         selectedMaskImageView.hidden = true
         staredMaskImageView.hidden = true
-        imageView.contentMode = .ScaleAspectFill
     }
 }
