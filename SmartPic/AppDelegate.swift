@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         Parse.setApplicationId("mrMOryI0lhKW3PIKTRdF2rUsNUAs2CeaeC8eEGWh", clientKey: "i1nIusyCXHRcCpNTNhdSiKtNWhKZDwKlDuviRqGu")
         
         let settings = UIUserNotificationSettings(
@@ -58,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         if (application.applicationState == UIApplicationState.Inactive) {
             handleByNotification(notification)
         }
@@ -95,6 +97,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         PFPush.handlePush(userInfo);
     }
     

@@ -62,6 +62,7 @@ class LocalPushManager: NSObject {
         notification.alertAction = buttonStr
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.userInfo = ["pushId": pushId]
+        notification.applicationIconBadgeNumber = 1
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
@@ -69,6 +70,7 @@ class LocalPushManager: NSObject {
         let tagetDate: NSDate = NSDate(timeIntervalSinceNow: Double(day * secondsOfADay))
         let formatter: NSDateFormatter = NSDateFormatter()
         formatter.dateFormat = "yyyy/MM/dd/HH/Z"
+        formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         let targetDateFormatted: String = formatter.stringFromDate(tagetDate)
         var dateArr: [String] = targetDateFormatted.componentsSeparatedByString("/") as [String]
         dateArr[3] = "21"
