@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 
                 // Analytics のイベント送信
-                let tracker = GAI.sharedInstance().defaultTracker;
+                let tracker = GAI.sharedInstance().defaultTracker
                 tracker.send(GAIDictionaryBuilder.createEventWithCategory("launch by push", action: "localpush", label: "PUSHID-\(pushId)", value: 1).build())
             }
         }
@@ -90,15 +90,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         // Store the deviceToken in the current installation and save it to Parse.
-        let currentInstallation: PFInstallation = PFInstallation.currentInstallation();
-        currentInstallation.setDeviceTokenFromData(deviceToken);
-        currentInstallation.channels = ["global"];
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.channels = ["global"]
         currentInstallation.saveInBackgroundWithBlock { (isSuccess, error) -> Void in }
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         UIApplication.sharedApplication().applicationIconBadgeNumber = 0
-        PFPush.handlePush(userInfo);
+        PFPush.handlePush(userInfo)
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
