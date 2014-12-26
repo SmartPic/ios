@@ -83,3 +83,21 @@ extension UIDevice {
         }
     }
 }
+
+
+extension UIImage {
+    func resizeImageWithSize(size: CGSize) -> UIImage {
+        
+        if CGSizeEqualToSize(self.size, size) {
+            return self
+        }
+        
+        UIGraphicsBeginImageContext(size)
+
+        let context = UIGraphicsGetCurrentContext()
+        CGContextSetInterpolationQuality(context, kCGInterpolationHigh);
+        self.drawInRect(CGRectMake(0, 0, size.width, size.height))
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}
+

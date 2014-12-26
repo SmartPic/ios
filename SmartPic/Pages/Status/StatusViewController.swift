@@ -101,11 +101,18 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
     
     
     private func captureStatusView() -> UIImage {
-        let size = CGSizeMake(tableView.frame.size.width, 168 * 3)
+        let size = CGSizeMake(tableView.frame.size.width, 168 * 3 + 10)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         
+        // キャプチャ前の準備処理
         let tableOffset = tableView.contentOffset
         tableView.contentOffset = CGPointMake(0, 0)
+        tableView.layer.borderWidth = 10.0
+        tableView.layer.borderColor = UIColor.colorWithRGBHex(0xEBEBEB, alpha: 1.0).CGColor
+        
+        let bottomView = UIView(frame: CGRectMake(0, 168*3, size.width, 10))
+        bottomView.backgroundColor = UIColor.colorWithRGBHex(0xEBEBEB, alpha: 1.0)
+        tableView.addSubview(bottomView)
         
         let context = UIGraphicsGetCurrentContext()
         let point = self.view.frame.origin
@@ -120,9 +127,14 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
         
         UIGraphicsEndImageContext()
         
+        // キャプチャ後の後片付け処理
         tableView.contentOffset = tableOffset
-
-        return cnvImg
+        tableView.layer.borderWidth = 0
+        tableView.layer.borderColor = UIColor.clearColor().CGColor
+        bottomView.removeFromSuperview()
+        
+        // リサイズした画像を返す
+        return cnvImg.resizeImageWithSize(CGSizeMake(size.width, size.height))
     }
     
     
