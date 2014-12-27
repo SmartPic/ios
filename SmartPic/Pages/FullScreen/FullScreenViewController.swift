@@ -36,6 +36,13 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
         imageViewHeightConstrraint.constant = self.view.frame.size.height
         self.view.layoutIfNeeded()
     }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "unwindFullScreen") {
+            let listViewController:ListViewController = segue.destinationViewController as ListViewController
+            listViewController.latestDeletedCount = sender as Int
+        }
+    }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
