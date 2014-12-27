@@ -14,10 +14,14 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
     var asset: PHAsset!
     private let photoFetcher = PhotoFetcher()
     
+    @IBOutlet weak var imageViewHeightConstrraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageViewWidthConstraint.constant = self.view.frame.size.width
+        imageViewHeightConstrraint.constant = self.view.frame.size.height
         photoFetcher.requestImageForAsset(asset,
             size: imageView.frame.size) { (image, info) -> Void in
                 if (image === nil) { return }
