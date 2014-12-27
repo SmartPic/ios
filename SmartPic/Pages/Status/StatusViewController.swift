@@ -74,6 +74,13 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
     
     
     private func showShareSheet() {
+        
+        let tracker = GAI.sharedInstance().defaultTracker;
+        tracker.send(GAIDictionaryBuilder.createEventWithCategory("share",
+            action: "show share sheet",
+            label: "status",
+            value: 0).build())
+        
         let alert = UIAlertController(title: NSLocalizedString("Share the ALPACA score", comment: ""),
             message: NSLocalizedString("Share how many photo ALPACA deleted!", comment: ""), preferredStyle: .ActionSheet)
         
@@ -155,6 +162,21 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
         vc.setInitialText(message)
         vc.addImage(captureStatusView())
         vc.addURL(NSURL(string: kAppStoreUrl))
+        vc.completionHandler = {
+            (result: SLComposeViewControllerResult) -> () in 
+            switch (result) {
+            case .Done:
+                let tracker = GAI.sharedInstance().defaultTracker;
+                if serviceType == SLServiceTypeTwitter {
+                    tracker.send(GAIDictionaryBuilder.createEventWithCategory("share", action: "twitter shared", label: "status", value: 0).build())
+                }
+                else if serviceType == SLServiceTypeFacebook {
+                    tracker.send(GAIDictionaryBuilder.createEventWithCategory("share", action: "facebook shared", label: "status", value: 0).build())
+                }
+            default:
+                println("do nothing")
+            }
+        }
         
         return vc
     }
@@ -162,11 +184,17 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
     private func shareTwitter() {
         let vc = composeViewController(SLServiceTypeTwitter)
         self.presentViewController(vc, animated: true, completion: nil)
+        
+        let tracker = GAI.sharedInstance().defaultTracker;
+        tracker.send(GAIDictionaryBuilder.createEventWithCategory("share", action: "twitter tapped", label: "status", value: 0).build())
     }
     
     private func shareFacebook() {
         let vc = composeViewController(SLServiceTypeFacebook)
         self.presentViewController(vc, animated: true, completion: nil)
+        
+        let tracker = GAI.sharedInstance().defaultTracker;
+        tracker.send(GAIDictionaryBuilder.createEventWithCategory("share", action: "facebook tapped", label: "status", value: 0).build())
     }
     
     

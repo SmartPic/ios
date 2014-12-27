@@ -22,6 +22,7 @@ class PromoteView: UIView {
     @IBOutlet weak var detailTextLabel: UILabel!
     
     var isShareMode = false
+    var score: Int = 0
     var delegate: PromoteViewDelegate?
     
     class func view() -> PromoteView {
@@ -74,6 +75,7 @@ class PromoteView: UIView {
     
     func setUpShareMode(score:Int) {
         isShareMode = true
+        self.score = score
         
         actionButton.setTitle(NSLocalizedString("Share", comment:""), forState: .Normal)
         noneButton.setTitle(NSLocalizedString("Not now", comment:""), forState: .Normal)
@@ -85,6 +87,13 @@ class PromoteView: UIView {
         
         if isShareMode {
             delegate?.didTapShareStatusButton()
+            
+            let tracker = GAI.sharedInstance().defaultTracker;
+            tracker.send(GAIDictionaryBuilder.createEventWithCategory("archive",
+                action: "share",
+                label: "promote",
+                value: score).build())
+            
         }
         else {
             let reviewManager = ReviewManager.getInstance()
@@ -94,6 +103,12 @@ class PromoteView: UIView {
             if UIApplication.sharedApplication().canOpenURL(url!) {
                 UIApplication.sharedApplication().openURL(url!)
             }
+            
+            let tracker = GAI.sharedInstance().defaultTracker;
+            tracker.send(GAIDictionaryBuilder.createEventWithCategory("review",
+                action: "review",
+                label: "promote",
+                value: 0).build())
         }
         
         removeViewWithAnimation()
@@ -101,11 +116,23 @@ class PromoteView: UIView {
 
     @IBAction func laterBtnTouched(sender: AnyObject) {
         
-        if !isShareMode {
+        if isShareMode {
+            let tracker = GAI.sharedInstance().defaultTracker;
+            tracker.send(GAIDictionaryBuilder.createEventWithCategory("archive",
+                action: "later",
+                label: "promote",
+                value: score).build())
+        }
+        else {
             let reviewManager = ReviewManager.getInstance()
             reviewManager.resetDeleteCount()
+            
+            let tracker = GAI.sharedInstance().defaultTracker;
+            tracker.send(GAIDictionaryBuilder.createEventWithCategory("review",
+                action: "later",
+                label: "promote",
+                value: 0).build())
         }
-
 
         removeViewWithAnimation()
     }
