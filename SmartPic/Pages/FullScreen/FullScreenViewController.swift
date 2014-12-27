@@ -20,8 +20,6 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageViewWidthConstraint.constant = self.view.frame.size.width
-        imageViewHeightConstrraint.constant = self.view.frame.size.height
         photoFetcher.requestImageForAsset(asset,
             size: imageView.frame.size) { (image, info) -> Void in
                 if (image === nil) { return }
@@ -30,6 +28,12 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
         
         let gestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapImageView")
         imageView.addGestureRecognizer(gestureRecognizer)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        imageViewWidthConstraint.constant = self.view.frame.size.width
+        imageViewHeightConstrraint.constant = self.view.frame.size.height
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
