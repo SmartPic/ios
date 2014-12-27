@@ -89,7 +89,7 @@ class PromoteView: UIView {
             delegate?.didTapShareStatusButton()
             
             let tracker = GAI.sharedInstance().defaultTracker;
-            tracker.send(GAIDictionaryBuilder.createEventWithCategory("archive",
+            tracker.send(GAIDictionaryBuilder.createEventWithCategory("archivement",
                 action: "share",
                 label: "promote",
                 value: score).build())
@@ -118,7 +118,7 @@ class PromoteView: UIView {
         
         if isShareMode {
             let tracker = GAI.sharedInstance().defaultTracker;
-            tracker.send(GAIDictionaryBuilder.createEventWithCategory("archive",
+            tracker.send(GAIDictionaryBuilder.createEventWithCategory("archivement",
                 action: "later",
                 label: "promote",
                 value: score).build())
