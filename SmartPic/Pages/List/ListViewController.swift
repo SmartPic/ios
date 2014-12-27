@@ -93,8 +93,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     // MARK: IBAction
 
     @IBAction func segmentControlChanged(sender: AnyObject) {
-        self.reload()
         noPictureView?.removeFromSuperview()
+        self.reload()
         self.showContainerAtIndex(segmentedControl.selectedSegmentIndex)
     }
     
