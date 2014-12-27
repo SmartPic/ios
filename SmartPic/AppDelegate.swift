@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         Parse.setApplicationId("mrMOryI0lhKW3PIKTRdF2rUsNUAs2CeaeC8eEGWh", clientKey: "i1nIusyCXHRcCpNTNhdSiKtNWhKZDwKlDuviRqGu")
+        resetBadgeNumber()
         
         let settings = UIUserNotificationSettings(
             forTypes: .Badge | .Sound | .Alert,
@@ -60,10 +60,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         if (application.applicationState == UIApplicationState.Inactive) {
             handleByNotification(notification)
         }
+    }
+    
+    // バッヂナンバーをゼロに
+    private func resetBadgeNumber() {
+        let currentInstallation = PFInstallation.currentInstallation()
+        if (currentInstallation.badge != 0) {
+            // Parse に登録されている badge number の値をゼロに
+            currentInstallation.badge = 0
+            currentInstallation.saveEventually()
+        }
+        // アプリ本体のバッヂをゼロに
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     
     // UILocalNotification によって起動後の処理
@@ -97,8 +108,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         PFPush.handlePush(userInfo)
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        resetBadgeNumber()
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
