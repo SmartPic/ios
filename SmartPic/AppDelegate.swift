@@ -18,10 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        Parse.setApplicationId("mrMOryI0lhKW3PIKTRdF2rUsNUAs2CeaeC8eEGWh", clientKey: "i1nIusyCXHRcCpNTNhdSiKtNWhKZDwKlDuviRqGu")
+        
         let settings = UIUserNotificationSettings(
             forTypes: .Badge | .Sound | .Alert,
             categories: nil)
-        application.registerUserNotificationSettings(settings);
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
         
         // Google Analytics
         GAI.sharedInstance().trackUncaughtExceptions = true
@@ -47,14 +51,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         if launchOptions != nil {
-            let notification: UILocalNotification = launchOptions![UIApplicationLaunchOptionsLocalNotificationKey] as UILocalNotification
-            handleByNotification(notification)
+            if let notification: UILocalNotification = launchOptions![UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+                handleByNotification(notification)
+            }
         }
         
         return true
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         if (application.applicationState == UIApplicationState.Inactive) {
             handleByNotification(notification)
         }
@@ -77,10 +83,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 
                 // Analytics のイベント送信
-                let tracker = GAI.sharedInstance().defaultTracker;
+                let tracker = GAI.sharedInstance().defaultTracker
                 tracker.send(GAIDictionaryBuilder.createEventWithCategory("launch by push", action: "localpush", label: "PUSHID-\(pushId)", value: 1).build())
             }
         }
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // Store the deviceToken in the current installation and save it to Parse.
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.saveInBackgroundWithBlock { (isSuccess, error) -> Void in }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        PFPush.handlePush(userInfo)
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {

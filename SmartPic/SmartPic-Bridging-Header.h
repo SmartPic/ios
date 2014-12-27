@@ -12,3 +12,4 @@
 #import "GADRequest.h"
 #import "MBProgressHUD.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>

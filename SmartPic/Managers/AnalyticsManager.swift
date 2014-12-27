@@ -25,6 +25,7 @@ class AnalyticsManager: NSObject {
     
     override init() {
         dateFormatter.dateFormat = "yyyy/MM/dd"
+        dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
     }
     
     // 日付系のディメンションを設定

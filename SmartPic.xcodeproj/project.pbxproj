@@ -47,6 +47,8 @@
 		3FF1F55819F69FD700F027E0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117519F69C71005B5F2F /* AdSupport.framework */; };
 		3FF1F55919F69FE200F027E0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117319F69B71005B5F2F /* libz.dylib */; };
 		3FF1F55A19F69FEB00F027E0 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F01117719F69DBA005B5F2F /* libGoogleAnalyticsServices.a */; };
+		660E12CC1A2EC65D00242033 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660E12CA1A2EC65D00242033 /* Bolts.framework */; };
+		660E12CD1A2EC65D00242033 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660E12CB1A2EC65D00242033 /* Parse.framework */; };
 		C1AB0E7C207F45E2832ED219 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EF35E64378D740D1B0AEB093 /* libPods.a */; };
 		D92D57BA19EAE85000B87C20 /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D92D57B919EAE85000B87C20 /* GroupInfo.swift */; };
 /* End PBXBuildFile section */
@@ -110,6 +112,8 @@
 		3FD4C6B719F4A96D00FFE768 /* SmartPic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartPic-Bridging-Header.h"; sourceTree = "<group>"; };
 		3FDB92E91A41BBBD00D926CC /* FullScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenViewController.swift; sourceTree = "<group>"; };
 		3FDC649F1A203AB500145539 /* LocalPushManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPushManager.swift; sourceTree = "<group>"; };
+		660E12CA1A2EC65D00242033 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		660E12CB1A2EC65D00242033 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		6E51978BDE9C42F6C83CD5DC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D92D57B919EAE85000B87C20 /* GroupInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GroupInfo.swift; path = Model/GroupInfo.swift; sourceTree = "<group>"; };
 		EF35E64378D740D1B0AEB093 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +130,8 @@
 				3FF1F55619F69FB700F027E0 /* CoreData.framework in Frameworks */,
 				3FF1F55A19F69FEB00F027E0 /* libGoogleAnalyticsServices.a in Frameworks */,
 				C1AB0E7C207F45E2832ED219 /* libPods.a in Frameworks */,
+				660E12CD1A2EC65D00242033 /* Parse.framework in Frameworks */,
+				660E12CC1A2EC65D00242033 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +342,8 @@
 		C1C9500F9CA64C77A648F961 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				660E12CA1A2EC65D00242033 /* Bolts.framework */,
+				660E12CB1A2EC65D00242033 /* Parse.framework */,
 				3F01117719F69DBA005B5F2F /* libGoogleAnalyticsServices.a */,
 				3F01117519F69C71005B5F2F /* AdSupport.framework */,
 				3F01117319F69B71005B5F2F /* libz.dylib */,
@@ -623,7 +631,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "480d45f0-6414-4f19-aeaa-a482548072ad";
+				PROVISIONING_PROFILE = "b5cd90b2-a285-450f-974d-44f512a3729b";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -660,7 +668,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "8ac4998b-52d8-44e1-bd45-558271d1e31e";
+				PROVISIONING_PROFILE = "ee836b17-e42e-4574-9ed2-7eaa7b891bb3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -674,6 +682,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: yuki tanabe (4JNUZ2WNNS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: yuki tanabe (4JNUZ2WNNS)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SmartPic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -681,7 +693,7 @@
 					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "480d45f0-6414-4f19-aeaa-a482548072ad";
+				PROVISIONING_PROFILE = "b5cd90b2-a285-450f-974d-44f512a3729b";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -695,6 +707,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: yuki tanabe (RB8FPLPDWC)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: yuki tanabe (RB8FPLPDWC)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = SmartPic/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -702,7 +718,7 @@
 					/Users/tanabe/Downloads/GoogleAnalyticsServicesiOS_3.09,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8ac4998b-52d8-44e1-bd45-558271d1e31e";
+				PROVISIONING_PROFILE = "ee836b17-e42e-4574-9ed2-7eaa7b891bb3";
 				SWIFT_OBJC_BRIDGING_HEADER = "SmartPic/SmartPic-Bridging-Header.h";
 			};
 			name = Release;
