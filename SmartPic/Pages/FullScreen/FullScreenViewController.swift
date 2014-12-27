@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class FullScreenViewController: UIViewController, UIScrollViewDelegate {
+class FullScreenViewController: GAITrackedViewController, UIScrollViewDelegate {
     
     var asset: PHAsset!
     private let photoFetcher = PhotoFetcher()
@@ -35,6 +35,11 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
         imageViewWidthConstraint.constant = self.view.frame.size.width
         imageViewHeightConstrraint.constant = self.view.frame.size.height
         self.view.layoutIfNeeded()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.screenName = "フルスクリーンビュー"
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
