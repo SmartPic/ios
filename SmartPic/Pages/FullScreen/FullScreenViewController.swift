@@ -14,6 +14,8 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
     var asset: PHAsset!
     private let photoFetcher = PhotoFetcher()
     
+    @IBOutlet weak var imageViewHeightConstrraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
 
     override func viewDidLoad() {
@@ -28,6 +30,13 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
         imageView.addGestureRecognizer(gestureRecognizer)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        imageViewWidthConstraint.constant = self.view.frame.size.width
+        imageViewHeightConstrraint.constant = self.view.frame.size.height
+        self.view.layoutIfNeeded()
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "unwindFullScreen") {
             let listViewController:ListViewController = segue.destinationViewController as ListViewController

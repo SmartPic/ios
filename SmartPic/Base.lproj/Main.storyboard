@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -832,13 +832,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="wOH-xX-qRk">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="wOH-xX-qRk">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
-                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-3J-yD3">
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kNp-3J-yD3">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="568" id="ZuN-Nj-0wR"/>
+                                            <constraint firstAttribute="width" constant="320" id="wjI-cM-kf5"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="kNp-3J-yD3" secondAttribute="trailing" id="74g-Ac-pZd"/>
+                                    <constraint firstItem="kNp-3J-yD3" firstAttribute="leading" secondItem="wOH-xX-qRk" secondAttribute="leading" id="IjY-Kl-NcO"/>
+                                    <constraint firstItem="kNp-3J-yD3" firstAttribute="top" secondItem="wOH-xX-qRk" secondAttribute="top" id="g9F-4S-0Dv"/>
+                                    <constraint firstAttribute="bottom" secondItem="kNp-3J-yD3" secondAttribute="bottom" id="lqZ-CP-XIG"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="KIU-dd-Pxo" id="t7l-37-KVf"/>
                                 </connections>
@@ -860,12 +870,18 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wOH-xX-qRk" firstAttribute="top" secondItem="Xnh-7S-fK9" secondAttribute="top" id="A69-0B-RUg"/>
                             <constraint firstAttribute="trailing" secondItem="tOs-UM-NI3" secondAttribute="trailing" id="DS9-NA-Zjw"/>
+                            <constraint firstAttribute="trailing" secondItem="wOH-xX-qRk" secondAttribute="trailing" id="lwy-ak-Bgl"/>
                             <constraint firstItem="L9d-Lh-3CU" firstAttribute="top" secondItem="tOs-UM-NI3" secondAttribute="bottom" id="o8q-38-9hH"/>
+                            <constraint firstItem="wOH-xX-qRk" firstAttribute="leading" secondItem="Xnh-7S-fK9" secondAttribute="leading" id="pVL-gn-Iq4"/>
+                            <constraint firstItem="L9d-Lh-3CU" firstAttribute="top" secondItem="wOH-xX-qRk" secondAttribute="bottom" id="tiF-Ak-3mO"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="kNp-3J-yD3" id="Kgq-vp-axI"/>
+                        <outlet property="imageViewHeightConstrraint" destination="ZuN-Nj-0wR" id="lDL-bm-pZB"/>
+                        <outlet property="imageViewWidthConstraint" destination="wjI-cM-kf5" id="rH6-9a-ej9"/>
                         <segue destination="hWa-iT-aJL" kind="unwind" identifier="unwindFullScreen" unwindAction="returnFromFullScreen:" id="r19-Tl-gjS"/>
                     </connections>
                 </viewController>
