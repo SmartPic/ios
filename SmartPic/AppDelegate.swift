@@ -101,6 +101,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFPush.handlePush(userInfo)
     }
     
+    func applicationDidBecomeActive(application: UIApplication) {
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+    }
+    
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         
         let allowedType = notificationSettings.types
