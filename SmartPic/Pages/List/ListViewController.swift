@@ -93,8 +93,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     // MARK: IBAction
 
     @IBAction func segmentControlChanged(sender: AnyObject) {
-        self.reload()
         noPictureView?.removeFromSuperview()
+        self.reload()
         self.showContainerAtIndex(segmentedControl.selectedSegmentIndex)
     }
     
@@ -171,6 +171,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         noPictureView?.removeFromSuperview()
         noPictureView = NoPictureView(frame: self.view.frame)
         self.view.addSubview(noPictureView)
+        self.view.bringSubviewToFront(noPictureView)
     }
     
     func tapImage(asset: PHAsset) {
