@@ -30,9 +30,9 @@ TUTORIAL_THIRD_SECTION_SUB = "Let's start right now!";
 // 何枚消したか画面
 "ALPACA deleted" = "ALPACA deleted";
 "status_photos" = "photos";
-"Memory Freed" = "Memory Freed";
+"Memory Freed" = "Memory freed";
 "It's as big as" = "It's as big as";
-"music files" = "music files";
+"music files" = "musics";
 
 // Setting のエラー系文言
 ERROR_MESSAGE_WITH_MOVE = "Access to photos is denied. Please change it from the settings.";
