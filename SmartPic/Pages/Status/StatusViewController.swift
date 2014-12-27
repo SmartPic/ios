@@ -101,17 +101,23 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
     
     
     private func captureStatusView() -> UIImage {
-        let size = CGSizeMake(tableView.frame.size.width, 168 * 3 + 10)
+        let statusCellHeight = 168
+        let statusCellCount = 3
+        let statusViewHeight: CGFloat = CGFloat(statusCellHeight * statusCellCount)
+        
+        let bottomBorderWidth: CGFloat = 10
+        
+        let size = CGSizeMake(tableView.frame.size.width, statusViewHeight + bottomBorderWidth)
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         
         // キャプチャ前の準備処理
         let tableOffset = tableView.contentOffset
         tableView.contentOffset = CGPointMake(0, 0)
-        tableView.layer.borderWidth = 10.0
-        tableView.layer.borderColor = UIColor.colorWithRGBHex(0xEBEBEB, alpha: 1.0).CGColor
+        tableView.layer.borderWidth = bottomBorderWidth
+        tableView.layer.borderColor = UIColor.colorWithRGBHex(0xEBEBEB).CGColor
         
-        let bottomView = UIView(frame: CGRectMake(0, 168*3, size.width, 10))
-        bottomView.backgroundColor = UIColor.colorWithRGBHex(0xEBEBEB, alpha: 1.0)
+        let bottomView = UIView(frame: CGRectMake(0, statusViewHeight, size.width, bottomBorderWidth))
+        bottomView.backgroundColor = UIColor.colorWithRGBHex(0xEBEBEB)
         tableView.addSubview(bottomView)
         
         let context = UIGraphicsGetCurrentContext()
@@ -133,8 +139,7 @@ class StatusViewController: GAITrackedViewController, UITableViewDataSource, UIT
         tableView.layer.borderColor = UIColor.clearColor().CGColor
         bottomView.removeFromSuperview()
         
-        // リサイズした画像を返す
-        return cnvImg.resizeImageWithSize(CGSizeMake(size.width, size.height))
+        return cnvImg
     }
     
     
