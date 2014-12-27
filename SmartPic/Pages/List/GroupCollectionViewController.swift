@@ -70,7 +70,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                     ])
             }
         }
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
     
     // MARK: UICollectionViewDataSource

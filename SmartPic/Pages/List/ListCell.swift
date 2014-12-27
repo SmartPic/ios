@@ -21,7 +21,7 @@ class ListCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDel
     
     var series: [PHAsset] = [] {
         didSet {
-            collectionView.reloadData()
+            collectionView?.reloadData()
         }
     }
     
