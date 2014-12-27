@@ -28,6 +28,13 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
         imageView.addGestureRecognizer(gestureRecognizer)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "unwindFullScreen") {
+            let listViewController:ListViewController = segue.destinationViewController as ListViewController
+            listViewController.latestDeletedCount = sender as Int
+        }
+    }
+    
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
         return imageView
     }
