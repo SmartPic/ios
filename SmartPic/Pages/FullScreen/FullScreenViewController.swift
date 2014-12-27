@@ -34,6 +34,7 @@ class FullScreenViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLayoutSubviews()
         imageViewWidthConstraint.constant = self.view.frame.size.width
         imageViewHeightConstrraint.constant = self.view.frame.size.height
+        self.view.layoutIfNeeded()
     }
     
     func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
