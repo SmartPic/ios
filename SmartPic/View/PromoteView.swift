@@ -91,8 +91,8 @@ class PromoteView: UIView {
             let tracker = GAI.sharedInstance().defaultTracker;
             tracker.send(GAIDictionaryBuilder.createEventWithCategory("archivement",
                 action: "share",
-                label: "promote",
-                value: score).build())
+                label: "SCORE-\(score)",
+                value: 0).build())
             
         }
         else {
@@ -107,7 +107,7 @@ class PromoteView: UIView {
             let tracker = GAI.sharedInstance().defaultTracker;
             tracker.send(GAIDictionaryBuilder.createEventWithCategory("review",
                 action: "review",
-                label: "promote",
+                label: "",
                 value: 0).build())
         }
         
@@ -120,8 +120,8 @@ class PromoteView: UIView {
             let tracker = GAI.sharedInstance().defaultTracker;
             tracker.send(GAIDictionaryBuilder.createEventWithCategory("archivement",
                 action: "later",
-                label: "promote",
-                value: score).build())
+                label: "SCORE-\(score)",
+                value: 0).build())
         }
         else {
             let reviewManager = ReviewManager.getInstance()
@@ -130,7 +130,7 @@ class PromoteView: UIView {
             let tracker = GAI.sharedInstance().defaultTracker;
             tracker.send(GAIDictionaryBuilder.createEventWithCategory("review",
                 action: "later",
-                label: "promote",
+                label: "",
                 value: 0).build())
         }
 
