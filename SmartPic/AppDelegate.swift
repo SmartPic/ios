@@ -51,8 +51,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         if launchOptions != nil {
-            let notification: UILocalNotification = launchOptions![UIApplicationLaunchOptionsLocalNotificationKey] as UILocalNotification
-            handleByNotification(notification)
+            if let notification: UILocalNotification = launchOptions![UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+                handleByNotification(notification)
+            }
         }
         
         return true
@@ -92,7 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Store the deviceToken in the current installation and save it to Parse.
         let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
-        currentInstallation.channels = ["global"]
         currentInstallation.saveInBackgroundWithBlock { (isSuccess, error) -> Void in }
     }
     
