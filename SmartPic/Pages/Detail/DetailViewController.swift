@@ -24,6 +24,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
             self.pictures = groupInfo.assets
         }
     }
+    var pageName: String = "serially group"// "serially group" or "date group"
     var pictures: [PHAsset] = []
     var canKeepAll = true
     
@@ -251,7 +252,7 @@ class DetailViewController: GAITrackedViewController, UICollectionViewDataSource
                 else {
                     if success {
                         let tracker = GAI.sharedInstance().defaultTracker;
-                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "detail", value: delCount).build())
+                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: self.pageName, value: delCount).build())
                         
                         println("delete success!")
                         

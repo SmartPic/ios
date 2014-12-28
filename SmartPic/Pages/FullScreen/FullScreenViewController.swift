@@ -63,7 +63,7 @@ class FullScreenViewController: GAITrackedViewController, UIScrollViewDelegate {
                 else {
                     if success {
                         let tracker = GAI.sharedInstance().defaultTracker;
-                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "fullscreen", value: delCount).build())
+                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: "single", value: delCount).build())
                         
                         // 削除した画像のID、残した画像のIDを記憶しておく
                         let delManager = DeleteManager.getInstance()

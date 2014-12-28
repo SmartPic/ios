@@ -57,10 +57,12 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "pushDetail" {
+            let title = sender?["title"] as? String
             let detailViewController:DetailViewController = segue.destinationViewController as DetailViewController
             detailViewController.groupInfo = sender?["groupInfo"] as GroupInfo
-            detailViewController.title = sender?["title"] as? String
+            detailViewController.title = title
             detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
+            detailViewController.pageName = (title == "") ? "serially group" : "date group"
         } else if segue.identifier == "modalFullScreen" {
             let fullScreenViewController = segue.destinationViewController as FullScreenViewController
             fullScreenViewController.asset = sender as PHAsset
