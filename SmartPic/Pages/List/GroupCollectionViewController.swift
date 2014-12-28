@@ -43,7 +43,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         // UIRefreshControl
         let refreshControl: UIRefreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        collectionView.addSubview(refreshControl)
+        collectionView?.addSubview(refreshControl)
         
         reload()
     }
