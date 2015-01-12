@@ -82,15 +82,29 @@ class PhotoFetcher: NSObject {
                     var date: NSDate = asset.creationDate
                     var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
                     
-                    // 10秒以内に撮影された写真は同じグループだと考える
-                    // それ以上離れた場合は別グループを作成する
-                    if (interval > 10) {
-                        if (!isExceptDeleted || self.shouldAppendAssets(innerAssets)) {
-                            var group = GroupInfo(assets: innerAssets)
-                            self.groups.append(group)
+                    // 整理対象の画像取得
+                    if (isExceptDeleted) {
+                        
+                        // 10秒以内に撮影された写真は同じグループだと考える
+                        // それ以上離れた場合は別グループを作成する
+                        if (interval > 10) {
+                            if (self.shouldAppendAssets(innerAssets)) {
+                                var group = GroupInfo(assets: innerAssets)
+                                self.groups.append(group)
+                            }
+                            
+                            innerAssets = []
                         }
                         
-                        innerAssets = []
+                    // 全ての画像取得
+                    // 日付ごとにグルーピング
+                    } else {
+                        if (!date.isEqualToDateWithoutTime(prevDate!)) {
+                            var group = GroupInfo(assets: innerAssets)
+                            self.groups.append(group)
+                            
+                            innerAssets = []
+                        }
                     }
                 }
                 
@@ -99,10 +113,16 @@ class PhotoFetcher: NSObject {
             }
         }
         
-        if (!innerAssets.isEmpty
-            && (!isExceptDeleted || self.shouldAppendAssets(innerAssets))) {
-            var group = GroupInfo(assets: innerAssets)
-            self.groups.append(group)
+        if (!innerAssets.isEmpty) {
+            if (isExceptDeleted) {
+                if (self.shouldAppendAssets(innerAssets)) {
+                    var group = GroupInfo(assets: innerAssets)
+                    self.groups.append(group)
+                }
+            } else {
+                var group = GroupInfo(assets: innerAssets)
+                self.groups.append(group)
+            }
         }
         
         return self.groups
@@ -144,15 +164,28 @@ class PhotoFetcher: NSObject {
                         var date: NSDate = asset.creationDate
                         var interval: NSTimeInterval = prevDate!.timeIntervalSinceDate(date)
                         
-                        // 10秒以内に撮影された写真は同じグループだと考える
-                        // それ以上離れた場合は別グループを作成する
-                        if (interval > 10) {
-                            if (!isExceptDeleted || self.shouldAppendAssets(innerAssets)) {
-                                var group = GroupInfo(assets: innerAssets)
-                                self.groups.append(group)
+                        // 整理対象の画像取得
+                        if (isExceptDeleted) {
+                            // 10秒以内に撮影された写真は同じグループだと考える
+                            // それ以上離れた場合は別グループを作成する
+                            if (interval > 10) {
+                                if (!isExceptDeleted || self.shouldAppendAssets(innerAssets)) {
+                                    var group = GroupInfo(assets: innerAssets)
+                                    self.groups.append(group)
+                                }
+                                
+                                innerAssets = []
                             }
                             
-                            innerAssets = []
+                        // 全ての画像取得
+                        // 日付ごとにグルーピング
+                        } else {
+                            if (!date.isEqualToDateWithoutTime(prevDate!)) {
+                                var group = GroupInfo(assets: innerAssets)
+                                self.groups.append(group)
+                                
+                                innerAssets = []
+                            }
                         }
                     }
                     
@@ -164,7 +197,12 @@ class PhotoFetcher: NSObject {
         }
         
         if (!innerAssets.isEmpty) {
-            if (!isExceptDeleted || self.shouldAppendAssets(innerAssets)) {
+            if (isExceptDeleted) {
+                if (self.shouldAppendAssets(innerAssets)) {
+                    var group = GroupInfo(assets: innerAssets)
+                    self.groups.append(group)
+                }
+            } else {
                 var group = GroupInfo(assets: innerAssets)
                 self.groups.append(group)
             }

@@ -8,6 +8,8 @@
 
 import UIKit
 
+private let kAppVersion = "APP_VERSION"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -16,10 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        Parse.setApplicationId("mrMOryI0lhKW3PIKTRdF2rUsNUAs2CeaeC8eEGWh", clientKey: "i1nIusyCXHRcCpNTNhdSiKtNWhKZDwKlDuviRqGu")
+        resetBadgeNumber()
+        
         let settings = UIUserNotificationSettings(
             forTypes: .Badge | .Sound | .Alert,
             categories: nil)
-        application.registerUserNotificationSettings(settings);
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
         
         // Google Analytics
         GAI.sharedInstance().trackUncaughtExceptions = true
@@ -31,11 +37,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UI
         UINavigationBar.appearance().barTintColor = UIColor.colorWithRGBHex(0x29b9ac)
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.whiteColor()
+        ]
         UIApplication.sharedApplication().setStatusBarStyle(.LightContent, animated: false)
         
+        if isUpdate() {
+            // アップデート時に行う処理
+            
+            // レビューしたかどうかはリセット
+            let reviewManager = ReviewManager.getInstance()
+            reviewManager.resetReviewDone()
+        }
+
         if launchOptions != nil {
-            let notification: UILocalNotification = launchOptions![UIApplicationLaunchOptionsLocalNotificationKey] as UILocalNotification
-            handleByNotification(notification)
+            if let notification: UILocalNotification = launchOptions![UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+                handleByNotification(notification)
+            }
         }
         
         return true
@@ -45,6 +63,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (application.applicationState == UIApplicationState.Inactive) {
             handleByNotification(notification)
         }
+    }
+    
+    // バッヂナンバーをゼロに
+    private func resetBadgeNumber() {
+        let currentInstallation = PFInstallation.currentInstallation()
+        if (currentInstallation.badge != 0) {
+            // Parse に登録されている badge number の値をゼロに
+            currentInstallation.badge = 0
+            currentInstallation.saveEventually()
+        }
+        // アプリ本体のバッヂをゼロに
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
     }
     
     // UILocalNotification によって起動後の処理
@@ -64,10 +94,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 
                 // Analytics のイベント送信
-                let tracker = GAI.sharedInstance().defaultTracker;
+                let tracker = GAI.sharedInstance().defaultTracker
                 tracker.send(GAIDictionaryBuilder.createEventWithCategory("launch by push", action: "localpush", label: "PUSHID-\(pushId)", value: 1).build())
             }
         }
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // Store the deviceToken in the current installation and save it to Parse.
+        let currentInstallation: PFInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.saveInBackgroundWithBlock { (isSuccess, error) -> Void in }
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
+    }
+    
+    func applicationDidBecomeActive(application: UIApplication) {
+        resetBadgeNumber()
     }
     
     func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
@@ -78,6 +123,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AnalyticsManager().configureNotificationDemension("No")
         default:
             AnalyticsManager().configureNotificationDemension("Yes")
+        }
+    }
+
+    
+    private func isUpdate() -> Bool {
+        let currentVersion = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let saveVersion = defaults.objectForKey(kAppVersion) as? String
+        
+        if saveVersion == nil {
+            // 初めてのインストール
+            defaults.setObject(currentVersion, forKey: kAppVersion)
+            println("first install! current version:[\(currentVersion!)]")
+            return true
+        }
+        else {
+            // バージョンが違う
+            if saveVersion != currentVersion {
+                defaults.setObject(currentVersion, forKey: kAppVersion)
+                println("save version:[\(saveVersion!)] <-> current version:[\(currentVersion!)]")
+                return true
+            }
+            else {
+                println("same version")
+                return false
+            }
         }
     }
 }
