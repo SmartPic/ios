@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // Flurry 設定
+        Flurry.setCrashReportingEnabled(true)
+        Flurry.startSession("KQ42ZGQQ7CNFXH3YJHXR")
+        
+        // Parse 設定
         Parse.setApplicationId("mrMOryI0lhKW3PIKTRdF2rUsNUAs2CeaeC8eEGWh", clientKey: "i1nIusyCXHRcCpNTNhdSiKtNWhKZDwKlDuviRqGu")
         resetBadgeNumber()
         
