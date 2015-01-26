@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -67,7 +67,7 @@
                             </button>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
-                            <rect key="frame" x="59" y="6" width="203" height="32"/>
+                            <rect key="frame" x="58.5" y="6" width="203" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Not Organized"/>
@@ -791,16 +791,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YOP-qq-wjJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="77" height="77"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="YOP-qq-wjJ" secondAttribute="bottom" id="03N-9d-rik"/>
+                                    <constraint firstAttribute="bottom" secondItem="YOP-qq-wjJ" secondAttribute="bottom" constant="13" id="03N-9d-rik"/>
                                     <constraint firstItem="YOP-qq-wjJ" firstAttribute="top" secondItem="yEO-XI-yTh" secondAttribute="top" id="Bdt-4L-3o9"/>
                                     <constraint firstItem="YOP-qq-wjJ" firstAttribute="leading" secondItem="yEO-XI-yTh" secondAttribute="leading" id="Wes-0q-GuZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="YOP-qq-wjJ" secondAttribute="trailing" id="ye3-Yl-c8R"/>
+                                    <constraint firstAttribute="trailing" secondItem="YOP-qq-wjJ" secondAttribute="trailing" constant="13" id="ye3-Yl-c8R"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="YOP-qq-wjJ" id="jOz-fC-B33"/>

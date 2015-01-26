@@ -31,6 +31,8 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView?.allowsMultipleSelection = true
+        
         let device = UIDevice().segmentName()
         if (device == "iPhone6") {
             cellSize = CGSizeMake(71, 71)
@@ -90,6 +92,13 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                 size: cell.imageView.frame.size) { (image, info) -> Void in
                     cell.imageView.image = image
             }
+            
+            let v = UIView()
+            v.backgroundColor = UIColor.yellowColor()
+            v.layer.borderColor = UIColor.redColor().CGColor
+            v.layer.borderWidth = 5
+            cell.selectedBackgroundView = v
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionDateCell", forIndexPath: indexPath) as CollectionDateCell
