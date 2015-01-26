@@ -25,13 +25,15 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     private var cellSize: CGSize = CGSizeMake(77, 77)
     private var cellMinPadding: CGFloat = 4
     
+    private var editMode = false
+    
     
     // MARK: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.allowsMultipleSelection = true
+        setUpEditButton()
         
         let device = UIDevice().segmentName()
         if (device == "iPhone6") {
@@ -111,13 +113,16 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cellInfo: Dictionary = cellInfoList[indexPath.row]
-        let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
-        if (cellInfo["type"] as String == "image") {
-            let asset: PHAsset = groupInfo.assets[cellInfo["assetIndex"] as Int]
-            delegate?.tapImage(asset)
-        } else if (cellInfo["type"] as String == "date") {
-            delegate?.tapGroup(groupInfo, title:groupInfo.dateStrFromDate())
+
+        if !editMode {
+            let cellInfo: Dictionary = cellInfoList[indexPath.row]
+            let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
+            if (cellInfo["type"] as String == "image") {
+                let asset: PHAsset = groupInfo.assets[cellInfo["assetIndex"] as Int]
+                delegate?.tapImage(asset)
+            } else if (cellInfo["type"] as String == "date") {
+                delegate?.tapGroup(groupInfo, title:groupInfo.dateStrFromDate())
+            }
         }
     }
     
@@ -129,11 +134,32 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         return cellMinPadding
     }
     
+    
+    // MARK: - User Action
+    
+    func editBtnTouched() {
+        println("edit btn touched")
+
+        editMode = true
+        collectionView?.allowsSelection = !editMode
+    }
+    
+    
     // MARK: Private methods
     
     // プルダウンリフレッシュで table 更新
     func onRefresh(refreshControl: UIRefreshControl) {
         reload()
         refreshControl.endRefreshing()
+    }
+    
+    private func setUpEditButton() {
+        collectionView?.allowsSelection = !editMode
+        
+        let rightBarItem = UIBarButtonItem(title: "Edit",
+            style: UIBarButtonItemStyle.Done,
+            target: self,
+            action: "editBtnTouched")
+        self.navigationItem.rightBarButtonItem = rightBarItem
     }
 }
