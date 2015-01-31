@@ -12,6 +12,7 @@ import Photos
 class FullScreenRootViewController: GAITrackedViewController {
     
     var assets: [PHAsset]!
+    var currentIndex: Int = -1
     
     // MARK: UIViewController
 
@@ -28,6 +29,7 @@ class FullScreenRootViewController: GAITrackedViewController {
         if segue.identifier == "embedFullScreenPage" {
             let viewController:FullScreenPageViewController = segue.destinationViewController as FullScreenPageViewController
             viewController.assets = assets
+            viewController.currentIndex = currentIndex
         }
     }
 }

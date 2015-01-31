@@ -11,7 +11,19 @@ import Photos
 
 class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
-    var assets: [PHAsset]!
+    var assets: [PHAsset] = [] {
+        didSet {
+            if (currentIndex == -1) { return }
+            self.configureCurrentViewController()
+        }
+    }
+    var currentIndex: Int = -1 {
+        didSet {
+            if (assets.count == 0) { return }
+            self.configureCurrentViewController()
+        }
+    }
+    
     private let photoFetcher = PhotoFetcher()
     
     // MARK: UIViewController
@@ -39,12 +51,16 @@ class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDe
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         return nil
     }
-
+    
     // MARK: Private methods
     
-    func viewControllerAtIndex() -> UIViewController {
+    private func viewControllerAtIndex(index: Int) -> FullScreenViewController {
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier(FullScreenViewController.className) as FullScreenViewController
-        viewController.asset = assets[0]
+        viewController.asset = assets[index]
         return viewController
+    }
+    
+    private func configureCurrentViewController() {
+        self.setViewControllers([self.viewControllerAtIndex(currentIndex)], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
     }
 }
