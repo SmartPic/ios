@@ -28,6 +28,7 @@
 		3F9C028C19FE7E6700442726 /* NoPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C028B19FE7E6700442726 /* NoPictureView.swift */; };
 		3F9C029019FE7E8900442726 /* NoPictureView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C028F19FE7E8900442726 /* NoPictureView.xib */; };
 		3FA134E41A7C5D6500D5E194 /* FullScreenPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA134E31A7C5D6500D5E194 /* FullScreenPageViewController.swift */; };
+		3FA134E61A7C696200D5E194 /* FullScreenRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA134E51A7C696200D5E194 /* FullScreenRootViewController.swift */; };
 		3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA49E7519E23D0200D86E8A /* ListImageCell.swift */; };
 		3FA754C919E4092700EB7FBB /* MyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754C819E4092700EB7FBB /* MyExtensions.swift */; };
 		3FA754CC19E40D1900EB7FBB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */; };
@@ -94,6 +95,7 @@
 		3F9C028B19FE7E6700442726 /* NoPictureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoPictureView.swift; sourceTree = "<group>"; };
 		3F9C028F19FE7E8900442726 /* NoPictureView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoPictureView.xib; sourceTree = "<group>"; };
 		3FA134E31A7C5D6500D5E194 /* FullScreenPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenPageViewController.swift; sourceTree = "<group>"; };
+		3FA134E51A7C696200D5E194 /* FullScreenRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenRootViewController.swift; sourceTree = "<group>"; };
 		3FA49E7519E23D0200D86E8A /* ListImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListImageCell.swift; sourceTree = "<group>"; };
 		3FA754C819E4092700EB7FBB /* MyExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyExtensions.swift; sourceTree = "<group>"; };
 		3FA754CB19E40D1900EB7FBB /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -336,8 +338,9 @@
 		3FDB92E81A41BB9400D926CC /* FullScreen */ = {
 			isa = PBXGroup;
 			children = (
-				3FDB92E91A41BBBD00D926CC /* FullScreenViewController.swift */,
+				3FA134E51A7C696200D5E194 /* FullScreenRootViewController.swift */,
 				3FA134E31A7C5D6500D5E194 /* FullScreenPageViewController.swift */,
+				3FDB92E91A41BBBD00D926CC /* FullScreenViewController.swift */,
 			);
 			path = FullScreen;
 			sourceTree = "<group>";
@@ -524,6 +527,7 @@
 				3F0CF8961A3D9572005B00A2 /* CollectionImageCell.swift in Sources */,
 				3F49A46C19E17A47008079CE /* ListCell.swift in Sources */,
 				3FA49E7619E23D0200D86E8A /* ListImageCell.swift in Sources */,
+				3FA134E61A7C696200D5E194 /* FullScreenRootViewController.swift in Sources */,
 				20F8EF071A389EF6005EEC56 /* Const.swift in Sources */,
 				3FD057CA1A3D683A0077C787 /* GroupTableViewController.swift in Sources */,
 				3F9C028C19FE7E6700442726 /* NoPictureView.swift in Sources */,
