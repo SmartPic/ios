@@ -834,12 +834,13 @@
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zce-fj-aDq">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="MI4-Zt-uvQ" kind="embed" identifier="embedFullScreenPage" id="Hky-Og-b8c"/>
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Zce-fj-aDq" secondAttribute="trailing" id="0cl-UH-zaa"/>
                             <constraint firstItem="Zce-fj-aDq" firstAttribute="top" secondItem="Rmq-90-FNE" secondAttribute="top" id="Nnk-eN-n3q"/>
@@ -855,7 +856,7 @@
         <!--Full Screen Page View Controller-->
         <scene sceneID="ih9-sb-wl4">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="MI4-Zt-uvQ" customClass="FullScreenPageViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="MI4-Zt-uvQ" customClass="FullScreenPageViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Nk-Oi-OFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1694" y="-130"/>

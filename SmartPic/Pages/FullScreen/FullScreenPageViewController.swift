@@ -45,14 +45,37 @@ class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDe
     // MARK: UIPageViewController
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        return nil
+        let index: Int = self.indexOfViewController(viewController as FullScreenViewController) as Int
+        println("viewControllerBeforeViewController: ", index)
+        if (index == NSNotFound ||
+            index == 0) {
+            return nil
+        }
+        
+        return self.viewControllerAtIndex(index-1)
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        return nil
+        let index: Int = self.indexOfViewController(viewController as FullScreenViewController) as Int
+        println("viewControllerAfterViewController: ", index)
+        if (index == NSNotFound ||
+            index == assets.count-1) {
+            return nil
+        }
+        
+        return self.viewControllerAtIndex(index+1)
     }
     
     // MARK: Private methods
+    
+    private func indexOfViewController(viewController: FullScreenViewController) -> Int {
+        for var i = 0; i < assets.count; i++ {
+            if (assets[i].localIdentifier == viewController.asset.localIdentifier) {
+                return i
+            }
+        }
+        return NSNotFound
+    }
     
     private func viewControllerAtIndex(index: Int) -> FullScreenViewController {
         let viewController = self.storyboard?.instantiateViewControllerWithIdentifier(FullScreenViewController.className) as FullScreenViewController
@@ -61,6 +84,8 @@ class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDe
     }
     
     private func configureCurrentViewController() {
+        println(assets.count)
+        println(currentIndex)
         self.setViewControllers([self.viewControllerAtIndex(currentIndex)], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
     }
 }
