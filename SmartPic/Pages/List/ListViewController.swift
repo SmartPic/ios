@@ -64,8 +64,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
             detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
             detailViewController.pageName = (title == "") ? "serially group" : "date group"
         } else if segue.identifier == "modalFullScreen" {
-            let fullScreenViewController = segue.destinationViewController as FullScreenViewController
-            fullScreenViewController.asset = sender as PHAsset
+            let viewController = segue.destinationViewController as FullScreenPageViewController
+            viewController.asset = sender as PHAsset
             
         } else if segue.identifier == "showStatus" {
             if sender is Bool {

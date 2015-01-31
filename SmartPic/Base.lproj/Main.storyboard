@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6221" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -67,7 +67,7 @@
                             </button>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
-                            <rect key="frame" x="58.5" y="6" width="203" height="32"/>
+                            <rect key="frame" x="59" y="6" width="203" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Not Organized"/>
@@ -85,7 +85,7 @@
                         <outlet property="segmentedControl" destination="p69-C4-ghl" id="VEj-xv-Kg1"/>
                         <outlet property="tableContainer" destination="5Cc-CY-R0e" id="zNb-HS-dks"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
-                        <segue destination="KIU-dd-Pxo" kind="modal" identifier="modalFullScreen" modalPresentationStyle="fullScreen" animates="NO" id="egZ-wM-KMn"/>
+                        <segue destination="MI4-Zt-uvQ" kind="modal" identifier="modalFullScreen" id="drh-lj-XvA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -820,10 +820,18 @@
             </objects>
             <point key="canvasLocation" x="838" y="-98"/>
         </scene>
+        <!--Full Screen Page View Controller-->
+        <scene sceneID="ih9-sb-wl4">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="MI4-Zt-uvQ" customClass="FullScreenPageViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Nk-Oi-OFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1349" y="-106"/>
+        </scene>
         <!--Full Screen View Controller-->
         <scene sceneID="vYx-Md-Jlu">
             <objects>
-                <viewController id="KIU-dd-Pxo" customClass="FullScreenViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FullScreenViewController" id="KIU-dd-Pxo" customClass="FullScreenViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ptb-tQ-hVf"/>
                         <viewControllerLayoutGuide type="bottom" id="L9d-Lh-3CU"/>
@@ -888,7 +896,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43Z-Eh-LPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="hWa-iT-aJL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1450" y="-105"/>
+            <point key="canvasLocation" x="1723" y="-106"/>
         </scene>
     </scenes>
     <resources>
