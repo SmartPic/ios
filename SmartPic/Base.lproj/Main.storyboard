@@ -839,17 +839,39 @@
                                     <segue destination="MI4-Zt-uvQ" kind="embed" identifier="embedFullScreenPage" id="Hky-Og-b8c"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-UM-NI3">
+                                <rect key="frame" x="262" y="510" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="F7a-4u-rUv"/>
+                                    <constraint firstAttribute="width" constant="50" id="JN5-0J-p6j"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="trashbin">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" image="trashbin_hover"/>
+                                <connections>
+                                    <action selector="tapBinButton:" destination="2yV-q9-XXK" eventType="touchUpInside" id="xBW-FG-t6s"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Zce-fj-aDq" secondAttribute="trailing" id="0cl-UH-zaa"/>
+                            <constraint firstAttribute="trailing" secondItem="tOs-UM-NI3" secondAttribute="trailing" constant="8" id="8aL-3B-3FS"/>
+                            <constraint firstItem="vvF-MT-cCw" firstAttribute="top" secondItem="tOs-UM-NI3" secondAttribute="bottom" constant="8" id="LRU-3d-Gkn"/>
                             <constraint firstItem="Zce-fj-aDq" firstAttribute="top" secondItem="Rmq-90-FNE" secondAttribute="top" id="Nnk-eN-n3q"/>
                             <constraint firstItem="Zce-fj-aDq" firstAttribute="leading" secondItem="Rmq-90-FNE" secondAttribute="leading" id="QDt-RL-1Fs"/>
                             <constraint firstItem="vvF-MT-cCw" firstAttribute="top" secondItem="Zce-fj-aDq" secondAttribute="bottom" id="WOa-cw-7tU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="xP8-8V-XK7" kind="unwind" identifier="unwindFullScreen" unwindAction="returnFromFullScreen:" id="c3b-9P-ebB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9LM-xK-9HK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xP8-8V-XK7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1316" y="-130"/>
         </scene>
@@ -883,22 +905,6 @@
                                             <constraint firstAttribute="width" constant="320" id="wjI-cM-kf5"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-UM-NI3">
-                                        <rect key="frame" x="262" y="510" width="50" height="50"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="F7a-4u-rUv"/>
-                                            <constraint firstAttribute="width" constant="50" id="JN5-0J-p6j"/>
-                                        </constraints>
-                                        <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" image="trashbin">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted" image="trashbin_hover"/>
-                                        <connections>
-                                            <action selector="tapBinButton:" destination="KIU-dd-Pxo" eventType="touchUpInside" id="6ui-DS-Qyt"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="kNp-3J-yD3" secondAttribute="trailing" id="74g-Ac-pZd"/>
@@ -923,11 +929,9 @@
                         <outlet property="imageView" destination="kNp-3J-yD3" id="Kgq-vp-axI"/>
                         <outlet property="imageViewHeightConstrraint" destination="ZuN-Nj-0wR" id="lDL-bm-pZB"/>
                         <outlet property="imageViewWidthConstraint" destination="wjI-cM-kf5" id="rH6-9a-ej9"/>
-                        <segue destination="hWa-iT-aJL" kind="unwind" identifier="unwindFullScreen" unwindAction="returnFromFullScreen:" id="r19-Tl-gjS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43Z-Eh-LPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="hWa-iT-aJL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2049" y="-130"/>
         </scene>

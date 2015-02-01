@@ -11,20 +11,13 @@ import Photos
 
 class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
     
+    var currentIndex: Int = -1
     var assets: [PHAsset] = [] {
         didSet {
             if (currentIndex == -1) { return }
             self.configureCurrentViewController()
         }
     }
-    var currentIndex: Int = -1 {
-        didSet {
-            if (assets.count == 0) { return }
-            self.configureCurrentViewController()
-        }
-    }
-    
-    private let photoFetcher = PhotoFetcher()
     
     // MARK: UIViewController
 
@@ -58,6 +51,11 @@ class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDe
         }
         
         return self.viewControllerAtIndex(index+1)
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject], transitionCompleted completed: Bool) {
+        let viewController: FullScreenViewController = pageViewController.viewControllers.last as FullScreenViewController
+        currentIndex = self.indexOfViewController(viewController)
     }
     
     // MARK: Private methods
