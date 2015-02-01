@@ -32,10 +32,6 @@ class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDe
         super.viewDidLoad()
         delegate = self
         dataSource = self
-        
-        let viewController = self.storyboard?.instantiateViewControllerWithIdentifier(FullScreenViewController.className) as FullScreenViewController
-        viewController.asset = assets[0]
-        self.setViewControllers([viewController], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,7 +42,6 @@ class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDe
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
         let index: Int = self.indexOfViewController(viewController as FullScreenViewController) as Int
-        println("viewControllerBeforeViewController: ", index)
         if (index == NSNotFound ||
             index == 0) {
             return nil
@@ -57,7 +52,6 @@ class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDe
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
         let index: Int = self.indexOfViewController(viewController as FullScreenViewController) as Int
-        println("viewControllerAfterViewController: ", index)
         if (index == NSNotFound ||
             index == assets.count-1) {
             return nil
@@ -84,8 +78,6 @@ class FullScreenPageViewController: UIPageViewController, UIPageViewControllerDe
     }
     
     private func configureCurrentViewController() {
-        println(assets.count)
-        println(currentIndex)
         self.setViewControllers([self.viewControllerAtIndex(currentIndex)], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion: nil)
     }
 }
