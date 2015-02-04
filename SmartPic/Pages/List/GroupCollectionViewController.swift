@@ -25,15 +25,13 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     private var cellSize: CGSize = CGSizeMake(77, 77)
     private var cellMinPadding: CGFloat = 4
     
-    private var editMode = false
-    
+    private var isEditMode = false
+    private var selectedIndexPathes = [NSIndexPath]()
     
     // MARK: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setUpEditButton()
         
         let device = UIDevice().segmentName()
         if (device == "iPhone6") {
@@ -95,11 +93,14 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                     cell.imageView.image = image
             }
             
-            let v = UIView()
-            v.backgroundColor = UIColor.yellowColor()
-            v.layer.borderColor = UIColor.redColor().CGColor
-            v.layer.borderWidth = 5
-            cell.selectedBackgroundView = v
+            // 選択中のcellは色をつける
+            if find(selectedIndexPathes, indexPath) != nil {
+                cell.selected = true
+                
+                let v = UIView()
+                v.backgroundColor = UIColor.yellowColor()
+                cell.selectedBackgroundView = v
+            }
             
             return cell
         } else {
@@ -114,7 +115,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
-        if !editMode {
+        if !isEditMode {
             let cellInfo: Dictionary = cellInfoList[indexPath.row]
             let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
             if (cellInfo["type"] as String == "image") {
@@ -123,6 +124,19 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
             } else if (cellInfo["type"] as String == "date") {
                 delegate?.tapGroup(groupInfo, title:groupInfo.dateStrFromDate())
             }
+        }
+        else {
+            let index = find(selectedIndexPathes, indexPath)
+            if index == nil {
+                println("\(indexPath) を追加")
+                selectedIndexPathes.append(indexPath)
+            }
+            else {
+                println("\(indexPath) を削除")
+                selectedIndexPathes.removeAtIndex(index!)
+            }
+            
+            collectionView.reloadData()
         }
     }
     
@@ -135,15 +149,20 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     
-    // MARK: - User Action
-    
-    func editBtnTouched() {
-        println("edit btn touched")
-
-        editMode = true
-        collectionView?.allowsSelection = !editMode
+    func startEditMode() {
+        isEditMode = true
     }
     
+    func doneEditMode() {
+        isEditMode = false
+        selectedIndexPathes = []
+        collectionView?.reloadData()
+    }
+    
+    func submitDeletion() {
+        let count = selectedIndexPathes.count
+        println("\(count)枚の写真を削除する")
+    }
     
     // MARK: Private methods
     
@@ -153,13 +172,4 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         refreshControl.endRefreshing()
     }
     
-    private func setUpEditButton() {
-        collectionView?.allowsSelection = !editMode
-        
-        let rightBarItem = UIBarButtonItem(title: "Edit",
-            style: UIBarButtonItemStyle.Done,
-            target: self,
-            action: "editBtnTouched")
-        self.navigationItem.rightBarButtonItem = rightBarItem
     }
-}

@@ -37,6 +37,18 @@
                                     <constraint firstAttribute="width" constant="320" id="pbM-Ao-NtI"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCu-eM-Qqb">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="eaz-Tf-n3E"/>
+                                </constraints>
+                                <state key="normal" title="選択した写真を削除する">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteBtnTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="47i-5f-qit"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -45,9 +57,12 @@
                             <constraint firstItem="PpJ-UE-gAX" firstAttribute="top" secondItem="5Cc-CY-R0e" secondAttribute="bottom" id="OrF-O9-L2Q"/>
                             <constraint firstItem="9Cx-xI-Nmv" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="PNi-mY-m39"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PpJ-UE-gAX" secondAttribute="bottom" id="U4S-xe-O2m"/>
+                            <constraint firstItem="zCu-eM-Qqb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="bx0-VP-dJE"/>
                             <constraint firstItem="5Cc-CY-R0e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="eat-DN-Wad"/>
                             <constraint firstAttribute="trailing" secondItem="5Cc-CY-R0e" secondAttribute="trailing" id="eft-X0-eR1"/>
+                            <constraint firstAttribute="trailing" secondItem="zCu-eM-Qqb" secondAttribute="trailing" id="fC3-t8-2V2"/>
                             <constraint firstAttribute="centerX" secondItem="PpJ-UE-gAX" secondAttribute="centerX" id="faL-7h-95K"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="zCu-eM-Qqb" secondAttribute="bottom" id="i3j-nr-jrU"/>
                             <constraint firstItem="9Cx-xI-Nmv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="oLo-a3-TI3"/>
                             <constraint firstItem="PpJ-UE-gAX" firstAttribute="top" secondItem="9Cx-xI-Nmv" secondAttribute="bottom" id="zQl-H9-1OP"/>
                         </constraints>
@@ -67,7 +82,7 @@
                             </button>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
-                            <rect key="frame" x="58.5" y="6" width="203" height="32"/>
+                            <rect key="frame" x="58.5" y="4.5" width="203" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Not Organized"/>
@@ -90,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="437" y="526"/>
+            <point key="canvasLocation" x="457" y="525"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="jvp-Al-Dyl">

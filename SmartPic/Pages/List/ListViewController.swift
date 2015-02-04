@@ -15,12 +15,15 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     @IBOutlet weak var collectionContainer: UIView!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    private var editButton: UIButton?
     
     var tutorialView: TutorialView!
     var noPictureView: NoPictureView!
     var latestDeletedCount: Int = 0
     var groupTableViewController: GroupTableViewController!
     var groupCollectionViewController: GroupCollectionViewController!
+    
+    var isEditMode = false
     private let photoFetcher = PhotoFetcher()
 
     override func viewDidLoad() {
@@ -37,6 +40,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         
+        setUpEditButton()
         
         if photoFetcher.isFinishPhotoLoading {
             self.checkAccessToPhotos()
@@ -52,6 +56,13 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.screenName = "リストページ"
+    }
+    
+    private func setUpEditButton() {
+        editButton = UIButton()
+        editButton?.setTitle("Edit", forState: UIControlState.Normal)
+        editButton?.sizeToFit()
+        editButton?.addTarget(self, action: "editBtnTouched", forControlEvents: .TouchUpInside)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -86,9 +97,12 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         if (index == 0) {
             collectionContainer.hidden = true
             tableContainer.hidden = false
+            self.navigationItem.rightBarButtonItem = nil
+            
         } else if (index == 1) {
             tableContainer.hidden = true
             collectionContainer.hidden = false
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton!)
         }
     }
 
@@ -107,6 +121,26 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     @IBAction func returnFromFullScreen(segue: UIStoryboardSegue) {
         returnWithDeleteAction()
     }
+    
+    func editBtnTouched() {
+        isEditMode = !isEditMode
+        
+        if isEditMode {
+            groupCollectionViewController.startEditMode()
+            editButton?.setTitle("End", forState: .Normal)
+        }
+        else {
+            groupCollectionViewController.doneEditMode()
+            editButton?.setTitle("Edit", forState: .Normal)
+            
+        }
+    
+    }
+    
+    @IBAction func deleteBtnTouched(sender: AnyObject) {
+        groupCollectionViewController.submitDeletion()
+    }
+    
     
     private func returnWithDeleteAction() {
         let iOS81 = NSOperatingSystemVersion(majorVersion: 8, minorVersion: 1, patchVersion: 0)
