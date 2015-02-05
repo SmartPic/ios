@@ -234,6 +234,12 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         isEditMode = false
         groupCollectionViewController.doneEditMode()
         editButton?.setTitle("Edit", forState: .Normal)
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.deleteBottomConst.constant = -50
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+        })
     }
     
     private func reload() {
