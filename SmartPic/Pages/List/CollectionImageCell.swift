@@ -10,6 +10,18 @@ import UIKit
 
 class CollectionImageCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var selectedView: UIView!
+    
+    var isSelected: Bool = false {
+        didSet {
+            selectedView.hidden = !isSelected
+        }
+    }
+    
+    override func awakeFromNib() {
+        selectedView.hidden = true
+    }
+    
 }
 
 

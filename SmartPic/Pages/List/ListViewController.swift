@@ -213,6 +213,12 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         self.performSegueWithIdentifier("modalFullScreen", sender: asset)
     }
     
+    func doneEditMode() {
+        isEditMode = false
+        groupCollectionViewController.doneEditMode()
+        editButton?.setTitle("Edit", forState: .Normal)
+    }
+    
     private func reload() {
         if (segmentedControl.selectedSegmentIndex == 0) {
             groupTableViewController.reload()

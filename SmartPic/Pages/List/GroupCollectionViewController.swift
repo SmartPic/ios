@@ -12,6 +12,8 @@ import Photos
 protocol GroupCollectionViewDelegate {
     func tapGroup(groupInfo: GroupInfo, title: String)
     func tapImage(asset: PHAsset)
+    
+    func doneEditMode()
 }
 
 class GroupCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -24,6 +26,8 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     private var cellInfoList: [NSDictionary] = []
     private var cellSize: CGSize = CGSizeMake(77, 77)
     private var cellMinPadding: CGFloat = 4
+    
+    var pageName: String = "multi selected"// "serially group" or "date group"
     
     private var isEditMode = false
     private var selectedIndexPathes = [NSIndexPath]()
@@ -45,7 +49,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         // UIRefreshControl
         let refreshControl: UIRefreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        collectionView?.addSubview(refreshControl)
+        collectionView.addSubview(refreshControl)
         
         reload()
     }
@@ -72,7 +76,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                     ])
             }
         }
-        collectionView?.reloadData()
+        collectionView.reloadData()
     }
     
     // MARK: UICollectionViewDataSource
@@ -95,11 +99,10 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
             
             // 選択中のcellは色をつける
             if find(selectedIndexPathes, indexPath) != nil {
-                cell.selected = true
-                
-                let v = UIView()
-                v.backgroundColor = UIColor.yellowColor()
-                cell.selectedBackgroundView = v
+                cell.isSelected = true
+            }
+            else {
+                cell.isSelected = false
             }
             
             return cell
@@ -126,6 +129,14 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
             }
         }
         else {
+            let cellInfo: Dictionary = cellInfoList[indexPath.row]
+            let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
+            
+            // 日付セルの場合は何もしない
+            if cellInfo["type"] as String == "date" {
+                return
+            }
+            
             let index = find(selectedIndexPathes, indexPath)
             if index == nil {
                 println("\(indexPath) を追加")
@@ -156,12 +167,59 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     func doneEditMode() {
         isEditMode = false
         selectedIndexPathes = []
-        collectionView?.reloadData()
+        collectionView.reloadData()
     }
     
     func submitDeletion() {
         let count = selectedIndexPathes.count
         println("\(count)枚の写真を削除する")
+        
+        var delTargetAssets = [PHAsset]()
+        
+        for indexPath in selectedIndexPathes {
+            let cellInfo: Dictionary = cellInfoList[indexPath.row]
+            let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
+            if (cellInfo["type"] as String == "image") {
+                let asset: PHAsset = groupInfo.assets[cellInfo["assetIndex"] as Int]
+                delTargetAssets.append(asset)
+            }
+        }
+        
+        var delCount: Int = delTargetAssets.count
+        photoFetcher.deleteImageAssets(delTargetAssets,
+            completionHandler: { (success, error) -> Void in
+                if error != nil {
+                    println("error occured. error is \(error!)")
+                }
+                else {
+                    if success {
+                        let tracker = GAI.sharedInstance().defaultTracker;
+                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: self.pageName, value: delCount).build())
+                        
+                        println("delete success!")
+                        
+                        // 削除した画像のID、残した画像のIDを記憶しておく
+                        let delManager = DeleteManager.getInstance()
+                        delManager.saveDeletedAssets(delTargetAssets, arrangedAssets: [])
+                        
+                        // レビューアラート用の表示
+                        let reviewManager = ReviewManager.getInstance()
+                        reviewManager.addDeleteCount(delCount)
+                        
+                        // 更新
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.reload()
+                        })
+
+                    }
+                    else {
+                        println("delete failed..")
+                    }
+                }
+        })
+        
+        // 編集モード完了
+        delegate?.doneEditMode()
     }
     
     // MARK: Private methods
@@ -172,4 +230,4 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         refreshControl.endRefreshing()
     }
     
-    }
+}
