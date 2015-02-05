@@ -16,6 +16,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     private var editButton: UIButton?
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var deleteBottomConst: NSLayoutConstraint!
     
     var tutorialView: TutorialView!
     var noPictureView: NoPictureView!
@@ -63,6 +65,10 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         editButton?.setTitle("Edit", forState: UIControlState.Normal)
         editButton?.sizeToFit()
         editButton?.addTarget(self, action: "editBtnTouched", forControlEvents: .TouchUpInside)
+        
+        deleteBottomConst.constant = -50
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -128,13 +134,24 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         if isEditMode {
             groupCollectionViewController.startEditMode()
             editButton?.setTitle("End", forState: .Normal)
+            
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.deleteBottomConst.constant = 0
+                self.view.setNeedsLayout()
+                self.view.layoutIfNeeded()
+            })
+
         }
         else {
             groupCollectionViewController.doneEditMode()
             editButton?.setTitle("Edit", forState: .Normal)
             
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.deleteBottomConst.constant = -50
+                self.view.setNeedsLayout()
+                self.view.layoutIfNeeded()
+            })
         }
-    
     }
     
     @IBAction func deleteBtnTouched(sender: AnyObject) {
