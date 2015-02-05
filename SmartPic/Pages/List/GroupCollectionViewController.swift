@@ -139,11 +139,9 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
             
             let index = find(selectedIndexPathes, indexPath)
             if index == nil {
-                println("\(indexPath) を追加")
                 selectedIndexPathes.append(indexPath)
             }
             else {
-                println("\(indexPath) を削除")
                 selectedIndexPathes.removeAtIndex(index!)
             }
             
@@ -171,9 +169,6 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     func submitDeletion() {
-        let count = selectedIndexPathes.count
-        println("\(count)枚の写真を削除する")
-        
         var delTargetAssets = [PHAsset]()
         
         for indexPath in selectedIndexPathes {
