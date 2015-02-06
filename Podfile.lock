@@ -1,19 +1,14 @@
 PODS:
-  - FlurrySDK (5.4.0):
-    - FlurrySDK/FlurrySDK (= 5.4.0)
-  - FlurrySDK/FlurrySDK (5.4.0)
   - Google-Mobile-Ads-SDK (6.12.2)
   - GoogleAnalytics-iOS-SDK (3.0.9)
   - MBProgressHUD (0.9)
 
 DEPENDENCIES:
-  - FlurrySDK (~> 5.4)
   - Google-Mobile-Ads-SDK (~> 6.12.2)
   - GoogleAnalytics-iOS-SDK (~> 3.0.9)
   - MBProgressHUD (~> 0.8)
 
 SPEC CHECKSUMS:
-  FlurrySDK: bed9e5598353f867508d164795a451e3ada92cb6
   Google-Mobile-Ads-SDK: 9761186eb5dc5e1493e71dcce2b525159f763d42
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
