@@ -71,7 +71,7 @@ class FullScreenViewController: GAITrackedViewController, UIScrollViewDelegate {
                         
                         // レビューアラート用の表示
                         let reviewManager = ReviewManager.getInstance()
-                        reviewManager.addDeleteCount(delCount)
+                        reviewManager.incrementDeleteCount()
                         
                         dispatch_async(dispatch_get_main_queue(), {
                             // 解決法

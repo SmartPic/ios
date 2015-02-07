@@ -11,6 +11,5 @@
 #import "GADBannerView.h"
 #import "GADRequest.h"
 #import "MBProgressHUD.h"
-#import "Flurry.h"
 #import <QuartzCore/QuartzCore.h>
 #import <Parse/Parse.h>
