@@ -145,7 +145,10 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                 selectedIndexPathes.removeAtIndex(index!)
             }
             
-            collectionView.reloadData()
+            // 更新時にチラつかないように performWithoutAnimation 内でリロード実行
+            UIView.performWithoutAnimation({ () -> Void in
+                self.collectionView.reloadData()
+            })
         }
     }
     
@@ -199,7 +202,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                         
                         // レビューアラート用の表示
                         let reviewManager = ReviewManager.getInstance()
-                        reviewManager.addDeleteCount(delCount)
+                        reviewManager.incrementDeleteCount()
                         
                         // 更新
                         dispatch_async(dispatch_get_main_queue(), {
