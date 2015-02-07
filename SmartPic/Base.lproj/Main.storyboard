@@ -929,6 +929,7 @@
                         <outlet property="imageView" destination="kNp-3J-yD3" id="Kgq-vp-axI"/>
                         <outlet property="imageViewHeightConstrraint" destination="ZuN-Nj-0wR" id="lDL-bm-pZB"/>
                         <outlet property="imageViewWidthConstraint" destination="wjI-cM-kf5" id="rH6-9a-ej9"/>
+                        <outlet property="scrollView" destination="wOH-xX-qRk" id="IdG-Fd-7gJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43Z-Eh-LPr" userLabel="First Responder" sceneMemberID="firstResponder"/>

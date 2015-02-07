@@ -14,6 +14,7 @@ class FullScreenViewController: GAITrackedViewController, UIScrollViewDelegate {
     var asset: PHAsset!
     private let photoFetcher = PhotoFetcher()
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageViewHeightConstrraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
@@ -39,6 +40,7 @@ class FullScreenViewController: GAITrackedViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        scrollView.zoomScale = 1
         self.screenName = "フルスクリーンビュー"
     }
 
