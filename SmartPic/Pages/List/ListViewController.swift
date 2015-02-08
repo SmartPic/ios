@@ -62,7 +62,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     
     private func setUpEditButton() {
         editButton = UIButton()
-        editButton?.setTitle("Edit", forState: UIControlState.Normal)
+        editButton?.setTitle("Select", forState: UIControlState.Normal)
+        editButton?.titleLabel?.minimumScaleFactor = 0.7
         editButton?.sizeToFit()
         editButton?.addTarget(self, action: "editBtnTouched", forControlEvents: .TouchUpInside)
         
@@ -118,6 +119,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         noPictureView?.removeFromSuperview()
         self.reload()
         self.showContainerAtIndex(segmentedControl.selectedSegmentIndex)
+        
+        doneEditMode()
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
@@ -144,7 +147,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         }
         else {
             groupCollectionViewController.doneEditMode()
-            editButton?.setTitle("Edit", forState: .Normal)
+            editButton?.setTitle("Select", forState: .Normal)
             
             UIView.animateWithDuration(0.2, animations: { () -> Void in
                 self.deleteBottomConst.constant = -50
@@ -233,7 +236,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     func doneEditMode() {
         isEditMode = false
         groupCollectionViewController.doneEditMode()
-        editButton?.setTitle("Edit", forState: .Normal)
+        editButton?.setTitle("Select", forState: .Normal)
         
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             self.deleteBottomConst.constant = -50

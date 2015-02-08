@@ -10,7 +10,7 @@ import UIKit
 
 class CollectionImageCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var selectedView: UIView!
+    @IBOutlet weak var selectedView: UIImageView!
     
     var isSelected: Bool = false {
         didSet {
