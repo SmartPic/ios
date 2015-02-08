@@ -11,7 +11,7 @@ import Photos
 
 protocol GroupCollectionViewDelegate {
     func tapGroup(groupInfo: GroupInfo, title: String)
-    func tapImage(asset: PHAsset)
+    func tapImage(assets: [PHAsset], index:Int)
 }
 
 class GroupCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -24,6 +24,10 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     private var cellInfoList: [NSDictionary] = []
     private var cellSize: CGSize = CGSizeMake(77, 77)
     private var cellMinPadding: CGFloat = 4
+    
+    // すべての写真を日時順に格納する配列
+    // フルスクリーンに遷移した際に利用
+    private var allAssets: [PHAsset] = []
     
     
     // MARK: UIViewController
@@ -55,6 +59,8 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     func reload() {
         groupInfoList = photoFetcher.allPhotoGroupingByTime()
         cellInfoList = []
+        allAssets = []
+        var k = 0
         for (var i = 0; i < groupInfoList.count; i++) {
             let groupInfo: GroupInfo = groupInfoList[i]
             cellInfoList.append([
@@ -66,8 +72,11 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                 cellInfoList.append([
                     "type": "image",
                     "groupIndex": i,
-                    "assetIndex": j
+                    "assetIndex": j,
+                    "allAssetsIndex": k
                     ])
+                allAssets.append(groupInfo.assets[j])
+                k++
             }
         }
         collectionView?.reloadData()
@@ -106,7 +115,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
         if (cellInfo["type"] as String == "image") {
             let asset: PHAsset = groupInfo.assets[cellInfo["assetIndex"] as Int]
-            delegate?.tapImage(asset)
+            delegate?.tapImage(allAssets, index: cellInfo["allAssetsIndex"] as Int)
         } else if (cellInfo["type"] as String == "date") {
             delegate?.tapGroup(groupInfo, title:groupInfo.dateStrFromDate())
         }

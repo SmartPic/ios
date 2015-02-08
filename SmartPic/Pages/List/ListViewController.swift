@@ -64,8 +64,9 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
             detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
             detailViewController.pageName = (title == "") ? "serially group" : "date group"
         } else if segue.identifier == "modalFullScreen" {
-            let fullScreenViewController = segue.destinationViewController as FullScreenViewController
-            fullScreenViewController.asset = sender as PHAsset
+            let viewController = segue.destinationViewController as FullScreenRootViewController
+            viewController.assets = sender?["assets"] as [PHAsset]
+            viewController.currentIndex = sender?["index"] as Int
             
         } else if segue.identifier == "showStatus" {
             if sender is Bool {
@@ -175,8 +176,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         self.view.addSubview(noPictureView)
     }
     
-    func tapImage(asset: PHAsset) {
-        self.performSegueWithIdentifier("modalFullScreen", sender: asset)
+    func tapImage(assets: [PHAsset], index: Int) {
+        self.performSegueWithIdentifier("modalFullScreen", sender: ["assets":assets, "index":index])
     }
     
     private func reload() {
