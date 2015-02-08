@@ -12,6 +12,8 @@
 "Not Organized" = "정리 대상";
 "All" = "모든 사진";
 "photos" = "장의 사진";
+"Select" = "선택";
+"Delete marked photos" = "선택한 사진을 삭제하기";
 NO_PICTURE_MESSAGE = "정리할 사진이 없네요...";
 
 // Tutorial
@@ -38,7 +40,6 @@ TUTORIAL_THIRD_SECTION_SUB = "바로 지금 시작해요!";
 ERROR_MESSAGE_WITH_MOVE = "사진의 액세스 권한이 거부되어 있습니다. 설정에서 변경해 주십시오.";
 ERROR_MESSAGE_WITHOUT_MOVE = "디바이스의 제한으로 인해 사진에 악세스할 수 없습니다. 자녀 보호 설정 등의 설정을 확인해 주십시오.";
 "Error" = "Error";
-"Cancel" = "Cancel";
 "To Settings." = "설정으로 이동";
 
 // ローカルプッシュ
@@ -61,5 +62,5 @@ ERROR_MESSAGE_WITHOUT_MOVE = "디바이스의 제한으로 인해 사진에 악�
 // シェア画面
 "Share the ALPACA score" = "ALPACA스코어를 공유하기";
 "Share how many photo ALPACA deleted!" = "ALPACA로 삭제한 성과를 공유하세요!";
-"Cancel" = "취소하기";
+"Cancel" = "취소";
 "ALPACA deleted %d photos, and freed %@ MB! #ALPACA_app" = "ALPACA로 %d장의 사진을 삭제하여, %@ MB의 용량을 획득! #ALPACA_app";

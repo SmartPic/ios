@@ -12,6 +12,8 @@
 "Not Organized" = "整理対象";
 "All" = "すべて";
 "photos" = "枚の写真";
+"Select" = "選択";
+"Delete marked photos" = "選択した写真を削除する";
 NO_PICTURE_MESSAGE = "整理すべき写真はないようだ...";
 
 // Tutorial
@@ -38,7 +40,6 @@ TUTORIAL_THIRD_SECTION_SUB = "今すぐはじめよう！";
 ERROR_MESSAGE_WITH_MOVE = "「写真」へのアクセスが拒否されています。設定より変更してください";
 ERROR_MESSAGE_WITHOUT_MOVE = "端末の制限により写真にアクセスできません。ペアレンタルコントロールなど、端末の設定をご確認ください";
 "Error" = "エラー";
-"Cancel" = "キャンセル";
 "To Settings." = "設定画面へ";
 
 // ローカルプッシュ

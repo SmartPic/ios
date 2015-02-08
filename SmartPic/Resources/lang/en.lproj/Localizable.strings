@@ -12,6 +12,8 @@
 "Not Organized" = "Not Organized";
 "All" = "All";
 "photos" = "photos";
+"Select" = "Select";
+"Delete marked photos" = "Delete marked photos";
 NO_PICTURE_MESSAGE = "There's no photo to organize...";
 
 // Tutorial
@@ -38,7 +40,6 @@ TUTORIAL_THIRD_SECTION_SUB = "Let's start right now!";
 ERROR_MESSAGE_WITH_MOVE = "Access to photos is denied. Please change it from the settings.";
 ERROR_MESSAGE_WITHOUT_MOVE = "Your phone doesn't allow us to access photos. Please check the settings such as parental controls.";
 "Error" = "Error";
-"Cancel" = "Cancel";
 "To Settings." = "To Settings.";
 
 // ローカルプッシュ
