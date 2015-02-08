@@ -20,6 +20,15 @@ class CollectionImageCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         selectedView.hidden = true
+        
+        let device = UIDevice().segmentName()
+        if (device == "iPhone6") {
+            selectedView.image = UIImage(named: "selected_6")
+        } else if (device == "iPhone6 Plus") {
+            selectedView.image = UIImage(named: "selected_6plus")
+        } else {
+            selectedView.image = UIImage(named: "selected_5")
+        }
     }
     
 }

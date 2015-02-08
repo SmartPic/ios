@@ -63,8 +63,10 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     private func setUpEditButton() {
         editButton = UIButton()
         editButton?.setTitle("Select", forState: UIControlState.Normal)
-        editButton?.titleLabel?.minimumScaleFactor = 0.7
+        editButton?.titleLabel?.font = UIFont.systemFontOfSize(14)
         editButton?.sizeToFit()
+        println("editBUtton \(editButton!.frame)")
+        
         editButton?.addTarget(self, action: "editBtnTouched", forControlEvents: .TouchUpInside)
         
         deleteBottomConst.constant = -50
@@ -104,12 +106,16 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         if (index == 0) {
             collectionContainer.hidden = true
             tableContainer.hidden = false
-            self.navigationItem.rightBarButtonItem = nil
+            self.navigationItem.rightBarButtonItems = nil
             
         } else if (index == 1) {
             tableContainer.hidden = true
             collectionContainer.hidden = false
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: editButton!)
+            
+            let negativeSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace,
+                target: nil, action: nil)
+            negativeSpace.width = -8
+            self.navigationItem.setRightBarButtonItems([negativeSpace, UIBarButtonItem(customView: editButton!)], animated: false)
         }
     }
 

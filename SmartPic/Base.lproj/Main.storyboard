@@ -84,7 +84,7 @@
                             </button>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="p69-C4-ghl">
-                            <rect key="frame" x="58.5" y="6" width="203" height="32"/>
+                            <rect key="frame" x="58.5" y="7" width="203" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Not Organized"/>
@@ -812,7 +812,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YOP-qq-wjJ">
                                             <rect key="frame" x="0.0" y="0.0" width="77" height="77"/>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="selected_6plus" translatesAutoresizingMaskIntoConstraints="NO" id="H26-No-mab">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selected_6plus" translatesAutoresizingMaskIntoConstraints="NO" id="H26-No-mab">
                                             <rect key="frame" x="0.0" y="0.0" width="77" height="77"/>
                                         </imageView>
                                     </subviews>
@@ -821,7 +821,11 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="YOP-qq-wjJ" secondAttribute="bottom" id="03N-9d-rik"/>
                                     <constraint firstItem="YOP-qq-wjJ" firstAttribute="top" secondItem="yEO-XI-yTh" secondAttribute="top" id="Bdt-4L-3o9"/>
+                                    <constraint firstAttribute="trailing" secondItem="H26-No-mab" secondAttribute="trailing" id="MPf-uD-jKL"/>
+                                    <constraint firstAttribute="bottom" secondItem="H26-No-mab" secondAttribute="bottom" id="TW5-oY-NbS"/>
                                     <constraint firstItem="YOP-qq-wjJ" firstAttribute="leading" secondItem="yEO-XI-yTh" secondAttribute="leading" id="Wes-0q-GuZ"/>
+                                    <constraint firstItem="H26-No-mab" firstAttribute="top" secondItem="yEO-XI-yTh" secondAttribute="top" id="lT8-Fc-DdY"/>
+                                    <constraint firstItem="H26-No-mab" firstAttribute="leading" secondItem="yEO-XI-yTh" secondAttribute="leading" id="pOc-rT-wsL"/>
                                     <constraint firstAttribute="trailing" secondItem="YOP-qq-wjJ" secondAttribute="trailing" id="ye3-Yl-c8R"/>
                                 </constraints>
                                 <connections>
