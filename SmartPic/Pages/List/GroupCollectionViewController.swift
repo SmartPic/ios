@@ -52,7 +52,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         // UIRefreshControl
         let refreshControl: UIRefreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "onRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        collectionView.addSubview(refreshControl)
+        collectionView?.addSubview(refreshControl)
         
         reload()
     }
@@ -84,7 +84,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                 k++
             }
         }
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
     
     // MARK: UICollectionViewDataSource
@@ -176,7 +176,7 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     func doneEditMode() {
         isEditMode = false
         selectedIndexPathes = []
-        collectionView.reloadData()
+        collectionView?.reloadData()
     }
     
     func submitDeletion() {
