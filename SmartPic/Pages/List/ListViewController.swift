@@ -42,6 +42,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         
+        deleteButton.setTitle(NSLocalizedString("Delete marked photos", comment:""), forState: UIControlState.Normal)
+        
         setUpEditButton()
         
         if photoFetcher.isFinishPhotoLoading {
@@ -62,7 +64,7 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     
     private func setUpEditButton() {
         editButton = UIButton()
-        editButton?.setTitle("Select", forState: UIControlState.Normal)
+        editButton?.setTitle(NSLocalizedString("Select", comment:""), forState: UIControlState.Normal)
         editButton?.titleLabel?.font = UIFont.systemFontOfSize(14)
         editButton?.sizeToFit()
         
@@ -142,7 +144,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         
         if isEditMode {
             groupCollectionViewController.startEditMode()
-            editButton?.setTitle("End", forState: .Normal)
+            editButton?.setTitle(NSLocalizedString("Cancel", comment:""), forState: .Normal)
+            editButton?.sizeToFit()
             
             UIView.animateWithDuration(0.2, animations: { () -> Void in
                 self.deleteBottomConst.constant = 0
@@ -153,7 +156,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         }
         else {
             groupCollectionViewController.doneEditMode()
-            editButton?.setTitle("Select", forState: .Normal)
+            editButton?.setTitle(NSLocalizedString("Select", comment:""), forState: .Normal)
+            editButton?.sizeToFit()
             
             UIView.animateWithDuration(0.2, animations: { () -> Void in
                 self.deleteBottomConst.constant = -50
@@ -242,7 +246,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     func doneEditMode() {
         isEditMode = false
         groupCollectionViewController.doneEditMode()
-        editButton?.setTitle("Select", forState: .Normal)
+        editButton?.setTitle(NSLocalizedString("Select", comment:""), forState: .Normal)
+        editButton?.sizeToFit()
         
         UIView.animateWithDuration(0.2, animations: { () -> Void in
             self.deleteBottomConst.constant = -50
