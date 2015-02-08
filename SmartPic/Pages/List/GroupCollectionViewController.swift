@@ -11,7 +11,8 @@ import Photos
 
 protocol GroupCollectionViewDelegate {
     func tapGroup(groupInfo: GroupInfo, title: String)
-    func tapImage(asset: PHAsset)
+    func doneEditMode()
+    func tapImage(assets: [PHAsset], index:Int)
 }
 
 class GroupCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -25,6 +26,14 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     private var cellSize: CGSize = CGSizeMake(77, 77)
     private var cellMinPadding: CGFloat = 4
     
+    var pageName: String = "multi selected"// "serially group" or "date group"
+    
+    private var isEditMode = false
+    private var selectedIndexPathes = [NSIndexPath]()
+    
+    // すべての写真を日時順に格納する配列
+    // フルスクリーンに遷移した際に利用
+    private var allAssets: [PHAsset] = []
     
     // MARK: UIViewController
     
@@ -55,6 +64,8 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     func reload() {
         groupInfoList = photoFetcher.allPhotoGroupingByTime()
         cellInfoList = []
+        allAssets = []
+        var k = 0
         for (var i = 0; i < groupInfoList.count; i++) {
             let groupInfo: GroupInfo = groupInfoList[i]
             cellInfoList.append([
@@ -66,8 +77,11 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                 cellInfoList.append([
                     "type": "image",
                     "groupIndex": i,
-                    "assetIndex": j
+                    "assetIndex": j,
+                    "allAssetsIndex": k
                     ])
+                allAssets.append(groupInfo.assets[j])
+                k++
             }
         }
         collectionView?.reloadData()
@@ -90,6 +104,15 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                 size: cell.imageView.frame.size) { (image, info) -> Void in
                     cell.imageView.image = image
             }
+            
+            // 選択中のcellは色をつける
+            if find(selectedIndexPathes, indexPath) != nil {
+                cell.isSelected = true
+            }
+            else {
+                cell.isSelected = false
+            }
+            
             return cell
         } else {
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollectionDateCell", forIndexPath: indexPath) as CollectionDateCell
@@ -102,13 +125,38 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cellInfo: Dictionary = cellInfoList[indexPath.row]
-        let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
-        if (cellInfo["type"] as String == "image") {
-            let asset: PHAsset = groupInfo.assets[cellInfo["assetIndex"] as Int]
-            delegate?.tapImage(asset)
-        } else if (cellInfo["type"] as String == "date") {
-            delegate?.tapGroup(groupInfo, title:groupInfo.dateStrFromDate())
+        
+        if !isEditMode {
+            let cellInfo: Dictionary = cellInfoList[indexPath.row]
+            let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
+            if (cellInfo["type"] as String == "image") {
+                let asset: PHAsset = groupInfo.assets[cellInfo["assetIndex"] as Int]
+                delegate?.tapImage(allAssets, index: cellInfo["allAssetsIndex"] as Int)
+            } else if (cellInfo["type"] as String == "date") {
+                delegate?.tapGroup(groupInfo, title:groupInfo.dateStrFromDate())
+            }
+            
+        }
+        else {
+            let cellInfo: Dictionary = cellInfoList[indexPath.row]
+            let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
+            
+            // 日付セルの場合は何もしない
+            if cellInfo["type"] as String == "date" {
+                return
+            }
+            
+            let index = find(selectedIndexPathes, indexPath)
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as CollectionImageCell
+            if index == nil {
+                selectedIndexPathes.append(indexPath)
+                cell.isSelected = true
+            }
+            else {
+                selectedIndexPathes.removeAtIndex(index!)
+                cell.isSelected = false
+            }
+            
         }
     }
     
@@ -120,6 +168,66 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         return cellMinPadding
     }
     
+    
+    func startEditMode() {
+        isEditMode = true
+    }
+    
+    func doneEditMode() {
+        isEditMode = false
+        selectedIndexPathes = []
+        collectionView?.reloadData()
+    }
+    
+    func submitDeletion() {
+        var delTargetAssets = [PHAsset]()
+        
+        for indexPath in selectedIndexPathes {
+            let cellInfo: Dictionary = cellInfoList[indexPath.row]
+            let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
+            if (cellInfo["type"] as String == "image") {
+                let asset: PHAsset = groupInfo.assets[cellInfo["assetIndex"] as Int]
+                delTargetAssets.append(asset)
+            }
+        }
+        
+        var delCount: Int = delTargetAssets.count
+        photoFetcher.deleteImageAssets(delTargetAssets,
+            completionHandler: { (success, error) -> Void in
+                if error != nil {
+                    println("error occured. error is \(error!)")
+                }
+                else {
+                    if success {
+                        let tracker = GAI.sharedInstance().defaultTracker;
+                        tracker.send(GAIDictionaryBuilder.createEventWithCategory("ui_action", action: "delete image", label: self.pageName, value: delCount).build())
+                        
+                        println("delete success!")
+                        
+                        // 削除した画像のID、残した画像のIDを記憶しておく
+                        let delManager = DeleteManager.getInstance()
+                        delManager.saveDeletedAssets(delTargetAssets, arrangedAssets: [])
+                        
+                        // レビューアラート用の表示
+                        let reviewManager = ReviewManager.getInstance()
+                        reviewManager.incrementDeleteCount()
+                        
+                        // 更新
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.reload()
+                        })
+
+                    }
+                    else {
+                        println("delete failed..")
+                    }
+                }
+        })
+        
+        // 編集モード完了
+        delegate?.doneEditMode()
+    }
+    
     // MARK: Private methods
     
     // プルダウンリフレッシュで table 更新
@@ -127,4 +235,5 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
         reload()
         refreshControl.endRefreshing()
     }
+    
 }

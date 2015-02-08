@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eI1-RL-fyA">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -37,6 +37,20 @@
                                     <constraint firstAttribute="width" constant="320" id="pbM-Ao-NtI"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zCu-eM-Qqb">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.8862745098" green="0.82745098039999998" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="eaz-Tf-n3E"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="選択した写真を削除する">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteBtnTouched:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="47i-5f-qit"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -45,9 +59,12 @@
                             <constraint firstItem="PpJ-UE-gAX" firstAttribute="top" secondItem="5Cc-CY-R0e" secondAttribute="bottom" id="OrF-O9-L2Q"/>
                             <constraint firstItem="9Cx-xI-Nmv" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="PNi-mY-m39"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="PpJ-UE-gAX" secondAttribute="bottom" id="U4S-xe-O2m"/>
+                            <constraint firstItem="zCu-eM-Qqb" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="bx0-VP-dJE"/>
                             <constraint firstItem="5Cc-CY-R0e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="eat-DN-Wad"/>
                             <constraint firstAttribute="trailing" secondItem="5Cc-CY-R0e" secondAttribute="trailing" id="eft-X0-eR1"/>
+                            <constraint firstAttribute="trailing" secondItem="zCu-eM-Qqb" secondAttribute="trailing" id="fC3-t8-2V2"/>
                             <constraint firstAttribute="centerX" secondItem="PpJ-UE-gAX" secondAttribute="centerX" id="faL-7h-95K"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="zCu-eM-Qqb" secondAttribute="bottom" id="i3j-nr-jrU"/>
                             <constraint firstItem="9Cx-xI-Nmv" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="oLo-a3-TI3"/>
                             <constraint firstItem="PpJ-UE-gAX" firstAttribute="top" secondItem="9Cx-xI-Nmv" secondAttribute="bottom" id="zQl-H9-1OP"/>
                         </constraints>
@@ -82,15 +99,17 @@
                     <connections>
                         <outlet property="bannerView" destination="PpJ-UE-gAX" id="G3O-9O-kuD"/>
                         <outlet property="collectionContainer" destination="9Cx-xI-Nmv" id="lcI-hA-vGr"/>
+                        <outlet property="deleteBottomConst" destination="i3j-nr-jrU" id="34t-IN-ykh"/>
+                        <outlet property="deleteButton" destination="zCu-eM-Qqb" id="3yl-YK-XGY"/>
                         <outlet property="segmentedControl" destination="p69-C4-ghl" id="VEj-xv-Kg1"/>
                         <outlet property="tableContainer" destination="5Cc-CY-R0e" id="zNb-HS-dks"/>
                         <segue destination="BC3-BM-sXh" kind="push" identifier="pushDetail" id="5dF-OI-ulM"/>
-                        <segue destination="KIU-dd-Pxo" kind="modal" identifier="modalFullScreen" modalPresentationStyle="fullScreen" animates="NO" id="egZ-wM-KMn"/>
+                        <segue destination="2yV-q9-XXK" kind="modal" identifier="modalFullScreen" animates="NO" id="uEm-2h-MNW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="437" y="526"/>
+            <point key="canvasLocation" x="457" y="525"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="jvp-Al-Dyl">
@@ -793,17 +812,25 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YOP-qq-wjJ">
                                             <rect key="frame" x="0.0" y="0.0" width="77" height="77"/>
                                         </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selected_6plus" translatesAutoresizingMaskIntoConstraints="NO" id="H26-No-mab">
+                                            <rect key="frame" x="0.0" y="0.0" width="77" height="77"/>
+                                        </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="YOP-qq-wjJ" secondAttribute="bottom" id="03N-9d-rik"/>
                                     <constraint firstItem="YOP-qq-wjJ" firstAttribute="top" secondItem="yEO-XI-yTh" secondAttribute="top" id="Bdt-4L-3o9"/>
+                                    <constraint firstAttribute="trailing" secondItem="H26-No-mab" secondAttribute="trailing" id="MPf-uD-jKL"/>
+                                    <constraint firstAttribute="bottom" secondItem="H26-No-mab" secondAttribute="bottom" id="TW5-oY-NbS"/>
                                     <constraint firstItem="YOP-qq-wjJ" firstAttribute="leading" secondItem="yEO-XI-yTh" secondAttribute="leading" id="Wes-0q-GuZ"/>
+                                    <constraint firstItem="H26-No-mab" firstAttribute="top" secondItem="yEO-XI-yTh" secondAttribute="top" id="lT8-Fc-DdY"/>
+                                    <constraint firstItem="H26-No-mab" firstAttribute="leading" secondItem="yEO-XI-yTh" secondAttribute="leading" id="pOc-rT-wsL"/>
                                     <constraint firstAttribute="trailing" secondItem="YOP-qq-wjJ" secondAttribute="trailing" id="ye3-Yl-c8R"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imageView" destination="YOP-qq-wjJ" id="jOz-fC-B33"/>
+                                    <outlet property="selectedView" destination="H26-No-mab" id="2Wg-sL-Vyf"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -820,10 +847,73 @@
             </objects>
             <point key="canvasLocation" x="838" y="-98"/>
         </scene>
+        <!--Full Screen Root View Controller-->
+        <scene sceneID="ZH7-Z5-0HS">
+            <objects>
+                <viewController id="2yV-q9-XXK" customClass="FullScreenRootViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="15E-kd-CKf"/>
+                        <viewControllerLayoutGuide type="bottom" id="vvF-MT-cCw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rmq-90-FNE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zce-fj-aDq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="MI4-Zt-uvQ" kind="embed" identifier="embedFullScreenPage" id="Hky-Og-b8c"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-UM-NI3">
+                                <rect key="frame" x="262" y="510" width="50" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="F7a-4u-rUv"/>
+                                    <constraint firstAttribute="width" constant="50" id="JN5-0J-p6j"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" image="trashbin">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted" image="trashbin_hover"/>
+                                <connections>
+                                    <action selector="tapBinButton:" destination="2yV-q9-XXK" eventType="touchUpInside" id="xBW-FG-t6s"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Zce-fj-aDq" secondAttribute="trailing" id="0cl-UH-zaa"/>
+                            <constraint firstAttribute="trailing" secondItem="tOs-UM-NI3" secondAttribute="trailing" constant="8" id="8aL-3B-3FS"/>
+                            <constraint firstItem="vvF-MT-cCw" firstAttribute="top" secondItem="tOs-UM-NI3" secondAttribute="bottom" constant="8" id="LRU-3d-Gkn"/>
+                            <constraint firstItem="Zce-fj-aDq" firstAttribute="top" secondItem="Rmq-90-FNE" secondAttribute="top" id="Nnk-eN-n3q"/>
+                            <constraint firstItem="Zce-fj-aDq" firstAttribute="leading" secondItem="Rmq-90-FNE" secondAttribute="leading" id="QDt-RL-1Fs"/>
+                            <constraint firstItem="vvF-MT-cCw" firstAttribute="top" secondItem="Zce-fj-aDq" secondAttribute="bottom" id="WOa-cw-7tU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="xP8-8V-XK7" kind="unwind" identifier="unwindFullScreen" unwindAction="returnFromFullScreen:" id="c3b-9P-ebB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9LM-xK-9HK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xP8-8V-XK7" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1316" y="-130"/>
+        </scene>
+        <!--Full Screen Page View Controller-->
+        <scene sceneID="ih9-sb-wl4">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="MI4-Zt-uvQ" customClass="FullScreenPageViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Nk-Oi-OFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1694" y="-130"/>
+        </scene>
         <!--Full Screen View Controller-->
         <scene sceneID="vYx-Md-Jlu">
             <objects>
-                <viewController id="KIU-dd-Pxo" customClass="FullScreenViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FullScreenViewController" id="KIU-dd-Pxo" customClass="FullScreenViewController" customModule="SmartPic" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ptb-tQ-hVf"/>
                         <viewControllerLayoutGuide type="bottom" id="L9d-Lh-3CU"/>
@@ -853,27 +943,11 @@
                                     <outlet property="delegate" destination="KIU-dd-Pxo" id="t7l-37-KVf"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOs-UM-NI3">
-                                <rect key="frame" x="270" y="518" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="F7a-4u-rUv"/>
-                                    <constraint firstAttribute="width" constant="50" id="JN5-0J-p6j"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" image="bin">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="tapBinButton:" destination="KIU-dd-Pxo" eventType="touchUpInside" id="6ui-DS-Qyt"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wOH-xX-qRk" firstAttribute="top" secondItem="Xnh-7S-fK9" secondAttribute="top" id="A69-0B-RUg"/>
-                            <constraint firstAttribute="trailing" secondItem="tOs-UM-NI3" secondAttribute="trailing" id="DS9-NA-Zjw"/>
                             <constraint firstAttribute="trailing" secondItem="wOH-xX-qRk" secondAttribute="trailing" id="lwy-ak-Bgl"/>
-                            <constraint firstItem="L9d-Lh-3CU" firstAttribute="top" secondItem="tOs-UM-NI3" secondAttribute="bottom" id="o8q-38-9hH"/>
                             <constraint firstItem="wOH-xX-qRk" firstAttribute="leading" secondItem="Xnh-7S-fK9" secondAttribute="leading" id="pVL-gn-Iq4"/>
                             <constraint firstItem="L9d-Lh-3CU" firstAttribute="top" secondItem="wOH-xX-qRk" secondAttribute="bottom" id="tiF-Ak-3mO"/>
                         </constraints>
@@ -882,17 +956,33 @@
                         <outlet property="imageView" destination="kNp-3J-yD3" id="Kgq-vp-axI"/>
                         <outlet property="imageViewHeightConstrraint" destination="ZuN-Nj-0wR" id="lDL-bm-pZB"/>
                         <outlet property="imageViewWidthConstraint" destination="wjI-cM-kf5" id="rH6-9a-ej9"/>
-                        <segue destination="hWa-iT-aJL" kind="unwind" identifier="unwindFullScreen" unwindAction="returnFromFullScreen:" id="r19-Tl-gjS"/>
+                        <outlet property="scrollView" destination="wOH-xX-qRk" id="IdG-Fd-7gJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43Z-Eh-LPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="hWa-iT-aJL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1450" y="-105"/>
+            <point key="canvasLocation" x="2049" y="-130"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="EA2-fm-PRQ">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="esa-6L-1V4" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rFY-S1-z2h"/>
+                        <viewControllerLayoutGuide type="bottom" id="o3L-44-fs5"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Q7l-1R-SzS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cb5-sR-Dev" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
-        <image name="bin" width="18" height="20"/>
         <image name="close" width="22" height="22"/>
         <image name="delete_icon" width="22" height="22"/>
         <image name="info" width="22" height="22"/>
@@ -901,8 +991,11 @@
         <image name="info3" width="112" height="125"/>
         <image name="keep_icon" width="22" height="22"/>
         <image name="pick_button" width="80" height="85"/>
+        <image name="selected_6plus" width="78" height="78"/>
         <image name="selected_mask" width="70" height="70"/>
         <image name="stared_mask" width="70" height="70"/>
+        <image name="trashbin" width="66" height="66"/>
+        <image name="trashbin_hover" width="66" height="66"/>
         <image name="unpick_button" width="80" height="85"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

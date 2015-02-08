@@ -15,12 +15,17 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     @IBOutlet weak var collectionContainer: UIView!
     @IBOutlet weak var bannerView: GADBannerView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    private var editButton: UIButton?
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var deleteBottomConst: NSLayoutConstraint!
     
     var tutorialView: TutorialView!
     var noPictureView: NoPictureView!
     var latestDeletedCount: Int = 0
     var groupTableViewController: GroupTableViewController!
     var groupCollectionViewController: GroupCollectionViewController!
+    
+    var isEditMode = false
     private let photoFetcher = PhotoFetcher()
 
     override func viewDidLoad() {
@@ -37,6 +42,9 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         bannerView.rootViewController = self
         bannerView.loadRequest(GADRequest())
         
+        deleteButton.setTitle(NSLocalizedString("Delete marked photos", comment:""), forState: UIControlState.Normal)
+        
+        setUpEditButton()
         
         if photoFetcher.isFinishPhotoLoading {
             self.checkAccessToPhotos()
@@ -54,6 +62,19 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         self.screenName = "リストページ"
     }
     
+    private func setUpEditButton() {
+        editButton = UIButton()
+        editButton?.setTitle(NSLocalizedString("Select", comment:""), forState: UIControlState.Normal)
+        editButton?.titleLabel?.font = UIFont.systemFontOfSize(14)
+        editButton?.sizeToFit()
+        
+        editButton?.addTarget(self, action: "editBtnTouched", forControlEvents: .TouchUpInside)
+        
+        deleteBottomConst.constant = -50
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "pushDetail" {
@@ -64,8 +85,9 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
             detailViewController.canKeepAll = (segmentedControl.selectedSegmentIndex == 0)
             detailViewController.pageName = (title == "") ? "serially group" : "date group"
         } else if segue.identifier == "modalFullScreen" {
-            let fullScreenViewController = segue.destinationViewController as FullScreenViewController
-            fullScreenViewController.asset = sender as PHAsset
+            let viewController = segue.destinationViewController as FullScreenRootViewController
+            viewController.assets = sender?["assets"] as [PHAsset]
+            viewController.currentIndex = sender?["index"] as Int
             
         } else if segue.identifier == "showStatus" {
             if sender is Bool {
@@ -86,9 +108,16 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         if (index == 0) {
             collectionContainer.hidden = true
             tableContainer.hidden = false
+            self.navigationItem.rightBarButtonItems = nil
+            
         } else if (index == 1) {
             tableContainer.hidden = true
             collectionContainer.hidden = false
+            
+            let negativeSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FixedSpace,
+                target: nil, action: nil)
+            negativeSpace.width = -8
+            self.navigationItem.setRightBarButtonItems([negativeSpace, UIBarButtonItem(customView: editButton!)], animated: false)
         }
     }
 
@@ -98,6 +127,8 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         noPictureView?.removeFromSuperview()
         self.reload()
         self.showContainerAtIndex(segmentedControl.selectedSegmentIndex)
+        
+        doneEditMode()
     }
     
     @IBAction func returnFromDetail(segue: UIStoryboardSegue) {
@@ -107,6 +138,39 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
     @IBAction func returnFromFullScreen(segue: UIStoryboardSegue) {
         returnWithDeleteAction()
     }
+    
+    func editBtnTouched() {
+        isEditMode = !isEditMode
+        
+        if isEditMode {
+            groupCollectionViewController.startEditMode()
+            editButton?.setTitle(NSLocalizedString("Cancel", comment:""), forState: .Normal)
+            editButton?.sizeToFit()
+            
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.deleteBottomConst.constant = 0
+                self.view.setNeedsLayout()
+                self.view.layoutIfNeeded()
+            })
+
+        }
+        else {
+            groupCollectionViewController.doneEditMode()
+            editButton?.setTitle(NSLocalizedString("Select", comment:""), forState: .Normal)
+            editButton?.sizeToFit()
+            
+            UIView.animateWithDuration(0.2, animations: { () -> Void in
+                self.deleteBottomConst.constant = -50
+                self.view.setNeedsLayout()
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    @IBAction func deleteBtnTouched(sender: AnyObject) {
+        groupCollectionViewController.submitDeletion()
+    }
+    
     
     private func returnWithDeleteAction() {
         let iOS81 = NSOperatingSystemVersion(majorVersion: 8, minorVersion: 1, patchVersion: 0)
@@ -175,8 +239,21 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         self.view.addSubview(noPictureView)
     }
     
-    func tapImage(asset: PHAsset) {
-        self.performSegueWithIdentifier("modalFullScreen", sender: asset)
+    func tapImage(assets: [PHAsset], index: Int) {
+        self.performSegueWithIdentifier("modalFullScreen", sender: ["assets":assets, "index":index])
+    }
+    
+    func doneEditMode() {
+        isEditMode = false
+        groupCollectionViewController.doneEditMode()
+        editButton?.setTitle(NSLocalizedString("Select", comment:""), forState: .Normal)
+        editButton?.sizeToFit()
+        
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.deleteBottomConst.constant = -50
+            self.view.setNeedsLayout()
+            self.view.layoutIfNeeded()
+        })
     }
     
     private func reload() {
