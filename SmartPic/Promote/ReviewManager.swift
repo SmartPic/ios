@@ -68,8 +68,8 @@ class ReviewManager: NSObject {
         saveDeleteCount()
     }
     
-    func addDeleteCount(count: Int) {
-        deleteCount += count
+    func incrementDeleteCount() {
+        deleteCount++
         
         saveDeleteCount()
     }
