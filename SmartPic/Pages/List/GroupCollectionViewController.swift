@@ -11,9 +11,8 @@ import Photos
 
 protocol GroupCollectionViewDelegate {
     func tapGroup(groupInfo: GroupInfo, title: String)
-    func tapImage(asset: PHAsset)
-    
     func doneEditMode()
+    func tapImage(assets: [PHAsset], index:Int)
 }
 
 class GroupCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -31,6 +30,10 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     
     private var isEditMode = false
     private var selectedIndexPathes = [NSIndexPath]()
+    
+    // すべての写真を日時順に格納する配列
+    // フルスクリーンに遷移した際に利用
+    private var allAssets: [PHAsset] = []
     
     // MARK: UIViewController
     
@@ -61,6 +64,8 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     func reload() {
         groupInfoList = photoFetcher.allPhotoGroupingByTime()
         cellInfoList = []
+        allAssets = []
+        var k = 0
         for (var i = 0; i < groupInfoList.count; i++) {
             let groupInfo: GroupInfo = groupInfoList[i]
             cellInfoList.append([
@@ -72,8 +77,11 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
                 cellInfoList.append([
                     "type": "image",
                     "groupIndex": i,
-                    "assetIndex": j
+                    "assetIndex": j,
+                    "allAssetsIndex": k
                     ])
+                allAssets.append(groupInfo.assets[j])
+                k++
             }
         }
         collectionView.reloadData()
@@ -117,16 +125,17 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-
+        
         if !isEditMode {
             let cellInfo: Dictionary = cellInfoList[indexPath.row]
             let groupInfo: GroupInfo = groupInfoList[cellInfo["groupIndex"] as Int]
             if (cellInfo["type"] as String == "image") {
                 let asset: PHAsset = groupInfo.assets[cellInfo["assetIndex"] as Int]
-                delegate?.tapImage(asset)
+                delegate?.tapImage(allAssets, index: cellInfo["allAssetsIndex"] as Int)
             } else if (cellInfo["type"] as String == "date") {
                 delegate?.tapGroup(groupInfo, title:groupInfo.dateStrFromDate())
             }
+            
         }
         else {
             let cellInfo: Dictionary = cellInfoList[indexPath.row]
