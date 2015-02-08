@@ -65,7 +65,6 @@ class ListViewController: GAITrackedViewController, TutorialViewDelegate, Promot
         editButton?.setTitle("Select", forState: UIControlState.Normal)
         editButton?.titleLabel?.font = UIFont.systemFontOfSize(14)
         editButton?.sizeToFit()
-        println("editBUtton \(editButton!.frame)")
         
         editButton?.addTarget(self, action: "editBtnTouched", forControlEvents: .TouchUpInside)
         

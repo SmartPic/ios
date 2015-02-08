@@ -138,17 +138,16 @@ class GroupCollectionViewController: UICollectionViewController, UICollectionVie
             }
             
             let index = find(selectedIndexPathes, indexPath)
+            let cell = collectionView.cellForItemAtIndexPath(indexPath) as CollectionImageCell
             if index == nil {
                 selectedIndexPathes.append(indexPath)
+                cell.isSelected = true
             }
             else {
                 selectedIndexPathes.removeAtIndex(index!)
+                cell.isSelected = false
             }
             
-            // 更新時にチラつかないように performWithoutAnimation 内でリロード実行
-            UIView.performWithoutAnimation({ () -> Void in
-                self.collectionView.reloadData()
-            })
         }
     }
     
